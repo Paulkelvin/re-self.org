@@ -21,7 +21,15 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
   }, [testimonials.length]);
 
   return (
-    <div>
+    <div className="relative">
+      {/* Massive decorative quotation mark behind the canvas */}
+      <span
+        aria-hidden="true"
+        className="font-serif pointer-events-none absolute -left-6 -top-10 select-none text-[12rem] leading-none text-white/5"
+      >
+        &ldquo;
+      </span>
+
       <div className="relative min-h-[300px]">
         {testimonials.map((item, i) => (
           <div
@@ -33,27 +41,32 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
               pointerEvents: i === current ? "auto" : "none",
             }}
           >
-            <p className="font-serif mb-6 text-6xl leading-none text-sage/30">&ldquo;</p>
-            <p className="text-lg leading-relaxed text-white/80 sm:text-xl">{item.quote}</p>
-            <div className="mt-7 flex gap-1">
+            <p className="font-serif text-lg italic leading-relaxed text-white/90 lg:text-xl">
+              {item.quote}
+            </p>
+
+            <div className="mb-4 mt-6 flex gap-1.5">
               {Array.from({ length: 5 }).map((_, s) => (
                 <svg
                   key={s}
-                  width="14"
-                  height="14"
+                  width="16"
+                  height="16"
                   viewBox="0 0 14 14"
                   fill="currentColor"
-                  className="text-sage"
+                  className="text-beige"
                   aria-hidden="true"
                 >
                   <path d="M7 1l1.545 4.755H14l-4.045 2.94 1.545 4.755L7 10.51l-4.5 2.94 1.545-4.755L0 5.755h5.455z" />
                 </svg>
               ))}
             </div>
-            <footer className="mt-4">
+
+            <footer>
               <cite className="not-italic">
-                <span className="block text-sm font-bold text-white">{item.name}</span>
-                <span className="mt-0.5 block text-xs text-sage/60">
+                <span className="block text-sm font-bold tracking-tight text-white">
+                  {item.name}
+                </span>
+                <span className="mt-1 block text-xs uppercase tracking-[0.12em] text-white/70 lg:text-sm">
                   {item.role}, {item.org}
                 </span>
               </cite>
@@ -62,14 +75,15 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
         ))}
       </div>
 
-      <div className="mt-8 flex gap-2">
+      {/* Pagination — sleek horizontal tracking bars */}
+      <div className="mt-8 flex items-center gap-2">
         {testimonials.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
             aria-label={`Go to testimonial ${i + 1}`}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i === current ? "w-6 bg-sage" : "w-2 bg-white/20 hover:bg-white/40"
+            className={`h-[2px] transition-all duration-300 ${
+              i === current ? "w-12 bg-white" : "w-8 bg-white/20 hover:bg-white/40"
             }`}
           />
         ))}

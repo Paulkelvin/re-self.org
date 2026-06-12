@@ -50,16 +50,14 @@ function LeafIcon() {
   );
 }
 
-const topicIcons = [
-  <svg key="0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 2c0 6-4 9-4 14a4 4 0 008 0c0-5-4-8-4-14z" /><path d="M12 2c-3 5-1 8 2 11" /></svg>,
-  <svg key="1" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 20l6-11 4 7 3-5 5 9" /></svg>,
-  <svg key="2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>,
-  <svg key="3" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0118 7a7 7 0 010 14H4l7-1z" /><path d="M3 21l5-5" /></svg>,
-  <svg key="4" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>,
-  <svg key="5" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>,
-];
 
 export default function HomePage() {
+  // Services split for the asymmetric feature grid:
+  // flagship anchors the layout; the remaining two stack as a duet.
+  const flagship =
+    services.find((s) => s.title === "Corporate Wellness Programs") ?? services[0];
+  const duet = services.filter((s) => s !== flagship);
+
   return (
     <>
       {/* ── HERO ── */}
@@ -71,53 +69,75 @@ export default function HomePage() {
 
         <div className="relative w-full mx-auto max-w-[1200px] px-4 py-16 lg:py-0">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <FadeIn direction="up">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-sage">
-                Wellness Leader &bull; Speaker &bull; Corporate Wellness Consultant
-              </p>
-              <h1 className="font-serif text-4xl font-bold leading-[1.07] tracking-tight text-forest sm:text-5xl lg:text-[3.1rem]">
-                Self-Care From Within.{" "}
-                <span className="italic text-sage">Stronger Leaders.</span>{" "}
-                Healthier Organizations.
-              </h1>
-              <p className="mt-5 max-w-lg text-base leading-relaxed text-muted">
-                Sonya Harris empowers individuals and organizations through transformative
-                workshops, leadership development, and wellness programs rooted in decades
-                of service, resilience, and authentic care.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link
-                  href="/book-sonya"
-                  className="inline-flex min-h-[50px] items-center justify-center rounded-lg bg-forest px-7 text-sm font-semibold text-white shadow-lg shadow-forest/20 transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-xl hover:shadow-forest/25"
-                >
-                  Book Sonya
-                </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex min-h-[50px] items-center justify-center rounded-lg border border-charcoal/20 px-7 text-sm font-semibold text-charcoal transition-all hover:border-forest hover:text-forest"
-                >
-                  Explore Services &rarr;
-                </Link>
-              </div>
-            </FadeIn>
+            <div>
+              <FadeIn direction="up">
+                <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted/70">
+                  Wellness Leader &bull; Speaker &bull; Corporate Wellness Consultant
+                </p>
+              </FadeIn>
+              <FadeIn direction="up" delay={80}>
+                <h1 className="font-serif text-4xl font-bold leading-[1.07] tracking-tight text-charcoal sm:text-5xl lg:text-[3.1rem]">
+                  Self-Care From Within. Stronger Leaders.{" "}
+                  <span className="text-forest">Healthier Organizations.</span>
+                </h1>
+              </FadeIn>
+              <FadeIn direction="up" delay={160}>
+                <p className="mt-5 max-w-[490px] text-base leading-relaxed text-muted">
+                  Sonya Harris empowers individuals and organizations through transformative
+                  workshops, leadership development, and wellness programs rooted in decades
+                  of service, resilience, and authentic care.
+                </p>
+              </FadeIn>
+              <FadeIn direction="up" delay={240}>
+                <div className="mt-7 flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/book-sonya"
+                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-forest px-7 text-sm font-semibold text-white shadow-lg shadow-forest/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-xl hover:shadow-forest/30"
+                  >
+                    Book Sonya
+                  </Link>
+                  <Link
+                    href="/services"
+                    className="group inline-flex items-center gap-2 text-sm font-semibold text-muted transition-all duration-200 hover:text-forest"
+                  >
+                    Explore Services
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transition-transform duration-200 group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2 7h10M8 3l4 4-4 4" />
+                    </svg>
+                  </Link>
+                </div>
+                <div className="mt-5 inline-flex items-center gap-2.5">
+                  <span className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-forest">21+ Years</span>
+                  <span className="h-3 w-px bg-line" aria-hidden="true" />
+                  <span className="text-[0.65rem] font-medium uppercase tracking-wider text-muted/70">Service · Leadership · Impact</span>
+                </div>
+              </FadeIn>
+            </div>
 
-            <FadeIn direction="up" delay={160}>
+            <FadeIn direction="up" delay={200}>
               <div className="relative mx-auto max-w-[360px] lg:max-w-none">
                 <div className="absolute -right-3 -top-3 bottom-3 left-3 rounded-2xl border-2 border-sage/25" aria-hidden="true" />
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-forest/15 h-[clamp(280px,44vh,440px)]">
                   <Image
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=880&q=85"
+                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=880&q=85"
                     alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
                     fill
                     priority
                     sizes="(max-width: 640px) 360px, (max-width: 1200px) 50vw, 560px"
                     className="object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest/25 to-transparent" />
-                </div>
-                <div className="absolute -bottom-4 -left-4 rounded-xl bg-white px-4 py-3 shadow-xl">
-                  <p className="text-[0.62rem] font-semibold uppercase tracking-wider text-sage">21+ Years</p>
-                  <p className="text-sm font-bold text-charcoal">Service. Leadership. Impact.</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest/20 to-transparent" />
                 </div>
               </div>
             </FadeIn>
@@ -131,39 +151,25 @@ export default function HomePage() {
           <div className="absolute -right-32 -top-32 h-[400px] w-[400px] rounded-full bg-sage/10 blur-3xl" />
           <div className="absolute -bottom-20 left-1/4 h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl" />
         </div>
-        <div className="relative mx-auto max-w-[1200px] px-4 py-14 lg:py-16">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 2L3 5v6c0 4 3 7 7 8 4-1 7-4 7-8V5L10 2z"/><path d="M7 10l2.5 2.5L13 8"/></svg>,
-                value: credentials[0][0],
-                label: credentials[0][1],
-              },
-              {
-                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 17h16M4 17V9M16 17V9M8 17v-4h4v4M4 9H2l8-6 8 6h-2M8 9h4"/></svg>,
-                value: credentials[1][0],
-                label: credentials[1][1],
-              },
-              {
-                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="3" width="16" height="11" rx="1"/><path d="M7 17l3-3 3 3M10 14v3"/></svg>,
-                value: credentials[2][0],
-                label: credentials[2][1],
-              },
-              {
-                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="8" cy="7" r="3"/><path d="M2 17c0-3 2.7-5 6-5s6 2 6 5"/><circle cx="14" cy="6" r="2"/><path d="M14 11c2 .5 4 2 4 4" strokeLinecap="round"/></svg>,
-                value: credentials[3][0],
-                label: credentials[3][1],
-              },
-            ].map(({ icon, value, label }, i) => (
-              <FadeIn key={label} direction="up" delay={i * 80}>
-                <div className="group flex flex-col gap-4 rounded-xl border border-white/10 bg-white/8 p-6 transition-colors hover:border-white/20 hover:bg-white/12">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage/20 text-sage">
-                    {icon}
-                  </div>
-                  <div>
-                    <p className="font-serif text-4xl font-bold text-white lg:text-5xl">{value}</p>
-                    <p className="mt-1.5 text-sm leading-snug text-white/50">{label}</p>
-                  </div>
+        <div className="relative mx-auto max-w-[1200px] px-4 py-20 lg:py-24">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {credentials.map(([value, label], i) => (
+              <FadeIn key={label} direction="up" delay={i * 90}>
+                <div className="relative px-4 py-6 text-center md:px-8">
+                  {i >= 1 && (
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none absolute left-0 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/15 to-transparent ${
+                        i % 2 !== 0 ? "block" : "hidden md:block"
+                      }`}
+                    />
+                  )}
+                  <p className="bg-gradient-to-b from-white to-sage-light/70 bg-clip-text font-serif text-5xl font-light leading-none tracking-tight text-transparent sm:text-6xl lg:text-[4.25rem]">
+                    {value}
+                  </p>
+                  <p className="mx-auto mt-4 max-w-[15ch] text-[0.7rem] font-medium uppercase leading-relaxed tracking-[0.16em] text-white/55">
+                    {label}
+                  </p>
                 </div>
               </FadeIn>
             ))}
@@ -174,49 +180,57 @@ export default function HomePage() {
       {/* ── ABOUT ── */}
       <section className="bg-beige py-20 lg:py-28">
         <div className="mx-auto max-w-[1200px] px-4">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="grid items-center gap-16 lg:grid-cols-[4fr_6fr] lg:gap-24">
+            {/* Image — 40%, taller 3:4 portrait */}
             <FadeIn direction="left">
-              <div className="relative">
-                <div className="absolute -left-3 -top-3 h-full w-full rounded-2xl bg-sage/20" aria-hidden="true" />
-                <div className="relative h-[340px] overflow-hidden rounded-2xl sm:h-[380px] lg:h-[420px]">
+              <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[340px] lg:mx-0 lg:max-w-[400px]">
+                <div
+                  className="absolute -bottom-4 -left-4 h-full w-full rounded-[1.75rem] border border-sage/40 bg-sage/15"
+                  aria-hidden="true"
+                />
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] shadow-[0_30px_55px_-22px_rgba(47,79,79,0.45)]">
                   <Image
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=85"
+                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=90"
                     alt="Sonya Harris"
                     fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 340px, 400px"
+                    className="object-cover object-[center_20%]"
                   />
                 </div>
               </div>
             </FadeIn>
 
+            {/* Text — 60% */}
             <FadeIn direction="up" delay={120}>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">About Sonya</p>
-              <h2 className="font-serif text-3xl font-bold leading-tight text-forest lg:text-[2.3rem]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
+                About Sonya
+              </p>
+              <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-forest sm:text-[2.4rem] lg:text-[2.6rem]">
                 Leadership Meets Wellness
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted">
-                Sonya Harris brings military discipline, federal leadership experience, and
-                deep wellness expertise to every engagement. With 21 years of U.S. Air
-                Force service and a decade of federal government leadership, she has navigated
-                high-stakes environments where resilience and wellbeing are mission-critical.
+              <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
+                Sonya Harris blends military discipline and federal leadership with deep
+                wellness expertise to help executive teams navigate high-stakes environments
+                where resilience is mission-critical.
               </p>
 
-              <div className="mt-7 grid grid-cols-2 gap-2.5">
+              <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4">
                 {achievements.map(({ value, label }) => (
                   <div
                     key={label}
-                    className="rounded-lg border border-beige-dark bg-white px-4 py-3.5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sage/50 hover:shadow-md"
+                    className="group border-t border-beige-dark pt-3 transition-colors hover:border-sage"
                   >
-                    <p className="font-serif text-lg font-bold text-forest">{value}</p>
-                    <p className="mt-0.5 text-[0.7rem] font-medium text-muted">{label}</p>
+                    <dt className="font-serif text-lg font-semibold text-forest">{value}</dt>
+                    <dd className="mt-1 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-muted transition-colors group-hover:text-forest">
+                      {label}
+                    </dd>
                   </div>
                 ))}
-              </div>
+              </dl>
 
               <Link
                 href="/about"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
               >
                 Read full story &rarr;
               </Link>
@@ -226,23 +240,23 @@ export default function HomePage() {
       </section>
 
       {/* ── CORE PHILOSOPHY ── */}
-      <section className="bg-warm-white py-20 lg:py-28">
-        <div className="mx-auto max-w-[1200px] px-4">
-          <div className="mb-2 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+      <section className="flex items-center bg-warm-white px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
+        <div className="mx-auto w-full max-w-[1320px]">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
+            {/* Column 1 — title anchor (label + title + summary, tightly bound) */}
             <FadeIn direction="up">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">Philosophy</p>
-              <h2 className="font-serif max-w-xl text-4xl font-bold text-forest lg:text-5xl">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
+                Philosophy
+              </p>
+              <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-forest xl:text-[2.6rem]">
                 The Principles Behind Every Transformation
               </h2>
-            </FadeIn>
-            <FadeIn direction="up" delay={100}>
-              <p className="max-w-xs text-sm leading-relaxed text-muted lg:text-right">
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
                 Three commitments that shape every keynote, workshop, and program Sonya delivers.
               </p>
             </FadeIn>
-          </div>
 
-          <div className="mt-12 divide-y divide-line">
+            {/* Columns 2–4 — one principle per column, divided by thin vertical lines */}
             {[
               {
                 num: "01",
@@ -260,114 +274,200 @@ export default function HomePage() {
                 body: "Sustainable wellness rhythms that support lasting success without sacrificing health or humanity.",
               },
             ].map(({ num, title, body }, i) => (
-              <FadeIn key={title} direction="up" delay={i * 80}>
-                <div className="group grid cursor-default grid-cols-[52px_1fr] gap-4 py-8 lg:grid-cols-[80px_1fr_320px] lg:items-center lg:gap-10 lg:py-10">
-                  <span className="font-serif text-3xl font-bold text-line transition-colors duration-300 group-hover:text-sage lg:text-5xl">
-                    {num}
-                  </span>
-                  <h3 className="font-serif text-2xl font-bold text-forest lg:text-3xl">{title}</h3>
-                  <p className="col-start-2 text-sm leading-relaxed text-muted lg:col-start-auto">{body}</p>
-                </div>
+              <FadeIn
+                key={title}
+                direction="up"
+                delay={(i + 1) * 100}
+                className="group lg:border-l lg:border-line/60 lg:pl-8 xl:pl-12"
+              >
+                <span className="font-serif block text-6xl font-bold leading-none text-forest/15 transition-colors duration-300 group-hover:text-sage/50 xl:text-7xl">
+                  {num}
+                </span>
+                <h3 className="font-serif mt-4 text-2xl font-bold tracking-tight text-forest">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{body}</p>
               </FadeIn>
             ))}
-            <div />
           </div>
         </div>
       </section>
 
       {/* ── SERVICES ── */}
-      <section className="bg-beige py-24 lg:py-32">
-        <div className="mx-auto max-w-[1200px] px-4">
+      <section className="flex flex-col justify-center bg-beige py-16 xl:py-20 lg:h-screen lg:max-h-[850px]">
+        <div className="mx-auto w-full max-w-[1200px] px-4">
           <FadeIn direction="up">
-            <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Services</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">How We Serve</h2>
-              <p className="mx-auto mt-4 max-w-xl text-base text-muted">
+            <div className="mb-6 text-center">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">Services</p>
+              <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">How We Serve</h2>
+              <p className="mx-auto mt-3 max-w-xl text-sm text-muted lg:text-base">
                 Tailored wellness solutions designed for individuals, teams, and organizations.
               </p>
             </div>
           </FadeIn>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, i) => (
-              <FadeIn key={service.title} direction="up" delay={i * 100}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-beige-dark bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-forest/10 transition-colors group-hover:bg-forest/5" />
-                  </div>
-                  <div className="flex flex-col p-5">
-                    <h3 className="font-serif mb-2 text-base font-bold text-forest">{service.title}</h3>
-                    <p className="line-clamp-2 text-sm leading-relaxed text-muted">{service.body}</p>
-                    <Link
-                      href="/services"
-                      className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-forest transition-all hover:gap-2"
+          {/* Asymmetric feature grid — flagship (3) + stacked duet (2) */}
+          <div className="grid grid-cols-1 gap-6 lg:h-[420px] lg:grid-cols-5 xl:h-[460px] xl:gap-8">
+            {/* Card A — Flagship: Corporate Wellness Programs */}
+            <FadeIn direction="up" className="lg:col-span-3 lg:h-full lg:min-h-0">
+              <Link
+                href="/services"
+                className="group relative flex h-full min-h-[420px] overflow-hidden rounded-2xl shadow-sm transition-shadow hover:shadow-xl lg:min-h-0"
+              >
+                <Image
+                  src={flagship.image}
+                  alt={flagship.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-forest/45 bg-blend-overlay transition-colors group-hover:bg-forest/55" />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-forest-dark/15 to-transparent" />
+                <div className="absolute bottom-7 left-7 right-7 z-10">
+                  <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-sage-light">
+                    Flagship Program
+                  </p>
+                  <h3 className="font-serif text-2xl font-bold leading-tight text-white lg:text-[2rem]">
+                    {flagship.title}
+                  </h3>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-white/75">
+                    {flagship.body}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                    Explore Program
+                    <svg
+                      width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+                      className="transition-transform duration-300 group-hover:translate-x-1"
                     >
-                      Learn More &rarr;
-                    </Link>
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
+                      <path d="M2 7h10M8 3l4 4-4 4" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
+            </FadeIn>
+
+            {/* Cards B & C — Stacked duet: Workshops + Retreats */}
+            <div className="grid gap-6 lg:col-span-2 lg:h-full lg:min-h-0 lg:grid-rows-2 lg:gap-4">
+              {duet.map((service, i) => (
+                <FadeIn key={service.title} direction="up" delay={(i + 1) * 120} className="lg:h-full lg:min-h-0">
+                  <Link
+                    href="/services"
+                    className="group flex h-full min-h-0 items-center gap-4 overflow-hidden rounded-2xl border border-beige-dark bg-warm-white p-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sage/50 hover:shadow-lg"
+                  >
+                    <div className="relative h-24 w-24 flex-shrink-0 self-stretch overflow-hidden rounded-xl lg:h-auto lg:w-28">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        sizes="112px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-serif text-base font-semibold leading-snug text-forest">
+                        {service.title}
+                      </h3>
+                      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted lg:text-sm">
+                        {service.body}
+                      </p>
+                      <span className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
+                        Learn More
+                        <svg
+                          width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                          strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+                          className="transition-transform duration-300 group-hover:translate-x-1"
+                        >
+                          <path d="M2 7h10M8 3l4 4-4 4" />
+                        </svg>
+                      </span>
+                    </div>
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── SPEAKING TOPICS ── */}
-      <section className="bg-warm-white py-24 lg:py-32">
-        <div className="mx-auto max-w-[1200px] px-4">
-          <FadeIn direction="up">
-            <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Speaking</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
+      <section className="flex items-center bg-warm-white px-4 py-20 lg:h-screen lg:max-h-[850px] lg:py-0">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+            {/* Left — anchor: tag, headline, CTA */}
+            <FadeIn direction="up" className="lg:col-span-4">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
+                Speaking
+              </p>
+              <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-forest lg:text-[2.9rem]">
                 Popular Speaking Topics
               </h2>
-            </div>
-          </FadeIn>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {topics.map((topic, i) => (
-              <FadeIn key={topic.title} direction="up" delay={(i % 3) * 80}>
-                <div className="group rounded-xl border border-line bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:border-sage/40 hover:shadow-lg">
-                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-beige text-forest transition-colors group-hover:bg-sage/20">
-                    {topicIcons[i]}
-                  </div>
-                  <h3 className="font-serif mb-2 text-base font-bold text-charcoal">{topic.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted">{topic.description}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          <FadeIn direction="up" delay={200}>
-            <div className="mt-10 text-center">
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
+                Keynotes and sessions shaped around the realities of high-performing,
+                high-pressure teams.
+              </p>
               <Link
                 href="/speaking-events"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-forest px-7 text-sm font-semibold text-forest transition-all hover:bg-forest hover:text-white"
+                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-forest/30 px-6 py-3 text-sm font-semibold text-forest transition-all duration-200 hover:border-forest hover:bg-forest hover:text-white"
               >
                 View All Speaking Topics
+                <svg
+                  width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M2 7h10M8 3l4 4-4 4" />
+                </svg>
               </Link>
-            </div>
-          </FadeIn>
+            </FadeIn>
+
+            {/* Right — interactive typographic list */}
+            <FadeIn direction="up" delay={120} className="lg:col-span-8">
+              <div className="group/list flex flex-col">
+                {topics.map((topic, i) => (
+                  <Link
+                    key={topic.title}
+                    href="/speaking-events"
+                    className="group/row flex items-baseline gap-5 border-b border-line/60 py-4 transition-opacity duration-300 first:border-t lg:gap-7 lg:py-[1.1rem] lg:group-hover/list:opacity-40 lg:hover:!opacity-100"
+                  >
+                    <span className="font-serif text-base font-semibold text-sage tabular-nums lg:text-lg">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-4">
+                        <h3 className="font-serif text-lg font-bold leading-snug tracking-tight text-charcoal transition-colors duration-200 group-hover/row:text-forest lg:text-xl">
+                          {topic.title}
+                        </h3>
+                        <svg
+                          width="18" height="18" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                          strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+                          className="shrink-0 -translate-x-2 text-forest opacity-0 transition-all duration-300 group-hover/row:translate-x-0 group-hover/row:opacity-100"
+                        >
+                          <path d="M2 7h10M8 3l4 4-4 4" />
+                        </svg>
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-muted transition-all duration-300 lg:line-clamp-1 lg:group-hover/row:line-clamp-none">
+                        {topic.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="bg-forest py-24 lg:py-32">
-        <div className="mx-auto max-w-[1200px] px-4">
-          <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr] lg:items-center">
+      <section className="flex flex-col justify-center bg-forest py-16 lg:h-screen lg:max-h-[750px] lg:overflow-hidden">
+        <div className="mx-auto w-full max-w-[1200px] px-4">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:items-center lg:gap-20">
             <FadeIn direction="up">
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Testimonials</p>
-              <h2 className="font-serif text-4xl font-bold text-white lg:text-5xl">
+              <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-white lg:text-5xl">
                 What happens when the room shifts.
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-white/50">
+              <p className="mt-5 text-base leading-relaxed text-white/70">
                 Real results from organizations that invested in their people through
                 Sonya&apos;s programs.
               </p>

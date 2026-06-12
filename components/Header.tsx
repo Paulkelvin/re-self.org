@@ -37,15 +37,15 @@ export function Header() {
         }`}
       >
         {/* Logo */}
-        <Link href="/" className="grid shrink-0 leading-tight" onClick={() => setOpen(false)}>
+        <Link href="/" className="grid shrink-0 gap-0.5 leading-none" onClick={() => setOpen(false)}>
           <span
             className={`font-serif font-bold tracking-tight text-forest transition-all duration-300 ${
-              scrolled ? "text-lg" : "text-xl"
+              scrolled ? "text-[1rem]" : "text-[1.15rem]"
             }`}
           >
             Re-Self
           </span>
-          <span className="text-[0.57rem] font-semibold uppercase tracking-widest text-sage">
+          <span className="text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-sage/80">
             Wellness Strategy
           </span>
         </Link>
@@ -56,8 +56,8 @@ export function Header() {
             <Link
               key={href}
               href={href}
-              className={`text-sm font-medium transition-colors hover:text-forest ${
-                pathname === href ? "font-semibold text-forest" : "text-muted"
+              className={`text-sm font-medium tracking-wide transition-opacity ${
+                pathname === href ? "font-semibold text-forest opacity-100" : "text-muted opacity-70 hover:opacity-100"
               }`}
             >
               {label}
@@ -65,7 +65,7 @@ export function Header() {
           ))}
           <Link
             href="/book-sonya"
-            className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-forest px-5 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-md"
+            className="inline-flex min-h-[40px] items-center justify-center rounded-xl bg-forest px-5 text-sm font-semibold text-white shadow-md shadow-forest/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-lg hover:shadow-forest/30"
           >
             Book Sonya
           </Link>
