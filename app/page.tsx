@@ -480,21 +480,24 @@ export default function HomePage() {
       </section>
 
       {/* ── BOOKING ── */}
-      <section className="bg-warm-white py-24 lg:py-32" id="book">
-        <div className="mx-auto max-w-[1200px] px-4">
+      <section
+        className="flex flex-col justify-center bg-warm-white py-12 lg:h-screen lg:max-h-[800px]"
+        id="book"
+      >
+        <div className="mx-auto w-full max-w-[1200px] px-4">
           <FadeIn direction="up">
-            <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Booking</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
+            <div className="mb-8 text-center">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">Booking</p>
+              <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
                 Bring Sonya to Your Organization
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-base text-muted">
+              <p className="mx-auto mt-3 max-w-xl text-sm text-muted lg:text-base">
                 Book a keynote, workshop, retreat, or corporate wellness experience.
               </p>
             </div>
           </FadeIn>
           <FadeIn direction="up" delay={100}>
-            <div className="mx-auto max-w-[800px]">
+            <div className="mx-auto max-w-[820px]">
               <BookingForm />
             </div>
           </FadeIn>

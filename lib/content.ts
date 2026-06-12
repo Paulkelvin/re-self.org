@@ -59,6 +59,8 @@ export const testimonials = [
     name: "Jennifer Williams",
     role: "Chief People Officer",
     org: "Federal Aviation Administration",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&crop=faces&w=224&h=224&q=85",
   },
   {
     quote:
@@ -66,6 +68,8 @@ export const testimonials = [
     name: "Marcus Thompson",
     role: "Director of Human Resources",
     org: "Northrop Grumman",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&crop=faces&w=224&h=224&q=85",
   },
   {
     quote:
@@ -73,6 +77,8 @@ export const testimonials = [
     name: "Patricia Moore",
     role: "VP of People & Culture",
     org: "Department of Veterans Affairs",
+    image:
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&crop=faces&w=224&h=224&q=85",
   },
 ];
 

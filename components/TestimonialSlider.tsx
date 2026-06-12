@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface Testimonial {
@@ -7,6 +8,7 @@ interface Testimonial {
   name: string;
   role: string;
   org: string;
+  image: string;
 }
 
 export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[] }) {
@@ -25,12 +27,12 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
       {/* Massive decorative quotation mark behind the canvas */}
       <span
         aria-hidden="true"
-        className="font-serif pointer-events-none absolute -left-6 -top-10 select-none text-[12rem] leading-none text-white/5"
+        className="font-serif pointer-events-none absolute -left-6 -top-12 select-none text-[12rem] leading-none text-white/5"
       >
         &ldquo;
       </span>
 
-      <div className="relative min-h-[300px]">
+      <div className="relative min-h-[380px]">
         {testimonials.map((item, i) => (
           <div
             key={i}
@@ -41,11 +43,11 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
               pointerEvents: i === current ? "auto" : "none",
             }}
           >
-            <p className="font-serif text-lg italic leading-relaxed text-white/90 lg:text-xl">
+            <p className="font-serif text-xl font-medium leading-relaxed text-white lg:text-2xl">
               {item.quote}
             </p>
 
-            <div className="mb-4 mt-6 flex gap-1.5">
+            <div className="mb-6 mt-6 flex gap-1.5">
               {Array.from({ length: 5 }).map((_, s) => (
                 <svg
                   key={s}
@@ -61,9 +63,17 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
               ))}
             </div>
 
-            <footer>
+            {/* Author profile — headshot resting above the credentials */}
+            <footer className="mt-auto flex items-center gap-4">
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={224}
+                height={224}
+                className="h-24 w-24 rounded-full border-2 border-white/10 object-cover object-center shadow-xl lg:h-28 lg:w-28"
+              />
               <cite className="not-italic">
-                <span className="block text-sm font-bold tracking-tight text-white">
+                <span className="block text-base font-bold tracking-tight text-white">
                   {item.name}
                 </span>
                 <span className="mt-1 block text-xs uppercase tracking-[0.12em] text-white/70 lg:text-sm">
@@ -75,7 +85,7 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
         ))}
       </div>
 
-      {/* Pagination — sleek horizontal tracking bars */}
+      {/* Pagination — sleek horizontal tracking bars, anchored below the card */}
       <div className="mt-8 flex items-center gap-2">
         {testimonials.map((_, i) => (
           <button
