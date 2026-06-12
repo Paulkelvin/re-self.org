@@ -2,38 +2,62 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
-  { label: "Speaking & Events", href: "/speaking-events" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Speaking & Events", href: "/speaking-events" },
   { label: "Contact", href: "/contact" },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-pine/10 bg-paper/90 backdrop-blur-lg">
-      <nav className="mx-auto flex max-w-[1160px] items-center justify-between gap-6 px-4 min-h-[72px]">
-        <Link
-          href="/"
-          className="grid leading-tight"
-          onClick={() => setOpen(false)}
-        >
-          <span className="text-lg font-extrabold tracking-tight text-pine">Re-Self</span>
-          <span className="text-[0.62rem] font-bold uppercase tracking-widest text-coral">Wellness Strategy</span>
+    <header
+      className={`sticky top-0 z-50 border-b border-line/50 bg-warm-white/95 backdrop-blur-lg transition-all duration-300 ${
+        scrolled ? "shadow-sm" : ""
+      }`}
+    >
+      <nav
+        className={`mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 transition-all duration-300 ${
+          scrolled ? "min-h-[60px]" : "min-h-[76px]"
+        }`}
+      >
+        {/* Logo */}
+        <Link href="/" className="grid shrink-0 leading-tight" onClick={() => setOpen(false)}>
+          <span
+            className={`font-serif font-bold tracking-tight text-forest transition-all duration-300 ${
+              scrolled ? "text-lg" : "text-xl"
+            }`}
+          >
+            Re-Self
+          </span>
+          <span className="text-[0.57rem] font-semibold uppercase tracking-widest text-sage">
+            Wellness Strategy
+          </span>
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden items-center gap-7 md:flex">
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-5 lg:flex">
           {links.map(({ label, href }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm font-semibold transition-colors hover:text-pine ${
-                pathname === href ? "text-pine" : "text-muted"
+              className={`text-sm font-medium transition-colors hover:text-forest ${
+                pathname === href ? "font-semibold text-forest" : "text-muted"
               }`}
             >
               {label}
@@ -41,7 +65,7 @@ export function Header() {
           ))}
           <Link
             href="/book-sonya"
-            className="inline-flex min-h-[42px] items-center justify-center rounded-lg bg-coral px-5 text-sm font-extrabold text-white shadow-sm transition-all hover:-translate-y-px hover:shadow-md hover:shadow-coral/30 active:translate-y-0"
+            className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-forest px-5 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-md"
           >
             Book Sonya
           </Link>
@@ -49,23 +73,23 @@ export function Header() {
 
         {/* Hamburger */}
         <button
-          className="flex flex-col items-end gap-[5px] p-2 md:hidden"
-          aria-label="Toggle menu"
+          className="flex flex-col items-end gap-[5px] p-2 lg:hidden"
+          aria-label="Toggle navigation menu"
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
           <span
-            className={`block h-[2px] w-6 rounded-full bg-pine transition-all duration-200 ${
+            className={`block h-[2px] w-6 rounded-full bg-forest transition-all duration-200 ${
               open ? "translate-y-[7px] rotate-45" : ""
             }`}
           />
           <span
-            className={`block h-[2px] w-5 rounded-full bg-pine transition-all duration-200 ${
+            className={`block h-[2px] w-4 rounded-full bg-forest transition-all duration-200 ${
               open ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block h-[2px] w-6 rounded-full bg-pine transition-all duration-200 ${
+            className={`block h-[2px] w-6 rounded-full bg-forest transition-all duration-200 ${
               open ? "-translate-y-[7px] -rotate-45" : ""
             }`}
           />
@@ -74,8 +98,8 @@ export function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden border-t border-pine/10 bg-paper/98 transition-all duration-200 md:hidden ${
-          open ? "max-h-96" : "max-h-0"
+        className={`overflow-hidden border-t border-line/50 bg-warm-white transition-all duration-200 lg:hidden ${
+          open ? "max-h-[440px]" : "max-h-0"
         }`}
       >
         <div className="flex flex-col gap-1 px-4 py-3 pb-5">
@@ -84,8 +108,8 @@ export function Header() {
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className={`rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors hover:bg-mist ${
-                pathname === href ? "bg-mist text-pine" : "text-muted"
+              className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-beige ${
+                pathname === href ? "bg-beige font-semibold text-forest" : "text-charcoal"
               }`}
             >
               {label}
@@ -94,7 +118,7 @@ export function Header() {
           <Link
             href="/book-sonya"
             onClick={() => setOpen(false)}
-            className="mt-2 flex min-h-[46px] items-center justify-center rounded-lg bg-coral text-sm font-extrabold text-white"
+            className="mt-2 flex min-h-[46px] items-center justify-center rounded-lg bg-forest text-sm font-semibold text-white"
           >
             Book Sonya
           </Link>

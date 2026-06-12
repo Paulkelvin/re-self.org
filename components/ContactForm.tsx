@@ -4,6 +4,11 @@ import { useState } from "react";
 
 const initial = { fullName: "", email: "", organization: "", message: "", website: "" };
 
+const inputCls =
+  "w-full rounded-lg border border-line bg-warm-white px-4 py-3 text-sm text-charcoal placeholder-muted/40 transition-colors focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/15";
+
+const labelCls = "text-[0.7rem] font-semibold uppercase tracking-wider text-charcoal/70";
+
 export function ContactForm() {
   const [form, setForm] = useState(initial);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -32,15 +37,15 @@ export function ContactForm() {
       website: form.website,
     };
 
-    const response = await fetch("/api/bookings", {
+    const res = await fetch("/api/bookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
 
-    const result = await response.json().catch(() => ({}));
+    const result = await res.json().catch(() => ({}));
 
-    if (response.ok) {
+    if (res.ok) {
       setStatus("success");
       setMessage("Message received. Sonya will be in touch shortly.");
       setForm(initial);
@@ -52,27 +57,26 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={submit} className="relative grid gap-4 rounded-xl border border-line bg-white p-8 shadow-sm">
+    <form
+      onSubmit={submit}
+      className="relative grid gap-4 rounded-2xl border border-line bg-white p-8 shadow-sm"
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="grid gap-1.5">
-          <label htmlFor="cf-name" className="text-xs font-extrabold uppercase tracking-wider text-pine">
-            Full Name
-          </label>
+          <label htmlFor="cf-name" className={labelCls}>Full Name</label>
           <input
             id="cf-name"
             name="fullName"
             value={form.fullName}
             onChange={(e) => update(e.target.name, e.target.value)}
             required
-            className="rounded-lg border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted/50 transition-colors focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20"
+            className={inputCls}
             placeholder="Your name"
           />
         </div>
 
         <div className="grid gap-1.5">
-          <label htmlFor="cf-email" className="text-xs font-extrabold uppercase tracking-wider text-pine">
-            Email Address
-          </label>
+          <label htmlFor="cf-email" className={labelCls}>Email Address</label>
           <input
             id="cf-email"
             name="email"
@@ -80,30 +84,29 @@ export function ContactForm() {
             value={form.email}
             onChange={(e) => update(e.target.name, e.target.value)}
             required
-            className="rounded-lg border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted/50 transition-colors focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20"
+            className={inputCls}
             placeholder="you@company.com"
           />
         </div>
       </div>
 
       <div className="grid gap-1.5">
-        <label htmlFor="cf-org" className="text-xs font-extrabold uppercase tracking-wider text-pine">
-          Organization <span className="font-normal normal-case tracking-normal text-muted">(optional)</span>
+        <label htmlFor="cf-org" className={labelCls}>
+          Organization{" "}
+          <span className="font-normal normal-case tracking-normal text-muted">(optional)</span>
         </label>
         <input
           id="cf-org"
           name="organization"
           value={form.organization}
           onChange={(e) => update(e.target.name, e.target.value)}
-          className="rounded-lg border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted/50 transition-colors focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20"
+          className={inputCls}
           placeholder="Company or organization"
         />
       </div>
 
       <div className="grid gap-1.5">
-        <label htmlFor="cf-message" className="text-xs font-extrabold uppercase tracking-wider text-pine">
-          Message
-        </label>
+        <label htmlFor="cf-message" className={labelCls}>Message</label>
         <textarea
           id="cf-message"
           name="message"
@@ -111,13 +114,13 @@ export function ContactForm() {
           onChange={(e) => update(e.target.name, e.target.value)}
           required
           rows={5}
-          className="resize-y rounded-lg border border-line bg-paper px-4 py-3 text-sm text-ink placeholder-muted/50 transition-colors focus:border-sage focus:outline-none focus:ring-2 focus:ring-sage/20"
+          className={`${inputCls} resize-y`}
           placeholder="Tell Sonya what you have in mind…"
         />
       </div>
 
       {/* Honeypot */}
-      <div className="absolute left-[-10000px]" aria-hidden="true">
+      <div className="absolute left-[-9999px]" aria-hidden="true">
         <input
           name="website"
           value={form.website}
@@ -130,15 +133,15 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-2 inline-flex min-h-[50px] items-center justify-center rounded-lg bg-pine px-6 text-sm font-extrabold text-white shadow-sm transition-all hover:-translate-y-px hover:bg-pine/90 hover:shadow-md disabled:opacity-60"
+        className="mt-1 inline-flex min-h-[50px] items-center justify-center rounded-lg bg-forest px-6 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-md disabled:opacity-60"
       >
         {status === "loading" ? "Sending…" : "Send Message"}
       </button>
 
       {message && (
         <p
-          className={`text-sm font-bold ${
-            status === "success" ? "text-green-700" : "text-red-700"
+          className={`text-sm font-semibold ${
+            status === "success" ? "text-forest" : "text-red-600"
           }`}
         >
           {message}

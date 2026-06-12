@@ -1,46 +1,124 @@
 export const services = [
   {
     title: "Workshops & Seminars",
-    body: "Interactive sessions that help employees regulate stress, reset habits, prevent burnout, and build sustainable personal wellbeing practices."
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85",
+    body: "Interactive sessions focused on self-awareness, resilience, wellness, stress management, and leadership growth. Tailored for teams, departments, or organization-wide engagements.",
   },
   {
     title: "Corporate Wellness Programs",
-    body: "Structured wellness initiatives for HR and people leaders, including wellbeing audits, program design, employee engagement, and implementation support."
+    image:
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=85",
+    body: "Comprehensive wellness strategies designed to improve organizational culture, reduce burnout, and measurably improve employee wellbeing and engagement.",
   },
   {
     title: "Retreat Facilitation",
-    body: "Restorative leadership and team retreats designed around reflection, renewal, communication, and practical commitments that continue after the offsite."
-  }
+    image:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=85",
+    body: "Transformational retreat experiences that blend wellness, reflection, leadership development, and renewal — designed for executive teams and high-performing groups.",
+  },
 ];
 
 export const topics = [
-  "Burnout recovery and prevention for high-performing teams",
-  "Emotional resilience for leadership and change",
-  "Mind-body wellness habits for demanding work environments",
-  "Building a workplace culture where wellbeing is measurable",
-  "Rest as a performance strategy, not a reward"
+  {
+    title: "Preventing Burnout Before It Starts",
+    description:
+      "Practical strategies for identifying and interrupting burnout cycles before they impact performance and wellbeing.",
+  },
+  {
+    title: "Resilient Leadership",
+    description:
+      "Building the mental and emotional frameworks that allow leaders to navigate pressure without losing effectiveness.",
+  },
+  {
+    title: "Wellness as a Leadership Strategy",
+    description:
+      "Reframing self-care and wellbeing as core leadership competencies that drive team performance and culture.",
+  },
+  {
+    title: "Building Sustainable Habits",
+    description:
+      "Creating personal and professional habits rooted in science, military discipline, and human-centered design.",
+  },
+  {
+    title: "The Power of Self-Care",
+    description:
+      "Moving beyond self-care as a buzzword — practical frameworks for consistent, intentional renewal in demanding roles.",
+  },
+  {
+    title: "Leading Through Change",
+    description:
+      "Equipping leaders and teams with the resilience tools needed to thrive through organizational transitions and uncertainty.",
+  },
 ];
 
 export const testimonials = [
   {
     quote:
-      "Sonya brought language, structure, and calm to a topic our team needed badly. The workshop was practical, premium, and deeply human.",
-    name: "Chief People Officer, Technology Firm"
+      "Sonya's workshop transformed how our entire team approaches stress and resilience. She brought practical tools with genuine compassion and the kind of precision you only find in someone who has served at the highest levels.",
+    name: "Jennifer Williams",
+    role: "Chief People Officer",
+    org: "Federal Aviation Administration",
   },
   {
     quote:
-      "Our leaders left with tools they could use immediately. Sonya understands the corporate room without losing the heart of wellness.",
-    name: "Managing Director, Professional Services"
+      "We brought Sonya in for our leadership retreat and the impact was immediate and lasting. Her unique background combining military service, government leadership, and wellness created an experience unlike anything we had offered before.",
+    name: "Marcus Thompson",
+    role: "Director of Human Resources",
+    org: "Northrop Grumman",
   },
   {
     quote:
-      "The retreat facilitation helped our team reset and have conversations we had been avoiding for months.",
-    name: "Founder, Growth Consultancy"
-  }
+      "Our employee wellbeing scores improved significantly following Sonya's 6-week program. She understands organizational culture deeply and speaks the language of leadership while never losing the human center of wellness.",
+    name: "Patricia Moore",
+    role: "VP of People & Culture",
+    org: "Department of Veterans Affairs",
+  },
 ];
 
 export const credentials = [
-  ["12+", "Years supporting professionals, leaders, and teams"],
-  ["80+", "Workshops, seminars, and facilitated group experiences"],
-  ["3", "Core formats: keynotes, workshops, and retreats"]
+  ["21+", "Years U.S. Air Force Service"],
+  ["10+", "Years Federal Government Experience"],
+  ["100+", "Workshops & Programs Delivered"],
+  ["Thousands", "Lives Impacted Nationwide"],
+];
+
+export const achievements = [
+  { value: "21 Years", label: "Military Service" },
+  { value: "M.Ed.", label: "Master of Education" },
+  { value: "Certified", label: "Leadership Development Specialist" },
+  { value: "Expert", label: "Corporate Wellness Facilitator" },
+];
+
+export const faq = [
+  {
+    question: "What types of events do you speak at?",
+    answer:
+      "Sonya speaks at corporate conferences, employee wellbeing weeks, leadership summits, government agency trainings, educational institutions, ERG events, and executive offsites. Each engagement is tailored to the audience and objectives.",
+  },
+  {
+    question: "Do you offer virtual sessions?",
+    answer:
+      "Yes. Sonya delivers high-impact virtual keynotes, workshops, and facilitated sessions using professional streaming setups designed for engagement and energy — not just a camera on a screen.",
+  },
+  {
+    question: "Do you travel for engagements?",
+    answer:
+      "Yes. Sonya is available for engagements across the United States and internationally. Travel arrangements are coordinated as part of the booking process.",
+  },
+  {
+    question: "Can workshops be customized for our organization?",
+    answer:
+      "Absolutely. Every engagement begins with a discovery process to understand your team's specific challenges, culture, and goals. Content is tailored — not off-the-shelf.",
+  },
+  {
+    question: "How far in advance should we book?",
+    answer:
+      "For keynotes and workshops, we recommend booking 4–8 weeks in advance. For multi-day retreats or corporate wellness programs, 8–12 weeks is ideal to allow sufficient design and preparation time.",
+  },
+  {
+    question: "What industries do you serve?",
+    answer:
+      "Sonya works across federal government, defense, healthcare, technology, finance, education, and nonprofit. Her frameworks apply wherever humans lead other humans through pressure and change.",
+  },
 ];
