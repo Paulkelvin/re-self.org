@@ -17,9 +17,25 @@ const initial = {
 };
 
 const inputCls =
-  "w-full rounded-lg border border-line bg-warm-white px-4 py-2.5 text-sm text-charcoal placeholder-muted/40 transition-colors focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/15";
+  "w-full rounded-none border-b border-neutral-300 bg-transparent px-0 py-3 text-sm text-neutral-800 placeholder-neutral-400 transition-colors focus:border-neutral-900 focus:outline-none";
+
+// Selects reuse the editorial underline style but hide the native chrome arrow
+// (a custom chevron is rendered via <SelectChevron /> in the relative wrapper).
+const selectCls = `${inputCls} appearance-none pr-6`;
 
 const labelCls = "text-[0.7rem] font-semibold uppercase tracking-wider text-charcoal/70";
+
+function SelectChevron() {
+  return (
+    <svg
+      className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400"
+      width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+    >
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
 
 // Fields that must be filled before advancing to step 2.
 const step1Fields = ["fullName", "email", "phone", "organization"] as const;
@@ -104,9 +120,9 @@ export function BookingForm() {
       </div>
 
       {/* Thin progress track */}
-      <div className="mb-7 h-[2px] w-full overflow-hidden rounded-full bg-line/60">
+      <div className="relative mb-12 h-[2px] w-full bg-neutral-200">
         <div
-          className="h-full rounded-full bg-forest transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          className="absolute inset-y-0 left-0 bg-neutral-900 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{ width: step === 1 ? "50%" : "100%" }}
         />
       </div>
@@ -194,21 +210,24 @@ export function BookingForm() {
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-1.5">
                 <label htmlFor="bf-eventType" className={labelCls}>Event Type</label>
-                <select
-                  id="bf-eventType"
-                  name="eventType"
-                  value={form.eventType}
-                  onChange={(e) => update(e.target.name, e.target.value)}
-                  required
-                  className={inputCls}
-                >
-                  <option value="">Select one</option>
-                  <option>Keynote</option>
-                  <option>Workshop or Seminar</option>
-                  <option>Corporate Wellness Program</option>
-                  <option>Retreat Facilitation</option>
-                  <option>Panel or Podcast</option>
-                </select>
+                <div className="relative">
+                  <select
+                    id="bf-eventType"
+                    name="eventType"
+                    value={form.eventType}
+                    onChange={(e) => update(e.target.name, e.target.value)}
+                    required
+                    className={selectCls}
+                  >
+                    <option value="">Select one</option>
+                    <option>Keynote</option>
+                    <option>Workshop or Seminar</option>
+                    <option>Corporate Wellness Program</option>
+                    <option>Retreat Facilitation</option>
+                    <option>Panel or Podcast</option>
+                  </select>
+                  <SelectChevron />
+                </div>
               </div>
 
               <div className="grid gap-1.5">
@@ -252,21 +271,24 @@ export function BookingForm() {
 
               <div className="grid gap-1.5 col-span-2">
                 <label htmlFor="bf-budgetRange" className={labelCls}>Budget Range</label>
-                <select
-                  id="bf-budgetRange"
-                  name="budgetRange"
-                  value={form.budgetRange}
-                  onChange={(e) => update(e.target.name, e.target.value)}
-                  required
-                  className={inputCls}
-                >
-                  <option value="">Select one</option>
-                  <option>Under $5,000</option>
-                  <option>$5,000 – $10,000</option>
-                  <option>$10,000 – $20,000</option>
-                  <option>$20,000+</option>
-                  <option>Not sure yet</option>
-                </select>
+                <div className="relative">
+                  <select
+                    id="bf-budgetRange"
+                    name="budgetRange"
+                    value={form.budgetRange}
+                    onChange={(e) => update(e.target.name, e.target.value)}
+                    required
+                    className={selectCls}
+                  >
+                    <option value="">Select one</option>
+                    <option>Under $5,000</option>
+                    <option>$5,000 – $10,000</option>
+                    <option>$10,000 – $20,000</option>
+                    <option>$20,000+</option>
+                    <option>Not sure yet</option>
+                  </select>
+                  <SelectChevron />
+                </div>
               </div>
 
               <div className="grid gap-1.5 col-span-2">

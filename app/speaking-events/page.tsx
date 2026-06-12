@@ -45,23 +45,22 @@ export default function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-forest text-white">
-        <div className="mx-auto max-w-[1200px] px-4 py-16 lg:py-24">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-sage">
+      <section className="min-h-[75vh] flex flex-col justify-center bg-[#23423c] px-6 py-24 text-white lg:px-16">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-sage">
             Speaking &amp; Events
           </p>
-          <h1 className="font-serif max-w-3xl text-5xl font-bold leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
-            Wellness keynotes that meet{" "}
-            <span className="italic text-sage">ambitious teams</span> where they are.
+          <h1 className="font-serif max-w-4xl text-3xl font-medium leading-[1.15] tracking-tight text-white md:text-4xl lg:text-5xl">
+            Wellness keynotes that meet ambitious teams where they are.
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
             Sonya delivers grounded, corporate-ready talks that help audiences understand
             stress, reset patterns, and leave with practical next steps they can use immediately.
           </p>
-          <div className="mt-8">
+          <div className="mt-10">
             <Link
               href="/book-sonya"
-              className="inline-flex min-h-[52px] items-center justify-center rounded-lg bg-white px-8 text-sm font-bold text-forest shadow-lg transition-all hover:-translate-y-px hover:shadow-xl"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#1e3d38] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               Book a Speaking Date
             </Link>
@@ -86,21 +85,26 @@ export default function SpeakingEventsPage() {
               </p>
               <Link
                 href="/book-sonya"
-                className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-lg bg-forest px-7 text-sm font-semibold text-white transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-lg"
+                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#1e3d38] px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Sonya
               </Link>
             </FadeIn>
 
             <FadeIn direction="up" delay={120}>
-              <ul className="divide-y divide-line">
+              <ul className="space-y-8">
                 {topics.map((topic, i) => (
-                  <li key={topic.title} className="flex gap-5 py-5 first:pt-0 last:pb-0">
-                    <span className="w-7 shrink-0 pt-0.5 font-serif text-xs font-bold text-sage/60">
+                  <li
+                    key={topic.title}
+                    className="group flex cursor-pointer gap-5 border-b border-line pb-8 transition-colors duration-300 last:border-0 last:pb-0 hover:border-forest/40"
+                  >
+                    <span className="w-7 shrink-0 pt-0.5 font-mono text-xs tracking-widest text-neutral-400">
                       0{i + 1}
                     </span>
                     <div>
-                      <p className="text-base font-semibold leading-snug text-charcoal">{topic.title}</p>
+                      <p className="text-base font-semibold leading-snug text-charcoal transition-colors duration-300 group-hover:text-forest">
+                        {topic.title}
+                      </p>
                       <p className="mt-1 text-sm leading-relaxed text-muted">{topic.description}</p>
                     </div>
                   </li>
@@ -126,10 +130,19 @@ export default function SpeakingEventsPage() {
           <div className="grid gap-6 sm:grid-cols-3">
             {formats.map(({ name, duration, description }, i) => (
               <FadeIn key={name} direction="up" delay={i * 100}>
-                <div className="group h-full rounded-2xl bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-                  <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-sage">{duration}</p>
-                  <h3 className="font-serif mb-4 text-xl font-bold text-forest">{name}</h3>
-                  <p className="text-sm leading-relaxed text-muted">{description}</p>
+                <div className="group relative h-full overflow-hidden rounded-xl border border-neutral-200/50 bg-white p-8 shadow-none transition-colors duration-300 hover:border-forest/30 md:p-10">
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-1 top-4 font-serif text-7xl font-bold leading-none text-sage/15 transition-colors duration-300 group-hover:text-sage/25"
+                  >
+                    0{i + 1}
+                  </span>
+                  <span className="relative mb-5 inline-block rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                    {duration}
+                  </span>
+                  <h3 className="font-serif relative mb-4 text-xl font-bold text-forest">{name}</h3>
+                  <p className="relative text-sm leading-relaxed text-muted">{description}</p>
+                  <span className="relative mt-6 block h-px w-10 bg-forest/30 transition-all duration-300 group-hover:w-20" />
                 </div>
               </FadeIn>
             ))}
@@ -150,16 +163,22 @@ export default function SpeakingEventsPage() {
           </FadeIn>
 
           <FadeIn direction="up" delay={100}>
-            <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-2">
-              {audiences.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 rounded-xl border border-line bg-white px-5 py-4 shadow-sm"
-                >
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-sage" aria-hidden="true" />
-                  <span className="text-sm text-charcoal">{item}</span>
-                </div>
-              ))}
+            <div className="mx-auto mt-12 max-w-6xl border-l border-t border-line">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                {audiences.map((item, i) => (
+                  <div
+                    key={item}
+                    className="group relative flex min-h-[148px] flex-col justify-between border-b border-r border-line p-6 transition-colors duration-300 hover:bg-forest/[0.04]"
+                  >
+                    <span className="font-mono text-xs tracking-widest text-sage transition-colors duration-300 group-hover:text-forest">
+                      0{i + 1}
+                    </span>
+                    <span className="mt-6 text-sm leading-relaxed text-charcoal transition-colors duration-300 group-hover:text-forest">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -181,7 +200,7 @@ export default function SpeakingEventsPage() {
             <FadeIn direction="up" delay={100}>
               <Link
                 href="/book-sonya"
-                className="inline-flex shrink-0 min-h-[52px] items-center justify-center rounded-lg bg-white px-8 text-sm font-bold text-forest shadow-xl transition-all hover:-translate-y-px hover:shadow-2xl"
+                className="inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#1e3d38] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Sonya &rarr;
               </Link>

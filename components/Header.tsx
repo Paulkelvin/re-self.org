@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const links = [
   { label: "Home", href: "/" },
@@ -24,6 +25,12 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Lock background scroll while the full-screen mobile overlay is open
+  useEffect(() => {
+    document.body.classList.toggle("overflow-hidden", open);
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [open]);
 
   return (
     <header
@@ -51,13 +58,14 @@ export function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-x-10 lg:flex">
           {links.map(({ label, href }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm font-medium tracking-wide transition-opacity ${
-                pathname === href ? "font-semibold text-forest opacity-100" : "text-muted opacity-70 hover:opacity-100"
+              data-active={pathname === href}
+              className={`link-underline text-sm font-medium tracking-wide uppercase transition-colors ${
+                pathname === href ? "text-forest" : "text-neutral-700 hover:text-neutral-900"
               }`}
             >
               {label}
@@ -96,34 +104,61 @@ export function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
-      <div
-        className={`overflow-hidden border-t border-line/50 bg-warm-white transition-all duration-200 lg:hidden ${
-          open ? "max-h-[440px]" : "max-h-0"
-        }`}
-      >
-        <div className="flex flex-col gap-1 px-4 py-3 pb-5">
-          {links.map(({ label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-beige ${
-                pathname === href ? "bg-beige font-semibold text-forest" : "text-charcoal"
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
-          <Link
-            href="/book-sonya"
-            onClick={() => setOpen(false)}
-            className="mt-2 flex min-h-[46px] items-center justify-center rounded-lg bg-forest text-sm font-semibold text-white"
+      {/* Mobile full-screen overlay */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="fixed inset-0 z-50 flex h-screen w-screen flex-col justify-between bg-white px-6 py-8 lg:hidden"
           >
-            Book Sonya
-          </Link>
-        </div>
-      </div>
+            <div className="flex items-center justify-between">
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="font-serif text-[1.15rem] font-bold tracking-tight text-forest"
+              >
+                Re-Self
+              </Link>
+              <button
+                aria-label="Close navigation menu"
+                onClick={() => setOpen(false)}
+                className="p-2 text-forest"
+              >
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </button>
+            </div>
+
+            <nav className="flex flex-col gap-2">
+              {links.map(({ label, href }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className={`font-serif text-2xl font-medium transition-colors ${
+                    pathname === href ? "text-forest" : "text-charcoal hover:text-forest"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
+            <Link
+              href="/book-sonya"
+              onClick={() => setOpen(false)}
+              className="flex min-h-[52px] items-center justify-center rounded-xl bg-forest text-sm font-semibold uppercase tracking-wide text-white"
+            >
+              Book Sonya
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

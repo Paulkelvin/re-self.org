@@ -3,7 +3,6 @@ import Image from "next/image";
 import { BookingForm } from "@/components/BookingForm";
 import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
-import { TestimonialSlider } from "@/components/TestimonialSlider";
 import { credentials, faq, services, testimonials, topics, achievements } from "@/lib/content";
 
 function TargetIcon() {
@@ -126,18 +125,45 @@ export default function HomePage() {
             </div>
 
             <FadeIn direction="up" delay={200}>
-              <div className="relative mx-auto max-w-[360px] lg:max-w-none">
-                <div className="absolute -right-3 -top-3 bottom-3 left-3 rounded-2xl border-2 border-sage/25" aria-hidden="true" />
-                <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-forest/15 h-[clamp(280px,44vh,440px)]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=880&q=85"
-                    alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 360px, (max-width: 1200px) 50vw, 560px"
-                    className="object-cover object-top"
+              <div className="relative mx-auto max-w-[420px] lg:mr-0 lg:max-w-[480px]">
+                {/* Decorative geometry — independent, gentle motion */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-6 -top-8 h-24 w-24 rounded-full border border-sage/40 animate-spin-slow"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-8 bottom-24 h-24 w-24 opacity-70 animate-drift [background-image:radial-gradient(var(--color-sage)_1.3px,transparent_1.3px)] [background-size:11px_11px]"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-4 bottom-28 h-6 w-6 rotate-45 bg-sage/50 animate-float"
+                />
+
+                {/* Floating group — tilted backdrop panel, outline + arched photo move as one */}
+                <div className="relative isolate animate-float-slow">
+                  {/* Dramatic tilted backdrop slab */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -left-6 top-6 -z-10 h-[94%] w-[86%] -rotate-6 rounded-[2.5rem] bg-gradient-to-br from-forest via-forest to-forest-light/70 shadow-xl shadow-forest/20"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest/20 to-transparent" />
+                  {/* Offset arch outline — the framed line you liked, tracing the portal */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -right-3 -top-3 bottom-3 left-3 rounded-[999px_999px_1.75rem_1.75rem] border-2 border-sage/30"
+                  />
+                  {/* Arched portal photo */}
+                  <div className="relative h-[clamp(380px,62vh,580px)] overflow-hidden rounded-[999px_999px_1.75rem_1.75rem] shadow-2xl shadow-forest/25">
+                    <Image
+                      src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=880&q=85"
+                      alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 420px, (max-width: 1200px) 50vw, 580px"
+                      className="object-cover object-[center_30%]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest/45 via-transparent to-transparent" />
+                  </div>
                 </div>
               </div>
             </FadeIn>
@@ -153,7 +179,11 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto max-w-[1200px] px-4 py-20 lg:py-24">
           <div className="grid grid-cols-2 md:grid-cols-4">
-            {credentials.map(([value, label], i) => (
+            {credentials.map(([value, label], i) => {
+              // Numeric stats can run large; word-stats (e.g. "Thousands") need a
+              // smaller scale so they never clip against the narrow column width.
+              const isNumber = /\d/.test(value);
+              return (
               <FadeIn key={label} direction="up" delay={i * 90}>
                 <div className="relative px-4 py-6 text-center md:px-8">
                   {i >= 1 && (
@@ -164,7 +194,13 @@ export default function HomePage() {
                       }`}
                     />
                   )}
-                  <p className="bg-gradient-to-b from-white to-sage-light/70 bg-clip-text font-serif text-5xl font-light leading-none tracking-tight text-transparent sm:text-6xl lg:text-[4.25rem]">
+                  <p
+                    className={`bg-gradient-to-b from-white to-sage-light/70 bg-clip-text font-serif font-light leading-none tracking-tight text-transparent ${
+                      isNumber
+                        ? "text-5xl sm:text-6xl lg:text-[4.25rem]"
+                        : "text-[2rem] sm:text-4xl lg:text-5xl"
+                    }`}
+                  >
                     {value}
                   </p>
                   <p className="mx-auto mt-4 max-w-[15ch] text-[0.7rem] font-medium uppercase leading-relaxed tracking-[0.16em] text-white/55">
@@ -172,7 +208,8 @@ export default function HomePage() {
                   </p>
                 </div>
               </FadeIn>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -459,29 +496,57 @@ export default function HomePage() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="flex flex-col justify-center bg-forest py-16 lg:h-screen lg:max-h-[750px] lg:overflow-hidden">
-        <div className="mx-auto w-full max-w-[1200px] px-4">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:items-center lg:gap-20">
-            <FadeIn direction="up">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Testimonials</p>
-              <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-white lg:text-5xl">
-                What happens when the room shifts.
-              </h2>
-              <p className="mt-5 text-base leading-relaxed text-white/70">
-                Real results from organizations that invested in their people through
-                Sonya&apos;s programs.
-              </p>
-            </FadeIn>
-            <FadeIn direction="up" delay={120}>
-              <TestimonialSlider testimonials={testimonials} />
-            </FadeIn>
+      <section className="flex flex-col justify-center overflow-hidden bg-warm-white py-16 lg:h-screen lg:max-h-[750px]">
+        <FadeIn direction="up">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#dfba86]">
+              Testimonials
+            </p>
+            <h2 className="font-serif text-4xl font-bold tracking-tight text-charcoal lg:text-5xl">
+              Our Clients Review
+            </h2>
+          </div>
+        </FadeIn>
+
+        {/* Infinite right-to-left marquee */}
+        <div className="relative">
+          <div className="flex w-max gap-6 animate-marquee">
+            {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
+              <article
+                key={i}
+                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-[#f7f3eb] px-6 pb-6 pt-12 text-center"
+              >
+                <Image
+                  src={t.image}
+                  alt={t.name}
+                  width={160}
+                  height={160}
+                  className="absolute -top-10 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white object-cover shadow-md"
+                />
+                <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#dfba86]/20 text-sm text-[#dfba86]">
+                  &ldquo;
+                </span>
+                <h3 className="text-lg font-semibold text-neutral-800">{t.name}</h3>
+                <p className="mt-1 text-xs uppercase tracking-wider text-neutral-500">
+                  {t.role}
+                </p>
+                <p className="mt-4 line-clamp-3 px-2 text-sm text-neutral-600">{t.quote}</p>
+                <div className="mt-4 flex justify-center gap-1 text-[#dfba86]">
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <svg key={s} width="15" height="15" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                      <path d="M7 1l1.545 4.755H14l-4.045 2.94 1.545 4.755L7 10.51l-4.5 2.94 1.545-4.755L0 5.755h5.455z" />
+                    </svg>
+                  ))}
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ── BOOKING ── */}
       <section
-        className="flex flex-col justify-center bg-warm-white py-12 lg:h-screen lg:max-h-[800px]"
+        className="flex flex-col justify-center border-t border-b border-neutral-200/50 bg-[#FBFBFA] py-24 lg:py-28"
         id="book"
       >
         <div className="mx-auto w-full max-w-[1200px] px-4">
@@ -525,26 +590,24 @@ export default function HomePage() {
 
       {/* ── FINAL CTA ── */}
       <section className="relative overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80"
-          alt="Mountain sunrise — wellness and leadership"
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-forest/82" />
-        <div className="relative mx-auto max-w-[1200px] px-4 py-36 text-center lg:py-52">
+        <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80"
+            alt="Mountain sunrise — wellness and leadership"
+            fill
+            sizes="100vw"
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55" />
+        <div className="relative z-10 mx-auto max-w-[1200px] px-4 py-36 text-center lg:py-52">
           <FadeIn direction="up">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-sage">
+            <p className="text-xs tracking-[0.2em] text-white/75 font-semibold mb-4 uppercase">
               Transform Your Organization
             </p>
-            <h2 className="font-serif mx-auto max-w-3xl text-4xl font-bold text-white sm:text-5xl lg:text-[3.2rem] lg:leading-[1.1]">
-              Wellness Is Not A Luxury.{" "}
-              <span className="italic text-sage">It&apos;s A Leadership Strategy.</span>
+            <h2 className="font-serif text-4xl lg:text-5xl font-normal text-white max-w-4xl mx-auto leading-tight">
+              Wellness Is Not A Luxury. It&apos;s A Leadership Strategy.
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
-              Let&apos;s create healthier individuals, stronger teams, and thriving organizations.
-            </p>
             <Link
               href="/book-sonya"
               className="mt-10 inline-flex min-h-[56px] items-center justify-center rounded-lg bg-white px-10 text-sm font-bold text-forest shadow-xl transition-all hover:-translate-y-px hover:shadow-2xl"
