@@ -3,19 +3,19 @@ export const services = [
     title: "Workshops & Seminars",
     image:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85",
-    body: "Interactive sessions focused on self-awareness, resilience, wellness, stress management, and leadership growth. Tailored for teams, departments, or organization-wide engagements.",
+    body: "Interactive sessions on resilience, wellness, stress management, and leadership growth — tailored for teams, departments, and organizations.",
   },
   {
     title: "Corporate Wellness Programs",
     image:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=85",
-    body: "Comprehensive wellness strategies designed to improve organizational culture, reduce burnout, and measurably improve employee wellbeing and engagement.",
+    body: "Comprehensive wellness strategies to measurably improve culture, reduce burnout, and increase employee wellbeing and engagement.",
   },
   {
     title: "Retreat Facilitation",
     image:
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=85",
-    body: "Transformational retreat experiences that blend wellness, reflection, leadership development, and renewal — designed for executive teams and high-performing groups.",
+    body: "Transformational retreats blending wellness, reflection, and leadership development — built for executive teams and high-performing groups.",
   },
 ];
 

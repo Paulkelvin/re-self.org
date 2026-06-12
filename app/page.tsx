@@ -63,39 +63,38 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-warm-white">
+      <section className="relative overflow-hidden bg-warm-white lg:flex lg:h-[calc(100vh-76px)] lg:items-center">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute -right-48 -top-48 h-[680px] w-[680px] rounded-full bg-sage/10 blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 h-[500px] w-[500px] rounded-full bg-beige blur-3xl" />
-          <div className="absolute right-1/3 top-1/2 h-[240px] w-[240px] rounded-full bg-forest/5 blur-2xl" />
+          <div className="absolute -right-48 -top-40 h-[600px] w-[600px] rounded-full bg-sage/10 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 h-[440px] w-[440px] rounded-full bg-beige blur-3xl" />
         </div>
 
-        <div className="relative mx-auto max-w-[1200px] px-4 py-24 lg:py-36">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+        <div className="relative w-full mx-auto max-w-[1200px] px-4 py-16 lg:py-0">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <FadeIn direction="up">
-              <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-sage">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-sage">
                 Wellness Leader &bull; Speaker &bull; Corporate Wellness Consultant
               </p>
-              <h1 className="font-serif text-5xl font-bold leading-[1.07] tracking-tight text-forest sm:text-6xl lg:text-[3.6rem]">
+              <h1 className="font-serif text-4xl font-bold leading-[1.07] tracking-tight text-forest sm:text-5xl lg:text-[3.1rem]">
                 Self-Care From Within.{" "}
                 <span className="italic text-sage">Stronger Leaders.</span>{" "}
                 Healthier Organizations.
               </h1>
-              <p className="mt-6 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+              <p className="mt-5 max-w-lg text-base leading-relaxed text-muted">
                 Sonya Harris empowers individuals and organizations through transformative
                 workshops, leadership development, and wellness programs rooted in decades
                 of service, resilience, and authentic care.
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href="/book-sonya"
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-lg bg-forest px-8 text-sm font-semibold text-white shadow-lg shadow-forest/20 transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-xl hover:shadow-forest/25"
+                  className="inline-flex min-h-[50px] items-center justify-center rounded-lg bg-forest px-7 text-sm font-semibold text-white shadow-lg shadow-forest/20 transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-xl hover:shadow-forest/25"
                 >
                   Book Sonya
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-lg border border-charcoal/20 px-8 text-sm font-semibold text-charcoal transition-all hover:border-forest hover:text-forest"
+                  className="inline-flex min-h-[50px] items-center justify-center rounded-lg border border-charcoal/20 px-7 text-sm font-semibold text-charcoal transition-all hover:border-forest hover:text-forest"
                 >
                   Explore Services &rarr;
                 </Link>
@@ -103,22 +102,21 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn direction="up" delay={160}>
-              <div className="relative mx-auto max-w-[420px] lg:max-w-none">
-                <div className="absolute -right-3 -top-3 h-full w-full rounded-2xl border-2 border-sage/25" aria-hidden="true" />
-                <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-forest/15">
+              <div className="relative mx-auto max-w-[360px] lg:max-w-none">
+                <div className="absolute -right-3 -top-3 bottom-3 left-3 rounded-2xl border-2 border-sage/25" aria-hidden="true" />
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-forest/15 h-[clamp(280px,44vh,440px)]">
                   <Image
                     src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=880&q=85"
                     alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
-                    width={880}
-                    height={1100}
+                    fill
                     priority
-                    className="w-full object-cover"
-                    style={{ aspectRatio: "4/5" }}
+                    sizes="(max-width: 640px) 360px, (max-width: 1200px) 50vw, 560px"
+                    className="object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/25 to-transparent" />
                 </div>
-                <div className="absolute -bottom-5 -left-5 rounded-xl bg-white px-5 py-4 shadow-xl">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-sage">21+ Years</p>
+                <div className="absolute -bottom-4 -left-4 rounded-xl bg-white px-4 py-3 shadow-xl">
+                  <p className="text-[0.62rem] font-semibold uppercase tracking-wider text-sage">21+ Years</p>
                   <p className="text-sm font-bold text-charcoal">Service. Leadership. Impact.</p>
                 </div>
               </div>
@@ -128,14 +126,44 @@ export default function HomePage() {
       </section>
 
       {/* ── CREDIBILITY BAR ── */}
-      <section className="bg-forest">
-        <div className="mx-auto max-w-[1200px] px-4 py-14 lg:py-16">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {credentials.map(([value, label], i) => (
+      <section className="relative overflow-hidden bg-gradient-to-br from-forest-dark via-forest to-forest-light">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute -right-32 -top-32 h-[400px] w-[400px] rounded-full bg-sage/10 blur-3xl" />
+          <div className="absolute -bottom-20 left-1/4 h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl" />
+        </div>
+        <div className="relative mx-auto max-w-[1200px] px-4 py-14 lg:py-16">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 2L3 5v6c0 4 3 7 7 8 4-1 7-4 7-8V5L10 2z"/><path d="M7 10l2.5 2.5L13 8"/></svg>,
+                value: credentials[0][0],
+                label: credentials[0][1],
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 17h16M4 17V9M16 17V9M8 17v-4h4v4M4 9H2l8-6 8 6h-2M8 9h4"/></svg>,
+                value: credentials[1][0],
+                label: credentials[1][1],
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="3" width="16" height="11" rx="1"/><path d="M7 17l3-3 3 3M10 14v3"/></svg>,
+                value: credentials[2][0],
+                label: credentials[2][1],
+              },
+              {
+                icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="8" cy="7" r="3"/><path d="M2 17c0-3 2.7-5 6-5s6 2 6 5"/><circle cx="14" cy="6" r="2"/><path d="M14 11c2 .5 4 2 4 4" strokeLinecap="round"/></svg>,
+                value: credentials[3][0],
+                label: credentials[3][1],
+              },
+            ].map(({ icon, value, label }, i) => (
               <FadeIn key={label} direction="up" delay={i * 80}>
-                <div className="text-center sm:text-left">
-                  <p className="font-serif text-4xl font-bold text-white lg:text-5xl">{value}</p>
-                  <p className="mt-2 text-sm leading-snug text-white/50">{label}</p>
+                <div className="group flex flex-col gap-4 rounded-xl border border-white/10 bg-white/8 p-6 transition-colors hover:border-white/20 hover:bg-white/12">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage/20 text-sage">
+                    {icon}
+                  </div>
+                  <div>
+                    <p className="font-serif text-4xl font-bold text-white lg:text-5xl">{value}</p>
+                    <p className="mt-1.5 text-sm leading-snug text-white/50">{label}</p>
+                  </div>
                 </div>
               </FadeIn>
             ))}
@@ -144,61 +172,51 @@ export default function HomePage() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section className="bg-beige py-24 lg:py-32">
+      <section className="bg-beige py-20 lg:py-28">
         <div className="mx-auto max-w-[1200px] px-4">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <FadeIn direction="left">
               <div className="relative">
                 <div className="absolute -left-3 -top-3 h-full w-full rounded-2xl bg-sage/20" aria-hidden="true" />
-                <div className="relative overflow-hidden rounded-2xl">
+                <div className="relative h-[340px] overflow-hidden rounded-2xl sm:h-[380px] lg:h-[420px]">
                   <Image
                     src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=85"
                     alt="Sonya Harris"
-                    width={800}
-                    height={960}
-                    className="w-full object-cover"
-                    style={{ aspectRatio: "5/6" }}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-top"
                   />
                 </div>
               </div>
             </FadeIn>
 
             <FadeIn direction="up" delay={120}>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">About Sonya</p>
-              <h2 className="font-serif text-4xl font-bold leading-tight text-forest lg:text-5xl">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">About Sonya</p>
+              <h2 className="font-serif text-3xl font-bold leading-tight text-forest lg:text-[2.3rem]">
                 Leadership Meets Wellness
               </h2>
-              <div className="mt-6 space-y-4 text-base leading-relaxed text-muted">
-                <p>
-                  Sonya Harris brings a rare combination of military discipline, federal
-                  leadership experience, and deep wellness expertise to every engagement.
-                  With 21 years of U.S. Air Force service and over a decade of federal
-                  government leadership, Sonya has navigated high-stakes environments where
-                  resilience and wellbeing are mission-critical.
-                </p>
-                <p>
-                  Holding a Master of Education and certifications in leadership development
-                  and wellness facilitation, Sonya translates complex human challenges into
-                  actionable, sustainable change — bridging organizational performance and
-                  human flourishing.
-                </p>
-              </div>
+              <p className="mt-4 text-sm leading-relaxed text-muted">
+                Sonya Harris brings military discipline, federal leadership experience, and
+                deep wellness expertise to every engagement. With 21 years of U.S. Air
+                Force service and a decade of federal government leadership, she has navigated
+                high-stakes environments where resilience and wellbeing are mission-critical.
+              </p>
 
-              <div className="mt-10 grid gap-3 sm:grid-cols-2">
+              <div className="mt-7 grid grid-cols-2 gap-2.5">
                 {achievements.map(({ value, label }) => (
                   <div
                     key={label}
-                    className="group rounded-xl border border-beige-dark bg-white px-5 py-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sage/50 hover:shadow-md"
+                    className="rounded-lg border border-beige-dark bg-white px-4 py-3.5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sage/50 hover:shadow-md"
                   >
-                    <p className="font-serif text-xl font-bold text-forest">{value}</p>
-                    <p className="mt-1 text-xs font-medium text-muted">{label}</p>
+                    <p className="font-serif text-lg font-bold text-forest">{value}</p>
+                    <p className="mt-0.5 text-[0.7rem] font-medium text-muted">{label}</p>
                   </div>
                 ))}
               </div>
 
               <Link
                 href="/about"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
               >
                 Read full story &rarr;
               </Link>
@@ -208,45 +226,51 @@ export default function HomePage() {
       </section>
 
       {/* ── CORE PHILOSOPHY ── */}
-      <section className="bg-warm-white py-24 lg:py-32">
+      <section className="bg-warm-white py-20 lg:py-28">
         <div className="mx-auto max-w-[1200px] px-4">
-          <FadeIn direction="up">
-            <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Philosophy</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
+          <div className="mb-2 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+            <FadeIn direction="up">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">Philosophy</p>
+              <h2 className="font-serif max-w-xl text-4xl font-bold text-forest lg:text-5xl">
                 The Principles Behind Every Transformation
               </h2>
-            </div>
-          </FadeIn>
+            </FadeIn>
+            <FadeIn direction="up" delay={100}>
+              <p className="max-w-xs text-sm leading-relaxed text-muted lg:text-right">
+                Three commitments that shape every keynote, workshop, and program Sonya delivers.
+              </p>
+            </FadeIn>
+          </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="mt-12 divide-y divide-line">
             {[
               {
-                Icon: TargetIcon,
+                num: "01",
                 title: "Discipline",
-                body: "Developing consistent habits that support long-term personal and professional growth — drawing from military precision and human-centered design.",
+                body: "Consistent habits from military precision — building personal and professional practices that hold under pressure.",
               },
               {
-                Icon: ShieldIcon,
+                num: "02",
                 title: "Resilience",
-                body: "Building the mental and emotional strength needed to thrive through challenges, transitions, and high-stakes demands without breaking.",
+                body: "The mental and emotional strength to thrive through challenges, transitions, and high-stakes demands.",
               },
               {
-                Icon: LeafIcon,
+                num: "03",
                 title: "Renewal",
-                body: "Creating sustainable wellness practices and rhythms that support lasting success without sacrificing health, relationships, or humanity.",
+                body: "Sustainable wellness rhythms that support lasting success without sacrificing health or humanity.",
               },
-            ].map(({ Icon, title, body }, i) => (
-              <FadeIn key={title} direction="up" delay={i * 100}>
-                <div className="group h-full rounded-2xl border border-line bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-sage/40 hover:shadow-lg">
-                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-beige text-forest transition-colors group-hover:bg-sage/20">
-                    <Icon />
-                  </div>
-                  <h3 className="font-serif mb-3 text-xl font-bold text-forest">{title}</h3>
-                  <p className="text-sm leading-relaxed text-muted">{body}</p>
+            ].map(({ num, title, body }, i) => (
+              <FadeIn key={title} direction="up" delay={i * 80}>
+                <div className="group grid cursor-default grid-cols-[52px_1fr] gap-4 py-8 lg:grid-cols-[80px_1fr_320px] lg:items-center lg:gap-10 lg:py-10">
+                  <span className="font-serif text-3xl font-bold text-line transition-colors duration-300 group-hover:text-sage lg:text-5xl">
+                    {num}
+                  </span>
+                  <h3 className="font-serif text-2xl font-bold text-forest lg:text-3xl">{title}</h3>
+                  <p className="col-start-2 text-sm leading-relaxed text-muted lg:col-start-auto">{body}</p>
                 </div>
               </FadeIn>
             ))}
+            <div />
           </div>
         </div>
       </section>
@@ -268,7 +292,7 @@ export default function HomePage() {
             {services.map((service, i) => (
               <FadeIn key={service.title} direction="up" delay={i * 100}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-beige-dark bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                  <div className="relative h-52 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -278,12 +302,12 @@ export default function HomePage() {
                     />
                     <div className="absolute inset-0 bg-forest/10 transition-colors group-hover:bg-forest/5" />
                   </div>
-                  <div className="flex flex-1 flex-col p-7">
-                    <h3 className="font-serif mb-3 text-xl font-bold text-forest">{service.title}</h3>
-                    <p className="flex-1 text-sm leading-relaxed text-muted">{service.body}</p>
+                  <div className="flex flex-col p-5">
+                    <h3 className="font-serif mb-2 text-base font-bold text-forest">{service.title}</h3>
+                    <p className="line-clamp-2 text-sm leading-relaxed text-muted">{service.body}</p>
                     <Link
                       href="/services"
-                      className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-forest transition-all hover:gap-2"
+                      className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-forest transition-all hover:gap-2"
                     >
                       Learn More &rarr;
                     </Link>
