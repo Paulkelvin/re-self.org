@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   },
   description:
     "Sonya Harris empowers organizations through transformative wellness programs, keynote speaking, leadership retreats, and corporate wellness facilitation rooted in 21+ years of service.",
+  icons: {
+    icon: "/reself-logo.png",
+    apple: "/reself-logo.png",
+  },
   keywords: [
     "corporate wellness consultant",
     "keynote speaker",

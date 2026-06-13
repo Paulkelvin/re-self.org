@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const quickLinks = [
@@ -116,6 +117,17 @@ export function Footer() {
 
       {/* 2 — Lower footer container */}
       <div className="relative z-10 overflow-hidden bg-[#122421] px-6 pb-12 pt-40 text-white lg:px-16">
+        {/* Brand mark */}
+        <div className="mx-auto mb-12 max-w-6xl">
+          <Image
+            src="/reself-logo.png"
+            alt="Re-Self — reimagine self care"
+            width={132}
+            height={96}
+            className="h-12 w-auto"
+          />
+        </div>
+
         {/* 3 — Asymmetrical directory grid */}
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 border-b border-white/5 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Direct Line */}

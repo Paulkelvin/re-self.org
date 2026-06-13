@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -44,17 +45,15 @@ export function Header() {
         }`}
       >
         {/* Logo */}
-        <Link href="/" className="grid shrink-0 gap-0.5 leading-none" onClick={() => setOpen(false)}>
-          <span
-            className={`font-serif font-bold tracking-tight text-forest transition-all duration-300 ${
-              scrolled ? "text-[1rem]" : "text-[1.15rem]"
-            }`}
-          >
-            Re-Self
-          </span>
-          <span className="text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-sage/80">
-            Wellness Strategy
-          </span>
+        <Link href="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)} aria-label="Re-Self home">
+          <Image
+            src="/reself-logo.png"
+            alt="Re-Self — reimagine self care"
+            width={110}
+            height={80}
+            priority
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-9" : "h-11"}`}
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -119,9 +118,16 @@ export function Header() {
               <Link
                 href="/"
                 onClick={() => setOpen(false)}
-                className="font-serif text-[1.15rem] font-bold tracking-tight text-forest"
+                className="flex items-center"
+                aria-label="Re-Self home"
               >
-                Re-Self
+                <Image
+                  src="/reself-logo.png"
+                  alt="Re-Self — reimagine self care"
+                  width={110}
+                  height={80}
+                  className="h-10 w-auto"
+                />
               </Link>
               <button
                 aria-label="Close navigation menu"
