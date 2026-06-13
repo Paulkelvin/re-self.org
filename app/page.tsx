@@ -125,27 +125,27 @@ export default function HomePage() {
             </div>
 
             <FadeIn direction="up" delay={200}>
-              <div className="relative mx-auto max-w-[420px] lg:mr-0 lg:max-w-[480px]">
-                {/* Decorative geometry — independent, gentle motion */}
+              <div className="relative mx-auto max-w-[260px] sm:max-w-[360px] lg:mr-0 lg:max-w-[480px]">
+                {/* Decorative geometry — desktop only, kept off mobile to reduce drama */}
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -right-6 -top-8 h-24 w-24 rounded-full border border-sage/40 animate-spin-slow"
+                  className="pointer-events-none absolute -right-6 -top-8 hidden h-24 w-24 rounded-full border border-sage/40 animate-spin-slow sm:block"
                 />
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -right-8 bottom-24 h-24 w-24 opacity-70 animate-drift [background-image:radial-gradient(var(--color-sage)_1.3px,transparent_1.3px)] [background-size:11px_11px]"
+                  className="pointer-events-none absolute -right-8 bottom-24 hidden h-24 w-24 opacity-70 animate-drift sm:block [background-image:radial-gradient(var(--color-sage)_1.3px,transparent_1.3px)] [background-size:11px_11px]"
                 />
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -left-4 bottom-28 h-6 w-6 rotate-45 bg-sage/50 animate-float"
+                  className="pointer-events-none absolute -left-4 bottom-28 hidden h-6 w-6 rotate-45 bg-sage/50 animate-float sm:block"
                 />
 
-                {/* Floating group — tilted backdrop panel, outline + arched photo move as one */}
-                <div className="relative isolate animate-float-slow">
-                  {/* Dramatic tilted backdrop slab */}
+                {/* Floating group — outline + arched photo (tilted slab only on sm+) */}
+                <div className="relative isolate sm:animate-float-slow">
+                  {/* Dramatic tilted backdrop slab — desktop only */}
                   <div
                     aria-hidden="true"
-                    className="absolute -left-6 top-6 -z-10 h-[94%] w-[86%] -rotate-6 rounded-[2.5rem] bg-gradient-to-br from-forest via-forest to-forest-light/70 shadow-xl shadow-forest/20"
+                    className="absolute -left-6 top-6 -z-10 hidden h-[94%] w-[86%] -rotate-6 rounded-[2.5rem] bg-gradient-to-br from-forest via-forest to-forest-light/70 shadow-xl shadow-forest/20 sm:block"
                   />
                   {/* Offset arch outline — the framed line you liked, tracing the portal */}
                   <div
@@ -153,16 +153,16 @@ export default function HomePage() {
                     className="absolute -right-3 -top-3 bottom-3 left-3 rounded-[999px_999px_1.75rem_1.75rem] border-2 border-sage/30"
                   />
                   {/* Arched portal photo */}
-                  <div className="relative h-[clamp(380px,62vh,580px)] overflow-hidden rounded-[999px_999px_1.75rem_1.75rem] shadow-2xl shadow-forest/25">
+                  <div className="relative h-[clamp(300px,44vh,560px)] overflow-hidden rounded-[999px_999px_1.5rem_1.5rem] shadow-xl shadow-forest/20 sm:h-[clamp(380px,60vh,580px)] sm:rounded-[999px_999px_1.75rem_1.75rem] sm:shadow-2xl sm:shadow-forest/25">
                     <Image
                       src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=880&q=85"
                       alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
                       fill
                       priority
-                      sizes="(max-width: 640px) 420px, (max-width: 1200px) 50vw, 580px"
+                      sizes="(max-width: 640px) 260px, (max-width: 1200px) 50vw, 580px"
                       className="object-cover object-[center_30%]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/45 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-transparent" />
                   </div>
                 </div>
               </div>
