@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -19,27 +16,33 @@ const information = [
 
 const EMAIL = "hello@re-self.org";
 
+const labelCls =
+  "mb-4 block font-mono text-[10px] uppercase tracking-[0.2em] text-white/40";
+
+/* Low-opacity "organizational sphere" graphic for the CTA banner. */
+function SphereGraphic() {
+  return (
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" aria-hidden="true" className="h-full w-full">
+      <g strokeWidth="0.5">
+        <circle cx="100" cy="100" r="92" />
+        <circle cx="100" cy="100" r="70" />
+        <circle cx="100" cy="100" r="48" />
+        <circle cx="100" cy="100" r="26" />
+        <ellipse cx="100" cy="100" rx="92" ry="38" />
+        <ellipse cx="100" cy="100" rx="92" ry="64" />
+        <ellipse cx="100" cy="100" rx="38" ry="92" />
+        <ellipse cx="100" cy="100" rx="64" ry="92" />
+        <line x1="8" y1="100" x2="192" y2="100" />
+        <line x1="100" y1="8" x2="100" y2="192" />
+      </g>
+    </svg>
+  );
+}
+
 function ArrowIcon() {
   return (
     <svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M2 7h10M8 3l4 4-4 4" />
-    </svg>
-  );
-}
-
-function CopyIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="9" y="9" width="11" height="11" rx="2" />
-      <path d="M5 15V5a2 2 0 012-2h10" />
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M4 12.5l5 5L20 6" />
     </svg>
   );
 }
@@ -75,92 +78,102 @@ const social = [
 ];
 
 export function Footer() {
-  const [copied, setCopied] = useState(false);
-
-  async function copyEmail() {
-    try {
-      await navigator.clipboard.writeText(EMAIL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* clipboard unavailable */
-    }
-  }
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-forest text-white">
-      <div className="mx-auto max-w-7xl px-6 pt-24 pb-12 lg:px-16">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Left — high-impact contact CTA */}
-          <div className="lg:col-span-6">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-300">
-              Get In Touch
-            </span>
-            <h2 className="font-serif mb-8 max-w-md text-3xl font-semibold leading-tight tracking-tight text-white lg:text-4xl">
-              Let&rsquo;s Discuss Your Vision. With Us
-            </h2>
+    <footer>
+      {/* 1 — Floating overlap CTA banner */}
+      <div className="relative z-20 -mb-24 px-6 lg:px-16">
+        <div className="relative mx-auto grid min-h-[260px] max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#2a4d46] to-[#152b27] p-8 shadow-2xl md:grid-cols-12 md:p-12">
+          {/* Right abstract graphic */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-12 top-1/2 hidden h-[360px] w-[360px] -translate-y-1/2 text-sage/20 md:block"
+          >
+            <span className="absolute inset-8 rounded-full border border-sage/10 animate-spin-slow" />
+            <SphereGraphic />
+          </div>
 
+          {/* Left content */}
+          <div className="relative z-10 md:col-span-7">
+            <h2 className="font-serif mb-2 text-2xl font-medium leading-tight tracking-tight text-white md:text-4xl">
+              Ready to work with Sonya?
+            </h2>
+            <p className="max-w-md text-sm font-light leading-relaxed text-neutral-300">
+              Bring her expertise in military resilience, federal leadership, and wellness
+              facilitation to your organization.
+            </p>
             <Link
               href="/book-sonya"
-              className="flex w-fit items-center gap-2 rounded-full bg-warm-white px-6 py-3.5 text-sm font-medium text-forest transition-opacity hover:opacity-90"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#1e3d38] transition-all hover:bg-[#eae6df]"
             >
-              Schedule a call now
+              Book Sonya
               <ArrowIcon />
             </Link>
+          </div>
+        </div>
+      </div>
 
-            <span className="mt-8 mb-3 block text-[10px] font-bold uppercase tracking-wider text-neutral-300">
-              Or Email Us At
-            </span>
-            <button
-              type="button"
-              onClick={copyEmail}
-              aria-label={copied ? "Email copied" : `Copy email ${EMAIL}`}
-              className="flex w-fit max-w-xs items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10"
+      {/* 2 — Lower footer container */}
+      <div className="relative z-10 overflow-hidden bg-[#122421] px-6 pb-12 pt-40 text-white lg:px-16">
+        {/* 3 — Asymmetrical directory grid */}
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 border-b border-white/5 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          {/* Direct Line */}
+          <div className="lg:col-span-4">
+            <span className={labelCls}>Direct Line</span>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-block border-b border-white/20 pb-1 font-serif text-lg text-white/90 transition-all hover:border-white hover:text-white"
             >
-              <span className="text-sm text-neutral-200">{EMAIL}</span>
-              <span className={copied ? "text-sage" : "text-neutral-400"}>
-                {copied ? <CheckIcon /> : <CopyIcon />}
-              </span>
-            </button>
+              {EMAIL}
+            </a>
           </div>
 
-          {/* Right — Quick Links */}
+          {/* Explore */}
           <div className="lg:col-span-3">
-            <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.15em] text-neutral-300">
-              Quick Links
-            </span>
-            <nav className="flex flex-col space-y-4 text-[15px] font-normal text-neutral-200">
+            <span className={labelCls}>Explore</span>
+            <nav className="space-y-3">
               {quickLinks.map(({ label, href }) => (
-                <Link key={href} href={href} className="transition-colors duration-200 hover:text-white">
+                <Link key={href} href={href} className="block text-xs text-white/60 transition-colors hover:text-white">
                   {label}
                 </Link>
               ))}
             </nav>
           </div>
 
-          {/* Right — Information */}
+          {/* Legal & Utility */}
           <div className="lg:col-span-3">
-            <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.15em] text-neutral-300">
-              Information
-            </span>
-            <nav className="flex flex-col space-y-4 text-[15px] font-normal text-neutral-200">
+            <span className={labelCls}>Legal &amp; Utility</span>
+            <nav className="space-y-3">
               {information.map(({ label, href }) => (
-                <Link key={href} href={href} className="transition-colors duration-200 hover:text-white">
+                <Link key={href} href={href} className="block text-xs text-white/60 transition-colors hover:text-white">
                   {label}
                 </Link>
               ))}
             </nav>
+          </div>
+
+          {/* Current Time */}
+          <div className="lg:col-span-2">
+            <span className={labelCls}>Current Time</span>
+            <p className="font-mono text-xs text-white/60">EST / WASHINGTON, DC</p>
           </div>
         </div>
 
-        {/* Sub-footer */}
-        <div className="mt-16 flex flex-col gap-6 border-t border-white/5 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-light uppercase tracking-wider text-neutral-400">
-            &copy; Re-Self {new Date().getFullYear()}. All Rights Reserved.
-          </p>
-          <div className="flex items-center gap-x-6 text-neutral-400">
+        {/* Luxury signature watermark */}
+        <div
+          aria-hidden="true"
+          className="my-4 select-none text-center font-serif text-[14vw] font-bold uppercase leading-none tracking-tighter text-white/[0.02] pointer-events-none"
+        >
+          Re-Self
+        </div>
+
+        {/* 4 — Ultra-minimal copyright basebar */}
+        <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-6 border-t border-white/5 pt-8 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row">
+          <p>&copy; {year} RE-SELF. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-x-6 text-white/50">
             {social.map(({ href, Icon, label }) => (
-              <a key={label} href={href} aria-label={label} className="transition-colors hover:text-white">
+              <a key={label} href={href} aria-label={label} className="transition-opacity hover:text-white">
                 <Icon />
               </a>
             ))}
