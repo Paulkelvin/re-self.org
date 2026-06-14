@@ -84,7 +84,7 @@ export function Footer() {
   return (
     <footer>
       {/* 1 — Floating overlap CTA banner */}
-      <div className="relative z-20 -mb-24 px-6 lg:px-16">
+      <div className="relative z-20 -mb-24 px-6 pt-20 lg:px-16 lg:pt-28">
         <div className="relative mx-auto grid min-h-[260px] max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#2a4d46] to-[#152b27] p-8 shadow-2xl md:grid-cols-12 md:p-12">
           {/* Right abstract graphic */}
           <div
@@ -122,9 +122,9 @@ export function Footer() {
           <Image
             src="/reself-logo.png"
             alt="Re-Self — reimagine self care"
-            width={132}
-            height={96}
-            className="h-12 w-auto"
+            width={264}
+            height={192}
+            className="h-24 w-auto"
           />
         </div>
 

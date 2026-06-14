@@ -60,7 +60,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-warm-white lg:flex lg:h-[calc(100vh-76px)] lg:items-center">
+      <section className="relative overflow-hidden bg-warm-white lg:flex lg:h-[calc(100vh-96px)] lg:items-center">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute -right-48 -top-40 h-[600px] w-[600px] rounded-full bg-sage/10 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 h-[440px] w-[440px] rounded-full bg-beige blur-3xl" />
@@ -155,12 +155,12 @@ export default function HomePage() {
                   {/* Arched portal photo */}
                   <div className="relative h-[clamp(300px,44vh,560px)] overflow-hidden rounded-[999px_999px_1.5rem_1.5rem] shadow-xl shadow-forest/20 sm:h-[clamp(380px,60vh,580px)] sm:rounded-[999px_999px_1.75rem_1.75rem] sm:shadow-2xl sm:shadow-forest/25">
                     <Image
-                      src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=880&q=85"
+                      src="/sonya-harris.jpg"
                       alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
                       fill
                       priority
                       sizes="(max-width: 640px) 260px, (max-width: 1200px) 50vw, 580px"
-                      className="object-cover object-[center_30%]"
+                      className="object-cover object-[center_25%]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-transparent" />
                   </div>
@@ -227,7 +227,7 @@ export default function HomePage() {
                 />
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] shadow-[0_30px_55px_-22px_rgba(47,79,79,0.45)]">
                   <Image
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=90"
+                    src="/sonya-harris.jpg"
                     alt="Sonya Harris"
                     fill
                     sizes="(max-width: 1024px) 340px, 400px"
