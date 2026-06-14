@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BookingForm } from "@/components/BookingForm";
 import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { ShimmerCTA } from "@/components/ShimmerCTA";
 import { credentials, faq, services, testimonials, topics, achievements } from "@/lib/content";
 
 function TargetIcon() {
@@ -82,12 +83,12 @@ export default function HomePage() {
             </FadeIn>
             <FadeIn direction="up" delay={240}>
               <div className="flex flex-wrap items-center">
-                <Link
+                <ShimmerCTA
                   href="/book-sonya"
-                  className="rounded-full bg-[#142E2A] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-[#0d201d]"
+                  className="inline-flex items-center rounded-full bg-[#142E2A] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-[#0d201d]"
                 >
                   Book Sonya
-                </Link>
+                </ShimmerCTA>
                 <Link
                   href="/services"
                   className="ml-6 border-b border-transparent pb-1 text-xs font-semibold uppercase tracking-widest text-[#142E2A]/80 transition-all hover:border-[#142E2A] hover:text-[#142E2A]"
@@ -565,12 +566,13 @@ export default function HomePage() {
             <h2 className="font-serif text-4xl lg:text-5xl font-normal text-white max-w-4xl mx-auto leading-tight">
               Wellness Is Not A Luxury. It&apos;s A Leadership Strategy.
             </h2>
-            <Link
+            <ShimmerCTA
               href="/book-sonya"
+              tone="dark"
               className="mt-10 inline-flex min-h-[56px] items-center justify-center rounded-full bg-white px-10 text-sm font-bold text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:scale-[0.98]"
             >
               Book Sonya Today
-            </Link>
+            </ShimmerCTA>
           </FadeIn>
         </div>
       </section>

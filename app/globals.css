@@ -30,6 +30,37 @@
   animation-play-state: paused;
 }
 
+/* ── Primary-CTA focal cue ──────────────────────────────────────
+   A single sheen sweep, fired once when the button enters view
+   (gated by JS + IntersectionObserver in <ShimmerCTA>). Runs on the
+   compositor (transform + opacity only). The reduced-motion block
+   below freezes it, and the component skips mounting it entirely. */
+@keyframes cta-sheen {
+  0%   { transform: translate3d(-130%, 0, 0) skewX(-20deg); opacity: 0; }
+  18%  { opacity: 1; }
+  100% { transform: translate3d(130%, 0, 0) skewX(-20deg); opacity: 0; }
+}
+.cta-sheen,
+.cta-sheen-dark {
+  animation: cta-sheen 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s 1 both;
+}
+.cta-sheen {
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+}
+.cta-sheen-dark {
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(47, 79, 79, 0.18) 50%,
+    transparent 100%
+  );
+}
+
 /* ── Motion system ──────────────────────────────────────────── */
 @keyframes floaty {
   0%, 100% { transform: translateY(0); }

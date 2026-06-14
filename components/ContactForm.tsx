@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Spinner } from "@/components/Spinner";
 
 const initial = { fullName: "", email: "", organization: "", message: "", website: "" };
 
@@ -133,9 +134,16 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-1 inline-flex min-h-[50px] items-center justify-center rounded-full bg-forest px-7 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-md active:scale-[0.98] disabled:opacity-60"
+        className="mt-1 inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full bg-forest px-7 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-md active:scale-[0.98] disabled:opacity-60"
       >
-        {status === "loading" ? "Sending…" : "Send Message"}
+        {status === "loading" ? (
+          <>
+            <Spinner />
+            Sending…
+          </>
+        ) : (
+          "Send Message"
+        )}
       </button>
 
       {message && (

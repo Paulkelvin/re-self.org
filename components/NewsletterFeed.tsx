@@ -78,8 +78,9 @@ export function NewsletterFeed({ articles, categories }: Props) {
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Grid — keyed by active category so switching filters re-runs the
+          staggered reveal; typing in search filters in place (no re-animation). */}
+      <div key={active} className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((article, i) => (
           <FadeIn key={article.slug} direction="up" delay={(i % 3) * 90}>
             <ArticleCard article={article} />
