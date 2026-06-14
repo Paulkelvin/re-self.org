@@ -90,7 +90,7 @@ export default function HomePage() {
                 <div className="mt-7 flex flex-wrap items-center gap-4">
                   <Link
                     href="/book-sonya"
-                    className="inline-flex min-h-[50px] items-center justify-center rounded-xl bg-forest px-7 text-sm font-semibold text-white shadow-lg shadow-forest/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-xl hover:shadow-forest/30"
+                    className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-forest px-8 text-sm font-semibold text-white shadow-lg shadow-forest/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-xl hover:shadow-forest/30 active:scale-[0.98]"
                   >
                     Book Sonya
                   </Link>
@@ -205,7 +205,7 @@ export default function HomePage() {
           <div className="grid items-center gap-16 lg:grid-cols-[4fr_6fr] lg:gap-24">
             {/* Image — 40%, taller 3:4 portrait */}
             <FadeIn direction="left">
-              <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[340px] lg:mx-0 lg:max-w-[400px]">
+              <div className="relative w-full max-w-[380px] sm:mx-auto sm:max-w-[340px] lg:mx-0 lg:max-w-[400px]">
                 <div
                   className="absolute -bottom-4 -left-4 h-full w-full rounded-[1.75rem] border border-sage/40 bg-sage/15"
                   aria-hidden="true"
@@ -595,7 +595,7 @@ export default function HomePage() {
             </h2>
             <Link
               href="/book-sonya"
-              className="mt-10 inline-flex min-h-[56px] items-center justify-center rounded-lg bg-white px-10 text-sm font-bold text-forest shadow-xl transition-all hover:-translate-y-px hover:shadow-2xl"
+              className="mt-10 inline-flex min-h-[56px] items-center justify-center rounded-full bg-white px-10 text-sm font-bold text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:scale-[0.98]"
             >
               Book Sonya Today
             </Link>

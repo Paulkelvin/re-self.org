@@ -74,8 +74,8 @@ function InstagramIcon() {
 }
 
 const social = [
-  { href: "#", Icon: FacebookIcon, label: "Facebook" },
-  { href: "#", Icon: InstagramIcon, label: "Instagram" },
+  { href: "https://www.facebook.com/profile.php?id=61574713893151", Icon: FacebookIcon, label: "Facebook" },
+  { href: "https://www.instagram.com/__reself__/", Icon: InstagramIcon, label: "Instagram" },
   { href: "#", Icon: LinkedInIcon, label: "LinkedIn" },
 ];
 
@@ -107,7 +107,7 @@ export function Footer() {
             </p>
             <Link
               href="/book-sonya"
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-[#1e3d38] transition-all hover:bg-[#eae6df]"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#1e3d38] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#eae6df] active:scale-[0.98]"
             >
               Book Sonya
               <ArrowIcon />
@@ -185,11 +185,21 @@ export function Footer() {
         <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-6 border-t border-white/5 pt-8 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row">
           <p>&copy; {year} RE-SELF. ALL RIGHTS RESERVED.</p>
           <div className="flex items-center gap-x-6 text-white/50">
-            {social.map(({ href, Icon, label }) => (
-              <a key={label} href={href} aria-label={label} className="transition-opacity hover:text-white">
-                <Icon />
-              </a>
-            ))}
+            {social.map(({ href, Icon, label }) => {
+              const external = href !== "#";
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  className="transition-all duration-300 hover:-translate-y-0.5 hover:text-white"
+                >
+                  <Icon />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

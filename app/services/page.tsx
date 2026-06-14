@@ -301,7 +301,7 @@ export default function ServicesPage() {
             <FadeIn direction="up" delay={100}>
               <Link
                 href="/book-sonya"
-                className="inline-flex shrink-0 min-h-[52px] items-center justify-center rounded-lg bg-white px-8 text-sm font-bold text-forest shadow-xl transition-all hover:-translate-y-px hover:shadow-2xl"
+                className="inline-flex shrink-0 min-h-[52px] items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:scale-[0.98]"
               >
                 Start Inquiry &rarr;
               </Link>

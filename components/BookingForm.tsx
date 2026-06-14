@@ -191,7 +191,7 @@ export function BookingForm() {
               <button
                 type="button"
                 onClick={goNext}
-                className="group inline-flex min-h-[48px] items-center gap-2 rounded-lg bg-forest px-7 text-sm font-semibold text-white shadow-sm shadow-forest/20 transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-md"
+                className="group inline-flex min-h-[48px] items-center gap-2 rounded-full bg-forest px-7 text-sm font-semibold text-white shadow-sm shadow-forest/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-md active:scale-[0.98]"
               >
                 Continue
                 <svg
@@ -324,7 +324,7 @@ export function BookingForm() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-forest px-7 text-sm font-semibold text-white shadow-sm shadow-forest/20 transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-md disabled:opacity-60"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-forest px-7 text-sm font-semibold text-white shadow-sm shadow-forest/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-md active:scale-[0.98] disabled:opacity-60"
               >
                 {status === "loading" ? "Sending…" : "Request Booking"}
               </button>

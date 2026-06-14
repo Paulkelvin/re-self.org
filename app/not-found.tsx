@@ -27,13 +27,13 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-lg bg-white px-8 text-sm font-bold text-forest shadow-lg transition-all hover:-translate-y-px hover:shadow-xl"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-forest shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:scale-[0.98]"
           >
             Back to Home
           </Link>
           <Link
             href="/book-sonya"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-lg border border-white/20 px-8 text-sm font-semibold text-white/80 transition-all hover:border-white/40 hover:text-white"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/20 px-8 text-sm font-semibold text-white/80 transition-all duration-300 hover:border-white/40 hover:text-white active:scale-[0.98]"
           >
             Book Sonya &rarr;
           </Link>

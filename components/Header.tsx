@@ -73,7 +73,7 @@ export function Header() {
           ))}
           <Link
             href="/book-sonya"
-            className="inline-flex min-h-[40px] items-center justify-center rounded-xl bg-forest px-5 text-sm font-semibold text-white shadow-md shadow-forest/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-lg hover:shadow-forest/30"
+            className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-forest px-6 text-sm font-semibold text-white shadow-md shadow-forest/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-lg hover:shadow-forest/30 active:scale-[0.98]"
           >
             Book Sonya
           </Link>
@@ -109,13 +109,31 @@ export function Header() {
         {open && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 z-50 flex h-screen w-screen flex-col justify-between bg-white px-6 py-8 lg:hidden"
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            variants={{
+              hidden: {
+                opacity: 0,
+                transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+              },
+              show: {
+                opacity: 1,
+                transition: {
+                  duration: 0.4,
+                  ease: [0.22, 1, 0.36, 1],
+                  when: "beforeChildren",
+                  staggerChildren: 0.07,
+                  delayChildren: 0.1,
+                },
+              },
+            }}
+            className="fixed inset-0 z-50 flex h-[100dvh] w-screen flex-col bg-white px-7 py-7 lg:hidden"
           >
-            <div className="flex items-center justify-between">
+            <motion.div
+              variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+              className="flex items-center justify-between"
+            >
               <Link
                 href="/"
                 onClick={() => setOpen(false)}
@@ -133,36 +151,51 @@ export function Header() {
               <button
                 aria-label="Close navigation menu"
                 onClick={() => setOpen(false)}
-                className="p-2 text-forest"
+                className="-mr-1 p-2 text-forest transition-transform duration-300 hover:rotate-90"
               >
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
                   <path d="M6 6l12 12M18 6L6 18" />
                 </svg>
               </button>
-            </div>
+            </motion.div>
 
-            <nav className="flex flex-col gap-2">
+            <nav className="mt-14 flex flex-col gap-7">
               {links.map(({ label, href }) => (
-                <Link
+                <motion.div
                   key={href}
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  className={`font-serif text-2xl font-medium transition-colors ${
-                    pathname === href ? "text-forest" : "text-charcoal hover:text-forest"
-                  }`}
+                  variants={{
+                    hidden: { opacity: 0, y: 16 },
+                    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+                  }}
                 >
-                  {label}
-                </Link>
+                  <Link
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    className={`font-serif text-3xl font-medium transition-colors duration-300 ${
+                      pathname === href ? "text-forest" : "text-charcoal hover:text-forest"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
 
-            <Link
-              href="/book-sonya"
-              onClick={() => setOpen(false)}
-              className="flex min-h-[52px] items-center justify-center rounded-xl bg-forest text-sm font-semibold uppercase tracking-wide text-white"
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 16 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+              }}
+              className="mt-auto pt-8"
             >
-              Book Sonya
-            </Link>
+              <Link
+                href="/book-sonya"
+                onClick={() => setOpen(false)}
+                className="flex min-h-[54px] items-center justify-center rounded-full bg-forest text-sm font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:bg-forest-light active:scale-[0.98]"
+              >
+                Book Sonya
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -60,7 +60,7 @@ export function SubscribeForm({ variant = "dark", className = "" }: Props) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@organization.com"
-        className={`min-h-[52px] flex-1 rounded-xl border px-4 text-sm outline-none transition-colors ${
+        className={`min-h-[52px] flex-1 rounded-full border px-5 text-sm outline-none transition-colors ${
           light
             ? "border-white/25 bg-white/10 text-white placeholder:text-white/45 focus:border-white/60"
             : "border-line bg-white text-charcoal placeholder:text-muted/60 focus:border-forest"
@@ -68,7 +68,7 @@ export function SubscribeForm({ variant = "dark", className = "" }: Props) {
       />
       <button
         type="submit"
-        className={`min-h-[52px] shrink-0 rounded-xl px-7 text-sm font-semibold uppercase tracking-wider transition-all duration-200 hover:-translate-y-0.5 ${
+        className={`min-h-[52px] shrink-0 rounded-full px-7 text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] ${
           light
             ? "bg-white text-forest shadow-md hover:bg-beige"
             : "bg-forest text-white shadow-md shadow-forest/25 hover:bg-forest-light"

@@ -15,36 +15,67 @@ const ALL = "All";
 
 export function NewsletterFeed({ articles, categories }: Props) {
   const [active, setActive] = useState<string>(ALL);
+  const [query, setQuery] = useState("");
 
-  const filtered = useMemo(
-    () => (active === ALL ? articles : articles.filter((a) => a.category === active)),
-    [active, articles],
-  );
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return articles.filter((a) => {
+      const matchesCategory = active === ALL || a.category === active;
+      const matchesQuery =
+        !q ||
+        a.title.toLowerCase().includes(q) ||
+        a.excerpt.toLowerCase().includes(q) ||
+        a.category.toLowerCase().includes(q);
+      return matchesCategory && matchesQuery;
+    });
+  }, [active, query, articles]);
 
   const filters = [ALL, ...categories];
 
   return (
     <div>
-      {/* Filter bar */}
-      <div className="mb-12 flex flex-wrap items-center gap-2.5">
-        {filters.map((cat) => {
-          const isActive = cat === active;
-          return (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActive(cat)}
-              aria-pressed={isActive}
-              className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
-                isActive
-                  ? "border-forest bg-forest text-white shadow-sm"
-                  : "border-line bg-transparent text-muted hover:border-forest/40 hover:text-forest"
-              }`}
-            >
-              {cat}
-            </button>
-          );
-        })}
+      {/* Filter + search bar */}
+      <div className="mb-10 flex flex-col gap-5 border-b border-line/60 pb-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-2.5">
+          {filters.map((cat) => {
+            const isActive = cat === active;
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => setActive(cat)}
+                aria-pressed={isActive}
+                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 active:scale-[0.97] ${
+                  isActive
+                    ? "border-forest bg-forest text-white shadow-sm"
+                    : "border-line bg-transparent text-muted hover:border-forest/40 hover:text-forest"
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="relative w-full sm:w-72">
+          <svg
+            aria-hidden="true"
+            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted/60"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="M21 21l-4.3-4.3" />
+          </svg>
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search articles…"
+            aria-label="Search articles"
+            className="min-h-[44px] w-full rounded-full border border-line bg-white pl-11 pr-4 text-sm text-charcoal outline-none transition-colors placeholder:text-muted/60 focus:border-forest"
+          />
+        </div>
       </div>
 
       {/* Grid */}
@@ -58,7 +89,7 @@ export function NewsletterFeed({ articles, categories }: Props) {
 
       {filtered.length === 0 && (
         <p className="py-16 text-center text-sm text-muted">
-          No articles in this category yet — check back soon.
+          No articles match your search — try a different topic or keyword.
         </p>
       )}
     </div>

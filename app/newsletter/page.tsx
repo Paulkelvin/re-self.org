@@ -58,7 +58,7 @@ export default function NewsletterPage() {
       </section>
 
       {/* Featured */}
-      <section className="bg-warm-white pb-8">
+      <section className="bg-warm-white pb-8 pt-10 lg:pt-0">
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <Link

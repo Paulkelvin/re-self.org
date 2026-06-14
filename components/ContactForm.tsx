@@ -133,7 +133,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-1 inline-flex min-h-[50px] items-center justify-center rounded-lg bg-forest px-6 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-px hover:bg-forest-light hover:shadow-md disabled:opacity-60"
+        className="mt-1 inline-flex min-h-[50px] items-center justify-center rounded-full bg-forest px-7 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-md active:scale-[0.98] disabled:opacity-60"
       >
         {status === "loading" ? "Sending…" : "Send Message"}
       </button>
