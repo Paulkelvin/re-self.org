@@ -60,99 +60,71 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-warm-white lg:flex lg:h-[calc(100vh-80px)] lg:items-center">
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute -right-48 -top-40 h-[600px] w-[600px] rounded-full bg-sage/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-[440px] w-[440px] rounded-full bg-beige blur-3xl" />
-        </div>
+      <section className="relative overflow-hidden bg-[#FBF9F6]">
+        <div className="relative mx-auto grid max-w-[1500px] grid-cols-1 items-center gap-16 px-8 py-16 md:px-16 lg:grid-cols-12 lg:px-24 min-h-[90vh]">
+          {/* Left narrative column */}
+          <div className="lg:col-span-7">
+            <FadeIn direction="up">
+              <span className="mb-4 block font-mono text-[11px] uppercase tracking-[0.25em] text-[#142E2A]/60">
+                On-Demand Organizational Resilience
+              </span>
+            </FadeIn>
+            <FadeIn direction="up" delay={80}>
+              <h1 className="mb-6 font-serif text-4xl font-light leading-[1.1] tracking-tight text-[#142E2A] md:text-6xl lg:text-7xl">
+                Stronger leaders. Healthier organizations.
+              </h1>
+            </FadeIn>
+            <FadeIn direction="up" delay={160}>
+              <p className="mb-8 max-w-lg border-l-2 border-[#C5A880] pl-4 font-sans text-base font-light leading-relaxed text-[#7A8481] md:text-lg">
+                Sonya Harris helps teams build resilience and sustainable wellbeing —
+                drawn from 21+ years of service and federal leadership.
+              </p>
+            </FadeIn>
+            <FadeIn direction="up" delay={240}>
+              <div className="flex flex-wrap items-center">
+                <Link
+                  href="/book-sonya"
+                  className="rounded-full bg-[#142E2A] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-[#0d201d]"
+                >
+                  Book Sonya
+                </Link>
+                <Link
+                  href="/services"
+                  className="ml-6 border-b border-transparent pb-1 text-xs font-semibold uppercase tracking-widest text-[#142E2A]/80 transition-all hover:border-[#142E2A] hover:text-[#142E2A]"
+                >
+                  Explore Services
+                </Link>
+              </div>
+            </FadeIn>
 
-        <div className="relative w-full mx-auto max-w-[1200px] px-4 py-16 lg:py-0">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div>
-              <FadeIn direction="up">
-                <p className="mb-5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-sage">
-                  Corporate Wellness &middot; Keynote Speaker
+            {/* Dual-Anchor Baseline */}
+            <FadeIn direction="up" delay={320}>
+              <div className="mt-12 grid grid-cols-1 items-start gap-6 border-t border-[#E5E0DA] pt-8 md:grid-cols-12">
+                {/* Zone 1 — Continuous authority statement */}
+                <p className="max-w-2xl font-mono text-xs uppercase leading-relaxed tracking-[0.18em] text-[#142E2A] md:col-span-8">
+                  01 / Advisory &amp; Strategic Alignment for Federal, Military, and Corporate Leadership
                 </p>
-              </FadeIn>
-              <FadeIn direction="up" delay={80}>
-                <h1 className="font-serif text-5xl font-bold leading-[1.05] tracking-tight text-charcoal lg:text-[3.6rem]">
-                  Stronger leaders.{" "}
-                  <span className="text-forest">Healthier organizations.</span>
-                </h1>
-              </FadeIn>
-              <FadeIn direction="up" delay={160}>
-                <p className="mt-6 max-w-[440px] text-base leading-relaxed text-muted">
-                  Sonya Harris helps teams build resilience and sustainable wellbeing —
-                  drawn from 21+ years of service and federal leadership.
+                {/* Zone 2 — Luxury utility counter */}
+                <p className="mt-1 font-mono text-xs uppercase tracking-widest text-[#C5A880] md:col-span-4 md:mt-0 md:text-right">
+                  Status: Engaging for 2026 Q3/Q4
                 </p>
-              </FadeIn>
-              <FadeIn direction="up" delay={240}>
-                <div className="mt-7 flex flex-wrap items-center gap-4">
-                  <Link
-                    href="/book-sonya"
-                    className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-forest px-8 text-sm font-semibold text-white shadow-lg shadow-forest/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light hover:shadow-xl hover:shadow-forest/30 active:scale-[0.98]"
-                  >
-                    Book Sonya
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="group inline-flex items-center gap-2 text-sm font-semibold text-muted transition-all duration-200 hover:text-forest"
-                  >
-                    Explore Services
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="transition-transform duration-200 group-hover:translate-x-0.5"
-                      aria-hidden="true"
-                    >
-                      <path d="M2 7h10M8 3l4 4-4 4" />
-                    </svg>
-                  </Link>
-                </div>
-                <div className="mt-5 inline-flex items-center gap-2.5">
-                  <span className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-forest">21+ Years</span>
-                  <span className="h-3 w-px bg-line" aria-hidden="true" />
-                  <span className="text-[0.65rem] font-medium uppercase tracking-wider text-muted/70">Service · Leadership · Impact</span>
-                </div>
-              </FadeIn>
-            </div>
-
-            <FadeIn direction="up" delay={200}>
-              <div className="relative mx-auto w-full max-w-[340px] sm:max-w-[380px] lg:mr-0 lg:max-w-[460px]">
-                {/* Calm, static frame — a single soft backdrop + outline, no motion */}
-                <div className="relative isolate">
-                  {/* Soft tilted backdrop slab — desktop only */}
-                  <div
-                    aria-hidden="true"
-                    className="absolute -left-5 top-5 -z-10 hidden h-[94%] w-[86%] -rotate-3 rounded-[2.5rem] bg-gradient-to-br from-forest to-forest-light/70 sm:block"
-                  />
-                  {/* Offset arch outline tracing the portal */}
-                  <div
-                    aria-hidden="true"
-                    className="absolute -right-2.5 -top-2.5 bottom-2.5 left-2.5 rounded-[999px_999px_1.75rem_1.75rem] border border-sage/30"
-                  />
-                  {/* Arched portal photo */}
-                  <div className="relative h-[clamp(340px,46vh,480px)] overflow-hidden rounded-[999px_999px_1.5rem_1.5rem] shadow-xl shadow-forest/20 sm:h-[clamp(400px,62vh,580px)] sm:rounded-[999px_999px_1.75rem_1.75rem] sm:shadow-2xl sm:shadow-forest/25">
-                    <Image
-                      src="/sonya-harris.jpg"
-                      alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
-                      fill
-                      priority
-                      sizes="(max-width: 640px) 340px, (max-width: 1200px) 50vw, 560px"
-                      className="object-cover object-[center_25%]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/35 via-transparent to-transparent" />
-                  </div>
-                </div>
               </div>
             </FadeIn>
           </div>
+
+          {/* Right portrait column */}
+          <FadeIn direction="up" delay={200} className="lg:col-span-5">
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg shadow-xl">
+              <Image
+                src="/sonya-harris.jpg"
+                alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover object-[center_25%]"
+              />
+            </div>
+          </FadeIn>
         </div>
       </section>
 
