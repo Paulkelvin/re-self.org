@@ -60,7 +60,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-warm-white lg:flex lg:h-[calc(100vh-96px)] lg:items-center">
+      <section className="relative overflow-hidden bg-warm-white lg:flex lg:h-[calc(100vh-80px)] lg:items-center">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute -right-48 -top-40 h-[600px] w-[600px] rounded-full bg-sage/10 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 h-[440px] w-[440px] rounded-full bg-beige blur-3xl" />
@@ -70,21 +70,20 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <FadeIn direction="up">
-                <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted/70">
-                  Wellness Leader &bull; Speaker &bull; Corporate Wellness Consultant
+                <p className="mb-5 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-sage">
+                  Corporate Wellness &middot; Keynote Speaker
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={80}>
-                <h1 className="font-serif text-4xl font-bold leading-[1.07] tracking-tight text-charcoal sm:text-5xl lg:text-[3.1rem]">
-                  Self-Care From Within. Stronger Leaders.{" "}
-                  <span className="text-forest">Healthier Organizations.</span>
+                <h1 className="font-serif text-5xl font-bold leading-[1.05] tracking-tight text-charcoal lg:text-[3.6rem]">
+                  Stronger leaders.{" "}
+                  <span className="text-forest">Healthier organizations.</span>
                 </h1>
               </FadeIn>
               <FadeIn direction="up" delay={160}>
-                <p className="mt-5 max-w-[490px] text-base leading-relaxed text-muted">
-                  Sonya Harris empowers individuals and organizations through transformative
-                  workshops, leadership development, and wellness programs rooted in decades
-                  of service, resilience, and authentic care.
+                <p className="mt-6 max-w-[440px] text-base leading-relaxed text-muted">
+                  Sonya Harris helps teams build resilience and sustainable wellbeing —
+                  drawn from 21+ years of service and federal leadership.
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={240}>
@@ -125,44 +124,30 @@ export default function HomePage() {
             </div>
 
             <FadeIn direction="up" delay={200}>
-              <div className="relative mx-auto max-w-[260px] sm:max-w-[360px] lg:mr-0 lg:max-w-[480px]">
-                {/* Decorative geometry — desktop only, kept off mobile to reduce drama */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-6 -top-8 hidden h-24 w-24 rounded-full border border-sage/40 animate-spin-slow sm:block"
-                />
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-8 bottom-24 hidden h-24 w-24 opacity-70 animate-drift sm:block [background-image:radial-gradient(var(--color-sage)_1.3px,transparent_1.3px)] [background-size:11px_11px]"
-                />
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -left-4 bottom-28 hidden h-6 w-6 rotate-45 bg-sage/50 animate-float sm:block"
-                />
-
-                {/* Floating group — outline + arched photo (tilted slab only on sm+) */}
-                <div className="relative isolate sm:animate-float-slow">
-                  {/* Dramatic tilted backdrop slab — desktop only */}
+              <div className="relative mx-auto w-full max-w-[340px] sm:max-w-[380px] lg:mr-0 lg:max-w-[460px]">
+                {/* Calm, static frame — a single soft backdrop + outline, no motion */}
+                <div className="relative isolate">
+                  {/* Soft tilted backdrop slab — desktop only */}
                   <div
                     aria-hidden="true"
-                    className="absolute -left-6 top-6 -z-10 hidden h-[94%] w-[86%] -rotate-6 rounded-[2.5rem] bg-gradient-to-br from-forest via-forest to-forest-light/70 shadow-xl shadow-forest/20 sm:block"
+                    className="absolute -left-5 top-5 -z-10 hidden h-[94%] w-[86%] -rotate-3 rounded-[2.5rem] bg-gradient-to-br from-forest to-forest-light/70 sm:block"
                   />
-                  {/* Offset arch outline — the framed line you liked, tracing the portal */}
+                  {/* Offset arch outline tracing the portal */}
                   <div
                     aria-hidden="true"
-                    className="absolute -right-3 -top-3 bottom-3 left-3 rounded-[999px_999px_1.75rem_1.75rem] border-2 border-sage/30"
+                    className="absolute -right-2.5 -top-2.5 bottom-2.5 left-2.5 rounded-[999px_999px_1.75rem_1.75rem] border border-sage/30"
                   />
                   {/* Arched portal photo */}
-                  <div className="relative h-[clamp(300px,44vh,560px)] overflow-hidden rounded-[999px_999px_1.5rem_1.5rem] shadow-xl shadow-forest/20 sm:h-[clamp(380px,60vh,580px)] sm:rounded-[999px_999px_1.75rem_1.75rem] sm:shadow-2xl sm:shadow-forest/25">
+                  <div className="relative h-[clamp(340px,46vh,480px)] overflow-hidden rounded-[999px_999px_1.5rem_1.5rem] shadow-xl shadow-forest/20 sm:h-[clamp(400px,62vh,580px)] sm:rounded-[999px_999px_1.75rem_1.75rem] sm:shadow-2xl sm:shadow-forest/25">
                     <Image
                       src="/sonya-harris.jpg"
                       alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
                       fill
                       priority
-                      sizes="(max-width: 640px) 260px, (max-width: 1200px) 50vw, 580px"
+                      sizes="(max-width: 640px) 340px, (max-width: 1200px) 50vw, 560px"
                       className="object-cover object-[center_25%]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest/35 via-transparent to-transparent" />
                   </div>
                 </div>
               </div>

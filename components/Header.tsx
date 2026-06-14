@@ -42,7 +42,7 @@ export function Header() {
     >
       <nav
         className={`mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 transition-all duration-300 ${
-          scrolled ? "min-h-[76px]" : "min-h-[96px]"
+          scrolled ? "min-h-[64px]" : "min-h-[80px]"
         }`}
       >
         {/* Logo */}
@@ -50,10 +50,10 @@ export function Header() {
           <Image
             src="/reself-logo.png"
             alt="Re-Self — reimagine self care"
-            width={220}
-            height={160}
+            width={223}
+            height={200}
             priority
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-16" : "h-20"}`}
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-11" : "h-14"}`}
           />
         </Link>
 
@@ -125,9 +125,9 @@ export function Header() {
                 <Image
                   src="/reself-logo.png"
                   alt="Re-Self — reimagine self care"
-                  width={176}
-                  height={128}
-                  className="h-16 w-auto"
+                  width={223}
+                  height={200}
+                  className="h-14 w-auto"
                 />
               </Link>
               <button

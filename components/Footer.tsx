@@ -123,9 +123,9 @@ export function Footer() {
           <Image
             src="/reself-logo.png"
             alt="Re-Self — reimagine self care"
-            width={264}
-            height={192}
-            className="h-24 w-auto"
+            width={223}
+            height={200}
+            className="h-20 w-auto"
           />
         </div>
 
