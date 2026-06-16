@@ -2,26 +2,25 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { FadeIn } from "@/components/FadeIn";
 import { SubscribeForm } from "@/components/SubscribeForm";
-import {
-  articles,
-  formatArticleDate,
-  getArticle,
-  type ArticleBlock,
-} from "@/lib/newsletter";
+import { formatArticleDate, getArticle, getArticles } from "@/lib/newsletter";
+
+export const revalidate = 60;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const articles = await getArticles();
   return articles.map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = await getArticle(slug);
   if (!article) return { title: "Article Not Found" };
 
   return {
@@ -39,10 +38,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = await getArticle(slug);
   if (!article) notFound();
 
-  const related = articles.filter((a) => a.slug !== article.slug).slice(0, 2);
+  const related = (await getArticles())
+    .filter((a) => a.slug !== article.slug)
+    .slice(0, 2);
 
   return (
     <article className="bg-warm-white">
@@ -110,9 +111,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
       {/* Body */}
       <div className="mx-auto max-w-[680px] px-4 py-14 lg:py-20">
-        {article.body.map((block, i) => (
-          <Block key={i} block={block} />
-        ))}
+        <PortableText value={article.body} components={bodyComponents} />
       </div>
 
       {/* Related */}
@@ -163,42 +162,47 @@ export default async function ArticlePage({ params }: PageProps) {
   );
 }
 
-function Block({ block }: { block: ArticleBlock }) {
-  switch (block.type) {
-    case "heading":
-      return (
-        <h2 className="font-serif mt-12 mb-4 text-2xl font-bold tracking-tight text-forest">
-          {block.text}
-        </h2>
-      );
-    case "quote":
+const bodyComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <p className="mb-6 text-[1.075rem] leading-[1.85] text-charcoal/85">{children}</p>
+    ),
+    h2: ({ children }) => (
+      <h2 className="font-serif mt-12 mb-4 text-2xl font-bold tracking-tight text-forest">
+        {children}
+      </h2>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => <ul className="my-6 space-y-3">{children}</ul>,
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="flex gap-3 text-[1.05rem] leading-relaxed text-charcoal/85">
+        <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
+        <span>{children}</span>
+      </li>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => <strong className="font-semibold text-charcoal">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+  },
+  types: {
+    quote: ({ value }) => {
+      const q = value as { text: string; cite?: string };
       return (
         <blockquote className="my-10 border-l-2 border-sage pl-6">
           <p className="font-serif text-xl font-medium italic leading-relaxed text-forest">
-            &ldquo;{block.text}&rdquo;
+            &ldquo;{q.text}&rdquo;
           </p>
-          {block.cite && (
+          {q.cite && (
             <cite className="mt-3 block text-xs font-semibold uppercase not-italic tracking-wider text-muted">
-              — {block.cite}
+              — {q.cite}
             </cite>
           )}
         </blockquote>
       );
-    case "list":
-      return (
-        <ul className="my-6 space-y-3">
-          {block.items.map((item, i) => (
-            <li key={i} className="flex gap-3 text-[1.05rem] leading-relaxed text-charcoal/85">
-              <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      );
-    case "paragraph":
-    default:
-      return (
-        <p className="mb-6 text-[1.075rem] leading-[1.85] text-charcoal/85">{block.text}</p>
-      );
-  }
-}
+    },
+  },
+};

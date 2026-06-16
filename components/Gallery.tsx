@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { FadeIn } from "@/components/FadeIn";
-import { galleryImages } from "@/lib/gallery";
+import { type GalleryImage } from "@/lib/gallery";
 
 // The page only ever renders these 5 tiles, in this deliberate bento layout.
 // Everything beyond the 5th lives in the lightbox, so the section's height
@@ -25,9 +25,9 @@ function ArrowIcon({ dir }: { dir: "left" | "right" }) {
   );
 }
 
-export function Gallery() {
-  const total = galleryImages.length;
-  const preview = galleryImages.slice(0, PREVIEW_COUNT);
+export function Gallery({ images }: { images: GalleryImage[] }) {
+  const total = images.length;
+  const preview = images.slice(0, PREVIEW_COUNT);
   const extra = Math.max(0, total - PREVIEW_COUNT);
 
   // null = closed; otherwise the active image index.
@@ -180,8 +180,8 @@ export function Gallery() {
             <figure key={index} className="animate-pop-in flex h-full max-h-[72vh] w-full max-w-[1100px] flex-col items-center justify-center">
               <div className="relative h-full w-full">
                 <Image
-                  src={galleryImages[index].src}
-                  alt={galleryImages[index].label}
+                  src={images[index].src}
+                  alt={images[index].label}
                   fill
                   sizes="(max-width: 768px) 92vw, 80vw"
                   className="object-contain"
@@ -190,7 +190,7 @@ export function Gallery() {
               </div>
               <figcaption className="mt-4 flex items-center gap-2.5 text-white/85">
                 <span aria-hidden="true" className="h-px w-6 bg-sage" />
-                <span className="text-sm font-semibold tracking-wide">{galleryImages[index].label}</span>
+                <span className="text-sm font-semibold tracking-wide">{images[index].label}</span>
               </figcaption>
             </figure>
 
@@ -207,7 +207,7 @@ export function Gallery() {
           {/* Thumbnail strip */}
           <div className="flex justify-center px-4 pb-5 pt-2" onClick={(e) => e.stopPropagation()}>
             <div className="flex max-w-full gap-2 overflow-x-auto pb-1">
-              {galleryImages.map((img, i) => (
+              {images.map((img, i) => (
                 <button
                   type="button"
                   key={img.src}

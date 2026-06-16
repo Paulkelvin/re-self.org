@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
-import { achievements } from "@/lib/content";
+import { getAchievements } from "@/lib/content";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "About Sonya Harris",
@@ -47,7 +49,9 @@ const values = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const achievements = await getAchievements();
+
   return (
     <>
       {/* Cinematic background hero */}

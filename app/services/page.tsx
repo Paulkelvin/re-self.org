@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
-import { services } from "@/lib/content";
+import { getServices } from "@/lib/content";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Services",
@@ -73,7 +75,9 @@ const serviceMeta: Record<
   },
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServices();
+
   return (
     <>
       {/* Hero */}

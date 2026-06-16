@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { PageTransition } from "@/components/PageTransition";
+import { SiteChrome } from "@/components/SiteChrome";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -98,9 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${jakarta.variable} ${playfair.variable} font-sans bg-warm-white text-charcoal antialiased`}
       >
-        <Header />
-        <PageTransition>{children}</PageTransition>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

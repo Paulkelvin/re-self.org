@@ -8,7 +8,17 @@ import { DecorImage } from "@/components/DecorImage";
 import { CountUp } from "@/components/CountUp";
 import { BrandOrbit } from "@/components/BrandOrbit";
 import { Gallery } from "@/components/Gallery";
-import { credentials, faq, services, testimonials, topics, achievements } from "@/lib/content";
+import {
+  getCredentials,
+  getFaq,
+  getServices,
+  getTestimonials,
+  getTopics,
+  getAchievements,
+} from "@/lib/content";
+import { getGalleryImages } from "@/lib/gallery";
+
+export const revalidate = 60;
 
 function TargetIcon() {
   return (
@@ -55,7 +65,18 @@ function LeafIcon() {
 }
 
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [services, topics, testimonials, credentials, achievements, faq, galleryImages] =
+    await Promise.all([
+      getServices(),
+      getTopics(),
+      getTestimonials(),
+      getCredentials(),
+      getAchievements(),
+      getFaq(),
+      getGalleryImages(),
+    ]);
+
   // Services split for the asymmetric feature grid:
   // flagship anchors the layout; the remaining two stack as a duet.
   const flagship =
@@ -540,7 +561,7 @@ export default function HomePage() {
       </section>
 
       {/* ── GALLERY ── */}
-      <Gallery />
+      <Gallery images={galleryImages} />
 
       {/* ── TESTIMONIALS ── */}
       <section className="flex flex-col justify-center overflow-hidden bg-warm-white py-16 lg:h-screen lg:max-h-[750px]">

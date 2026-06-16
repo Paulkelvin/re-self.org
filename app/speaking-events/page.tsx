@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
-import { topics } from "@/lib/content";
+import { getTopics } from "@/lib/content";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Speaking & Events",
@@ -43,7 +45,9 @@ const audiences = [
   "Industry conferences and panels",
 ];
 
-export default function SpeakingEventsPage() {
+export default async function SpeakingEventsPage() {
+  const topics = await getTopics();
+
   return (
     <>
       {/* Hero */}

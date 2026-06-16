@@ -4,12 +4,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { NewsletterFeed } from "@/components/NewsletterFeed";
 import { SubscribeForm } from "@/components/SubscribeForm";
-import {
-  articles,
-  categories,
-  featuredArticle,
-  formatArticleDate,
-} from "@/lib/newsletter";
+import { getArticles, formatArticleDate } from "@/lib/newsletter";
 
 export const metadata: Metadata = {
   title: "The Re-Self Journal",
@@ -17,9 +12,15 @@ export const metadata: Metadata = {
     "Essays and field notes from Sonya Harris on wellness, resilient leadership, sustainable performance, and self-care — for the people who carry the weight of high-pressure work.",
 };
 
-export default function NewsletterPage() {
+export const revalidate = 60;
+
+export default async function NewsletterPage() {
+  const articles = await getArticles();
   // The featured article anchors the page; the feed shows the rest.
+  const featuredArticle = articles.find((a) => a.featured) ?? articles[0];
+  if (!featuredArticle) return null;
   const rest = articles.filter((a) => a.slug !== featuredArticle.slug);
+  const categories = Array.from(new Set(articles.map((a) => a.category)));
 
   return (
     <>
