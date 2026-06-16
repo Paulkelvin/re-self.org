@@ -19,7 +19,12 @@ const information = [
 const EMAIL = "hello@re-self.org";
 
 const labelCls =
-  "mb-4 block font-mono text-[10px] uppercase tracking-[0.2em] text-white/40";
+  "mb-4 flex items-center gap-2 font-serif text-base font-semibold tracking-tight text-white";
+
+/* Sage tick that precedes each column heading — small brand accent. */
+function HeadingTick() {
+  return <span aria-hidden="true" className="h-3 w-px bg-sage" />;
+}
 
 /* Low-opacity "organizational sphere" graphic for the CTA banner. */
 function SphereGraphic() {
@@ -133,7 +138,7 @@ export function Footer() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 border-b border-white/5 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Direct Line */}
           <div className="lg:col-span-4">
-            <span className={labelCls}>Direct Line</span>
+            <span className={labelCls}><HeadingTick />Direct Line</span>
             <a
               href={`mailto:${EMAIL}`}
               className="inline-block border-b border-white/20 pb-1 font-serif text-lg text-white/90 transition-all hover:border-white hover:text-white"
@@ -144,10 +149,10 @@ export function Footer() {
 
           {/* Explore */}
           <div className="lg:col-span-3">
-            <span className={labelCls}>Explore</span>
+            <span className={labelCls}><HeadingTick />Explore</span>
             <nav className="space-y-3">
               {quickLinks.map(({ label, href }) => (
-                <Link key={href} href={href} className="block text-xs text-white/60 transition-colors hover:text-white">
+                <Link key={href} href={href} className="block w-fit text-sm text-white/65 transition-all duration-300 hover:translate-x-1 hover:text-white">
                   {label}
                 </Link>
               ))}
@@ -156,10 +161,10 @@ export function Footer() {
 
           {/* Legal & Utility */}
           <div className="lg:col-span-3">
-            <span className={labelCls}>Legal &amp; Utility</span>
+            <span className={labelCls}><HeadingTick />Legal &amp; Utility</span>
             <nav className="space-y-3">
               {information.map(({ label, href }) => (
-                <Link key={href} href={href} className="block text-xs text-white/60 transition-colors hover:text-white">
+                <Link key={href} href={href} className="block w-fit text-sm text-white/65 transition-all duration-300 hover:translate-x-1 hover:text-white">
                   {label}
                 </Link>
               ))}
@@ -168,7 +173,7 @@ export function Footer() {
 
           {/* Current Time */}
           <div className="lg:col-span-2">
-            <span className={labelCls}>Current Time</span>
+            <span className={labelCls}><HeadingTick />Current Time</span>
             <p className="font-mono text-xs text-white/60">EST / WASHINGTON, DC</p>
           </div>
         </div>

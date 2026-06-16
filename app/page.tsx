@@ -4,6 +4,9 @@ import { BookingForm } from "@/components/BookingForm";
 import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ShimmerCTA } from "@/components/ShimmerCTA";
+import { DecorImage } from "@/components/DecorImage";
+import { CountUp } from "@/components/CountUp";
+import { BrandOrbit } from "@/components/BrandOrbit";
 import { credentials, faq, services, testimonials, topics, achievements } from "@/lib/content";
 
 function TargetIcon() {
@@ -62,106 +65,146 @@ export default function HomePage() {
     <>
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-[#FBF9F6]">
-        <div className="relative mx-auto grid max-w-[1500px] grid-cols-1 items-center gap-16 px-8 py-16 md:px-16 lg:grid-cols-12 lg:px-24 min-h-[90vh]">
-          {/* Left narrative column */}
-          <div className="lg:col-span-7">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 py-12 lg:grid-cols-2 lg:gap-10 lg:px-12 lg:py-10 lg:min-h-[calc(100svh_-_80px)]">
+          {/* LEFT — narrative */}
+          <div className="relative z-10 lg:pr-6">
+            {/* Pill tags */}
             <FadeIn direction="up">
-              <span className="mb-4 block font-mono text-[11px] uppercase tracking-[0.25em] text-[#142E2A]/60">
-                On-Demand Organizational Resilience
-              </span>
+              <div className="mb-6 flex flex-wrap gap-2.5">
+                {["Corporate Wellness", "Keynote Speaker"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-2 rounded-full border border-sage/40 bg-sage/15 px-4 py-1.5 text-xs font-semibold text-forest"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#c5a880]" aria-hidden="true" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </FadeIn>
+
+            {/* Headline */}
             <FadeIn direction="up" delay={80}>
-              <h1 className="mb-6 font-serif text-4xl font-light leading-[1.1] tracking-tight text-[#142E2A] md:text-6xl lg:text-7xl">
-                Stronger leaders. Healthier organizations.
+              <h1 className="font-serif text-[2.5rem] font-light leading-[1.05] tracking-tight text-[#142E2A] sm:text-5xl lg:text-[3.1rem]">
+                Stronger leaders.
+                <br />
+                <span className="text-forest">Healthier organizations.</span>
               </h1>
             </FadeIn>
+
+            {/* Paragraph */}
             <FadeIn direction="up" delay={160}>
-              <p className="mb-8 max-w-lg border-l-2 border-[#C5A880] pl-4 font-sans text-base font-light leading-relaxed text-[#7A8481] md:text-lg">
+              <p className="mt-5 max-w-md text-base leading-relaxed text-[#7A8481] lg:text-lg">
                 Sonya Harris helps teams build resilience and sustainable wellbeing —
                 drawn from 21+ years of service and federal leadership.
               </p>
             </FadeIn>
+
+            {/* Buttons */}
             <FadeIn direction="up" delay={240}>
-              <div className="flex flex-wrap items-center">
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <ShimmerCTA
                   href="/book-sonya"
-                  className="inline-flex items-center rounded-full bg-[#142E2A] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-[#0d201d]"
+                  className="inline-flex items-center rounded-full bg-forest px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-lg shadow-forest/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light"
                 >
                   Book Sonya
                 </ShimmerCTA>
                 <Link
                   href="/services"
-                  className="ml-6 border-b border-transparent pb-1 text-xs font-semibold uppercase tracking-widest text-[#142E2A]/80 transition-all hover:border-[#142E2A] hover:text-[#142E2A]"
+                  className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-forest/80 transition-colors hover:text-forest"
                 >
                   Explore Services
+                  <svg
+                    width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-0.5"
+                  >
+                    <path d="M2 7h10M8 3l4 4-4 4" />
+                  </svg>
                 </Link>
-              </div>
-            </FadeIn>
-
-            {/* Dual-Anchor Baseline */}
-            <FadeIn direction="up" delay={320}>
-              <div className="mt-12 grid grid-cols-1 items-start gap-6 border-t border-[#E5E0DA] pt-8 md:grid-cols-12">
-                {/* Zone 1 — Continuous authority statement */}
-                <p className="max-w-2xl font-mono text-xs uppercase leading-relaxed tracking-[0.18em] text-[#142E2A] md:col-span-8">
-                  01 / Advisory &amp; Strategic Alignment for Federal, Military, and Corporate Leadership
-                </p>
-                {/* Zone 2 — Luxury utility counter */}
-                <p className="mt-1 font-mono text-xs uppercase tracking-widest text-[#C5A880] md:col-span-4 md:mt-0 md:text-right">
-                  Status: Engaging for 2026 Q3/Q4
-                </p>
               </div>
             </FadeIn>
           </div>
 
-          {/* Right portrait column */}
-          <FadeIn direction="up" delay={200} className="lg:col-span-5">
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg shadow-xl">
-              <Image
-                src="/sonya-harris.jpg"
-                alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-cover object-[center_25%]"
-              />
+          {/* RIGHT — image panel with overlapping glass cards */}
+          <FadeIn direction="up" delay={200}>
+            <div className="relative">
+              {/* Soft tinted backdrop slab */}
+              <div aria-hidden="true" className="absolute -inset-3 -z-10 rounded-[2.75rem] bg-sage/20 sm:-inset-4" />
+
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2.25rem] shadow-[0_30px_60px_-20px_rgba(47,79,79,0.35)] lg:aspect-auto lg:h-[clamp(440px,calc(100svh_-_180px),560px)]">
+                <Image
+                  src="/sonya-harris.jpg"
+                  alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-[center_20%]"
+                />
+                {/* Legibility wash for the overlay cards */}
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
+
+                {/* Stat card — top right */}
+                <div className="absolute right-4 top-4 w-[190px] rounded-2xl border border-white/25 bg-white/15 p-4 backdrop-blur-md">
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-serif text-3xl font-semibold leading-none text-white">21+</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-white/85">
+                      <path d="M7 17L17 7M9 7h8v8" />
+                    </svg>
+                  </div>
+                  <p className="mt-1.5 text-[0.8rem] leading-snug text-white/90">
+                    Years of service &amp; leadership
+                  </p>
+                </div>
+
+                {/* Glass pills — bottom */}
+                <div className="absolute inset-x-4 bottom-4 flex flex-wrap gap-2">
+                  {["Build Resilience", "Sustainable Wellbeing"].map((label) => (
+                    <span
+                      key={label}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/15 px-3.5 py-1.5 text-xs font-medium text-white backdrop-blur-md"
+                    >
+                      <span className="text-[#dcc7a0]" aria-hidden="true">&#10022;</span>
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </FadeIn>
         </div>
       </section>
 
       {/* ── CREDIBILITY BAR ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-forest-dark via-forest to-forest-light">
+      <section id="impact" className="relative overflow-hidden scroll-mt-24 bg-gradient-to-br from-forest-dark via-forest to-forest-light">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute -right-32 -top-32 h-[400px] w-[400px] rounded-full bg-sage/10 blur-3xl" />
           <div className="absolute -bottom-20 left-1/4 h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-[1200px] px-4 py-20 lg:py-24">
-          <div className="grid grid-cols-2 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
             {credentials.map(([value, label], i) => {
               // Numeric stats can run large; word-stats (e.g. "Thousands") need a
-              // smaller scale so they never clip against the narrow column width.
+              // smaller scale so they never clip against the narrow card width.
               const isNumber = /\d/.test(value);
               return (
-              <FadeIn key={label} direction="up" delay={i * 90}>
-                <div className="relative px-4 py-6 text-center md:px-8">
-                  {i >= 1 && (
-                    <span
-                      aria-hidden="true"
-                      className={`pointer-events-none absolute left-0 top-1/2 h-20 w-px -translate-y-1/2 bg-gradient-to-b from-transparent via-white/15 to-transparent ${
-                        i % 2 !== 0 ? "block" : "hidden md:block"
-                      }`}
-                    />
-                  )}
+              <FadeIn key={label} direction="up" delay={i * 90} className="h-full">
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-5 py-7 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-white/25 hover:bg-white/10 md:px-6">
+                  {/* Accent line — extends on hover */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-1/2 top-0 h-[2px] w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-sage to-transparent transition-all duration-500 group-hover:w-24"
+                  />
                   <p
-                    className={`bg-gradient-to-b from-white to-sage-light/70 bg-clip-text font-serif font-light leading-none tracking-tight text-transparent ${
+                    className={`bg-gradient-to-b from-white to-sage-light/70 bg-clip-text font-serif font-light leading-none tracking-tight text-transparent transition-transform duration-500 group-hover:-translate-y-0.5 ${
                       isNumber
-                        ? "text-5xl sm:text-6xl lg:text-[4.25rem]"
-                        : "text-[2rem] sm:text-4xl lg:text-5xl"
+                        ? "text-5xl sm:text-6xl lg:text-[3.75rem]"
+                        : "text-[1.85rem] sm:text-4xl lg:text-[2.6rem]"
                     }`}
                   >
-                    {value}
+                    <CountUp value={value} />
                   </p>
-                  <p className="mx-auto mt-4 max-w-[15ch] text-[0.7rem] font-medium uppercase leading-relaxed tracking-[0.16em] text-white/55">
+                  <p className="mx-auto mt-4 max-w-[16ch] text-[0.7rem] font-medium uppercase leading-relaxed tracking-[0.16em] text-white/55 transition-colors duration-300 group-hover:text-white/80">
                     {label}
                   </p>
                 </div>
@@ -173,24 +216,60 @@ export default function HomePage() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section className="bg-beige py-20 lg:py-28">
-        <div className="mx-auto max-w-[1200px] px-4">
+      <section className="relative overflow-hidden bg-beige py-20 lg:py-28">
+        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 text-forest/[0.06] lg:h-[26rem] lg:w-[26rem]" />
+        <div className="relative mx-auto max-w-[1200px] px-4">
           <div className="grid items-center gap-16 lg:grid-cols-[4fr_6fr] lg:gap-24">
-            {/* Image — 40%, taller 3:4 portrait */}
+            {/* Image — 40%, taller 3:4 portrait with floating metric cards */}
             <FadeIn direction="left">
-              <div className="relative w-full max-w-[380px] sm:mx-auto sm:max-w-[340px] lg:mx-0 lg:max-w-[400px]">
-                <div
-                  className="absolute -bottom-4 -left-4 h-full w-full rounded-[1.75rem] border border-sage/40 bg-sage/15"
-                  aria-hidden="true"
-                />
+              <div className="group/photo relative w-full sm:mx-auto sm:max-w-[360px] lg:mx-0 lg:max-w-[400px]">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[1.75rem] shadow-[0_30px_55px_-22px_rgba(47,79,79,0.45)]">
                   <Image
                     src="/sonya-harris.jpg"
                     alt="Sonya Harris"
                     fill
                     sizes="(max-width: 1024px) 340px, 400px"
-                    className="object-cover object-[center_20%]"
+                    className="object-cover object-[center_20%] transition-transform duration-[1200ms] ease-out group-hover/photo:scale-[1.04]"
                   />
+                </div>
+
+                {/* Floating metric card — top left */}
+                <div className="animate-float-card absolute -left-4 top-8 sm:-left-7">
+                  <div className="flex items-center gap-2.5 rounded-2xl bg-white/90 px-3.5 py-2.5 shadow-[0_20px_45px_-18px_rgba(47,79,79,0.55)] ring-1 ring-black/5 backdrop-blur-md transition-transform duration-300 hover:scale-[1.04]">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest/10 text-forest" aria-hidden="true">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 3l7 3v5c0 4.4-3 7.8-7 9-4-1.2-7-4.6-7-9V6l7-3z" />
+                      </svg>
+                    </span>
+                    <div className="text-left">
+                      <p className="font-serif text-base font-bold leading-none text-forest">
+                        <CountUp value="21+ Years" />
+                      </p>
+                      <p className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                        U.S. Air Force
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating metric card — bottom right */}
+                <div className="animate-float-card-slow absolute -right-4 bottom-10 sm:-right-7">
+                  <div className="flex items-center gap-2.5 rounded-2xl bg-white/90 px-3.5 py-2.5 shadow-[0_20px_45px_-18px_rgba(47,79,79,0.55)] ring-1 ring-black/5 backdrop-blur-md transition-transform duration-300 hover:scale-[1.04]">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#c5a880]/15 text-[#b9985f]" aria-hidden="true">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 17l5-5 4 4 8-8" />
+                        <path d="M17 8h4v4" />
+                      </svg>
+                    </span>
+                    <div className="text-left">
+                      <p className="font-serif text-base font-bold leading-none text-forest">
+                        <CountUp value="100+" />
+                      </p>
+                      <p className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                        Programs Delivered
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </FadeIn>
@@ -273,13 +352,19 @@ export default function HomePage() {
                 key={title}
                 direction="up"
                 delay={(i + 1) * 100}
-                className="group lg:border-l lg:border-line/60 lg:pl-8 xl:pl-12"
+                className="group transition-colors duration-500 lg:border-l lg:border-line/60 lg:pl-8 lg:hover:border-sage/60 xl:pl-12"
               >
-                <span className="font-serif block text-6xl font-bold leading-none text-forest/15 transition-colors duration-300 group-hover:text-sage/50 xl:text-7xl">
+                <span className="font-serif block text-6xl font-bold leading-none text-forest/15 transition-all duration-300 group-hover:-translate-y-1 group-hover:text-sage/50 xl:text-7xl">
                   {num}
                 </span>
                 <h3 className="font-serif mt-4 text-2xl font-bold tracking-tight text-forest">
-                  {title}
+                  <span className="relative inline-block">
+                    {title}
+                    <span
+                      aria-hidden="true"
+                      className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-sage transition-transform duration-300 ease-out group-hover:scale-x-100"
+                    />
+                  </span>
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{body}</p>
               </FadeIn>
@@ -504,17 +589,31 @@ export default function HomePage() {
 
       {/* ── BOOKING ── */}
       <section
-        className="flex flex-col justify-center border-t border-b border-neutral-200/50 bg-[#FBFBFA] py-24 lg:py-28"
+        className="relative flex flex-col justify-center overflow-hidden border-t border-b border-neutral-200/50 bg-[#FBFBFA] py-24 lg:py-28"
         id="book"
       >
-        <div className="mx-auto w-full max-w-[1200px] px-4">
+        <BrandOrbit reverse className="pointer-events-none absolute -left-32 -bottom-32 h-80 w-80 text-forest/[0.05] lg:h-[26rem] lg:w-[26rem]" />
+        <div className="relative mx-auto w-full max-w-[1200px] px-4">
           <FadeIn direction="up">
-            <div className="mb-8 text-center">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">Booking</p>
-              <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
-                Bring Sonya to Your Organization
+            <div className="mb-10 text-center">
+              {/* Eyebrow — flanked hairlines + wide tracking for a masthead feel */}
+              <div className="mb-5 flex items-center justify-center gap-3">
+                <span className="h-px w-8 bg-sage/40" aria-hidden="true" />
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-sage">
+                  Booking
+                </p>
+                <span className="h-px w-8 bg-sage/40" aria-hidden="true" />
+              </div>
+
+              {/* Headline — two balanced lines; "Sonya" set as an italic gold anchor */}
+              <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-[-0.015em] text-forest sm:text-[2.5rem] lg:text-[3.1rem]">
+                <span className="block">
+                  Bring <span className="font-medium italic text-[#c5a880]">Sonya</span> to
+                </span>
+                <span className="block">Your Organization</span>
               </h2>
-              <p className="mx-auto mt-3 max-w-xl text-sm text-muted lg:text-base">
+
+              <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed tracking-wide text-muted lg:text-base">
                 Book a keynote, workshop, retreat, or corporate wellness experience.
               </p>
             </div>
@@ -528,19 +627,41 @@ export default function HomePage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="bg-beige py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-beige py-24 lg:py-32">
         <div className="mx-auto max-w-[860px] px-4">
           <FadeIn direction="up">
-            <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">FAQ</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
-                Frequently Asked Questions
+            <div className="mb-12 text-center lg:mb-16">
+              {/* Eyebrow — flanked hairlines + extra-wide tracking to anchor the stack */}
+              <div className="mb-6 flex items-center justify-center gap-3.5">
+                <span className="h-px w-10 bg-forest/25" aria-hidden="true" />
+                <p className="text-[0.7rem] font-bold uppercase tracking-[0.42em] text-sage">
+                  FAQ
+                </p>
+                <span className="h-px w-10 bg-forest/25" aria-hidden="true" />
+              </div>
+
+              {/* Headline — two balanced lines; "Questions" set as an italic gold accent */}
+              <h2 className="font-serif font-bold leading-[1.05] tracking-[-0.015em] text-forest">
+                <span className="block text-[2rem] sm:text-4xl lg:text-[2.9rem]">
+                  Frequently Asked
+                </span>
+                <span className="mt-0.5 block text-[2.4rem] font-medium italic text-[#c5a880] sm:text-5xl lg:text-[3.4rem]">
+                  Questions
+                </span>
               </h2>
             </div>
           </FadeIn>
           <FadeIn direction="up" delay={100}>
-            <div className="rounded-2xl bg-white p-8 shadow-sm lg:p-10">
-              <FaqAccordion items={faq} />
+            <div className="relative">
+              {/* White card sits above the accent graphic */}
+              <div className="relative z-10 rounded-2xl bg-white p-8 shadow-sm lg:p-10">
+                <FaqAccordion items={faq} />
+              </div>
+              {/* Decorative accent — peeks from the card's top-left corner, behind it */}
+              <DecorImage
+                src="/faq-accent.png"
+                className="absolute -top-16 -left-20 z-0 hidden h-48 w-48 -rotate-12 transform select-none opacity-40 mix-blend-multiply pointer-events-none md:block"
+              />
             </div>
           </FadeIn>
         </div>

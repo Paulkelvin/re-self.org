@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
+import { BrandOrbit } from "@/components/BrandOrbit";
 import { topics } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -45,8 +46,21 @@ export default function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="min-h-[75vh] flex flex-col justify-center bg-[#23423c] px-6 py-24 text-white lg:px-16">
-        <div className="mx-auto w-full max-w-[1200px]">
+      <section className="relative min-h-[75vh] flex flex-col justify-center overflow-hidden bg-[#23423c] px-6 py-24 text-white lg:px-16">
+        {/* Decorative animated geometry */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <BrandOrbit className="absolute -right-28 -top-24 h-[34rem] w-[34rem] text-sage/15" />
+          <div className="absolute bottom-10 right-24 h-40 w-40 rounded-full bg-sage/5 blur-2xl animate-float-slow" />
+          <div className="absolute left-6 top-1/3 h-28 w-28 opacity-30 animate-drift [background-image:radial-gradient(var(--color-sage)_1.2px,transparent_1.2px)] [background-size:12px_12px]" />
+        </div>
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.03] lg:text-[14rem]"
+        >
+          Speaking
+        </span>
+
+        <div className="relative z-10 mx-auto w-full max-w-[1200px]">
           <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-sage">
             Speaking &amp; Events
           </p>
