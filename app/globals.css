@@ -9,12 +9,56 @@
   --color-sage-light: #c4d0be;
   --color-beige: #e8e0d5;
   --color-beige-dark: #d4c9bb;
-  --color-charcoal: #333333;
-  --color-muted: #666666;
+  /* Neutrals carry a faint forest tint instead of pure grey, so body copy and
+     headings feel warm and human against the cream palette rather than digital. */
+  --color-charcoal: #2b302d;
+  --color-muted: #646a65;
   --color-line: #d4ccbf;
+
+  /* Single accent-gold family — unifies the two near-duplicate golds that were
+     scattered across the homepage into one cohesive, premium accent.
+     `light` reads on dark imagery, `dark` gives contrast on pale backgrounds. */
+  --color-gold: #c5a880;
+  --color-gold-light: #dcc7a0;
+  --color-gold-dark: #b9985f;
+
+  /* Deep-green "pine" scale — names the dark-green palette the interior page
+     heroes, panels, and footers already use, so those gradients stay cohesive
+     and editable from one place (distinct from the tealer `forest` family). */
+  --color-pine-400: #2a4d46;
+  --color-pine-500: #23423c;
+  --color-pine-600: #1e3d38;
+  --color-pine-700: #16322c;
+  --color-pine-800: #152b27;
+  --color-pine-900: #122421;
+  --color-pine-950: #0c1c18;
+  --color-sand: #eae6df;
 
   --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-jakarta), Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Soft, forest-tinted elevation — replaces Tailwind's default black-based
+     shadows so every shadow-sm/md/lg/xl across the site reads calm and premium
+     (a low-opacity ambient + key pair) rather than hard and grey. */
+  --shadow-sm: 0 1px 2px rgba(33, 51, 47, 0.04), 0 2px 6px -1px rgba(33, 51, 47, 0.05);
+  --shadow-md: 0 2px 4px rgba(33, 51, 47, 0.04), 0 8px 18px -4px rgba(33, 51, 47, 0.08);
+  --shadow-lg: 0 4px 10px -2px rgba(33, 51, 47, 0.05), 0 18px 36px -10px rgba(33, 51, 47, 0.11);
+  --shadow-xl: 0 8px 18px -4px rgba(33, 51, 47, 0.06), 0 30px 60px -14px rgba(33, 51, 47, 0.15);
+  --shadow-2xl: 0 16px 32px -8px rgba(33, 51, 47, 0.08), 0 44px 84px -18px rgba(33, 51, 47, 0.20);
+}
+
+/* Branded text selection — a soft sage wash instead of the default harsh blue. */
+::selection {
+  background-color: rgba(168, 181, 162, 0.4);
+  color: #1e3333;
+}
+
+/* One consistent, on-brand keyboard focus ring everywhere — trust + a11y. */
+:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 
 @keyframes marquee {
@@ -129,6 +173,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Quiet typographic refinement applied everywhere: headings break with no
+     stranded last word, body paragraphs avoid ragged orphans. */
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 
   img {

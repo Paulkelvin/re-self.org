@@ -39,7 +39,7 @@ export default function BookSonyaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#23423c] px-6 py-16 text-white md:py-24 lg:px-16">
+      <section className="bg-pine-500 px-6 py-16 text-white md:py-24 lg:px-16">
         <div className="mx-auto max-w-7xl">
           <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-sage">Book Sonya</p>
           <h1 className="font-serif max-w-3xl text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">

@@ -81,7 +81,7 @@ export default async function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-[#16322c] px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
+      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-pine-700 px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -93,8 +93,8 @@ export default async function ServicesPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
-          <div className="absolute inset-0 bg-[#0c1c18]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-pine-950/95 via-pine-950/78 to-pine-700/35" />
+          <div className="absolute inset-0 bg-pine-950/25" />
         </div>
 
         <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/15" />
@@ -207,7 +207,7 @@ export default async function ServicesPage() {
                     <div className="relative mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                       <Link
                         href="/book-sonya"
-                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-[#1e3d38] px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-[#152b27]"
+                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-pine-600 px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-pine-800"
                       >
                         Inquire
                         <svg
@@ -240,18 +240,18 @@ export default async function ServicesPage() {
       </section>
 
       {/* Ideal For */}
-      <section className="bg-[#eae6df] py-24 lg:py-32">
+      <section className="bg-sand py-24 lg:py-32">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Title column */}
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#1e3d38]/60">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-pine-600/60">
                 Ideal For
               </p>
-              <h2 className="font-serif text-4xl font-bold text-[#1e3d38] lg:text-5xl">
+              <h2 className="font-serif text-4xl font-bold text-pine-600 lg:text-5xl">
                 Who Sonya serves best
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-[#1e3d38]/70">
+              <p className="mt-5 text-base leading-relaxed text-pine-600/70">
                 Sonya&apos;s engagements are most impactful for organizations where
                 leadership drives culture — and where investment in people is treated as
                 a strategic priority, not a perk.
@@ -264,9 +264,9 @@ export default async function ServicesPage() {
                 {audiences.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 border-b border-[#1e3d38]/10 pb-4 text-sm font-medium text-[#1e3d38]"
+                    className="flex items-start gap-3 border-b border-pine-600/10 pb-4 text-sm font-medium text-pine-600"
                   >
-                    <span className="mt-2 h-px w-3.5 shrink-0 bg-[#1e3d38]/40" aria-hidden="true" />
+                    <span className="mt-2 h-px w-3.5 shrink-0 bg-pine-600/40" aria-hidden="true" />
                     <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -289,9 +289,9 @@ export default async function ServicesPage() {
           <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-3">
             {process.map(({ step, title, body }, i) => (
               <FadeIn key={step} direction="up" delay={i * 100}>
-                <div className="border-t border-[#1e3d38]/15 pt-6">
-                  <span className="mb-3 block font-mono text-xs tracking-widest text-[#1e3d38]/50">{step}</span>
-                  <h3 className="mb-2 text-lg font-medium text-[#1e3d38]">{title}</h3>
+                <div className="border-t border-pine-600/15 pt-6">
+                  <span className="mb-3 block font-mono text-xs tracking-widest text-pine-600/50">{step}</span>
+                  <h3 className="mb-2 text-lg font-medium text-pine-600">{title}</h3>
                   <p className="text-sm leading-relaxed text-neutral-600">{body}</p>
                 </div>
               </FadeIn>

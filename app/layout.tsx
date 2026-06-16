@@ -1,19 +1,29 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
 
+// Both are variable fonts — omitting `weight` loads a single file per family
+// that covers the full weight axis (Jakarta 200–800, Playfair 400–900),
+// instead of one file per weight.
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-jakarta",
 });
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   variable: "--font-playfair",
+});
+
+// A real monospaced face for the recurring micro-label motif (step numbers,
+// eyebrows, timestamps). Gives that system a deliberate, cross-OS-consistent
+// typeface instead of whatever default mono each device happens to ship.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-plex-mono",
 });
 
 export const metadata: Metadata = {
@@ -94,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body
-        className={`${jakarta.variable} ${playfair.variable} font-sans bg-warm-white text-charcoal antialiased`}
+        className={`${jakarta.variable} ${playfair.variable} ${plexMono.variable} font-sans bg-warm-white text-charcoal antialiased`}
       >
         <SiteChrome>{children}</SiteChrome>
       </body>

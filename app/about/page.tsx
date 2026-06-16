@@ -55,7 +55,7 @@ export default async function AboutPage() {
   return (
     <>
       {/* Cinematic background hero */}
-      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#16322c] text-white lg:min-h-[76vh]">
+      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-pine-700 text-white lg:min-h-[76vh]">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -67,8 +67,8 @@ export default async function AboutPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
-          <div className="absolute inset-0 bg-[#0c1c18]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-pine-950/95 via-pine-950/78 to-pine-700/35" />
+          <div className="absolute inset-0 bg-pine-950/25" />
         </div>
 
         {/* Brand watermark + ambient orbit */}
@@ -116,7 +116,7 @@ export default async function AboutPage() {
 
             {/* Floating narrative panel — overlaps the portrait on desktop */}
             <FadeIn direction="up" delay={120} className="lg:col-span-6">
-              <div className="relative z-10 rounded-xl border border-white/10 bg-[#23423c] p-7 text-white shadow-xl shadow-forest/25 md:p-9 lg:-ml-24">
+              <div className="relative z-10 rounded-xl border border-white/10 bg-pine-500 p-7 text-white shadow-xl shadow-forest/25 md:p-9 lg:-ml-24">
                 <h2 className="font-serif text-2xl font-medium leading-tight text-white lg:text-3xl">
                   Where Military Precision Meets Human Wellness
                 </h2>
@@ -137,7 +137,7 @@ export default async function AboutPage() {
                 <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6">
                   {achievements.map(({ value, label }) => (
                     <div key={label}>
-                      <p className="font-mono text-3xl font-light leading-none text-[#eae6df]">{value}</p>
+                      <p className="font-mono text-3xl font-light leading-none text-sand">{value}</p>
                       <p className="mt-1.5 text-[10px] font-medium uppercase tracking-widest text-white/50">
                         {label}
                       </p>
@@ -151,7 +151,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Brutalist time track */}
-      <section className="bg-[#1e3d38] px-6 py-24 text-white lg:px-16 lg:py-28">
+      <section className="bg-pine-600 px-6 py-24 text-white lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[1200px]">
           <FadeIn direction="up">
             <p className="mb-3 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-sage">
@@ -175,7 +175,7 @@ export default async function AboutPage() {
                     0{i + 1}
                   </span>
                   <div className="relative">
-                    <span className="mb-6 inline-block rounded-full bg-[#eae6df] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-[#1e3d38]">
+                    <span className="mb-6 inline-block rounded-full bg-sand px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-pine-600">
                       {period}
                     </span>
                     <h3 className="font-serif mb-3 text-2xl font-medium text-white">{title}</h3>
@@ -189,15 +189,15 @@ export default async function AboutPage() {
       </section>
 
       {/* Asymmetric color-block values */}
-      <section className="bg-[#eae6df]">
+      <section className="bg-sand">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 border-t border-[#1e3d38]/20 lg:grid-cols-12">
+          <div className="grid grid-cols-1 border-t border-pine-600/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 text-xs font-semibold uppercase tracking-widest text-[#1e3d38]/50">
+              <p className="pt-16 text-xs font-semibold uppercase tracking-widest text-pine-600/50">
                 Values
               </p>
-              <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-[#1e3d38] md:text-5xl lg:pb-0">
+              <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-pine-600 md:text-5xl lg:pb-0">
                 What drives every engagement
               </h2>
             </FadeIn>
@@ -206,11 +206,11 @@ export default async function AboutPage() {
             <div className="lg:col-span-8">
               {values.map(({ title, body }, i) => (
                 <FadeIn key={title} direction="up" delay={i * 80}>
-                  <div className="group border-b border-[#1e3d38]/10 bg-white/50 p-10 transition-all duration-300 hover:bg-white">
-                    <span className="mb-3 block font-mono text-xs text-neutral-400 transition-colors group-hover:text-[#1e3d38]">
+                  <div className="group border-b border-pine-600/10 bg-white/50 p-10 transition-all duration-300 hover:bg-white">
+                    <span className="mb-3 block font-mono text-xs text-neutral-400 transition-colors group-hover:text-pine-600">
                       0{i + 1}
                     </span>
-                    <h3 className="font-serif mb-2 text-xl font-medium text-[#1e3d38] md:text-2xl">
+                    <h3 className="font-serif mb-2 text-xl font-medium text-pine-600 md:text-2xl">
                       {title}
                     </h3>
                     <p className="max-w-2xl text-sm leading-relaxed text-neutral-600">{body}</p>

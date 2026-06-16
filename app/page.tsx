@@ -86,7 +86,7 @@ export default async function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#FBF9F6]">
+      <section className="relative overflow-hidden bg-warm-white">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 py-12 lg:grid-cols-2 lg:gap-10 lg:px-12 lg:py-10 lg:min-h-[calc(100svh_-_80px)]">
           {/* LEFT — narrative */}
           <div className="relative z-10 lg:pr-6">
@@ -98,7 +98,7 @@ export default async function HomePage() {
                     key={tag}
                     className="inline-flex items-center gap-2 rounded-full border border-sage/40 bg-sage/15 px-4 py-1.5 text-xs font-semibold text-forest"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#c5a880]" aria-hidden="true" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
                     {tag}
                   </span>
                 ))}
@@ -186,7 +186,7 @@ export default async function HomePage() {
                       key={label}
                       className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/15 px-3.5 py-1.5 text-xs font-medium text-white backdrop-blur-md"
                     >
-                      <span className="text-[#dcc7a0]" aria-hidden="true">&#10022;</span>
+                      <span className="text-gold-light" aria-hidden="true">&#10022;</span>
                       {label}
                     </span>
                   ))}
@@ -277,7 +277,7 @@ export default async function HomePage() {
                 {/* Floating metric card — bottom right */}
                 <div className="animate-float-card-slow absolute -right-4 bottom-10 sm:-right-7">
                   <div className="flex items-center gap-2.5 rounded-2xl bg-white/90 px-3.5 py-2.5 shadow-[0_20px_45px_-18px_rgba(47,79,79,0.55)] ring-1 ring-black/5 backdrop-blur-md transition-transform duration-300 hover:scale-[1.04]">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#c5a880]/15 text-[#b9985f]" aria-hidden="true">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold/15 text-gold-dark" aria-hidden="true">
                       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 17l5-5 4 4 8-8" />
                         <path d="M17 8h4v4" />
@@ -567,7 +567,7 @@ export default async function HomePage() {
       <section className="flex flex-col justify-center overflow-hidden bg-warm-white py-16 lg:h-screen lg:max-h-[750px]">
         <FadeIn direction="up">
           <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#dfba86]">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-gold">
               Testimonials
             </p>
             <h2 className="font-serif text-4xl font-bold tracking-tight text-charcoal lg:text-5xl">
@@ -582,7 +582,7 @@ export default async function HomePage() {
             {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <article
                 key={i}
-                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-[#f7f3eb] px-6 pb-6 pt-12 text-center"
+                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-[#f7f3eb] px-6 pb-6 pt-12 text-center shadow-lg ring-1 ring-charcoal/[0.04]"
               >
                 <Image
                   src={t.image}
@@ -591,7 +591,7 @@ export default async function HomePage() {
                   height={160}
                   className="absolute -top-10 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white object-cover shadow-md"
                 />
-                <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#dfba86]/20 text-sm text-[#dfba86]">
+                <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-gold/20 text-sm text-gold">
                   &ldquo;
                 </span>
                 <h3 className="text-lg font-semibold text-neutral-800">{t.name}</h3>
@@ -599,7 +599,7 @@ export default async function HomePage() {
                   {t.role}
                 </p>
                 <p className="mt-4 line-clamp-3 px-2 text-sm text-neutral-600">{t.quote}</p>
-                <div className="mt-4 flex justify-center gap-1 text-[#dfba86]">
+                <div className="mt-4 flex justify-center gap-1 text-gold">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <svg key={s} width="15" height="15" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
                       <path d="M7 1l1.545 4.755H14l-4.045 2.94 1.545 4.755L7 10.51l-4.5 2.94 1.545-4.755L0 5.755h5.455z" />
@@ -614,7 +614,7 @@ export default async function HomePage() {
 
       {/* ── BOOKING ── */}
       <section
-        className="relative flex flex-col justify-center overflow-hidden border-t border-b border-neutral-200/50 bg-[#FBFBFA] py-24 lg:py-28"
+        className="relative flex flex-col justify-center overflow-hidden border-t border-b border-neutral-200/50 bg-warm-white py-24 lg:py-28"
         id="book"
       >
         <BrandOrbit reverse className="pointer-events-none absolute -left-32 -bottom-32 h-80 w-80 text-forest/[0.05] lg:h-[26rem] lg:w-[26rem]" />
@@ -633,7 +633,7 @@ export default async function HomePage() {
               {/* Headline — two balanced lines; "Sonya" set as an italic gold anchor */}
               <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-[-0.015em] text-forest sm:text-[2.5rem] lg:text-[3.1rem]">
                 <span className="block">
-                  Bring <span className="font-medium italic text-[#c5a880]">Sonya</span> to
+                  Bring <span className="font-medium italic text-gold">Sonya</span> to
                 </span>
                 <span className="block">Your Organization</span>
               </h2>
@@ -670,7 +670,7 @@ export default async function HomePage() {
                 <span className="block text-[2rem] sm:text-4xl lg:text-[2.9rem]">
                   Frequently Asked
                 </span>
-                <span className="mt-0.5 block text-[2.4rem] font-medium italic text-[#c5a880] sm:text-5xl lg:text-[3.4rem]">
+                <span className="mt-0.5 block text-[2.4rem] font-medium italic text-gold sm:text-5xl lg:text-[3.4rem]">
                   Questions
                 </span>
               </h2>

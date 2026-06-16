@@ -91,7 +91,7 @@ export function Footer() {
     <footer>
       {/* 1 — Floating overlap CTA banner */}
       <div className="relative z-20 -mb-24 px-6 pt-20 lg:px-16 lg:pt-28">
-        <div className="relative mx-auto grid min-h-[260px] max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#2a4d46] to-[#152b27] p-8 shadow-2xl md:grid-cols-12 md:p-12">
+        <div className="relative mx-auto grid min-h-[260px] max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-pine-400 to-pine-800 p-8 shadow-2xl md:grid-cols-12 md:p-12">
           {/* Right abstract graphic */}
           <div
             aria-hidden="true"
@@ -112,7 +112,7 @@ export function Footer() {
             </p>
             <Link
               href="/book-sonya"
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#1e3d38] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#eae6df] active:scale-[0.98]"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-pine-600 transition-all duration-300 hover:-translate-y-0.5 hover:bg-sand active:scale-[0.98]"
             >
               Book Sonya
               <ArrowIcon />
@@ -122,7 +122,7 @@ export function Footer() {
       </div>
 
       {/* 2 — Lower footer container */}
-      <div className="relative z-10 overflow-hidden bg-[#122421] px-6 pb-12 pt-40 text-white lg:px-16">
+      <div className="relative z-10 overflow-hidden bg-pine-900 px-6 pb-12 pt-40 text-white lg:px-16">
         {/* Brand mark */}
         <div className="mx-auto mb-12 max-w-6xl">
           <Image

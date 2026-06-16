@@ -51,7 +51,7 @@ export default async function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#16322c] px-6 py-24 text-white lg:px-16">
+      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-pine-700 px-6 py-24 text-white lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -63,8 +63,8 @@ export default async function SpeakingEventsPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
-          <div className="absolute inset-0 bg-[#0c1c18]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-pine-950/95 via-pine-950/78 to-pine-700/35" />
+          <div className="absolute inset-0 bg-pine-950/25" />
         </div>
 
         <BrandOrbit className="pointer-events-none absolute -right-28 -top-24 h-[34rem] w-[34rem] text-sage/15" />
@@ -89,7 +89,7 @@ export default async function SpeakingEventsPage() {
           <div className="mt-10">
             <Link
               href="/book-sonya"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#1e3d38] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-pine-600 shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               Book a Speaking Date
             </Link>
@@ -114,7 +114,7 @@ export default async function SpeakingEventsPage() {
               </p>
               <Link
                 href="/book-sonya"
-                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#1e3d38] px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-pine-600 px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Sonya
               </Link>
@@ -229,7 +229,7 @@ export default async function SpeakingEventsPage() {
             <FadeIn direction="up" delay={100}>
               <Link
                 href="/book-sonya"
-                className="inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#1e3d38] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-pine-600 shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Sonya &rarr;
               </Link>
