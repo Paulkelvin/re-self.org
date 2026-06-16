@@ -7,6 +7,7 @@ import { ShimmerCTA } from "@/components/ShimmerCTA";
 import { DecorImage } from "@/components/DecorImage";
 import { CountUp } from "@/components/CountUp";
 import { BrandOrbit } from "@/components/BrandOrbit";
+import { Gallery } from "@/components/Gallery";
 import { credentials, faq, services, testimonials, topics, achievements } from "@/lib/content";
 
 function TargetIcon() {
@@ -60,36 +61,6 @@ export default function HomePage() {
   const flagship =
     services.find((s) => s.title === "Corporate Wellness Programs") ?? services[0];
   const duet = services.filter((s) => s !== flagship);
-
-  // Bento gallery — five "moments" in a deliberate asymmetric composition.
-  // The first tile anchors the grid (2×2 on desktop); the rest fill around it.
-  const gallery = [
-    {
-      src: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
-      label: "Keynotes & Sessions",
-      span: "col-span-2 aspect-[16/11] lg:col-span-2 lg:row-span-2 lg:aspect-auto lg:h-full",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
-      label: "Team Workshops",
-      span: "aspect-square lg:col-span-2 lg:aspect-auto lg:h-full",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
-      label: "Wellbeing Practice",
-      span: "aspect-square lg:col-span-2 lg:aspect-auto lg:h-full",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80",
-      label: "Leadership Sessions",
-      span: "aspect-square lg:col-span-2 lg:aspect-auto lg:h-full",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80",
-      label: "Executive Retreats",
-      span: "aspect-square lg:col-span-2 lg:aspect-auto lg:h-full",
-    },
-  ];
 
   return (
     <>
@@ -569,60 +540,7 @@ export default function HomePage() {
       </section>
 
       {/* ── GALLERY ── */}
-      <section className="bg-beige py-20 lg:py-28">
-        <div className="mx-auto max-w-[1320px] px-4 lg:px-8">
-          <FadeIn direction="up">
-            <div className="mb-10 flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between lg:mb-12">
-              <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
-                  Gallery
-                </p>
-                <h2 className="font-serif text-3xl font-bold tracking-tight text-forest sm:text-4xl lg:text-[2.8rem]">
-                  Moments in the Room
-                </h2>
-              </div>
-              <p className="max-w-sm text-sm leading-relaxed text-muted">
-                Keynotes, workshops, and retreats — wellness and leadership in action
-                across organizations nationwide.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6 lg:auto-rows-[15rem] xl:auto-rows-[17rem]">
-            {gallery.map(({ src, label, span }, i) => (
-              <FadeIn
-                key={src}
-                direction="up"
-                delay={i * 80}
-                className={`group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5 ${span}`}
-              >
-                <Image
-                  src={src}
-                  alt={label}
-                  fill
-                  sizes={i === 0 ? "(max-width: 1024px) 100vw, 440px" : "(max-width: 1024px) 50vw, 440px"}
-                  className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
-                />
-                {/* Legibility wash — subtle at rest, deepens on hover */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-forest-dark/10 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-95"
-                />
-                {/* Caption — always shown on mobile, reveals on hover at lg */}
-                <div className="absolute inset-x-0 bottom-0 flex items-center gap-2.5 p-4 lg:p-5">
-                  <span
-                    aria-hidden="true"
-                    className="h-px w-5 shrink-0 bg-sage transition-all duration-300 group-hover:w-8"
-                  />
-                  <span className="text-sm font-semibold text-white transition-all duration-300 lg:translate-y-1 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
-                    {label}
-                  </span>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Gallery />
 
       {/* ── TESTIMONIALS ── */}
       <section className="flex flex-col justify-center overflow-hidden bg-warm-white py-16 lg:h-screen lg:max-h-[750px]">
