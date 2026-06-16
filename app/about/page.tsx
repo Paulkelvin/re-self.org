@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
+import { BrandOrbit } from "@/components/BrandOrbit";
 import { achievements } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -49,44 +50,45 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      {/* Cinematic split hero */}
-      <section className="relative overflow-hidden bg-[#23423c] text-white">
+      {/* Cinematic background hero */}
+      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#16322c] text-white lg:min-h-[76vh]">
+        {/* Full-bleed background image + contrast overlays */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          <Image
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=80"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
+          <div className="absolute inset-0 bg-[#0c1c18]/25" />
+        </div>
+
+        {/* Brand watermark + ambient orbit */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-16 -left-2 select-none font-serif text-[10rem] font-bold leading-none text-white/[0.03] lg:text-[16rem]"
+          className="pointer-events-none absolute -bottom-16 -left-2 select-none font-serif text-[10rem] font-bold leading-none text-white/[0.06] lg:text-[16rem]"
         >
           About
         </span>
-        <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 px-6 py-20 lg:grid-cols-[3fr_2fr] lg:px-16 lg:py-28">
-          {/* Left — oversized display headline (60%) */}
-          <div className="relative z-10">
+        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/15" />
+
+        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 py-24 lg:px-16 lg:py-32">
+          <FadeIn direction="up" className="max-w-2xl">
             <p className="mb-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-sage">
               <span className="h-px w-8 bg-sage/60" />
               About Sonya
             </p>
-            <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-7xl">
               Leadership, Service, and the Science of Wellness.
             </h1>
-            <p className="mt-7 max-w-md text-base leading-relaxed text-white/60 sm:text-lg">
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
               Over two decades of military precision, federal government leadership, and
               human-centered care — now in service of healthier organizations.
             </p>
-          </div>
-
-          {/* Right — moody desaturated framed image (40%) */}
-          <FadeIn direction="up" delay={120} className="relative h-[340px] lg:h-[480px]">
-            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full border border-sage/25 animate-spin-slow" aria-hidden="true" />
-            <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/40">
-              <Image
-                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=85"
-                alt="Sonya Harris"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-[center_25%] grayscale"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#1e3d38] via-[#23423c]/50 to-transparent" />
-            </div>
           </FadeIn>
         </div>
       </section>

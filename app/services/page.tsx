@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
+import { BrandOrbit } from "@/components/BrandOrbit";
 import { services } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -76,16 +77,26 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[60vh] flex-col justify-center overflow-hidden bg-[#23423c] px-6 py-20 text-white lg:px-16">
-        {/* Decorative animated geometry */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full border border-sage/15 animate-spin-slow" />
-          <div className="absolute right-20 bottom-10 h-40 w-40 rounded-full bg-sage/5 blur-2xl animate-float-slow" />
-          <div className="absolute right-10 top-1/3 h-28 w-28 opacity-40 animate-drift [background-image:radial-gradient(var(--color-sage)_1.2px,transparent_1.2px)] [background-size:12px_12px]" />
+      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-[#16322c] px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
+        {/* Full-bleed background image + contrast overlays */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          <Image
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=2000&q=80"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
+          <div className="absolute inset-0 bg-[#0c1c18]/25" />
         </div>
+
+        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/15" />
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.03] lg:text-[14rem]"
+          className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.06] lg:text-[14rem]"
         >
           Services
         </span>
@@ -95,10 +106,10 @@ export default function ServicesPage() {
             <span className="h-px w-8 bg-sage/60" />
             Services
           </p>
-          <h1 className="font-serif max-w-4xl text-3xl font-normal leading-[1.15] tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="font-serif max-w-4xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
             Premium wellness support for healthier workplace performance.
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
             Choose a focused workshop, a broader wellness program, or a facilitated retreat
             built around your team&apos;s real pressures.
           </p>

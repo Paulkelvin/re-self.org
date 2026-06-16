@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
@@ -46,16 +47,26 @@ export default function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[75vh] flex flex-col justify-center overflow-hidden bg-[#23423c] px-6 py-24 text-white lg:px-16">
-        {/* Decorative animated geometry */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <BrandOrbit className="absolute -right-28 -top-24 h-[34rem] w-[34rem] text-sage/15" />
-          <div className="absolute bottom-10 right-24 h-40 w-40 rounded-full bg-sage/5 blur-2xl animate-float-slow" />
-          <div className="absolute left-6 top-1/3 h-28 w-28 opacity-30 animate-drift [background-image:radial-gradient(var(--color-sage)_1.2px,transparent_1.2px)] [background-size:12px_12px]" />
+      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#16322c] px-6 py-24 text-white lg:px-16">
+        {/* Full-bleed background image + contrast overlays */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          <Image
+            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=2000&q=80"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
+          <div className="absolute inset-0 bg-[#0c1c18]/25" />
         </div>
+
+        <BrandOrbit className="pointer-events-none absolute -right-28 -top-24 h-[34rem] w-[34rem] text-sage/15" />
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.03] lg:text-[14rem]"
+          className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.06] lg:text-[14rem]"
         >
           Speaking
         </span>
@@ -64,10 +75,10 @@ export default function SpeakingEventsPage() {
           <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-sage">
             Speaking &amp; Events
           </p>
-          <h1 className="font-serif max-w-4xl text-3xl font-medium leading-[1.15] tracking-tight text-white md:text-4xl lg:text-5xl">
+          <h1 className="font-serif max-w-4xl text-3xl font-medium leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-4xl lg:text-5xl">
             Wellness keynotes that meet ambitious teams where they are.
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
             Sonya delivers grounded, corporate-ready talks that help audiences understand
             stress, reset patterns, and leave with practical next steps they can use immediately.
           </p>
