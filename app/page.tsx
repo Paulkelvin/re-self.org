@@ -106,16 +106,16 @@ export default async function HomePage() {
         <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
             <FadeIn direction="up">
-              <p className="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
-                <span className="h-px w-8 bg-white/40" />
+              <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
                 Corporate Wellness &middot; Keynote Speaker
               </p>
             </FadeIn>
 
             <FadeIn direction="up" delay={80}>
-              <h1 className="max-w-3xl font-serif text-[1.85rem] font-light leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-5xl lg:text-6xl">
-                Stronger leaders.{" "}
-                <span className="text-[#dbbf8a] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">Healthier organizations.</span>
+              <h1 className="max-w-3xl font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-5xl lg:text-6xl">
+                Stronger leaders.
+                <br />
+                <span className="text-white">Healthier organizations.</span>
               </h1>
             </FadeIn>
 
