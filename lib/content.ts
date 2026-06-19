@@ -81,3 +81,24 @@ export async function getFaq(): Promise<Faq[]> {
     groq`*[_type == "faq"] | order(order asc){ question, answer }`,
   );
 }
+
+export interface Package {
+  title: string;
+  subtitle: string;
+  price: number;
+  priceLabel: string;
+  priceSuffix: string;
+  features: string[];
+  highlighted: boolean;
+  ctaLabel: string;
+  squareItemId: string;
+}
+
+export async function getPackages(): Promise<Package[]> {
+  return client.fetch<Package[]>(
+    groq`*[_type == "package"] | order(order asc){
+      title, subtitle, price, priceLabel, priceSuffix,
+      features, highlighted, ctaLabel, squareItemId
+    }`,
+  );
+}
