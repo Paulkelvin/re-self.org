@@ -96,6 +96,24 @@
   50%      { transform: translateY(-7px); }
 }
 
+/* Periodic shimmer that sweeps end-to-end across the highlighted pricing card */
+@keyframes card-shimmer {
+  0%, 85%  { transform: translateX(-100%); opacity: 0; }
+  90%      { opacity: 1; }
+  100%     { transform: translateX(100%); opacity: 0; }
+}
+.animate-card-shimmer {
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(197, 168, 128, 0.12) 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(197, 168, 128, 0.12) 60%,
+    transparent 100%
+  );
+  animation: card-shimmer 6s ease-in-out infinite;
+}
+
 .animate-float      { animation: floaty 6s ease-in-out infinite; }
 .animate-float-slow { animation: floaty-slow 9s ease-in-out infinite; }
 .animate-spin-slow  { animation: spin-slow 32s linear infinite; }
@@ -141,6 +159,13 @@
   select,
   textarea {
     font: inherit;
+  }
+
+  /* Prevent iOS Safari from zooming on focus — inputs must be >= 16px */
+  @media screen and (max-width: 767px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
   }
 
   /* Fill-in smooth transitions for any interactive element that

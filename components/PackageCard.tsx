@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import type { Package } from "@/lib/content";
 
 function CheckIcon({ highlighted }: { highlighted: boolean }) {
@@ -31,30 +31,15 @@ function CheckIcon({ highlighted }: { highlighted: boolean }) {
   );
 }
 
-export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
+interface Props {
+  pkg: Package;
+  index: number;
+  compact?: boolean;
+}
+
+export function PackageCard({ pkg, index, compact = false }: Props) {
   const [loading, setLoading] = useState(false);
-  const [shimmer, setShimmer] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-
   const isHighlighted = pkg.highlighted;
-
-  useEffect(() => {
-    if (!isHighlighted) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const el = cardRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShimmer(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [isHighlighted]);
 
   async function handleCheckout() {
     setLoading(true);
@@ -83,7 +68,6 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
 
   return (
     <div
-      ref={cardRef}
       className={`group relative flex flex-col overflow-hidden rounded-2xl border transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
         isHighlighted
           ? "border-[#c5a880]/40 bg-gradient-to-b from-[#1a3a34] via-forest to-[#1a3a34] text-white shadow-2xl shadow-forest/30 scale-[1.02] z-10 ring-1 ring-[#c5a880]/20"
@@ -91,18 +75,16 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
       }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      {/* Subtle shimmer sweep on the highlighted card */}
-      {isHighlighted && shimmer && (
+      {/* Periodic shimmer — highlighted card only */}
+      {isHighlighted && (
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 cta-sheen"
-          style={{ animationDelay: "0.4s" }}
+          className="pointer-events-none absolute inset-0 z-20 animate-card-shimmer"
         />
       )}
 
       {isHighlighted && (
         <>
-          {/* Gold accent line at top */}
           <div
             aria-hidden="true"
             className="absolute left-0 right-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#c5a880] to-transparent"
@@ -155,34 +137,42 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
         </div>
       </div>
 
-      <div
-        className={`mx-8 my-6 h-px ${
-          isHighlighted
-            ? "bg-gradient-to-r from-transparent via-[#c5a880]/30 to-transparent"
-            : "bg-line"
-        }`}
-      />
+      {/* Features — hidden in compact mode */}
+      {!compact && (
+        <>
+          <div
+            className={`mx-8 my-6 h-px ${
+              isHighlighted
+                ? "bg-gradient-to-r from-transparent via-[#c5a880]/30 to-transparent"
+                : "bg-line"
+            }`}
+          />
 
-      <div className="flex-1 px-8">
-        <ul className="space-y-3">
-          {pkg.features?.map((feature, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <span className="mt-0.5">
-                <CheckIcon highlighted={isHighlighted} />
-              </span>
-              <span
-                className={`text-sm leading-snug ${
-                  isHighlighted ? "text-white/90" : "text-charcoal"
-                }`}
-              >
-                {feature}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
+          <div className="flex-1 px-8">
+            <ul className="space-y-3">
+              {pkg.features?.map((feature, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="mt-0.5">
+                    <CheckIcon highlighted={isHighlighted} />
+                  </span>
+                  <span
+                    className={`text-sm leading-snug ${
+                      isHighlighted ? "text-white/90" : "text-charcoal"
+                    }`}
+                  >
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
 
-      <div className="p-8 pt-6">
+      {/* Compact mode spacer */}
+      {compact && <div className="flex-1" />}
+
+      <div className={`p-8 ${compact ? "pt-6" : "pt-6"}`}>
         <button
           onClick={handleCheckout}
           disabled={loading}

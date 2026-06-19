@@ -20,8 +20,6 @@ const initial = {
 const inputCls =
   "w-full rounded-none border-b border-neutral-300 bg-transparent px-0 py-3 text-sm text-neutral-800 placeholder-neutral-400 transition-colors focus:border-neutral-900 focus:outline-none";
 
-// Selects reuse the editorial underline style but hide the native chrome arrow
-// (a custom chevron is rendered via <SelectChevron /> in the relative wrapper).
 const selectCls = `${inputCls} appearance-none pr-6`;
 
 const labelCls = "text-[0.7rem] font-semibold uppercase tracking-wider text-charcoal/70";
@@ -38,7 +36,13 @@ function SelectChevron() {
   );
 }
 
-// Fields that must be filled before advancing to step 2.
+function formatUSPhone(raw: string): string {
+  const digits = raw.replace(/\D/g, "").slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 const step1Fields = ["fullName", "email", "phone", "organization"] as const;
 
 export function BookingForm() {
@@ -49,6 +53,10 @@ export function BookingForm() {
 
   function update(name: string, value: string) {
     setForm((c) => ({ ...c, [name]: value }));
+  }
+
+  function handlePhone(value: string) {
+    setForm((c) => ({ ...c, phone: formatUSPhone(value) }));
   }
 
   function goNext() {
@@ -128,8 +136,6 @@ export function BookingForm() {
         />
       </div>
 
-      {/* Slide viewport — both slides live in a 200%-wide track that slides horizontally,
-          so the card boundary height stays stable across steps. */}
       <div className="overflow-hidden">
         <div
           className="flex w-[200%] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -168,10 +174,11 @@ export function BookingForm() {
                 <input
                   id="bf-phone"
                   name="phone"
+                  inputMode="tel"
                   value={form.phone}
-                  onChange={(e) => update(e.target.name, e.target.value)}
+                  onChange={(e) => handlePhone(e.target.value)}
                   className={inputCls}
-                  placeholder="+1 555 000 0000"
+                  placeholder="(555) 000-0000"
                 />
               </div>
 
@@ -210,7 +217,7 @@ export function BookingForm() {
           <div className="w-1/2 pl-1" aria-hidden={step !== 2}>
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-1.5">
-                <label htmlFor="bf-eventType" className={labelCls}>Event Type</label>
+                <label htmlFor="bf-eventType" className={labelCls}>Engagement Type</label>
                 <div className="relative">
                   <select
                     id="bf-eventType"
@@ -221,18 +228,29 @@ export function BookingForm() {
                     className={selectCls}
                   >
                     <option value="">Select one</option>
-                    <option>Keynote</option>
-                    <option>Workshop or Seminar</option>
-                    <option>Corporate Wellness Program</option>
-                    <option>Retreat Facilitation</option>
-                    <option>Panel or Podcast</option>
+                    <optgroup label="Speaking &amp; Events">
+                      <option>Keynote</option>
+                      <option>Workshop or Seminar</option>
+                      <option>Retreat Facilitation</option>
+                      <option>Panel or Podcast</option>
+                    </optgroup>
+                    <optgroup label="Programs">
+                      <option>Introductory Self-Care Workshop</option>
+                      <option>Four-Week Self-Care Cohort</option>
+                      <option>Individual Self-Care Coaching</option>
+                      <option>Corporate Panel Discussion</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                      <option>Corporate Wellness Program</option>
+                      <option>Custom Engagement</option>
+                    </optgroup>
                   </select>
                   <SelectChevron />
                 </div>
               </div>
 
               <div className="grid gap-1.5">
-                <label htmlFor="bf-eventDate" className={labelCls}>Event Date</label>
+                <label htmlFor="bf-eventDate" className={labelCls}>Preferred Date</label>
                 <input
                   id="bf-eventDate"
                   type="date"
@@ -245,7 +263,7 @@ export function BookingForm() {
               </div>
 
               <div className="grid gap-1.5">
-                <label htmlFor="bf-eventLocation" className={labelCls}>Event Location</label>
+                <label htmlFor="bf-eventLocation" className={labelCls}>Location</label>
                 <input
                   id="bf-eventLocation"
                   name="eventLocation"
@@ -253,7 +271,7 @@ export function BookingForm() {
                   onChange={(e) => update(e.target.name, e.target.value)}
                   required
                   className={inputCls}
-                  placeholder="City, Country or Virtual"
+                  placeholder="City, State or Virtual"
                 />
               </div>
 
@@ -262,11 +280,15 @@ export function BookingForm() {
                 <input
                   id="bf-audienceSize"
                   name="audienceSize"
+                  inputMode="numeric"
                   value={form.audienceSize}
-                  onChange={(e) => update(e.target.name, e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, "");
+                    update("audienceSize", val);
+                  }}
                   required
                   className={inputCls}
-                  placeholder="e.g. 50–100"
+                  placeholder="e.g. 50"
                 />
               </div>
 

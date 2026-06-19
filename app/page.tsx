@@ -634,10 +634,10 @@ export default async function HomePage() {
               </div>
             </FadeIn>
 
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 pt-2 sm:grid-cols-2 lg:grid-cols-4">
               {packages.map((pkg, i) => (
                 <FadeIn key={pkg.title} direction="up" delay={i * 100}>
-                  <PackageCard pkg={pkg} index={i} />
+                  <PackageCard pkg={pkg} index={i} compact />
                 </FadeIn>
               ))}
             </div>
