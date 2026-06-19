@@ -5,11 +5,9 @@ import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ShimmerCTA } from "@/components/ShimmerCTA";
 import { DecorImage } from "@/components/DecorImage";
-import { CountUp } from "@/components/CountUp";
 import { BrandOrbit } from "@/components/BrandOrbit";
 import { Gallery } from "@/components/Gallery";
 import {
-  getCredentials,
   getFaq,
   getServices,
   getTestimonials,
@@ -21,6 +19,13 @@ import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
 
 export const revalidate = 60;
+
+const eyebrowCls =
+  "mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-forest/70";
+
+function EyebrowDash() {
+  return <span className="h-px w-6 bg-forest/30" />;
+}
 
 function TargetIcon() {
   return (
@@ -68,20 +73,17 @@ function LeafIcon() {
 
 
 export default async function HomePage() {
-  const [services, topics, testimonials, credentials, achievements, faq, galleryImages, packages] =
+  const [services, topics, testimonials, achievements, faq, galleryImages, packages] =
     await Promise.all([
       getServices(),
       getTopics(),
       getTestimonials(),
-      getCredentials(),
       getAchievements(),
       getFaq(),
       getGalleryImages(),
       getPackages(),
     ]);
 
-  // Services split for the asymmetric feature grid:
-  // flagship anchors the layout; the remaining two stack as a duet.
   const flagship =
     services.find((s) => s.title === "Corporate Wellness Programs") ?? services[0];
   const duet = services.filter((s) => s !== flagship);
@@ -89,54 +91,54 @@ export default async function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#FBF9F6]">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 py-12 lg:grid-cols-2 lg:gap-10 lg:px-12 lg:py-10 lg:min-h-[calc(100svh_-_80px)]">
-          {/* LEFT — narrative */}
-          <div className="relative z-10 lg:pr-6">
-            {/* Pill tags */}
+      <section className="relative isolate min-h-[calc(100svh_-_80px)] overflow-hidden">
+        <Image
+          src="/sonya-harris.jpg"
+          alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_20%]"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/90 via-[#0c1c18]/70 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#0c1c18]/40 via-transparent to-[#0c1c18]/60" />
+
+        <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
+          <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
             <FadeIn direction="up">
-              <div className="mb-6 flex flex-wrap gap-2.5">
-                {["Corporate Wellness", "Keynote Speaker"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-2 rounded-full border border-sage/40 bg-sage/15 px-4 py-1.5 text-xs font-semibold text-forest"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#c5a880]" aria-hidden="true" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <p className="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-white/60">
+                <span className="h-px w-8 bg-white/30" />
+                Corporate Wellness &middot; Keynote Speaker
+              </p>
             </FadeIn>
 
-            {/* Headline */}
             <FadeIn direction="up" delay={80}>
-              <h1 className="font-serif text-[2.5rem] font-light leading-[1.05] tracking-tight text-[#142E2A] sm:text-5xl lg:text-[3.1rem]">
+              <h1 className="max-w-3xl font-serif text-[2.5rem] font-light leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Stronger leaders.
                 <br />
-                <span className="text-forest">Healthier organizations.</span>
+                <span className="text-[#c5a880]">Healthier organizations.</span>
               </h1>
             </FadeIn>
 
-            {/* Paragraph */}
             <FadeIn direction="up" delay={160}>
-              <p className="mt-5 max-w-md text-base leading-relaxed text-[#7A8481] lg:text-lg">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
                 Sonya Harris helps teams build resilience and sustainable wellbeing —
                 drawn from 21+ years of service and federal leadership.
               </p>
             </FadeIn>
 
-            {/* Buttons */}
             <FadeIn direction="up" delay={240}>
-              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <ShimmerCTA
                   href="/book-sonya"
-                  className="inline-flex items-center rounded-full bg-forest px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-lg shadow-forest/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-light"
+                  tone="dark"
+                  className="inline-flex items-center rounded-full bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl"
                 >
                   Book Sonya
                 </ShimmerCTA>
                 <Link
                   href="/services"
-                  className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-forest/80 transition-colors hover:text-forest"
+                  className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-white/80 transition-colors hover:text-white"
                 >
                   Explore Services
                   <svg
@@ -150,93 +152,6 @@ export default async function HomePage() {
               </div>
             </FadeIn>
           </div>
-
-          {/* RIGHT — image panel with overlapping glass cards */}
-          <FadeIn direction="up" delay={200}>
-            <div className="relative">
-              {/* Soft tinted backdrop slab */}
-              <div aria-hidden="true" className="absolute -inset-3 -z-10 rounded-[2.75rem] bg-sage/20 sm:-inset-4" />
-
-              <div className="relative aspect-[5/6] w-full overflow-hidden rounded-[2.25rem] shadow-[0_30px_60px_-20px_rgba(47,79,79,0.35)] lg:aspect-auto lg:h-[clamp(380px,calc(100svh_-_230px),480px)]">
-                <Image
-                  src="/sonya-harris.jpg"
-                  alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-[center_20%]"
-                />
-                {/* Legibility wash for the overlay cards */}
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
-
-                {/* Stat card — top right */}
-                <div className="absolute right-4 top-4 w-[190px] rounded-2xl border border-white/25 bg-white/15 p-4 backdrop-blur-md">
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="font-serif text-3xl font-semibold leading-none text-white">21+</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-white/85">
-                      <path d="M7 17L17 7M9 7h8v8" />
-                    </svg>
-                  </div>
-                  <p className="mt-1.5 text-[0.8rem] leading-snug text-white/90">
-                    Years of service &amp; leadership
-                  </p>
-                </div>
-
-                {/* Glass pills — bottom */}
-                <div className="absolute inset-x-4 bottom-4 flex flex-wrap gap-2">
-                  {["Build Resilience", "Sustainable Wellbeing"].map((label) => (
-                    <span
-                      key={label}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/15 px-3.5 py-1.5 text-xs font-medium text-white backdrop-blur-md"
-                    >
-                      <span className="text-[#dcc7a0]" aria-hidden="true">&#10022;</span>
-                      {label}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ── CREDIBILITY BAR ── */}
-      <section id="impact" className="relative overflow-hidden scroll-mt-24 bg-gradient-to-br from-forest-dark via-forest to-forest-light">
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute -right-32 -top-32 h-[400px] w-[400px] rounded-full bg-sage/10 blur-3xl" />
-          <div className="absolute -bottom-20 left-1/4 h-[300px] w-[300px] rounded-full bg-white/5 blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-[1200px] px-4 py-20 lg:py-24">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-            {credentials.map(([value, label], i) => {
-              // Numeric stats can run large; word-stats (e.g. "Thousands") need a
-              // smaller scale so they never clip against the narrow card width.
-              const isNumber = /\d/.test(value);
-              return (
-              <FadeIn key={label} direction="up" delay={i * 90} className="h-full">
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 px-5 py-7 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-white/25 hover:bg-white/10 md:px-6">
-                  {/* Accent line — extends on hover */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-1/2 top-0 h-[2px] w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-transparent via-sage to-transparent transition-all duration-500 group-hover:w-24"
-                  />
-                  <p
-                    className={`bg-gradient-to-b from-white to-sage-light/70 bg-clip-text font-serif font-light leading-none tracking-tight text-transparent transition-transform duration-500 group-hover:-translate-y-0.5 ${
-                      isNumber
-                        ? "text-5xl sm:text-6xl lg:text-[3.75rem]"
-                        : "text-[1.85rem] sm:text-4xl lg:text-[2.6rem]"
-                    }`}
-                  >
-                    <CountUp value={value} />
-                  </p>
-                  <p className="mx-auto mt-4 max-w-[16ch] text-[0.7rem] font-medium uppercase leading-relaxed tracking-[0.16em] text-white/55 transition-colors duration-300 group-hover:text-white/80">
-                    {label}
-                  </p>
-                </div>
-              </FadeIn>
-              );
-            })}
-          </div>
         </div>
       </section>
 
@@ -244,97 +159,41 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-beige py-20 lg:py-28">
         <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 text-forest/[0.06] lg:h-[26rem] lg:w-[26rem]" />
         <div className="relative mx-auto max-w-[1200px] px-4">
-          <div className="grid items-center gap-16 lg:grid-cols-[4fr_6fr] lg:gap-24">
-            {/* Image — 40%, taller 3:4 portrait with floating metric cards */}
-            <FadeIn direction="left">
-              <div className="group/photo relative w-full sm:mx-auto sm:max-w-[360px] lg:mx-0 lg:max-w-[400px]">
-                <div className="relative aspect-square overflow-hidden rounded-[1.75rem] shadow-[0_30px_55px_-22px_rgba(47,79,79,0.45)]">
-                  <Image
-                    src="/sonya-harris.jpg"
-                    alt="Sonya Harris"
-                    fill
-                    sizes="(max-width: 1024px) 340px, 400px"
-                    className="object-cover object-[center_20%] transition-transform duration-[1200ms] ease-out group-hover/photo:scale-[1.04]"
-                  />
+          <FadeIn direction="up">
+            <p className={eyebrowCls}>
+              <EyebrowDash />
+              About Sonya
+            </p>
+            <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-forest sm:text-[2.4rem] lg:text-[2.6rem]">
+              Leadership Meets Wellness
+            </h2>
+            <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
+              Sonya Harris blends military discipline and federal leadership with deep
+              wellness expertise to help executive teams navigate high-stakes environments
+              where resilience is mission-critical.
+            </p>
+
+            <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+              {achievements.map(({ value, label }) => (
+                <div
+                  key={label}
+                  className="group border-t border-beige-dark pt-3 transition-colors hover:border-sage"
+                >
+                  <dt className="font-serif text-lg font-semibold text-forest">{value}</dt>
+                  <dd className="mt-1 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-muted transition-colors group-hover:text-forest">
+                    {label}
+                  </dd>
                 </div>
+              ))}
+            </dl>
 
-                {/* Floating metric card — top left */}
-                <div className="animate-float-card absolute -left-4 top-8 sm:-left-7">
-                  <div className="flex items-center gap-2.5 rounded-2xl bg-white/90 px-3.5 py-2.5 shadow-[0_20px_45px_-18px_rgba(47,79,79,0.55)] ring-1 ring-black/5 backdrop-blur-md transition-transform duration-300 hover:scale-[1.04]">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest/10 text-forest" aria-hidden="true">
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 3l7 3v5c0 4.4-3 7.8-7 9-4-1.2-7-4.6-7-9V6l7-3z" />
-                      </svg>
-                    </span>
-                    <div className="text-left">
-                      <p className="font-serif text-base font-bold leading-none text-forest">
-                        <CountUp value="21+ Years" />
-                      </p>
-                      <p className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-muted">
-                        U.S. Air Force
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating metric card — bottom right */}
-                <div className="animate-float-card-slow absolute -right-4 bottom-10 sm:-right-7">
-                  <div className="flex items-center gap-2.5 rounded-2xl bg-white/90 px-3.5 py-2.5 shadow-[0_20px_45px_-18px_rgba(47,79,79,0.55)] ring-1 ring-black/5 backdrop-blur-md transition-transform duration-300 hover:scale-[1.04]">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#c5a880]/15 text-[#b9985f]" aria-hidden="true">
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 17l5-5 4 4 8-8" />
-                        <path d="M17 8h4v4" />
-                      </svg>
-                    </span>
-                    <div className="text-left">
-                      <p className="font-serif text-base font-bold leading-none text-forest">
-                        <CountUp value="100+" />
-                      </p>
-                      <p className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.14em] text-muted">
-                        Programs Delivered
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Text — 60% */}
-            <FadeIn direction="up" delay={120}>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
-                About Sonya
-              </p>
-              <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-forest sm:text-[2.4rem] lg:text-[2.6rem]">
-                Leadership Meets Wellness
-              </h2>
-              <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
-                Sonya Harris blends military discipline and federal leadership with deep
-                wellness expertise to help executive teams navigate high-stakes environments
-                where resilience is mission-critical.
-              </p>
-
-              <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4">
-                {achievements.map(({ value, label }) => (
-                  <div
-                    key={label}
-                    className="group border-t border-beige-dark pt-3 transition-colors hover:border-sage"
-                  >
-                    <dt className="font-serif text-lg font-semibold text-forest">{value}</dt>
-                    <dd className="mt-1 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-muted transition-colors group-hover:text-forest">
-                      {label}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-
-              <Link
-                href="/about"
-                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
-              >
-                Read full story &rarr;
-              </Link>
-            </FadeIn>
-          </div>
+            <Link
+              href="/about"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+            >
+              Read full story &rarr;
+            </Link>
+          </FadeIn>
         </div>
       </section>
 
@@ -342,9 +201,9 @@ export default async function HomePage() {
       <section className="flex items-center bg-warm-white px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
         <div className="mx-auto w-full max-w-[1320px]">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
-            {/* Column 1 — title anchor (label + title + summary, tightly bound) */}
             <FadeIn direction="up">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
+              <p className={eyebrowCls}>
+                <EyebrowDash />
                 Philosophy
               </p>
               <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-forest xl:text-[2.6rem]">
@@ -355,7 +214,6 @@ export default async function HomePage() {
               </p>
             </FadeIn>
 
-            {/* Columns 2–4 — one principle per column, divided by thin vertical lines */}
             {[
               {
                 num: "01",
@@ -403,7 +261,11 @@ export default async function HomePage() {
         <div className="mx-auto w-full max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-6 text-center">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-sage">Services</p>
+              <p className={`${eyebrowCls} justify-center`}>
+                <EyebrowDash />
+                Services
+                <EyebrowDash />
+              </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">How We Serve</h2>
               <p className="mx-auto mt-3 max-w-xl text-sm text-muted lg:text-base">
                 Tailored wellness solutions designed for individuals, teams, and organizations.
@@ -411,9 +273,7 @@ export default async function HomePage() {
             </div>
           </FadeIn>
 
-          {/* Asymmetric feature grid — flagship (3) + stacked duet (2) */}
           <div className="grid grid-cols-1 gap-6 lg:h-[420px] lg:grid-cols-5 xl:h-[460px] xl:gap-8">
-            {/* Card A — Flagship: Corporate Wellness Programs */}
             <FadeIn direction="up" className="lg:col-span-3 lg:h-full lg:min-h-0">
               <Link
                 href="/services"
@@ -452,7 +312,6 @@ export default async function HomePage() {
               </Link>
             </FadeIn>
 
-            {/* Cards B & C — Stacked duet: Workshops + Retreats */}
             <div className="grid gap-6 lg:col-span-2 lg:h-full lg:min-h-0 lg:grid-rows-2 lg:gap-4">
               {duet.map((service, i) => (
                 <FadeIn key={service.title} direction="up" delay={(i + 1) * 120} className="lg:h-full lg:min-h-0">
@@ -499,9 +358,9 @@ export default async function HomePage() {
       <section className="flex items-center bg-warm-white px-4 py-20 lg:h-screen lg:max-h-[850px] lg:py-0">
         <div className="mx-auto w-full max-w-[1200px]">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-            {/* Left — anchor: tag, headline, CTA */}
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
+              <p className={eyebrowCls}>
+                <EyebrowDash />
                 Speaking
               </p>
               <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-forest lg:text-[2.9rem]">
@@ -526,7 +385,6 @@ export default async function HomePage() {
               </Link>
             </FadeIn>
 
-            {/* Right — interactive typographic list */}
             <FadeIn direction="up" delay={120} className="lg:col-span-8">
               <div className="group/list flex flex-col">
                 {topics.map((topic, i) => (
@@ -570,8 +428,10 @@ export default async function HomePage() {
       <section className="flex flex-col justify-center overflow-hidden bg-warm-white py-16 lg:h-screen lg:max-h-[750px]">
         <FadeIn direction="up">
           <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#dfba86]">
+            <p className={`${eyebrowCls} justify-center text-[#dfba86]`}>
+              <span className="h-px w-6 bg-[#dfba86]/40" />
               Testimonials
+              <span className="h-px w-6 bg-[#dfba86]/40" />
             </p>
             <h2 className="font-serif text-4xl font-bold tracking-tight text-charcoal lg:text-5xl">
               Our Clients Review
@@ -579,7 +439,6 @@ export default async function HomePage() {
           </div>
         </FadeIn>
 
-        {/* Infinite right-to-left marquee */}
         <div className="relative">
           <div className="flex w-max gap-6 animate-marquee">
             {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
@@ -621,8 +480,10 @@ export default async function HomePage() {
           <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
             <FadeIn direction="up">
               <div className="mb-16 text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
+                <p className={`${eyebrowCls} justify-center`}>
+                  <EyebrowDash />
                   Programs
+                  <EyebrowDash />
                 </p>
                 <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
                   Invest in your team&apos;s wellbeing.
@@ -665,16 +526,14 @@ export default async function HomePage() {
         <div className="relative mx-auto w-full max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-10 text-center">
-              {/* Eyebrow — flanked hairlines + wide tracking for a masthead feel */}
               <div className="mb-5 flex items-center justify-center gap-3">
-                <span className="h-px w-8 bg-sage/40" aria-hidden="true" />
-                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-sage">
+                <span className="h-px w-8 bg-forest/20" aria-hidden="true" />
+                <p className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-forest/70">
                   Booking
                 </p>
-                <span className="h-px w-8 bg-sage/40" aria-hidden="true" />
+                <span className="h-px w-8 bg-forest/20" aria-hidden="true" />
               </div>
 
-              {/* Headline — two balanced lines; "Sonya" set as an italic gold anchor */}
               <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-[-0.015em] text-forest sm:text-[2.5rem] lg:text-[3.1rem]">
                 <span className="block">
                   Bring <span className="font-medium italic text-[#c5a880]">Sonya</span> to
@@ -700,16 +559,14 @@ export default async function HomePage() {
         <div className="mx-auto max-w-[860px] px-4">
           <FadeIn direction="up">
             <div className="mb-12 text-center lg:mb-16">
-              {/* Eyebrow — flanked hairlines + extra-wide tracking to anchor the stack */}
               <div className="mb-6 flex items-center justify-center gap-3.5">
                 <span className="h-px w-10 bg-forest/25" aria-hidden="true" />
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.42em] text-sage">
+                <p className="text-[0.7rem] font-bold uppercase tracking-[0.42em] text-forest/70">
                   FAQ
                 </p>
                 <span className="h-px w-10 bg-forest/25" aria-hidden="true" />
               </div>
 
-              {/* Headline — two balanced lines; "Questions" set as an italic gold accent */}
               <h2 className="font-serif font-bold leading-[1.05] tracking-[-0.015em] text-forest">
                 <span className="block text-[2rem] sm:text-4xl lg:text-[2.9rem]">
                   Frequently Asked
@@ -722,11 +579,9 @@ export default async function HomePage() {
           </FadeIn>
           <FadeIn direction="up" delay={100}>
             <div className="relative">
-              {/* White card sits above the accent graphic */}
               <div className="relative z-10 rounded-2xl bg-white p-8 shadow-sm lg:p-10">
                 <FaqAccordion items={faq} />
               </div>
-              {/* Decorative accent — peeks from the card's top-left corner, behind it */}
               <DecorImage
                 src="/faq-accent.png"
                 className="absolute -top-16 -left-20 z-0 hidden h-48 w-48 -rotate-12 transform select-none opacity-40 mix-blend-multiply pointer-events-none md:block"
@@ -750,7 +605,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55" />
         <div className="relative z-10 mx-auto max-w-[1200px] px-4 py-36 text-center lg:py-52">
           <FadeIn direction="up">
-            <p className="text-xs tracking-[0.2em] text-white/75 font-semibold mb-4 uppercase">
+            <p className="text-xs tracking-[0.2em] text-white/75 font-bold mb-4 uppercase">
               Transform Your Organization
             </p>
             <h2 className="font-serif text-4xl lg:text-5xl font-normal text-white max-w-4xl mx-auto leading-tight">
