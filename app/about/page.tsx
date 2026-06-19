@@ -222,26 +222,6 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-forest py-24">
-        <div className="mx-auto max-w-[1200px] px-4 text-center">
-          <FadeIn direction="up">
-            <h2 className="font-serif text-4xl font-bold text-white lg:text-5xl">
-              Ready to work with Sonya?
-            </h2>
-            <p className="mx-auto mt-4 max-w-lg text-base text-white/55">
-              Bring her expertise in military resilience, federal leadership, and wellness
-              facilitation to your organization.
-            </p>
-            <Link
-              href="/book-sonya"
-              className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:scale-[0.98]"
-            >
-              Book Sonya &rarr;
-            </Link>
-          </FadeIn>
-        </div>
-      </section>
     </>
   );
 }

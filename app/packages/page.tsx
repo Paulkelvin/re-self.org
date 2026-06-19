@@ -263,30 +263,6 @@ export default async function PackagesPage() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="bg-forest py-24">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-            <FadeIn direction="up">
-              <h2 className="font-serif text-3xl font-bold text-white lg:text-4xl">
-                Ready to invest in your team?
-              </h2>
-              <p className="mt-3 max-w-xl text-base text-white/55">
-                Choose a package above, or reach out for a custom proposal
-                tailored to your organization&apos;s needs.
-              </p>
-            </FadeIn>
-            <FadeIn direction="up" delay={100}>
-              <Link
-                href="/book-sonya"
-                className="inline-flex shrink-0 min-h-[52px] items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:scale-[0.98]"
-              >
-                Book a Call &rarr;
-              </Link>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

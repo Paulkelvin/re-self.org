@@ -37,13 +37,11 @@ export default async function NewsletterPage() {
               The Re-Self Journal
             </p>
             <h1 className="font-serif max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-charcoal sm:text-5xl lg:text-[3.4rem]">
-              Field notes on wellness, leadership, and{" "}
+              Wellness, leadership, and{" "}
               <span className="text-forest">sustainable performance.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted lg:text-lg">
-              Practical essays from Sonya Harris for leaders and teams who carry real
-              pressure — drawn from 21+ years of service, federal leadership, and wellness
-              facilitation. New issues land in your inbox, no fluff.
+              Practical essays from Sonya Harris for leaders and teams who carry real pressure. No fluff.
             </p>
           </FadeIn>
 
