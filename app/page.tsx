@@ -100,28 +100,27 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover object-[center_20%]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/90 via-[#0c1c18]/70 to-transparent" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#0c1c18]/40 via-transparent to-[#0c1c18]/60" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#1a3a34]/50 via-[#1a3a34]/25 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/30" />
 
         <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
             <FadeIn direction="up">
-              <p className="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-white/60">
-                <span className="h-px w-8 bg-white/30" />
+              <p className="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+                <span className="h-px w-8 bg-white/40" />
                 Corporate Wellness &middot; Keynote Speaker
               </p>
             </FadeIn>
 
             <FadeIn direction="up" delay={80}>
-              <h1 className="max-w-3xl font-serif text-[2.5rem] font-light leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Stronger leaders.
-                <br />
-                <span className="text-[#c5a880]">Healthier organizations.</span>
+              <h1 className="max-w-3xl font-serif text-[2.5rem] font-light leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] sm:text-5xl lg:text-6xl">
+                Stronger leaders.{" "}
+                <span className="text-[#c5a880] drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">Healthier organizations.</span>
               </h1>
             </FadeIn>
 
             <FadeIn direction="up" delay={160}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)] sm:text-lg">
                 Sonya Harris helps teams build resilience and sustainable wellbeing —
                 drawn from 21+ years of service and federal leadership.
               </p>
@@ -536,7 +535,7 @@ export default async function HomePage() {
 
               <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-[-0.015em] text-forest sm:text-[2.5rem] lg:text-[3.1rem]">
                 <span className="block">
-                  Bring <span className="font-medium italic text-[#c5a880]">Sonya</span> to
+                  Bring Sonya to
                 </span>
                 <span className="block">Your Organization</span>
               </h2>
@@ -567,13 +566,8 @@ export default async function HomePage() {
                 <span className="h-px w-10 bg-forest/25" aria-hidden="true" />
               </div>
 
-              <h2 className="font-serif font-bold leading-[1.05] tracking-[-0.015em] text-forest">
-                <span className="block text-[2rem] sm:text-4xl lg:text-[2.9rem]">
-                  Frequently Asked
-                </span>
-                <span className="mt-0.5 block text-[2.4rem] font-medium italic text-[#c5a880] sm:text-5xl lg:text-[3.4rem]">
-                  Questions
-                </span>
+              <h2 className="font-serif text-[2rem] font-bold leading-[1.05] tracking-[-0.015em] text-forest sm:text-4xl lg:text-[2.9rem]">
+                Frequently Asked Questions
               </h2>
             </div>
           </FadeIn>
@@ -587,37 +581,6 @@ export default async function HomePage() {
                 className="absolute -top-16 -left-20 z-0 hidden h-48 w-48 -rotate-12 transform select-none opacity-40 mix-blend-multiply pointer-events-none md:block"
               />
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ── FINAL CTA ── */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80"
-            alt="Mountain sunrise — wellness and leadership"
-            fill
-            sizes="100vw"
-            className="h-full w-full object-cover object-center"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55" />
-        <div className="relative z-10 mx-auto max-w-[1200px] px-4 py-36 text-center lg:py-52">
-          <FadeIn direction="up">
-            <p className="text-xs tracking-[0.2em] text-white/75 font-bold mb-4 uppercase">
-              Transform Your Organization
-            </p>
-            <h2 className="font-serif text-4xl lg:text-5xl font-normal text-white max-w-4xl mx-auto leading-tight">
-              Wellness Is Not A Luxury. It&apos;s A Leadership Strategy.
-            </h2>
-            <ShimmerCTA
-              href="/book-sonya"
-              tone="dark"
-              className="mt-10 inline-flex min-h-[56px] items-center justify-center rounded-full bg-white px-10 text-sm font-bold text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:scale-[0.98]"
-            >
-              Book Sonya Today
-            </ShimmerCTA>
           </FadeIn>
         </div>
       </section>
