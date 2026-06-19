@@ -304,10 +304,11 @@ export function BookingForm() {
                     className={selectCls}
                   >
                     <option value="">Select one</option>
-                    <option>Under $5,000</option>
+                    <option>Under $500</option>
+                    <option>$500 – $1,000</option>
+                    <option>$1,000 – $5,000</option>
                     <option>$5,000 – $10,000</option>
-                    <option>$10,000 – $20,000</option>
-                    <option>$20,000+</option>
+                    <option>$10,000+</option>
                     <option>Not sure yet</option>
                   </select>
                   <SelectChevron />
