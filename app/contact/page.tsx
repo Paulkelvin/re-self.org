@@ -14,14 +14,14 @@ export default function ContactPage() {
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#FAF9F6] px-6 pb-20 pt-32">
       {/* Ambient brand graphics */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 -top-32 h-[460px] w-[460px] rounded-full bg-sage/10 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 h-[420px] w-[420px] rounded-full bg-beige blur-3xl" />
-        <BrandOrbit className="absolute -right-24 top-24 h-72 w-72 text-forest/[0.06]" />
-        <BrandOrbit reverse className="absolute -left-28 bottom-16 h-64 w-64 text-forest/[0.05]" />
+        <div className="absolute -left-40 -top-32 h-[520px] w-[520px] rounded-full bg-sage/[0.12] blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 h-[480px] w-[480px] rounded-full bg-beige blur-3xl" />
+        <BrandOrbit className="absolute -right-24 top-24 h-72 w-72 text-forest/[0.10]" />
+        <BrandOrbit reverse className="absolute -left-28 bottom-16 h-64 w-64 text-forest/[0.09]" />
       </div>
 
       <FadeIn direction="up" className="relative z-10 mb-10 text-center">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Contact</p>
+        <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">Contact</p>
         <h1 className="font-serif text-3xl font-bold tracking-tight text-forest sm:text-4xl">
           Let&apos;s start the conversation
         </h1>

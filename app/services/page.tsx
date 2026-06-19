@@ -106,8 +106,7 @@ export default async function ServicesPage() {
         </span>
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px]">
-          <p className="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-sage">
-            <span className="h-px w-8 bg-sage/60" />
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
             Services
           </p>
           <h1 className="font-serif max-w-4xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
@@ -121,7 +120,8 @@ export default async function ServicesPage() {
       </section>
 
       {/* Service showcase — editorial, alternating */}
-      <section className="bg-warm-white py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-ambient-warm py-16 lg:py-24">
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           {/* Section intro */}
           <FadeIn direction="up">
@@ -240,12 +240,13 @@ export default async function ServicesPage() {
       </section>
 
       {/* Ideal For */}
-      <section className="bg-[#eae6df] py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
+        <div className="pointer-events-none absolute -left-32 top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Title column */}
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#1e3d38]/60">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
                 Ideal For
               </p>
               <h2 className="font-serif text-4xl font-bold text-[#1e3d38] lg:text-5xl">
@@ -277,11 +278,12 @@ export default async function ServicesPage() {
       </section>
 
       {/* Process */}
-      <section className="bg-warm-white py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
+        <div className="pointer-events-none absolute -right-32 -top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Process</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">Process</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
             </div>
           </FadeIn>

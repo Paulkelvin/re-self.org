@@ -82,8 +82,7 @@ export default async function AboutPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 py-24 lg:px-16 lg:py-32">
           <FadeIn direction="up" className="max-w-2xl">
-            <p className="mb-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-sage">
-              <span className="h-px w-8 bg-sage/60" />
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
               About Sonya
             </p>
             <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-7xl">
@@ -98,7 +97,8 @@ export default async function AboutPage() {
       </section>
 
       {/* Overlapping magazine profile */}
-      <section className="bg-warm-white py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
+        <div className="pointer-events-none absolute -left-40 -top-20 h-[500px] w-[500px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             {/* Portrait */}
@@ -154,8 +154,7 @@ export default async function AboutPage() {
       <section className="bg-[#1e3d38] px-6 py-24 text-white lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[1200px]">
           <FadeIn direction="up">
-            <p className="mb-3 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-sage">
-              <span className="h-px w-8 bg-sage/60" />
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
               Career Journey
             </p>
             <h2 className="font-serif text-4xl font-light tracking-tight text-white lg:text-6xl">
@@ -189,12 +188,12 @@ export default async function AboutPage() {
       </section>
 
       {/* Asymmetric color-block values */}
-      <section className="bg-[#eae6df]">
+      <section className="relative overflow-hidden bg-ambient-beige">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 border-t border-[#1e3d38]/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 text-xs font-semibold uppercase tracking-widest text-[#1e3d38]/50">
+              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
                 Values
               </p>
               <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-[#1e3d38] md:text-5xl lg:pb-0">
@@ -206,7 +205,7 @@ export default async function AboutPage() {
             <div className="lg:col-span-8">
               {values.map(({ title, body }, i) => (
                 <FadeIn key={title} direction="up" delay={i * 80}>
-                  <div className="group border-b border-[#1e3d38]/10 bg-white/50 p-10 transition-all duration-300 hover:bg-white">
+                  <div className="group border-b border-[#1e3d38]/10 bg-white/50 p-10 shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-forest/[0.08]">
                     <span className="mb-3 block font-mono text-xs text-neutral-400 transition-colors group-hover:text-[#1e3d38]">
                       0{i + 1}
                     </span>

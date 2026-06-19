@@ -41,7 +41,7 @@ export default function BookSonyaPage() {
       {/* Hero */}
       <section className="bg-[#23423c] px-6 py-16 text-white md:py-24 lg:px-16">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-sage">Book Sonya</p>
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">Book Sonya</p>
           <h1 className="font-serif max-w-3xl text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
             Request availability for your next event or wellness initiative.
           </h1>
@@ -53,13 +53,14 @@ export default function BookSonyaPage() {
       </section>
 
       {/* Content */}
-      <section className="bg-warm-white">
+      <section className="relative overflow-hidden bg-ambient-warm">
+        <div className="pointer-events-none absolute -right-40 -top-20 h-[500px] w-[500px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 px-6 py-12 lg:grid-cols-12 lg:gap-16 lg:py-20">
           {/* Info sidebar — drops below the form on mobile */}
           <div className="order-2 space-y-8 lg:order-1 lg:col-span-5">
             <FadeIn direction="up">
               <div>
-                <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-sage">
+                <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
                   What happens next
                 </p>
                 <div className="flex flex-col gap-6 sm:flex-row lg:flex-col">
@@ -79,7 +80,7 @@ export default function BookSonyaPage() {
             </FadeIn>
 
             <FadeIn direction="up" delay={100}>
-              <div className="rounded-xl border border-neutral-200/30 bg-neutral-100/50 p-6">
+              <div className="rounded-xl border border-neutral-200/30 bg-neutral-100/50 p-6 shadow-md shadow-forest/[0.05]">
                 <p className="font-serif mb-4 text-base font-bold text-forest">
                   Why organizations choose Sonya
                 </p>

@@ -105,8 +105,7 @@ export default async function PackagesPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px]">
           <FadeIn direction="up">
-            <p className="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-sage">
-              <span className="h-px w-8 bg-sage/60" />
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
               Investment
             </p>
             <h1 className="font-serif max-w-3xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
@@ -123,7 +122,7 @@ export default async function PackagesPage() {
       </section>
 
       {/* Social Proof Bar */}
-      <section className="border-b border-line bg-warm-white py-10">
+      <section className="border-b border-line bg-ambient-warm py-10">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn direction="up">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
@@ -143,11 +142,12 @@ export default async function PackagesPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="bg-warm-white py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-ambient-warm py-20 lg:py-28">
+        <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-16 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
                 Programs
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
@@ -207,11 +207,12 @@ export default async function PackagesPage() {
       </section>
 
       {/* Trust / Guarantees */}
-      <section className="bg-[#eae6df] py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
+        <div className="pointer-events-none absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#1e3d38]/60">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
                 Why Choose Re-Self
               </p>
               <h2 className="font-serif text-3xl font-bold text-[#1e3d38] lg:text-4xl">
@@ -223,7 +224,7 @@ export default async function PackagesPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {guarantees.map((g, i) => (
               <FadeIn key={g.title} direction="up" delay={i * 100}>
-                <div className="rounded-2xl border border-[#1e3d38]/10 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="rounded-2xl border border-[#1e3d38]/10 bg-white p-8 shadow-md shadow-forest/[0.06] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-forest/[0.10]">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest">
                     {g.icon}
                   </div>
@@ -241,11 +242,12 @@ export default async function PackagesPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-warm-white py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-ambient-warm py-20 lg:py-28">
+        <div className="pointer-events-none absolute -right-32 top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
                 FAQ
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">

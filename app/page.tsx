@@ -21,11 +21,7 @@ import { PackageCard } from "@/components/PackageCard";
 export const revalidate = 60;
 
 const eyebrowCls =
-  "mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-forest/70";
-
-function EyebrowDash() {
-  return <span className="h-px w-6 bg-forest/30" />;
-}
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80";
 
 function TargetIcon() {
   return (
@@ -155,12 +151,12 @@ export default async function HomePage() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section className="relative overflow-hidden bg-beige py-20 lg:py-28">
-        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 text-forest/[0.06] lg:h-[26rem] lg:w-[26rem]" />
+      <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
+        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 text-forest/[0.10] lg:h-[26rem] lg:w-[26rem]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -left-32 bottom-0 h-[400px] w-[400px] rounded-full bg-sage/[0.08] blur-3xl" />
         <div className="relative mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <p className={eyebrowCls}>
-              <EyebrowDash />
               About Sonya
             </p>
             <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-forest sm:text-[2.4rem] lg:text-[2.6rem]">
@@ -197,12 +193,12 @@ export default async function HomePage() {
       </section>
 
       {/* ── CORE PHILOSOPHY ── */}
-      <section className="flex items-center bg-warm-white px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
-        <div className="mx-auto w-full max-w-[1320px]">
+      <section className="relative flex items-center overflow-hidden bg-ambient-warm px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-beige/60 blur-3xl" />
+        <div className="relative mx-auto w-full max-w-[1320px]">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
             <FadeIn direction="up">
               <p className={eyebrowCls}>
-                <EyebrowDash />
                 Philosophy
               </p>
               <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-forest xl:text-[2.6rem]">
@@ -234,7 +230,7 @@ export default async function HomePage() {
                 key={title}
                 direction="up"
                 delay={(i + 1) * 100}
-                className="group transition-colors duration-500 lg:border-l lg:border-line/60 lg:pl-8 lg:hover:border-sage/60 xl:pl-12"
+                className="group transition-all duration-500 rounded-r-xl lg:border-l lg:border-line/60 lg:pl-8 lg:hover:border-sage/60 lg:hover:bg-sage/[0.04] xl:pl-12"
               >
                 <span className="font-serif block text-6xl font-bold leading-none text-forest/15 transition-all duration-300 group-hover:-translate-y-1 group-hover:text-sage/50 xl:text-7xl">
                   {num}
@@ -256,14 +252,13 @@ export default async function HomePage() {
       </section>
 
       {/* ── SERVICES ── */}
-      <section className="flex flex-col justify-center bg-beige py-16 xl:py-20 lg:h-screen lg:max-h-[850px]">
-        <div className="mx-auto w-full max-w-[1200px] px-4">
+      <section className="relative flex flex-col justify-center overflow-hidden bg-ambient-beige py-16 xl:py-20 lg:h-screen lg:max-h-[850px]">
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-20 left-1/4 h-[300px] w-[300px] rounded-full bg-sage/[0.07] blur-3xl" />
+        <div className="relative mx-auto w-full max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-6 text-center">
               <p className={`${eyebrowCls} justify-center`}>
-                <EyebrowDash />
                 Services
-                <EyebrowDash />
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">How We Serve</h2>
               <p className="mx-auto mt-3 max-w-xl text-sm text-muted lg:text-base">
@@ -276,7 +271,7 @@ export default async function HomePage() {
             <FadeIn direction="up" className="lg:col-span-3 lg:h-full lg:min-h-0">
               <Link
                 href="/services"
-                className="group relative flex h-full min-h-[420px] overflow-hidden rounded-2xl shadow-sm transition-shadow hover:shadow-xl lg:min-h-0"
+                className="group relative flex h-full min-h-[420px] overflow-hidden rounded-2xl shadow-lg shadow-forest/[0.12] transition-shadow hover:shadow-2xl hover:shadow-forest/[0.18] lg:min-h-0"
               >
                 <Image
                   src={flagship.image}
@@ -316,7 +311,7 @@ export default async function HomePage() {
                 <FadeIn key={service.title} direction="up" delay={(i + 1) * 120} className="lg:h-full lg:min-h-0">
                   <Link
                     href="/services"
-                    className="group flex h-full min-h-0 items-center gap-4 overflow-hidden rounded-2xl border border-beige-dark bg-warm-white p-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sage/50 hover:shadow-lg"
+                    className="group flex h-full min-h-0 items-center gap-4 overflow-hidden rounded-2xl border border-beige-dark/60 bg-white p-3 shadow-md shadow-forest/[0.06] transition-all hover:-translate-y-1 hover:border-sage/50 hover:shadow-xl hover:shadow-forest/[0.10]"
                   >
                     <div className="relative h-24 w-24 flex-shrink-0 self-stretch overflow-hidden rounded-xl lg:h-auto lg:w-28">
                       <Image
@@ -354,12 +349,12 @@ export default async function HomePage() {
       </section>
 
       {/* ── SPEAKING TOPICS ── */}
-      <section className="flex items-center bg-warm-white px-4 py-20 lg:h-screen lg:max-h-[850px] lg:py-0">
-        <div className="mx-auto w-full max-w-[1200px]">
+      <section className="relative flex items-center overflow-hidden bg-ambient-warm px-4 py-20 lg:h-screen lg:max-h-[850px] lg:py-0">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-20 bottom-0 h-[350px] w-[350px] rounded-full bg-sage/[0.06] blur-3xl" />
+        <div className="relative mx-auto w-full max-w-[1200px]">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
               <p className={eyebrowCls}>
-                <EyebrowDash />
                 Speaking
               </p>
               <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-forest lg:text-[2.9rem]">
@@ -424,13 +419,13 @@ export default async function HomePage() {
       <Gallery images={galleryImages} />
 
       {/* ── TESTIMONIALS ── */}
-      <section className="flex flex-col justify-center overflow-hidden bg-warm-white py-16 lg:h-screen lg:max-h-[750px]">
+      <section className="relative flex flex-col justify-center overflow-hidden bg-ambient-warm py-16 lg:h-screen lg:max-h-[750px]">
+        <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-0 h-[350px] w-[350px] rounded-full bg-[#dfba86]/[0.06] blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-20 bottom-0 h-[300px] w-[300px] rounded-full bg-sage/[0.06] blur-3xl" />
         <FadeIn direction="up">
           <div className="mb-16 text-center">
-            <p className={`${eyebrowCls} justify-center text-[#dfba86]`}>
-              <span className="h-px w-6 bg-[#dfba86]/40" />
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#dfba86]/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[#dfba86] justify-center">
               Testimonials
-              <span className="h-px w-6 bg-[#dfba86]/40" />
             </p>
             <h2 className="font-serif text-4xl font-bold tracking-tight text-charcoal lg:text-5xl">
               Our Clients Review
@@ -443,16 +438,16 @@ export default async function HomePage() {
             {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <article
                 key={i}
-                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-[#f7f3eb] px-6 pb-6 pt-12 text-center"
+                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-gradient-to-b from-[#f7f3eb] to-[#f2ece0] px-6 pb-6 pt-12 text-center shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.04]"
               >
                 <Image
                   src={t.image}
                   alt={t.name}
                   width={160}
                   height={160}
-                  className="absolute -top-10 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white object-cover shadow-md"
+                  className="absolute -top-10 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white object-cover shadow-lg shadow-forest/[0.08]"
                 />
-                <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#dfba86]/20 text-sm text-[#dfba86]">
+                <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#dfba86]/25 shadow-sm shadow-[#dfba86]/15 text-sm text-[#dfba86]">
                   &ldquo;
                 </span>
                 <h3 className="text-lg font-semibold text-neutral-800">{t.name}</h3>
@@ -475,14 +470,13 @@ export default async function HomePage() {
 
       {/* ── PROGRAMS ── */}
       {packages.length > 0 && (
-        <section className="bg-warm-white py-20 lg:py-28">
-          <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <section className="relative overflow-hidden bg-ambient-warm py-20 lg:py-28">
+          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" />
+          <div className="relative mx-auto max-w-[1200px] px-6 lg:px-8">
             <FadeIn direction="up">
               <div className="mb-16 text-center">
                 <p className={`${eyebrowCls} justify-center`}>
-                  <EyebrowDash />
                   Programs
-                  <EyebrowDash />
                 </p>
                 <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
                   Invest in your team&apos;s wellbeing.
@@ -518,19 +512,18 @@ export default async function HomePage() {
 
       {/* ── BOOKING ── */}
       <section
-        className="relative flex flex-col justify-center overflow-hidden border-t border-b border-neutral-200/50 bg-[#FBFBFA] py-24 lg:py-28"
+        className="relative flex flex-col justify-center overflow-hidden border-t border-b border-neutral-200/50 bg-ambient-booking py-24 lg:py-28"
         id="book"
       >
-        <BrandOrbit reverse className="pointer-events-none absolute -left-32 -bottom-32 h-80 w-80 text-forest/[0.05] lg:h-[26rem] lg:w-[26rem]" />
+        <BrandOrbit reverse className="pointer-events-none absolute -left-32 -bottom-32 h-80 w-80 text-forest/[0.09] lg:h-[26rem] lg:w-[26rem]" />
+        <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-0 h-[350px] w-[350px] rounded-full bg-sage/[0.06] blur-3xl" />
         <div className="relative mx-auto w-full max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-10 text-center">
-              <div className="mb-5 flex items-center justify-center gap-3">
-                <span className="h-px w-8 bg-forest/20" aria-hidden="true" />
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.3em] text-forest/70">
+              <div className="mb-5 flex items-center justify-center">
+                <p className={`${eyebrowCls} mb-0`}>
                   Booking
                 </p>
-                <span className="h-px w-8 bg-forest/20" aria-hidden="true" />
               </div>
 
               <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-[-0.015em] text-forest sm:text-[2.5rem] lg:text-[3.1rem]">
@@ -554,16 +547,15 @@ export default async function HomePage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="relative overflow-hidden bg-beige py-24 lg:py-32">
-        <div className="mx-auto max-w-[860px] px-4">
+      <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-12 h-[350px] w-[350px] rounded-full bg-sage/[0.07] blur-3xl" />
+        <div className="relative mx-auto max-w-[860px] px-4">
           <FadeIn direction="up">
             <div className="mb-12 text-center lg:mb-16">
-              <div className="mb-6 flex items-center justify-center gap-3.5">
-                <span className="h-px w-10 bg-forest/25" aria-hidden="true" />
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.42em] text-forest/70">
+              <div className="mb-6 flex items-center justify-center">
+                <p className={`${eyebrowCls} mb-0`}>
                   FAQ
                 </p>
-                <span className="h-px w-10 bg-forest/25" aria-hidden="true" />
               </div>
 
               <h2 className="font-serif text-[2rem] font-bold leading-[1.05] tracking-[-0.015em] text-forest sm:text-4xl lg:text-[2.9rem]">
@@ -573,7 +565,7 @@ export default async function HomePage() {
           </FadeIn>
           <FadeIn direction="up" delay={100}>
             <div className="relative">
-              <div className="relative z-10 rounded-2xl bg-white p-8 shadow-sm lg:p-10">
+              <div className="relative z-10 rounded-2xl bg-white p-8 shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] lg:p-10">
                 <FaqAccordion items={faq} />
               </div>
               <DecorImage

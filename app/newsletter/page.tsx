@@ -25,7 +25,7 @@ export default async function NewsletterPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-warm-white">
+      <section className="relative overflow-hidden bg-ambient-warm">
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-sage/10 blur-3xl" />
           <div className="absolute -bottom-24 -left-24 h-[420px] w-[420px] rounded-full bg-beige blur-3xl" />
@@ -33,7 +33,7 @@ export default async function NewsletterPage() {
 
         <div className="relative mx-auto max-w-[1200px] px-4 py-20 lg:py-28">
           <FadeIn direction="up">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-sage">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
               The Re-Self Journal
             </p>
             <h1 className="font-serif max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-charcoal sm:text-5xl lg:text-[3.4rem]">
@@ -57,12 +57,12 @@ export default async function NewsletterPage() {
       </section>
 
       {/* Featured */}
-      <section className="bg-warm-white pb-8 pt-10 lg:pt-0">
+      <section className="bg-ambient-warm pb-8 pt-10 lg:pt-0">
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <Link
               href={`/newsletter/${featuredArticle.slug}`}
-              className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2"
+              className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2"
             >
               <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[420px]">
                 <Image
@@ -113,7 +113,7 @@ export default async function NewsletterPage() {
       </section>
 
       {/* Feed */}
-      <section className="bg-warm-white py-16 lg:py-20">
+      <section className="bg-ambient-warm py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-10">
