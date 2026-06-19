@@ -100,8 +100,8 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover object-[center_20%]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#1a3a34]/60 via-[#1a3a34]/35 to-transparent" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/35" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25" />
 
         <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
