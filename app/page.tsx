@@ -100,8 +100,8 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover object-[center_20%]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#1a3a34]/50 via-[#1a3a34]/25 to-transparent" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/30" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#1a3a34]/60 via-[#1a3a34]/35 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/35" />
 
         <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
@@ -113,9 +113,9 @@ export default async function HomePage() {
             </FadeIn>
 
             <FadeIn direction="up" delay={80}>
-              <h1 className="max-w-3xl font-serif text-[2.5rem] font-light leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-3xl font-serif text-[1.85rem] font-light leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-5xl lg:text-6xl">
                 Stronger leaders.{" "}
-                <span className="text-[#c5a880] drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">Healthier organizations.</span>
+                <span className="text-[#dbbf8a] drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">Healthier organizations.</span>
               </h1>
             </FadeIn>
 
