@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Package } from "@/lib/content";
 
-function CheckIcon() {
+function CheckIcon({ highlighted }: { highlighted: boolean }) {
   return (
     <svg
       width="16"
@@ -13,14 +13,19 @@ function CheckIcon() {
       aria-hidden="true"
       className="shrink-0"
     >
-      <circle cx="8" cy="8" r="8" className="fill-forest/10" />
+      <circle
+        cx="8"
+        cy="8"
+        r="8"
+        className={highlighted ? "fill-white/20" : "fill-forest/10"}
+      />
       <path
         d="M5 8.5l2 2 4-4"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-forest"
+        className={highlighted ? "text-white" : "text-forest"}
       />
     </svg>
   );
@@ -28,6 +33,28 @@ function CheckIcon() {
 
 export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
   const [loading, setLoading] = useState(false);
+  const [shimmer, setShimmer] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const isHighlighted = pkg.highlighted;
+
+  useEffect(() => {
+    if (!isHighlighted) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShimmer(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isHighlighted]);
 
   async function handleCheckout() {
     setLoading(true);
@@ -54,24 +81,42 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
     }
   }
 
-  const isHighlighted = pkg.highlighted;
-
   return (
     <div
-      className={`group relative flex flex-col rounded-2xl border transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
+      ref={cardRef}
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
         isHighlighted
-          ? "border-forest bg-forest text-white shadow-2xl shadow-forest/25 scale-[1.02] z-10"
+          ? "border-[#c5a880]/40 bg-gradient-to-b from-[#1a3a34] via-forest to-[#1a3a34] text-white shadow-2xl shadow-forest/30 scale-[1.02] z-10 ring-1 ring-[#c5a880]/20"
           : "border-line bg-white text-charcoal shadow-lg shadow-black/[0.04] hover:border-forest/30"
       }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
+      {/* Subtle shimmer sweep on the highlighted card */}
+      {isHighlighted && shimmer && (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-20 cta-sheen"
+          style={{ animationDelay: "0.4s" }}
+        />
+      )}
+
       {isHighlighted && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-forest shadow-lg">
-            <span className="h-1.5 w-1.5 rounded-full bg-forest animate-pulse" />
-            Most Popular
-          </span>
-        </div>
+        <>
+          {/* Gold accent line at top */}
+          <div
+            aria-hidden="true"
+            className="absolute left-0 right-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#c5a880] to-transparent"
+          />
+          <div className="absolute -top-4 left-1/2 z-30 -translate-x-1/2">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#c5a880]/30 bg-gradient-to-r from-[#c5a880] to-[#b8935a] px-5 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#c5a880]/25">
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 rounded-full bg-white animate-pulse"
+              />
+              Most Popular
+            </span>
+          </div>
+        </>
       )}
 
       <div className={`p-8 pb-0 ${isHighlighted ? "pt-10" : ""}`}>
@@ -84,7 +129,7 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
         </h3>
         <p
           className={`mt-1 text-sm ${
-            isHighlighted ? "text-white/70" : "text-muted"
+            isHighlighted ? "text-white/65" : "text-muted"
           }`}
         >
           {pkg.subtitle}
@@ -93,7 +138,7 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
         <div className="mt-6 flex items-baseline gap-1">
           <span
             className={`font-serif text-4xl font-bold tracking-tight ${
-              isHighlighted ? "text-white" : "text-forest"
+              isHighlighted ? "text-[#c5a880]" : "text-forest"
             }`}
           >
             {pkg.priceLabel}
@@ -101,7 +146,7 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
           {pkg.priceSuffix && (
             <span
               className={`text-sm ${
-                isHighlighted ? "text-white/60" : "text-muted"
+                isHighlighted ? "text-white/50" : "text-muted"
               }`}
             >
               {pkg.priceSuffix}
@@ -112,7 +157,9 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
 
       <div
         className={`mx-8 my-6 h-px ${
-          isHighlighted ? "bg-white/20" : "bg-line"
+          isHighlighted
+            ? "bg-gradient-to-r from-transparent via-[#c5a880]/30 to-transparent"
+            : "bg-line"
         }`}
       />
 
@@ -121,7 +168,7 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
           {pkg.features?.map((feature, i) => (
             <li key={i} className="flex items-start gap-3">
               <span className="mt-0.5">
-                <CheckIcon />
+                <CheckIcon highlighted={isHighlighted} />
               </span>
               <span
                 className={`text-sm leading-snug ${
@@ -139,17 +186,34 @@ export function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
         <button
           onClick={handleCheckout}
           disabled={loading}
-          className={`flex w-full min-h-[48px] items-center justify-center rounded-full text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait ${
+          className={`relative flex w-full min-h-[48px] items-center justify-center overflow-hidden rounded-full text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait ${
             isHighlighted
-              ? "bg-white text-forest shadow-lg hover:bg-warm-white hover:shadow-xl"
+              ? "bg-gradient-to-r from-[#c5a880] to-[#b8935a] text-white shadow-lg shadow-[#c5a880]/25 hover:shadow-xl hover:shadow-[#c5a880]/30"
               : "bg-forest text-white shadow-md shadow-forest/20 hover:bg-forest-light hover:shadow-lg"
           }`}
         >
           {loading ? (
             <span className="flex items-center gap-2">
-              <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
-                <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" />
+              <svg
+                className="h-4 w-4 animate-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  className="opacity-25"
+                />
+                <path
+                  d="M4 12a8 8 0 018-8"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  className="opacity-75"
+                />
               </svg>
               Processing…
             </span>

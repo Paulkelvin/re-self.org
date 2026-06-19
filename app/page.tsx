@@ -15,8 +15,10 @@ import {
   getTestimonials,
   getTopics,
   getAchievements,
+  getPackages,
 } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
+import { PackageCard } from "@/components/PackageCard";
 
 export const revalidate = 60;
 
@@ -66,7 +68,7 @@ function LeafIcon() {
 
 
 export default async function HomePage() {
-  const [services, topics, testimonials, credentials, achievements, faq, galleryImages] =
+  const [services, topics, testimonials, credentials, achievements, faq, galleryImages, packages] =
     await Promise.all([
       getServices(),
       getTopics(),
@@ -75,6 +77,7 @@ export default async function HomePage() {
       getAchievements(),
       getFaq(),
       getGalleryImages(),
+      getPackages(),
     ]);
 
   // Services split for the asymmetric feature grid:
@@ -611,6 +614,47 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── PROGRAMS ── */}
+      {packages.length > 0 && (
+        <section className="bg-warm-white py-20 lg:py-28">
+          <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+            <FadeIn direction="up">
+              <div className="mb-16 text-center">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
+                  Programs
+                </p>
+                <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
+                  Invest in your team&apos;s wellbeing.
+                </h2>
+                <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                  Choose the engagement level that fits your goals — from a
+                  complimentary introduction to deep, ongoing coaching.
+                </p>
+              </div>
+            </FadeIn>
+
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {packages.map((pkg, i) => (
+                <FadeIn key={pkg.title} direction="up" delay={i * 100}>
+                  <PackageCard pkg={pkg} index={i} />
+                </FadeIn>
+              ))}
+            </div>
+
+            <FadeIn direction="up" delay={400}>
+              <div className="mx-auto mt-10 max-w-2xl text-center">
+                <Link
+                  href="/packages"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                >
+                  View all programs &amp; details &rarr;
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
 
       {/* ── BOOKING ── */}
       <section

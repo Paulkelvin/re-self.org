@@ -9,9 +9,9 @@ import { getPackages } from "@/lib/content";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Packages",
+  title: "Programs",
   description:
-    "Choose the right wellness package for your organization. Transparent pricing, premium delivery, and measurable impact.",
+    "Choose the right wellness program for your organization. Transparent pricing, premium delivery, and measurable impact.",
 };
 
 const stats = [
@@ -100,7 +100,7 @@ export default async function PackagesPage() {
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.04] lg:text-[14rem]"
         >
-          Packages
+          Programs
         </span>
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px]">
@@ -148,7 +148,7 @@ export default async function PackagesPage() {
           <FadeIn direction="up">
             <div className="mb-16 text-center">
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">
-                Packages
+                Programs
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
                 Find the right fit for your organization.
