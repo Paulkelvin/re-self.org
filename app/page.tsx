@@ -21,7 +21,7 @@ import { PackageCard } from "@/components/PackageCard";
 export const revalidate = 60;
 
 const eyebrowCls =
-  "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80";
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60";
 
 function TargetIcon() {
   return (
@@ -172,7 +172,7 @@ export default async function HomePage() {
               {achievements.map(({ value, label }) => (
                 <div
                   key={label}
-                  className="group border-t border-beige-dark pt-3 transition-colors hover:border-sage"
+                  className="group pt-3"
                 >
                   <dt className="font-serif text-lg font-semibold text-forest">{value}</dt>
                   <dd className="mt-1 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-muted transition-colors group-hover:text-forest">
@@ -193,18 +193,18 @@ export default async function HomePage() {
       </section>
 
       {/* ── CORE PHILOSOPHY ── */}
-      <section className="relative flex items-center overflow-hidden bg-ambient-warm px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-beige/60 blur-3xl" />
+      <section className="relative flex items-center overflow-hidden bg-[#1e3d38] px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-sage/[0.08] blur-3xl" />
         <div className="relative mx-auto w-full max-w-[1320px]">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
             <FadeIn direction="up">
-              <p className={eyebrowCls}>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.12] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
                 Philosophy
               </p>
-              <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-forest xl:text-[2.6rem]">
+              <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-white xl:text-[2.6rem]">
                 The Principles Behind Every Transformation
               </h2>
-              <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
                 Three commitments that shape every keynote, workshop, and program Sonya delivers.
               </p>
             </FadeIn>
@@ -230,12 +230,15 @@ export default async function HomePage() {
                 key={title}
                 direction="up"
                 delay={(i + 1) * 100}
-                className="group transition-all duration-500 rounded-r-xl lg:border-l lg:border-line/60 lg:pl-8 lg:hover:border-sage/60 lg:hover:bg-sage/[0.04] xl:pl-12"
+                className="group relative transition-all duration-500 rounded-r-xl lg:border-l lg:border-white/10 lg:pl-8 lg:hover:border-sage/30 lg:hover:bg-white/[0.04] xl:pl-12"
               >
-                <span className="font-serif block text-6xl font-bold leading-none text-forest/15 transition-all duration-300 group-hover:-translate-y-1 group-hover:text-sage/50 xl:text-7xl">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -top-4 right-2 select-none font-serif text-[8rem] font-bold leading-none text-white/[0.05] lg:text-[10rem]"
+                >
                   {num}
                 </span>
-                <h3 className="font-serif mt-4 text-2xl font-bold tracking-tight text-forest">
+                <h3 className="font-serif relative mt-2 text-2xl font-bold tracking-tight text-white">
                   <span className="relative inline-block">
                     {title}
                     <span
@@ -244,7 +247,7 @@ export default async function HomePage() {
                     />
                   </span>
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{body}</p>
+                <p className="relative mt-3 text-sm leading-relaxed text-white/55">{body}</p>
               </FadeIn>
             ))}
           </div>
@@ -349,8 +352,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── SPEAKING TOPICS ── */}
-      <section className="relative flex items-center overflow-hidden bg-ambient-warm px-4 py-20 lg:h-screen lg:max-h-[850px] lg:py-0">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-20 bottom-0 h-[350px] w-[350px] rounded-full bg-sage/[0.06] blur-3xl" />
+      <section className="relative flex items-center overflow-hidden bg-white px-4 py-20 lg:h-screen lg:max-h-[850px] lg:py-0">
         <div className="relative mx-auto w-full max-w-[1200px]">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
@@ -385,7 +387,7 @@ export default async function HomePage() {
                   <Link
                     key={topic.title}
                     href="/speaking-events"
-                    className="group/row flex items-baseline gap-5 border-b border-line/60 py-4 transition-opacity duration-300 first:border-t lg:gap-7 lg:py-[1.1rem] lg:group-hover/list:opacity-40 lg:hover:!opacity-100"
+                    className="group/row divider-gradient flex items-baseline gap-5 py-5 transition-opacity duration-300 lg:gap-7 lg:py-[1.2rem] lg:group-hover/list:opacity-40 lg:hover:!opacity-100"
                   >
                     <span className="font-serif text-base font-semibold text-sage tabular-nums lg:text-lg">
                       {String(i + 1).padStart(2, "0")}
@@ -438,7 +440,7 @@ export default async function HomePage() {
             {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <article
                 key={i}
-                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-gradient-to-b from-[#f7f3eb] to-[#f2ece0] px-6 pb-6 pt-12 text-center shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.04]"
+                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-white/60 backdrop-blur-md px-6 pb-6 pt-12 text-center shadow-[0_8px_32px_rgba(47,79,79,0.08)] ring-1 ring-white/70"
               >
                 <Image
                   src={t.image}
