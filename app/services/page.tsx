@@ -430,12 +430,6 @@ export default async function ServicesPage() {
             {processSteps.map(({ step, title, body, icon }, i) => (
               <FadeIn key={step} direction="up" delay={i * 100}>
                 <div className="group relative h-full overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md p-8 shadow-[0_4px_20px_rgba(47,79,79,0.05)] ring-1 ring-forest/[0.04] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_30px_rgba(47,79,79,0.08)]">
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-2 -top-3 select-none font-serif text-[5rem] font-bold leading-none text-forest/[0.04]"
-                  >
-                    {step}
-                  </span>
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest transition-colors duration-300 group-hover:bg-forest/15">
                     {icon}
                   </div>
