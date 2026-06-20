@@ -129,7 +129,7 @@ export async function getEvents(): Promise<SiteEvent[]> {
   const data = await client.fetch<
     {
       title: string;
-      slug: { current: string };
+      slug: string;
       eventType: string;
       date: string;
       endDate: string | null;
@@ -159,7 +159,7 @@ export async function getEvents(): Promise<SiteEvent[]> {
   );
   return data.map((e) => ({
     title: e.title,
-    slug: e.slug.current ?? e.slug,
+    slug: e.slug,
     eventType: e.eventType,
     date: e.date,
     endDate: e.endDate,

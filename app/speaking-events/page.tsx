@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
-import { getTopics } from "@/lib/content";
+import { EventList } from "@/components/EventList";
+import { getTopics, getEvents } from "@/lib/content";
 
 export const revalidate = 60;
 
@@ -45,8 +46,26 @@ const audiences = [
   "Industry conferences and panels",
 ];
 
+function formatFeaturedDate(dateStr: string) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export default async function SpeakingEventsPage() {
-  const topics = await getTopics();
+  const [topics, events] = await Promise.all([getTopics(), getEvents()]);
+
+  const now = new Date();
+  const featuredEvent =
+    events.find((e) => e.featured) ??
+    events.find((e) => new Date(e.date) >= now) ??
+    events[0];
+  const restEvents = featuredEvent
+    ? events.filter((e) => e.slug !== featuredEvent.slug)
+    : events;
 
   return (
     <>
@@ -221,6 +240,144 @@ export default async function SpeakingEventsPage() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Featured Event */}
+      {featuredEvent && (
+        <section className="relative overflow-hidden bg-ambient-warm pb-8 pt-16 lg:pt-20">
+          <div className="mx-auto max-w-[1200px] px-4">
+            <FadeIn direction="up">
+              <div className="mb-10">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
+                  {new Date(featuredEvent.date) >= now ? "Next Up" : "Featured Event"}
+                </p>
+                <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
+                  {new Date(featuredEvent.date) >= now ? "Don’t miss this." : "Recent highlight."}
+                </h2>
+                <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
+              </div>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={80}>
+              <div className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2">
+                <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[400px]">
+                  <Image
+                    src={featuredEvent.coverImage}
+                    alt={featuredEvent.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-5 top-5 rounded-full bg-forest px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+                    {featuredEvent.eventType}
+                  </span>
+                </div>
+
+                <div className="flex flex-col justify-center p-8 lg:p-12">
+                  <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted/70">
+                    <time dateTime={featuredEvent.date}>
+                      {formatFeaturedDate(featuredEvent.date)}
+                    </time>
+                    {featuredEvent.location && (
+                      <>
+                        <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
+                        <span>{featuredEvent.location}</span>
+                      </>
+                    )}
+                    {featuredEvent.isVirtual && (
+                      <>
+                        <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
+                        <span>Virtual</span>
+                      </>
+                    )}
+                  </div>
+
+                  <h3 className="font-serif text-2xl font-bold leading-tight tracking-tight text-charcoal lg:text-[2rem]">
+                    {featuredEvent.title}
+                  </h3>
+                  <p className="mt-4 max-w-prose text-sm leading-relaxed text-muted">
+                    {featuredEvent.description}
+                  </p>
+
+                  {featuredEvent.speakers.length > 0 && (
+                    <div className="mt-6">
+                      <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-muted/50">
+                        Speakers
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                        {featuredEvent.speakers.map((speaker) => (
+                          <div key={speaker.name} className="flex items-center gap-2">
+                            <div className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-white shadow-sm">
+                              {speaker.image ? (
+                                <Image
+                                  src={speaker.image}
+                                  alt={speaker.name}
+                                  fill
+                                  sizes="36px"
+                                  className="object-cover"
+                                />
+                              ) : (
+                                <div className="flex h-full w-full items-center justify-center bg-sage/30 text-[10px] font-bold text-forest">
+                                  {speaker.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                                </div>
+                              )}
+                            </div>
+                            <div>
+                              <p className="text-xs font-semibold text-charcoal">{speaker.name}</p>
+                              {speaker.role && (
+                                <p className="text-[10px] text-muted/60">{speaker.role}</p>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {new Date(featuredEvent.date) >= now && featuredEvent.registrationUrl && (
+                    <div className="mt-7">
+                      <Link
+                        href={featuredEvent.registrationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
+                      >
+                        Register Now
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+
+      {/* All Events */}
+      {events.length > 0 && (
+        <section className="relative overflow-hidden bg-ambient-warm py-16 lg:py-20">
+          <div aria-hidden="true" className="pointer-events-none absolute right-[5%] top-20 h-14 w-14 rounded-full bg-sage/20 backdrop-blur-sm lg:h-20 lg:w-20" />
+          <div className="mx-auto max-w-[1200px] px-4">
+            <FadeIn direction="up">
+              <div className="mb-10">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
+                  Events
+                </p>
+                <h2 className="font-serif text-2xl font-bold tracking-tight text-forest lg:text-3xl">
+                  All Events
+                </h2>
+                <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
+                <p className="mt-3 text-sm text-muted">
+                  Browse upcoming and past appearances.
+                </p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="up" delay={80}>
+              <EventList events={restEvents} />
+            </FadeIn>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="grain-overlay relative overflow-hidden bg-forest py-24">

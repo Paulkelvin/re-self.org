@@ -585,7 +585,7 @@ export default async function HomePage() {
               <FadeIn direction="up" delay={160}>
                 <div className="mt-8 text-center">
                   <Link
-                    href="/events"
+                    href="/speaking-events"
                     className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
                   >
                     {isUpcoming ? "View all events" : "See past events"} &rarr;
