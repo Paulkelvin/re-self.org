@@ -82,12 +82,12 @@ export function EventList({ events }: { events: SiteEvent[] }) {
             return (
               <div
                 key={event.slug}
-                className={`group flex flex-col gap-4 py-6 transition-colors duration-200 hover:bg-forest/[0.02] sm:flex-row sm:items-center sm:gap-6 ${
+                className={`group flex flex-row items-center gap-4 py-6 transition-colors duration-200 hover:bg-forest/[0.02] sm:gap-6 ${
                   isPast ? "opacity-70 hover:opacity-100" : ""
                 }`}
               >
                 {/* Thumbnail */}
-                <div className="relative h-20 w-full shrink-0 overflow-hidden rounded-lg sm:h-20 sm:w-20">
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg">
                   <Image
                     src={event.coverImage}
                     alt={event.title}
@@ -135,7 +135,7 @@ export function EventList({ events }: { events: SiteEvent[] }) {
                 </div>
 
                 {/* Speakers + Action */}
-                <div className="flex items-center gap-4 sm:shrink-0">
+                <div className="flex shrink-0 items-center gap-4">
                   {/* Speaker avatars */}
                   {event.speakers.length > 0 && (
                     <div className="flex items-center">

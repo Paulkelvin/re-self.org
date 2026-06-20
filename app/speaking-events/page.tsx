@@ -356,7 +356,6 @@ export default async function SpeakingEventsPage() {
       {/* All Events */}
       {events.length > 0 && (
         <section className="relative overflow-hidden bg-ambient-warm py-16 lg:py-20">
-          <div aria-hidden="true" className="pointer-events-none absolute right-[5%] top-20 h-14 w-14 rounded-full bg-sage/20 backdrop-blur-sm lg:h-20 lg:w-20" />
           <div className="mx-auto max-w-[1200px] px-4">
             <FadeIn direction="up">
               <div className="mb-10">

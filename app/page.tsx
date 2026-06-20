@@ -516,18 +516,18 @@ export default async function HomePage() {
               </FadeIn>
 
               <FadeIn direction="up" delay={80}>
-                <div className="divide-y divide-line rounded-2xl border border-line/60 bg-white/60 shadow-sm shadow-forest/[0.04] backdrop-blur-md">
+                <div className="divide-y divide-line rounded-2xl border border-line/60 bg-white shadow-sm shadow-forest/[0.04]">
                   {display.map((event) => {
                     const isPast = new Date(event.date) < now;
                     const d = new Date(event.date);
                     return (
                       <div
                         key={event.slug}
-                        className={`flex flex-col gap-4 p-5 transition-colors duration-200 hover:bg-forest/[0.02] sm:flex-row sm:items-center sm:gap-6 ${
+                        className={`flex flex-row items-center gap-4 p-5 transition-colors duration-200 hover:bg-forest/[0.02] sm:gap-6 ${
                           isPast ? "opacity-70 hover:opacity-100" : ""
                         }`}
                       >
-                        <div className="relative h-16 w-full shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16">
+                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
                           <Image
                             src={event.coverImage}
                             alt={event.title}
@@ -553,7 +553,7 @@ export default async function HomePage() {
                           </div>
                         </div>
                         {event.speakers.length > 0 && (
-                          <div className="flex items-center sm:shrink-0">
+                          <div className="flex shrink-0 items-center">
                             {event.speakers.slice(0, 3).map((s, i) => (
                               <div
                                 key={s.name}
