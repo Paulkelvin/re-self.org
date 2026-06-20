@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
+import { AudienceShowcase } from "@/components/AudienceShowcase";
 import { getServices } from "@/lib/content";
 
 export const revalidate = 60;
@@ -29,15 +30,6 @@ const process = [
     title: "Delivery & Impact",
     body: "Premium delivery with full presence. Every session includes clear takeaways, practical tools, and follow-up resources.",
   },
-];
-
-const audiences = [
-  "HR and People teams planning wellbeing weeks",
-  "Leaders managing burnout on high-performing teams",
-  "Federal agencies investing in workforce wellness",
-  "Educational institutions supporting faculty and staff",
-  "Organizations building a long-term wellness culture",
-  "Executive teams navigating change and high pressure",
 ];
 
 // Local editorial enrichment for each service (keyed by title) — adds
@@ -239,41 +231,27 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* Ideal For */}
+      {/* Ideal For — Split-Screen Sticky Imagery */}
       <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
         <div className="pointer-events-none absolute -left-32 top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            {/* Title column */}
-            <FadeIn direction="up" className="lg:col-span-4">
+          <FadeIn direction="up">
+            <div className="mb-14">
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                 Ideal For
               </p>
               <h2 className="font-serif text-4xl font-bold text-[#1e3d38] lg:text-5xl">
                 Who Sonya serves best
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-[#1e3d38]/70">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#1e3d38]/70">
                 Sonya&apos;s engagements are most impactful for organizations where
                 leadership drives culture — and where investment in people is treated as
                 a strategic priority, not a perk.
               </p>
-            </FadeIn>
+            </div>
+          </FadeIn>
 
-            {/* List column */}
-            <FadeIn direction="up" delay={120} className="lg:col-span-8">
-              <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
-                {audiences.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 border-b border-[#1e3d38]/10 pb-4 text-sm font-medium text-[#1e3d38]"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-1 shrink-0 text-forest/50"><polyline points="20 6 9 17 4 12" /></svg>
-                    <span className="leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </FadeIn>
-          </div>
+          <AudienceShowcase />
         </div>
       </section>
 
