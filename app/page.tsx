@@ -23,6 +23,13 @@ export const revalidate = 60;
 const eyebrowCls =
   "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60";
 
+const statIcons = [
+  <svg key="cal" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>,
+  <svg key="users" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
+  <svg key="star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>,
+  <svg key="award" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></svg>,
+];
+
 function TargetIcon() {
   return (
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
@@ -168,16 +175,21 @@ export default async function HomePage() {
               where resilience is mission-critical.
             </p>
 
-            <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
-              {achievements.map(({ value, label }) => (
+            <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
+              {achievements.map(({ value, label }, i) => (
                 <div
                   key={label}
-                  className="group pt-3"
+                  className="group flex items-start gap-3 pt-3"
                 >
-                  <dt className="font-serif text-lg font-semibold text-forest">{value}</dt>
-                  <dd className="mt-1 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-muted transition-colors group-hover:text-forest">
-                    {label}
-                  </dd>
+                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest/[0.06] text-forest/60 transition-colors duration-300 group-hover:bg-forest/[0.10] group-hover:text-forest">
+                    {statIcons[i % statIcons.length]}
+                  </span>
+                  <div>
+                    <dt className="font-serif text-lg font-semibold text-forest">{value}</dt>
+                    <dd className="mt-0.5 text-[0.68rem] font-semibold uppercase leading-relaxed tracking-[0.14em] text-muted transition-colors group-hover:text-forest">
+                      {label}
+                    </dd>
+                  </div>
                 </div>
               ))}
             </dl>
@@ -567,7 +579,7 @@ export default async function HomePage() {
           </FadeIn>
           <FadeIn direction="up" delay={100}>
             <div className="relative">
-              <div className="relative z-10 rounded-2xl bg-white p-8 shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] lg:p-10">
+              <div className="relative z-10 rounded-2xl bg-white/70 backdrop-blur-md p-8 shadow-[0_8px_32px_rgba(47,79,79,0.06)] ring-1 ring-white/60 lg:p-10">
                 <FaqAccordion items={faq} />
               </div>
               <DecorImage

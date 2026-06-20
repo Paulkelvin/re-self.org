@@ -10,28 +10,32 @@ interface FaqItem {
 
 export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [open, setOpen] = useState<number | null>(null);
-  // Framer animates height to the *measured* auto height, so long answers
-  // never clip (the old max-h-96 cap did). Under reduced motion we fade only.
   const reduce = useReducedMotion();
 
   return (
-    <div className="divide-y divide-line">
+    <div>
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div key={i}>
+          <div key={i} className="divider-gradient">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-6 py-5 text-left transition-colors hover:text-forest"
+              className="group flex w-full items-center justify-between gap-6 rounded-lg py-5 text-left transition-all duration-300 hover:bg-forest/[0.02] hover:px-3"
               aria-expanded={isOpen}
             >
-              <span className="text-base font-semibold text-charcoal">{item.question}</span>
               <span
-                className={`shrink-0 text-forest transition-transform duration-300 ${
-                  isOpen ? "rotate-45" : ""
+                className={`text-base font-semibold text-charcoal transition-all duration-300 ${
+                  isOpen ? "translate-x-1 text-forest" : "group-hover:translate-x-1"
                 }`}
               >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                {item.question}
+              </span>
+              <span
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-forest/15 text-forest transition-all duration-300 ${
+                  isOpen ? "rotate-45 border-forest/30 bg-forest/[0.06]" : "group-hover:border-forest/30"
+                }`}
+              >
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                   <path d="M10 4V16M4 10H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </span>
@@ -47,7 +51,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                   transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="pb-5 text-sm leading-relaxed text-muted">{item.answer}</p>
+                  <p className="pb-5 pl-1 text-sm leading-relaxed text-muted">{item.answer}</p>
                 </motion.div>
               )}
             </AnimatePresence>
