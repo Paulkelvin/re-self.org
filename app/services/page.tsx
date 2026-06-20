@@ -396,11 +396,11 @@ export default async function ServicesPage() {
                 className="group relative flex min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]"
                 style={{ backgroundColor: audiences[5].bg }}
               >
-                <div className="relative z-10 flex flex-col justify-end p-6 lg:max-w-[55%] lg:p-8">
+                <div className="relative z-10 flex flex-col justify-end p-6 pr-[45%] lg:max-w-[55%] lg:p-8 lg:pr-8">
                   <h3 className="font-serif text-xl font-bold text-white">{audiences[5].title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/80">{audiences[5].body}</p>
                 </div>
-                <div className="absolute -bottom-[15%] right-0 h-[130%] w-[60%] lg:w-[65%]">
+                <div className="absolute -bottom-[25%] right-[-5%] h-[160%] w-[55%] lg:-bottom-[15%] lg:right-0 lg:h-[140%] lg:w-[60%]">
                   <Image
                     src={audiences[5].image!}
                     alt={audiences[5].title}
