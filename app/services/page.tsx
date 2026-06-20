@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
-import { AudienceShowcase } from "@/components/AudienceShowcase";
 import { getServices } from "@/lib/content";
 
 export const revalidate = 60;
@@ -13,6 +12,33 @@ export const metadata: Metadata = {
   description:
     "Corporate wellness workshops, programs, retreat facilitation, and keynote speaking tailored for organizations, government agencies, and educational institutions.",
 };
+
+const audiences = [
+  {
+    title: "HR & People Teams",
+    body: "Wellbeing weeks, culture initiatives, and employee wellness campaigns that go beyond box-checking.",
+  },
+  {
+    title: "High-Performance Leaders",
+    body: "Managing burnout on ambitious teams where pressure never lets up and resilience isn't optional.",
+  },
+  {
+    title: "Federal Agencies",
+    body: "Evidence-based programs built for the scale and rigor government workforce wellness demands.",
+  },
+  {
+    title: "Educational Institutions",
+    body: "Sustainable wellness practices for faculty and staff that prevent attrition and restore purpose.",
+  },
+  {
+    title: "Wellness-First Organizations",
+    body: "Long-term cultures of care where wellbeing is woven into leadership, operations, and daily rhythms.",
+  },
+  {
+    title: "Executive Teams",
+    body: "Emotional and strategic support to lead well through change, transition, and high-stakes demands.",
+  },
+];
 
 const process = [
   {
@@ -251,7 +277,26 @@ export default async function ServicesPage() {
             </div>
           </FadeIn>
 
-          <AudienceShowcase />
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {audiences.map((a, i) => (
+              <FadeIn key={a.title} direction="up" delay={i * 80}>
+                <div className="group relative overflow-hidden rounded-xl bg-white/60 backdrop-blur-md p-6 shadow-[0_4px_20px_rgba(47,79,79,0.05)] ring-1 ring-forest/[0.04] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(47,79,79,0.08)]">
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-1 -top-2 select-none font-serif text-6xl font-bold leading-none text-forest/[0.06] transition-colors duration-300 group-hover:text-forest/[0.12]"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="relative text-base font-semibold text-forest">
+                    {a.title}
+                  </h3>
+                  <p className="relative mt-2 text-sm leading-relaxed text-muted">
+                    {a.body}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
