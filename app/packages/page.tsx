@@ -105,7 +105,7 @@ export default async function PackagesPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px]">
           <FadeIn direction="up">
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
               Investment
             </p>
             <h1 className="font-serif max-w-3xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
@@ -147,7 +147,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-16 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                 Programs
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
@@ -212,7 +212,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                 Why Choose Re-Self
               </p>
               <h2 className="font-serif text-3xl font-bold text-[#1e3d38] lg:text-4xl">
@@ -247,7 +247,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                 FAQ
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">

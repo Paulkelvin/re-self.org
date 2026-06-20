@@ -106,7 +106,7 @@ export default async function ServicesPage() {
         </span>
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px]">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
             Services
           </p>
           <h1 className="font-serif max-w-4xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
@@ -195,8 +195,8 @@ export default async function ServicesPage() {
                     {meta && (
                       <ul className="relative mt-7 grid gap-y-3 sm:grid-cols-2">
                         {meta.deliverables.map((d) => (
-                          <li key={d} className="flex items-start gap-3 text-sm text-charcoal">
-                            <span className="mt-2 h-px w-3.5 shrink-0 bg-forest/40" aria-hidden="true" />
+                          <li key={d} className="flex items-start gap-2.5 text-sm text-charcoal">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-1 shrink-0 text-forest/60"><polyline points="20 6 9 17 4 12" /></svg>
                             <span className="leading-snug">{d}</span>
                           </li>
                         ))}
@@ -223,7 +223,7 @@ export default async function ServicesPage() {
                           {meta.bestFor.map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-forest/15 bg-forest/[0.04] px-3 py-1 text-[11px] font-medium text-forest"
+                              className="rounded-full bg-forest/[0.05] px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.15em] text-forest/70"
                             >
                               {tag}
                             </span>
@@ -246,7 +246,7 @@ export default async function ServicesPage() {
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Title column */}
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                 Ideal For
               </p>
               <h2 className="font-serif text-4xl font-bold text-[#1e3d38] lg:text-5xl">
@@ -267,7 +267,7 @@ export default async function ServicesPage() {
                     key={item}
                     className="flex items-start gap-3 border-b border-[#1e3d38]/10 pb-4 text-sm font-medium text-[#1e3d38]"
                   >
-                    <span className="mt-2 h-px w-3.5 shrink-0 bg-[#1e3d38]/40" aria-hidden="true" />
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-1 shrink-0 text-forest/50"><polyline points="20 6 9 17 4 12" /></svg>
                     <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -283,7 +283,7 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">Process</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Process</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
             </div>
           </FadeIn>

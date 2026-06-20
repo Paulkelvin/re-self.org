@@ -21,7 +21,7 @@ export default function ContactPage() {
       </div>
 
       <FadeIn direction="up" className="relative z-10 mb-10 text-center">
-        <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">Contact</p>
+        <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Contact</p>
         <h1 className="font-serif text-3xl font-bold tracking-tight text-forest sm:text-4xl">
           Let&apos;s start the conversation
         </h1>

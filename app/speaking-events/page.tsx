@@ -76,7 +76,7 @@ export default async function SpeakingEventsPage() {
         </span>
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px]">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
             Speaking &amp; Events
           </p>
           <h1 className="font-serif max-w-4xl text-3xl font-medium leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-4xl lg:text-5xl">
@@ -103,7 +103,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:items-start">
             <FadeIn direction="up">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                 Signature Topics
               </p>
               <h2 className="font-serif text-4xl font-bold leading-tight text-forest lg:text-5xl">
@@ -151,7 +151,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">Formats</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Formats</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
                 Three ways to bring Sonya to your audience.
               </h2>
@@ -187,7 +187,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-12 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">Audiences</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Audiences</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
                 Where Sonya speaks
               </h2>

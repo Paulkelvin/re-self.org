@@ -210,7 +210,7 @@ export default async function HomePage() {
         <div className="relative mx-auto w-full max-w-[1320px]">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
             <FadeIn direction="up">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.12] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
                 Philosophy
               </p>
               <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-white xl:text-[2.6rem]">
@@ -246,7 +246,7 @@ export default async function HomePage() {
               >
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute -top-4 right-2 select-none font-serif text-[8rem] font-bold leading-none text-white/[0.05] lg:text-[10rem]"
+                  className="pointer-events-none absolute -top-4 right-2 select-none font-serif text-[8rem] font-bold leading-none text-white/[0.03] lg:text-[10rem]"
                 >
                   {num}
                 </span>
@@ -553,7 +553,8 @@ export default async function HomePage() {
             </div>
           </FadeIn>
           <FadeIn direction="up" delay={100}>
-            <div className="mx-auto max-w-[820px]">
+            <div className="relative mx-auto max-w-[820px]">
+              <div aria-hidden="true" className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-[radial-gradient(ellipse_at_center,rgba(197,159,85,0.10),transparent_70%)] blur-[120px]" />
               <BookingForm />
             </div>
           </FadeIn>
@@ -579,7 +580,7 @@ export default async function HomePage() {
           </FadeIn>
           <FadeIn direction="up" delay={100}>
             <div className="relative">
-              <div className="relative z-10 rounded-2xl bg-white/70 backdrop-blur-md p-8 shadow-[0_8px_32px_rgba(47,79,79,0.06)] ring-1 ring-white/60 lg:p-10">
+              <div className="relative z-10 rounded-2xl bg-white/70 backdrop-blur-md p-8 shadow-[0_12px_40px_rgba(0,0,0,0.06)] ring-1 ring-white/60 lg:p-10">
                 <FaqAccordion items={faq} />
               </div>
               <DecorImage

@@ -150,7 +150,7 @@
   left: 8%;
   right: 8%;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(47,79,79,0.10), transparent);
+  background: linear-gradient(to right, transparent, rgba(47,79,79,0.06), transparent);
 }
 .divider-gradient-light::after {
   background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);

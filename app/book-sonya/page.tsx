@@ -41,7 +41,7 @@ export default function BookSonyaPage() {
       {/* Hero */}
       <section className="bg-[#23423c] px-6 py-16 text-white md:py-24 lg:px-16">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">Book Sonya</p>
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">Book Sonya</p>
           <h1 className="font-serif max-w-3xl text-3xl font-medium leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
             Request availability for your next event or wellness initiative.
           </h1>
@@ -60,7 +60,7 @@ export default function BookSonyaPage() {
           <div className="order-2 space-y-8 lg:order-1 lg:col-span-5">
             <FadeIn direction="up">
               <div>
-                <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
+                <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                   What happens next
                 </p>
                 <div className="flex flex-col gap-6 sm:flex-row lg:flex-col">

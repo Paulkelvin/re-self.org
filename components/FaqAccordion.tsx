@@ -31,8 +31,8 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                 {item.question}
               </span>
               <span
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-forest/15 text-forest transition-all duration-300 ${
-                  isOpen ? "rotate-45 border-forest/30 bg-forest/[0.06]" : "group-hover:border-forest/30"
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-forest/10 text-forest transition-all duration-300 ${
+                  isOpen ? "rotate-45 border-forest/20 bg-forest/[0.04]" : "group-hover:border-forest/20"
                 }`}
               >
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">

@@ -82,7 +82,7 @@ export default async function AboutPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 py-24 lg:px-16 lg:py-32">
           <FadeIn direction="up" className="max-w-2xl">
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
               About Sonya
             </p>
             <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-7xl">
@@ -154,7 +154,7 @@ export default async function AboutPage() {
       <section className="bg-[#1e3d38] px-6 py-24 text-white lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[1200px]">
           <FadeIn direction="up">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.15] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-sage">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
               Career Journey
             </p>
             <h2 className="font-serif text-4xl font-light tracking-tight text-white lg:text-6xl">
@@ -193,7 +193,7 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 border-t border-[#1e3d38]/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-forest/[0.07] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-forest/80">
+              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
                 Values
               </p>
               <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-[#1e3d38] md:text-5xl lg:pb-0">

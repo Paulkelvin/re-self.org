@@ -18,16 +18,16 @@ const initial = {
 };
 
 const inputCls =
-  "w-full rounded-none border-b border-neutral-300 bg-transparent px-0 py-3 text-sm text-neutral-800 placeholder-neutral-400 transition-colors focus:border-neutral-900 focus:outline-none";
+  "w-full rounded-lg border border-neutral-200 bg-[#FAFAFA] px-4 py-3 text-sm text-neutral-800 placeholder-neutral-400 transition-all duration-300 focus:border-forest focus:bg-white focus:outline-none focus:ring-1 focus:ring-forest/20";
 
-const selectCls = `${inputCls} appearance-none pr-6`;
+const selectCls = `${inputCls} appearance-none pr-8`;
 
-const labelCls = "text-[0.7rem] font-semibold uppercase tracking-wider text-charcoal/70";
+const labelCls = "text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-forest/70";
 
 function SelectChevron() {
   return (
     <svg
-      className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400"
+      className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400"
       width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
     >
@@ -110,7 +110,7 @@ export function BookingForm() {
   return (
     <form
       onSubmit={submit}
-      className="relative overflow-hidden rounded-2xl border border-line bg-white p-7 shadow-sm lg:p-9"
+      className="relative overflow-hidden rounded-2xl border border-line bg-white p-7 shadow-[0_12px_40px_rgba(0,0,0,0.06)] lg:p-9"
     >
       {/* Header + step tracker */}
       <div className="mb-6 flex items-center justify-between gap-4">
@@ -129,9 +129,9 @@ export function BookingForm() {
       </div>
 
       {/* Thin progress track */}
-      <div className="relative mb-12 h-[2px] w-full bg-neutral-200">
+      <div className="relative mb-12 h-[2px] w-full bg-neutral-100">
         <div
-          className="absolute inset-y-0 left-0 bg-neutral-900 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          className="absolute inset-y-0 left-0 bg-forest transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{ width: step === 1 ? "50%" : "100%" }}
         />
       </div>
