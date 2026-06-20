@@ -14,6 +14,7 @@ import {
   getTopics,
   getAchievements,
   getPackages,
+  getEvents,
 } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
@@ -76,7 +77,7 @@ function LeafIcon() {
 
 
 export default async function HomePage() {
-  const [services, topics, testimonials, achievements, faq, galleryImages, packages] =
+  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events] =
     await Promise.all([
       getServices(),
       getTopics(),
@@ -85,6 +86,7 @@ export default async function HomePage() {
       getFaq(),
       getGalleryImages(),
       getPackages(),
+      getEvents(),
     ]);
 
   const flagship =
@@ -489,6 +491,111 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── EVENTS ── */}
+      {(() => {
+        const now = new Date();
+        const upcoming = events.filter((e) => new Date(e.date) >= now);
+        const display = upcoming.length > 0 ? upcoming.slice(0, 3) : events.slice(0, 3);
+        const isUpcoming = upcoming.length > 0;
+        if (display.length === 0) return null;
+        return (
+          <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
+            <div aria-hidden="true" className="pointer-events-none absolute -left-32 top-0 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" />
+            <div className="relative mx-auto max-w-[1200px] px-4">
+              <FadeIn direction="up">
+                <div className="mb-10">
+                  <p className={eyebrowCls}>
+                    {isUpcoming ? "Upcoming Events" : "Recent Events"}
+                  </p>
+                  <h2 className="font-serif text-3xl font-bold tracking-tight text-forest lg:text-4xl">
+                    {isUpcoming ? "Catch Sonya live." : "Where Sonya has been."}
+                  </h2>
+                  <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
+                </div>
+              </FadeIn>
+
+              <FadeIn direction="up" delay={80}>
+                <div className="divide-y divide-line rounded-2xl border border-line/60 bg-white/60 shadow-sm shadow-forest/[0.04] backdrop-blur-md">
+                  {display.map((event) => {
+                    const isPast = new Date(event.date) < now;
+                    const d = new Date(event.date);
+                    return (
+                      <div
+                        key={event.slug}
+                        className={`flex flex-col gap-4 p-5 transition-colors duration-200 hover:bg-forest/[0.02] sm:flex-row sm:items-center sm:gap-6 ${
+                          isPast ? "opacity-70 hover:opacity-100" : ""
+                        }`}
+                      >
+                        <div className="relative h-16 w-full shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-16">
+                          <Image
+                            src={event.coverImage}
+                            alt={event.title}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="truncate font-serif text-base font-semibold text-charcoal">
+                            {event.title}
+                          </h3>
+                          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted/70">
+                            <span>{d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+                            {event.location && (
+                              <>
+                                <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
+                                <span>{event.location}</span>
+                              </>
+                            )}
+                            <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
+                            <span className="font-semibold text-sage">{event.eventType}</span>
+                          </div>
+                        </div>
+                        {event.speakers.length > 0 && (
+                          <div className="flex items-center sm:shrink-0">
+                            {event.speakers.slice(0, 3).map((s, i) => (
+                              <div
+                                key={s.name}
+                                className={`relative h-7 w-7 overflow-hidden rounded-full border-2 border-white shadow-sm ${i > 0 ? "-ml-2" : ""}`}
+                                title={s.name}
+                              >
+                                {s.image ? (
+                                  <Image src={s.image} alt={s.name} fill sizes="28px" className="object-cover" />
+                                ) : (
+                                  <div className="flex h-full w-full items-center justify-center bg-sage/30 text-[9px] font-bold text-forest">
+                                    {s.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                            {event.speakers.length > 3 && (
+                              <div className="-ml-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-forest/10 text-[9px] font-bold text-forest">
+                                +{event.speakers.length - 3}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </FadeIn>
+
+              <FadeIn direction="up" delay={160}>
+                <div className="mt-8 text-center">
+                  <Link
+                    href="/events"
+                    className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                  >
+                    {isUpcoming ? "View all events" : "See past events"} &rarr;
+                  </Link>
+                </div>
+              </FadeIn>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ── PROGRAMS ── */}
       {packages.length > 0 && (

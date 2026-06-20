@@ -102,3 +102,78 @@ export async function getPackages(): Promise<Package[]> {
     }`,
   );
 }
+
+export interface EventSpeaker {
+  name: string;
+  role: string;
+  organization: string;
+  image: string;
+}
+
+export interface SiteEvent {
+  title: string;
+  slug: string;
+  eventType: string;
+  date: string;
+  endDate: string | null;
+  location: string;
+  isVirtual: boolean;
+  description: string;
+  coverImage: string;
+  registrationUrl: string | null;
+  speakers: EventSpeaker[];
+  featured: boolean;
+}
+
+export async function getEvents(): Promise<SiteEvent[]> {
+  const data = await client.fetch<
+    {
+      title: string;
+      slug: { current: string };
+      eventType: string;
+      date: string;
+      endDate: string | null;
+      location: string;
+      isVirtual: boolean;
+      description: string;
+      coverImage: Image;
+      registrationUrl: string | null;
+      featured: boolean;
+      speakers: { name: string; role: string; organization: string; image: Image | null }[] | null;
+    }[]
+  >(
+    groq`*[_type == "event"] | order(date desc){
+      title,
+      "slug": slug.current,
+      eventType,
+      date,
+      endDate,
+      location,
+      isVirtual,
+      description,
+      coverImage,
+      registrationUrl,
+      featured,
+      speakers[]{ name, role, organization, image }
+    }`,
+  );
+  return data.map((e) => ({
+    title: e.title,
+    slug: e.slug.current ?? e.slug,
+    eventType: e.eventType,
+    date: e.date,
+    endDate: e.endDate,
+    location: e.location ?? "",
+    isVirtual: e.isVirtual ?? false,
+    description: e.description,
+    coverImage: urlForImage(e.coverImage).width(1200).quality(85).url(),
+    registrationUrl: e.registrationUrl,
+    featured: e.featured ?? false,
+    speakers: (e.speakers ?? []).map((s) => ({
+      name: s.name,
+      role: s.role ?? "",
+      organization: s.organization ?? "",
+      image: s.image ? urlForImage(s.image).width(200).height(200).url() : "",
+    })),
+  }));
+}

@@ -10,6 +10,7 @@ import { galleryImage } from "./galleryImage";
 import { author } from "./author";
 import { article } from "./article";
 import { pkg } from "./package";
+import { event } from "./event";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Site content
@@ -21,6 +22,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   achievement,
   galleryImage,
   pkg,
+  event,
   // Journal
   author,
   article,
