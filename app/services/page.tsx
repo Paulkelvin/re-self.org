@@ -31,7 +31,7 @@ const audiences: {
     title: "High-Performance Leaders",
     body: "Managing burnout on ambitious teams where pressure never lets up and resilience isn't optional.",
     variant: "plain",
-    bg: "#e8e2d8",
+    bg: "#c9b89a",
   },
   {
     title: "Federal Agencies",
@@ -44,7 +44,7 @@ const audiences: {
     body: "Sustainable wellness practices for faculty and staff that prevent attrition and restore purpose.",
     variant: "image",
     image:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c476?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Wellness-First Organizations",
@@ -57,8 +57,7 @@ const audiences: {
     title: "Executive Teams",
     body: "Emotional and strategic support to lead well through change, transition, and high-stakes demands.",
     variant: "person",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    image: "/executive-cutout.png",
     bg: "#5a7a6d",
   },
 ];
@@ -391,7 +390,7 @@ export default async function ServicesPage() {
                     alt={audiences[5].title}
                     fill
                     sizes="(max-width: 1024px) 50vw, 25vw"
-                    className="object-contain object-right-bottom mix-blend-multiply"
+                    className="object-contain object-right-bottom"
                   />
                 </div>
               </div>
