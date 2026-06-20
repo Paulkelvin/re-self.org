@@ -384,7 +384,7 @@ export default async function ServicesPage() {
                   <h3 className="font-serif text-xl font-bold text-white">{audiences[5].title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/80">{audiences[5].body}</p>
                 </div>
-                <div className="absolute bottom-0 right-0 h-full w-1/2 lg:w-[55%]">
+                <div className="absolute -bottom-[15%] right-0 h-[130%] w-[60%] lg:w-[65%]">
                   <Image
                     src={audiences[5].image!}
                     alt={audiences[5].title}
