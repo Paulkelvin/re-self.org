@@ -10,7 +10,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "About Sonya Harris",
   description:
-    "Learn about Sonya Harris — corporate wellness consultant, keynote speaker, Air Force veteran, and federal government leader with 21+ years of service.",
+    "Learn about Sonya Harris, M.Ed. — retired USAF veteran, HR professional, self-care advocate, and founder of Re-Self, a wellness curriculum helping individuals and organizations rediscover their inner strength.",
 };
 
 const timeline = [
@@ -30,7 +30,7 @@ const timeline = [
     period: "2020 – Present",
     title: "Re-Self Wellness",
     description:
-      "Launched Re-Self Wellness to bring military-grade resilience, evidence-based wellness, and human-centered leadership development to corporations, agencies, and institutions nationwide.",
+      "Founded Re-Self, a thoughtfully developed wellness curriculum helping individuals and organizations rediscover their inner strength. Trusted by organizations like the University of California and Phenomenal Women Empowerment Organization, with workshops delivered across the U.S. and internationally.",
   },
 ];
 

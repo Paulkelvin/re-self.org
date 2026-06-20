@@ -35,6 +35,9 @@ export default function ContactPage() {
         <p className="mx-auto mt-3 max-w-md text-sm text-muted">
           Send a quick question, or book Sonya for a keynote, workshop, or corporate program.
         </p>
+        <p className="mx-auto mt-2 text-sm text-muted">
+          Or call directly: <a href="tel:+12409887490" className="font-semibold text-forest hover:underline">240-988-7490</a>
+        </p>
       </FadeIn>
 
       <div className="relative z-10 flex w-full justify-center">

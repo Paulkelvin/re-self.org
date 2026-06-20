@@ -125,8 +125,8 @@ export default async function HomePage() {
 
             <FadeIn direction="up" delay={160}>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)] sm:text-lg">
-                Sonya Harris helps teams build resilience and sustainable wellbeing —
-                drawn from 21+ years of service and federal leadership.
+                Re-Self provides practical, lasting tools for balance, resilience, and
+                well-being — with workshops delivered across the U.S. and internationally.
               </p>
             </FadeIn>
 
@@ -174,9 +174,10 @@ export default async function HomePage() {
               Leadership Meets Wellness
             </h2>
             <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
-              Sonya Harris blends military discipline and federal leadership with deep
-              wellness expertise to help executive teams navigate high-stakes environments
-              where resilience is mission-critical.
+              Sonya Harris, M.Ed., is a retired USAF veteran, HR professional, and self-care
+              advocate. Re-Self is a thoughtfully developed wellness curriculum that helps
+              individuals and organizations rediscover their inner strength — with workshops
+              delivered across the U.S. and internationally.
             </p>
 
             <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
@@ -282,7 +283,8 @@ export default async function HomePage() {
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">How We Serve</h2>
               <p className="mx-auto mt-3 max-w-xl text-sm text-muted lg:text-base">
-                Tailored wellness solutions designed for individuals, teams, and organizations.
+                Workshops, retreats, virtual self-care sessions, and practical tools — perfect
+                for community groups, family trips, women ministries, youth groups, and more.
               </p>
             </div>
           </FadeIn>
@@ -536,13 +538,10 @@ export default async function HomePage() {
                     const isPast = new Date(event.date) < now;
                     const d = new Date(event.date);
                     const calUrl = buildCalendarUrl(event);
-                    const href = event.registrationUrl || calUrl;
+                    const href = !isPast ? (event.registrationUrl || calUrl) : undefined;
                     return (
-                      <a
+                      <div
                         key={event.slug}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="group flex flex-col overflow-hidden rounded-2xl border border-line/60 bg-white shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-forest/[0.10]"
                       >
                         <div className="relative aspect-[16/10] w-full overflow-hidden">
@@ -601,20 +600,20 @@ export default async function HomePage() {
                           )}
 
                           <div className="mt-auto flex items-center gap-3 pt-4">
-                            {!isPast && (
-                              <span className="inline-flex items-center gap-1.5 rounded-full bg-forest px-4 py-2 text-[11px] font-semibold text-white transition-colors group-hover:bg-forest-light">
+                            {!isPast && href && (
+                              <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 rounded-full bg-forest px-4 py-2 text-[11px] font-semibold text-white transition-colors hover:bg-forest-light"
+                              >
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /><path d="M12 14v4M10 16h4" /></svg>
                                 Save to Calendar
-                              </span>
-                            )}
-                            {isPast && (
-                              <span className="inline-flex items-center rounded-full border border-line px-4 py-2 text-[11px] font-medium text-muted/60">
-                                Past Event
-                              </span>
+                              </a>
                             )}
                           </div>
                         </div>
-                      </a>
+                      </div>
                     );
                   })}
                 </div>
@@ -623,10 +622,10 @@ export default async function HomePage() {
               <FadeIn direction="up" delay={160}>
                 <div className="mt-8 text-center">
                   <Link
-                    href="/events"
+                    href="/speaking-events"
                     className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
                   >
-                    {isUpcoming ? "View all events" : "See past events"} &rarr;
+                    View all events &rarr;
                   </Link>
                 </div>
               </FadeIn>

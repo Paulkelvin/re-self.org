@@ -10,7 +10,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Corporate wellness workshops, programs, retreat facilitation, and keynote speaking tailored for organizations, government agencies, and educational institutions.",
+    "Workshops, retreats, custom programs, virtual self-care sessions, and journals — Re-Self provides practical, lasting tools for balance, resilience, and well-being.",
 };
 
 const audiences: {
@@ -128,6 +128,24 @@ const serviceMeta: Record<
       "Renewal & integration plan",
     ],
     bestFor: ["Executive teams", "Leadership offsites", "High-performing groups"],
+  },
+  "Virtual Self-Care Sessions": {
+    format: "60 – 90 min online sessions",
+    deliverables: [
+      "Live virtual facilitation",
+      "Guided self-care practices",
+      "Private one-on-one options",
+    ],
+    bestFor: ["Remote teams", "Busy organizations", "Individual professionals"],
+  },
+  "Journals & Tools": {
+    format: "Self-paced resources",
+    deliverables: [
+      "Re-Self workbook",
+      "Guided journals",
+      "Practical wellness materials",
+    ],
+    bestFor: ["Individuals", "Teams", "Workshop participants"],
   },
 };
 
