@@ -29,6 +29,8 @@ export default async function NewsletterPage() {
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           <div className="absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-sage/10 blur-3xl" />
           <div className="absolute -bottom-24 -left-24 h-[420px] w-[420px] rounded-full bg-beige blur-3xl" />
+          {/* Glass orb */}
+          <div className="absolute right-[6%] top-[30%] h-14 w-14 rounded-full bg-sage/20 backdrop-blur-sm lg:h-20 lg:w-20" />
         </div>
 
         <div className="relative mx-auto max-w-[1200px] px-4 py-20 lg:py-28">
@@ -130,13 +132,16 @@ export default async function NewsletterPage() {
       </section>
 
       {/* Subscribe CTA */}
-      <section className="bg-forest py-20 lg:py-24">
+      <section className="grain-overlay relative overflow-hidden bg-forest py-20 lg:py-24">
+        {/* Botanical branch */}
+        <svg aria-hidden="true" className="pointer-events-none absolute -right-4 bottom-6 h-28 w-28 rotate-[20deg] text-white/[0.04] lg:right-8 lg:h-36 lg:w-36" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M20 90 C30 70 40 50 50 30 C55 20 60 10 70 8" /><path d="M35 65 C28 60 22 52 18 45" /><path d="M42 50 C50 48 58 42 62 35" /><path d="M48 38 C42 32 38 25 36 18" /><path d="M55 25 C60 22 68 18 74 15" /></svg>
         <div className="mx-auto max-w-[1200px] px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <FadeIn direction="up">
               <h2 className="font-serif text-3xl font-bold leading-tight text-white lg:text-4xl">
                 Never miss an issue.
               </h2>
+              <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
               <p className="mt-4 max-w-md text-base leading-relaxed text-white/60">
                 Get Sonya&apos;s essays on wellness and resilient leadership delivered as soon
                 as they&apos;re published. Thoughtful, practical, and never more than you have

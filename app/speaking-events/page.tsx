@@ -100,6 +100,9 @@ export default async function SpeakingEventsPage() {
       {/* Signature Topics */}
       <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
         <div className="pointer-events-none absolute -right-40 -top-20 h-[500px] w-[500px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
+        {/* Cross markers */}
+        <span aria-hidden="true" className="pointer-events-none absolute left-[6%] top-20 select-none text-xl text-forest/[0.07]">+</span>
+        <span aria-hidden="true" className="pointer-events-none absolute right-[15%] bottom-28 select-none text-lg text-sage/[0.10]">+</span>
         <div className="mx-auto max-w-[1200px] px-4">
           <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:items-start">
             <FadeIn direction="up">
@@ -155,6 +158,7 @@ export default async function SpeakingEventsPage() {
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
                 Three ways to bring Sonya to your audience.
               </h2>
+              <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
             </div>
           </FadeIn>
 
@@ -184,6 +188,8 @@ export default async function SpeakingEventsPage() {
       {/* Audiences */}
       <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
         <div className="pointer-events-none absolute -right-32 top-10 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
+        {/* Ring outline */}
+        <div aria-hidden="true" className="pointer-events-none absolute -left-12 -top-12 h-28 w-28 rounded-full border border-forest/[0.08] lg:h-40 lg:w-40" />
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-12 text-center">
@@ -217,7 +223,9 @@ export default async function SpeakingEventsPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-forest py-24">
+      <section className="grain-overlay relative overflow-hidden bg-forest py-24">
+        {/* Glass orb */}
+        <div aria-hidden="true" className="pointer-events-none absolute -right-6 top-8 h-16 w-16 rounded-full bg-white/[0.06] backdrop-blur-sm lg:h-24 lg:w-24" />
         <div className="mx-auto max-w-[1200px] px-4">
           <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
             <FadeIn direction="up">

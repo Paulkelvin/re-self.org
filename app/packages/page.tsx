@@ -153,6 +153,7 @@ export default async function PackagesPage() {
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
                 Find the right fit for your organization.
               </h2>
+              <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
               <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted">
                 Every package includes a discovery call, custom-designed
                 content, and follow-up resources. No templates — ever.
@@ -209,6 +210,10 @@ export default async function PackagesPage() {
       {/* Trust / Guarantees */}
       <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
         <div className="pointer-events-none absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
+        {/* Dot grid texture */}
+        <div aria-hidden="true" className="dot-grid pointer-events-none absolute left-0 top-0 h-[50%] w-[35%] opacity-50" />
+        {/* Botanical branch */}
+        <svg aria-hidden="true" className="pointer-events-none absolute -right-4 top-16 h-28 w-28 rotate-[25deg] text-sage/[0.10] lg:right-8 lg:h-36 lg:w-36" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M20 90 C30 70 40 50 50 30 C55 20 60 10 70 8" /><path d="M35 65 C28 60 22 52 18 45" /><path d="M42 50 C50 48 58 42 62 35" /><path d="M48 38 C42 32 38 25 36 18" /><path d="M55 25 C60 22 68 18 74 15" /></svg>
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
@@ -244,6 +249,8 @@ export default async function PackagesPage() {
       {/* FAQ */}
       <section className="relative overflow-hidden bg-ambient-warm py-20 lg:py-28">
         <div className="pointer-events-none absolute -right-32 top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
+        {/* Glass orb */}
+        <div aria-hidden="true" className="pointer-events-none absolute -left-6 top-1/3 h-14 w-14 rounded-full bg-sage/20 backdrop-blur-sm lg:left-4 lg:h-20 lg:w-20" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">

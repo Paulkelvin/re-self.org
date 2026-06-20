@@ -18,6 +18,13 @@ export default function ContactPage() {
         <div className="absolute -bottom-32 -right-32 h-[480px] w-[480px] rounded-full bg-beige blur-3xl" />
         <BrandOrbit className="absolute -right-24 top-24 h-72 w-72 text-forest/[0.10]" />
         <BrandOrbit reverse className="absolute -left-28 bottom-16 h-64 w-64 text-forest/[0.09]" />
+        {/* Botanical leaf */}
+        <svg className="absolute right-[8%] top-[15%] h-24 w-24 rotate-[30deg] text-sage/[0.08] lg:h-28 lg:w-28" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
+        {/* Cross markers */}
+        <span className="absolute left-[15%] top-[40%] select-none text-xl text-forest/[0.06]">+</span>
+        <span className="absolute bottom-[25%] right-[12%] select-none text-lg text-sage/[0.08]">+</span>
+        {/* Dot grid */}
+        <div className="dot-grid absolute bottom-0 left-0 h-[40%] w-[30%] opacity-40" />
       </div>
 
       <FadeIn direction="up" className="relative z-10 mb-10 text-center">

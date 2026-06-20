@@ -99,6 +99,9 @@ export default async function AboutPage() {
       {/* Overlapping magazine profile */}
       <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
         <div className="pointer-events-none absolute -left-40 -top-20 h-[500px] w-[500px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
+        {/* Glass orbs */}
+        <div aria-hidden="true" className="pointer-events-none absolute right-[10%] top-20 h-14 w-14 rounded-full bg-sage/20 backdrop-blur-sm lg:h-20 lg:w-20" />
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-16 left-[6%] h-10 w-10 rounded-full bg-forest/10 backdrop-blur-sm lg:h-14 lg:w-14" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             {/* Portrait */}
@@ -151,7 +154,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Brutalist time track */}
-      <section className="bg-[#1e3d38] px-6 py-24 text-white lg:px-16 lg:py-28">
+      <section className="grain-overlay bg-[#1e3d38] px-6 py-24 text-white lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[1200px]">
           <FadeIn direction="up">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
@@ -189,6 +192,8 @@ export default async function AboutPage() {
 
       {/* Asymmetric color-block values */}
       <section className="relative overflow-hidden bg-ambient-beige">
+        {/* Botanical leaf */}
+        <svg aria-hidden="true" className="pointer-events-none absolute -bottom-4 -right-4 h-28 w-28 rotate-[140deg] text-sage/[0.10] lg:bottom-8 lg:right-8 lg:h-36 lg:w-36" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 border-t border-[#1e3d38]/20 lg:grid-cols-12">
             {/* Anchor header */}

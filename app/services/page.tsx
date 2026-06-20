@@ -178,6 +178,10 @@ export default async function ServicesPage() {
       {/* Service showcase — editorial, alternating */}
       <section className="relative overflow-hidden bg-ambient-warm py-16 lg:py-24">
         <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
+        {/* Cross markers */}
+        <span aria-hidden="true" className="pointer-events-none absolute right-[12%] top-24 select-none text-xl text-forest/[0.08]">+</span>
+        <span aria-hidden="true" className="pointer-events-none absolute left-[8%] top-[45%] select-none text-lg text-sage/[0.12]">+</span>
+        <span aria-hidden="true" className="pointer-events-none absolute right-[20%] bottom-32 select-none text-xl text-forest/[0.06]">+</span>
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           {/* Section intro */}
           <FadeIn direction="up">
@@ -295,9 +299,11 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* Ideal For — Split-Screen Sticky Imagery */}
+      {/* Ideal For */}
       <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
         <div className="pointer-events-none absolute -left-32 top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
+        {/* Ring outline */}
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -right-16 h-32 w-32 rounded-full border border-sage/15 lg:h-48 lg:w-48" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14">
@@ -423,10 +429,13 @@ export default async function ServicesPage() {
             <div className="mb-14 text-center">
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Process</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
+              <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="relative mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
+            {/* Dashed timeline connector */}
+            <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 hidden h-full -translate-x-1/2 border-l-2 border-dashed border-forest/[0.08] md:block" />
             {processSteps.map(({ step, title, body, icon }, i) => (
               <FadeIn key={step} direction="up" delay={i * 100}>
                 <div className="group relative h-full overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md p-8 shadow-[0_4px_20px_rgba(47,79,79,0.05)] ring-1 ring-forest/[0.04] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_30px_rgba(47,79,79,0.08)]">

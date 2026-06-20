@@ -161,6 +161,9 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
         <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 text-forest/[0.10] lg:h-[26rem] lg:w-[26rem]" />
         <div aria-hidden="true" className="pointer-events-none absolute -left-32 bottom-0 h-[400px] w-[400px] rounded-full bg-sage/[0.08] blur-3xl" />
+        {/* Glass orbs */}
+        <div aria-hidden="true" className="pointer-events-none absolute right-[8%] top-16 h-16 w-16 rounded-full bg-sage/20 backdrop-blur-sm lg:h-20 lg:w-20" />
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-20 left-[5%] h-12 w-12 rounded-full bg-forest/10 backdrop-blur-sm lg:h-16 lg:w-16" />
         <div className="relative mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <p className={eyebrowCls}>
@@ -205,7 +208,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── CORE PHILOSOPHY ── */}
-      <section className="relative flex items-center overflow-hidden bg-[#1e3d38] px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
+      <section className="grain-overlay relative flex items-center overflow-hidden bg-[#1e3d38] px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-sage/[0.08] blur-3xl" />
         <div className="relative mx-auto w-full max-w-[1320px]">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
@@ -216,6 +219,7 @@ export default async function HomePage() {
               <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-white xl:text-[2.6rem]">
                 The Principles Behind Every Transformation
               </h2>
+              <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
               <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
                 Three commitments that shape every keynote, workshop, and program Sonya delivers.
               </p>
@@ -365,6 +369,8 @@ export default async function HomePage() {
 
       {/* ── SPEAKING TOPICS ── */}
       <section className="relative flex items-center overflow-hidden bg-white px-4 py-20 lg:h-screen lg:max-h-[850px] lg:py-0">
+        {/* Dot grid texture */}
+        <div aria-hidden="true" className="dot-grid pointer-events-none absolute right-0 top-0 h-[60%] w-[40%] opacity-60" />
         <div className="relative mx-auto w-full max-w-[1200px]">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
@@ -436,6 +442,8 @@ export default async function HomePage() {
       <section className="relative flex flex-col justify-center overflow-hidden bg-ambient-warm py-16 lg:h-screen lg:max-h-[750px]">
         <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-0 h-[350px] w-[350px] rounded-full bg-[#dfba86]/[0.06] blur-3xl" />
         <div aria-hidden="true" className="pointer-events-none absolute -right-20 bottom-0 h-[300px] w-[300px] rounded-full bg-sage/[0.06] blur-3xl" />
+        {/* Botanical leaf */}
+        <svg aria-hidden="true" className="pointer-events-none absolute left-6 top-10 h-24 w-24 -rotate-12 text-sage/[0.12] lg:left-12 lg:top-14 lg:h-32 lg:w-32" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
         <FadeIn direction="up">
           <div className="mb-16 text-center">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#dfba86]/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[#dfba86] justify-center">
