@@ -242,10 +242,9 @@ export default async function ServicesPage() {
       {/* Ideal For */}
       <section className="bg-[#eae6df] py-24 lg:py-32">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            {/* Title column */}
-            <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#1e3d38]/60">
+          <FadeIn direction="up">
+            <div className="mb-14">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                 Ideal For
               </p>
               <h2 className="font-serif text-4xl font-bold text-[#1e3d38] lg:text-5xl">
@@ -256,23 +255,22 @@ export default async function ServicesPage() {
                 leadership drives culture — and where investment in people is treated as
                 a strategic priority, not a perk.
               </p>
-            </FadeIn>
+            </div>
+          </FadeIn>
 
-            {/* List column */}
-            <FadeIn direction="up" delay={120} className="lg:col-span-8">
-              <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
-                {audiences.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 border-b border-[#1e3d38]/10 pb-4 text-sm font-medium text-[#1e3d38]"
-                  >
-                    <span className="mt-2 h-px w-3.5 shrink-0 bg-[#1e3d38]/40" aria-hidden="true" />
-                    <span className="leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </FadeIn>
-          </div>
+          <FadeIn direction="up" delay={120}>
+            <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
+              {audiences.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 border-b border-[#1e3d38]/10 pb-4 text-sm font-medium text-[#1e3d38]"
+                >
+                  <span className="mt-2 h-px w-3.5 shrink-0 bg-[#1e3d38]/40" aria-hidden="true" />
+                  <span className="leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
         </div>
       </section>
 
@@ -281,7 +279,7 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Process</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">Process</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
             </div>
           </FadeIn>

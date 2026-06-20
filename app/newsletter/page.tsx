@@ -33,7 +33,7 @@ export default async function NewsletterPage() {
 
         <div className="relative mx-auto max-w-[1200px] px-4 py-20 lg:py-28">
           <FadeIn direction="up">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-sage">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
               The Re-Self Journal
             </p>
             <h1 className="font-serif max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-charcoal sm:text-5xl lg:text-[3.4rem]">

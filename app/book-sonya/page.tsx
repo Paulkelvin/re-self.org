@@ -59,7 +59,7 @@ export default function BookSonyaPage() {
           <div className="order-2 space-y-8 lg:order-1 lg:col-span-5">
             <FadeIn direction="up">
               <div>
-                <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-sage">
+                <p className="mb-6 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                   What happens next
                 </p>
                 <div className="flex flex-col gap-6 sm:flex-row lg:flex-col">
