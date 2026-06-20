@@ -13,30 +13,53 @@ export const metadata: Metadata = {
     "Corporate wellness workshops, programs, retreat facilitation, and keynote speaking tailored for organizations, government agencies, and educational institutions.",
 };
 
-const audiences = [
+const audiences: {
+  title: string;
+  body: string;
+  variant: "image" | "plain" | "person";
+  image?: string;
+  bg?: string;
+}[] = [
   {
     title: "HR & People Teams",
     body: "Wellbeing weeks, culture initiatives, and employee wellness campaigns that go beyond box-checking.",
+    variant: "image",
+    image:
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "High-Performance Leaders",
     body: "Managing burnout on ambitious teams where pressure never lets up and resilience isn't optional.",
+    variant: "plain",
+    bg: "#e8e2d8",
   },
   {
     title: "Federal Agencies",
     body: "Evidence-based programs built for the scale and rigor government workforce wellness demands.",
+    variant: "plain",
+    bg: "#c5cec0",
   },
   {
     title: "Educational Institutions",
     body: "Sustainable wellness practices for faculty and staff that prevent attrition and restore purpose.",
+    variant: "image",
+    image:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c476?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Wellness-First Organizations",
     body: "Long-term cultures of care where wellbeing is woven into leadership, operations, and daily rhythms.",
+    variant: "image",
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Executive Teams",
     body: "Emotional and strategic support to lead well through change, transition, and high-stakes demands.",
+    variant: "person",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    bg: "#5a7a6d",
   },
 ];
 
@@ -277,26 +300,103 @@ export default async function ServicesPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {audiences.map((a, i) => (
-              <FadeIn key={a.title} direction="up" delay={i * 80}>
-                <div className="group relative overflow-hidden rounded-xl bg-white/60 backdrop-blur-md p-6 shadow-[0_4px_20px_rgba(47,79,79,0.05)] ring-1 ring-forest/[0.04] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(47,79,79,0.08)]">
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-1 -top-2 select-none font-serif text-6xl font-bold leading-none text-forest/[0.06] transition-colors duration-300 group-hover:text-forest/[0.12]"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="relative text-base font-semibold text-forest">
-                    {a.title}
-                  </h3>
-                  <p className="relative mt-2 text-sm leading-relaxed text-muted">
-                    {a.body}
-                  </p>
+          {/* Row 1 — image (wide) | plain (narrow) */}
+          <FadeIn direction="up">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
+              {/* Image card */}
+              <div className="group relative min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]">
+                <Image
+                  src={audiences[0].image!}
+                  alt={audiences[0].title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+                  <h3 className="font-serif text-xl font-bold text-white">{audiences[0].title}</h3>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">{audiences[0].body}</p>
                 </div>
-              </FadeIn>
-            ))}
-          </div>
+              </div>
+              {/* Plain card */}
+              <div
+                className="group flex min-h-[260px] flex-col justify-end rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px] lg:p-8"
+                style={{ backgroundColor: audiences[1].bg }}
+              >
+                <h3 className="font-serif text-xl font-bold text-forest">{audiences[1].title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-forest/70">{audiences[1].body}</p>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Row 2 — plain (narrow) | image (wide) */}
+          <FadeIn direction="up" delay={100}>
+            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1fr_1.4fr]">
+              {/* Plain card */}
+              <div
+                className="group flex min-h-[260px] flex-col justify-end rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px] lg:p-8"
+                style={{ backgroundColor: audiences[2].bg }}
+              >
+                <h3 className="font-serif text-xl font-bold text-forest">{audiences[2].title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-forest/70">{audiences[2].body}</p>
+              </div>
+              {/* Image card */}
+              <div className="group relative min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]">
+                <Image
+                  src={audiences[3].image!}
+                  alt={audiences[3].title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+                  <h3 className="font-serif text-xl font-bold text-white">{audiences[3].title}</h3>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">{audiences[3].body}</p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Row 3 — image (wide) | person cutout (narrow) */}
+          <FadeIn direction="up" delay={200}>
+            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
+              {/* Image card */}
+              <div className="group relative min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]">
+                <Image
+                  src={audiences[4].image!}
+                  alt={audiences[4].title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+                  <h3 className="font-serif text-xl font-bold text-white">{audiences[4].title}</h3>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">{audiences[4].body}</p>
+                </div>
+              </div>
+              {/* Person cutout card */}
+              <div
+                className="group relative flex min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]"
+                style={{ backgroundColor: audiences[5].bg }}
+              >
+                <div className="relative z-10 flex flex-col justify-end p-6 lg:max-w-[55%] lg:p-8">
+                  <h3 className="font-serif text-xl font-bold text-white">{audiences[5].title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/80">{audiences[5].body}</p>
+                </div>
+                <div className="absolute bottom-0 right-0 h-full w-1/2 lg:w-[55%]">
+                  <Image
+                    src={audiences[5].image!}
+                    alt={audiences[5].title}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-contain object-right-bottom mix-blend-multiply"
+                  />
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
