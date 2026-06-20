@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BookingForm } from "@/components/BookingForm";
 import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ShimmerCTA } from "@/components/ShimmerCTA";
@@ -22,7 +21,7 @@ import { PackageCard } from "@/components/PackageCard";
 export const revalidate = 60;
 
 const eyebrowCls =
-  "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60";
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90";
 
 const statIcons = [
   <svg key="cal" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>,
@@ -499,6 +498,22 @@ export default async function HomePage() {
         const display = upcoming.length > 0 ? upcoming.slice(0, 3) : events.slice(0, 3);
         const isUpcoming = upcoming.length > 0;
         if (display.length === 0) return null;
+
+        function buildCalendarUrl(event: typeof display[0]) {
+          const start = new Date(event.date);
+          const end = new Date(start.getTime() + 2 * 60 * 60 * 1000);
+          const fmt = (d: Date) =>
+            d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+          const params = new URLSearchParams({
+            action: "TEMPLATE",
+            text: event.title,
+            dates: `${fmt(start)}/${fmt(end)}`,
+            location: event.location || "",
+            details: event.description || `${event.eventType} — ${event.title}`,
+          });
+          return `https://calendar.google.com/calendar/render?${params.toString()}`;
+        }
+
         return (
           <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
             <div aria-hidden="true" className="pointer-events-none absolute -left-32 top-0 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" />
@@ -516,67 +531,90 @@ export default async function HomePage() {
               </FadeIn>
 
               <FadeIn direction="up" delay={80}>
-                <div className="divide-y divide-line rounded-2xl border border-line/60 bg-white shadow-sm shadow-forest/[0.04]">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {display.map((event) => {
                     const isPast = new Date(event.date) < now;
                     const d = new Date(event.date);
+                    const calUrl = buildCalendarUrl(event);
+                    const href = event.registrationUrl || calUrl;
                     return (
-                      <div
+                      <a
                         key={event.slug}
-                        className={`flex flex-row items-center gap-4 p-5 transition-colors duration-200 hover:bg-forest/[0.02] sm:gap-6 ${
-                          isPast ? "opacity-70 hover:opacity-100" : ""
-                        }`}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col overflow-hidden rounded-2xl border border-line/60 bg-white shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-forest/[0.10]"
                       >
-                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+                        <div className="relative aspect-[16/10] w-full overflow-hidden">
                           <Image
                             src={event.coverImage}
                             alt={event.title}
                             fill
-                            sizes="64px"
-                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                           />
+                          <span className="absolute left-3 top-3 rounded-full bg-forest px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white">
+                            {event.eventType}
+                          </span>
                         </div>
-                        <div className="min-w-0 flex-1">
-                          <h3 className="truncate font-serif text-base font-semibold text-charcoal">
+
+                        <div className="flex flex-1 flex-col p-5">
+                          <h3 className="font-serif text-lg font-semibold leading-snug text-charcoal transition-colors duration-200 group-hover:text-forest">
                             {event.title}
                           </h3>
-                          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted/70">
-                            <span>{d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+                          <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted/80">
+                            <span className="inline-flex items-center gap-1">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
+                              {d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                            </span>
                             {event.location && (
                               <>
                                 <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
-                                <span>{event.location}</span>
+                                <span className="inline-flex items-center gap-1">
+                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                                  {event.location}
+                                </span>
                               </>
                             )}
-                            <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
-                            <span className="font-semibold text-sage">{event.eventType}</span>
                           </div>
-                        </div>
-                        {event.speakers.length > 0 && (
-                          <div className="flex shrink-0 items-center">
-                            {event.speakers.slice(0, 3).map((s, i) => (
-                              <div
-                                key={s.name}
-                                className={`relative h-7 w-7 overflow-hidden rounded-full border-2 border-white shadow-sm ${i > 0 ? "-ml-2" : ""}`}
-                                title={s.name}
-                              >
-                                {s.image ? (
-                                  <Image src={s.image} alt={s.name} fill sizes="28px" className="object-cover" />
-                                ) : (
-                                  <div className="flex h-full w-full items-center justify-center bg-sage/30 text-[9px] font-bold text-forest">
-                                    {s.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+
+                          {event.speakers.length > 0 && (
+                            <div className="mt-4 flex flex-wrap gap-3">
+                              {event.speakers.slice(0, 3).map((s) => (
+                                <div key={s.name} className="flex items-center gap-2">
+                                  <div className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-white shadow-sm">
+                                    {s.image ? (
+                                      <Image src={s.image} alt={s.name} fill sizes="32px" className="object-cover" />
+                                    ) : (
+                                      <div className="flex h-full w-full items-center justify-center bg-sage/30 text-[10px] font-bold text-forest">
+                                        {s.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                                      </div>
+                                    )}
                                   </div>
-                                )}
-                              </div>
-                            ))}
-                            {event.speakers.length > 3 && (
-                              <div className="-ml-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-forest/10 text-[9px] font-bold text-forest">
-                                +{event.speakers.length - 3}
-                              </div>
+                                  <span className="text-xs font-medium text-charcoal">{s.name}</span>
+                                </div>
+                              ))}
+                              {event.speakers.length > 3 && (
+                                <span className="self-center text-xs text-muted">+{event.speakers.length - 3} more</span>
+                              )}
+                            </div>
+                          )}
+
+                          <div className="mt-auto flex items-center gap-3 pt-4">
+                            {!isPast && (
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-forest px-4 py-2 text-[11px] font-semibold text-white transition-colors group-hover:bg-forest-light">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /><path d="M12 14v4M10 16h4" /></svg>
+                                Save to Calendar
+                              </span>
+                            )}
+                            {isPast && (
+                              <span className="inline-flex items-center rounded-full border border-line px-4 py-2 text-[11px] font-medium text-muted/60">
+                                Past Event
+                              </span>
                             )}
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      </a>
                     );
                   })}
                 </div>
@@ -585,7 +623,7 @@ export default async function HomePage() {
               <FadeIn direction="up" delay={160}>
                 <div className="mt-8 text-center">
                   <Link
-                    href="/speaking-events"
+                    href="/events"
                     className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
                   >
                     {isUpcoming ? "View all events" : "See past events"} &rarr;
@@ -639,42 +677,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── BOOKING ── */}
-      <section
-        className="relative flex flex-col justify-center overflow-hidden border-t border-b border-neutral-200/50 bg-ambient-booking py-24 lg:py-28"
-        id="book"
-      >
-        <BrandOrbit reverse className="pointer-events-none absolute -left-32 -bottom-32 h-80 w-80 text-forest/[0.09] lg:h-[26rem] lg:w-[26rem]" />
-        <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-0 h-[350px] w-[350px] rounded-full bg-sage/[0.06] blur-3xl" />
-        <div className="relative mx-auto w-full max-w-[1200px] px-4">
-          <FadeIn direction="up">
-            <div className="mb-10 text-center">
-              <div className="mb-5 flex items-center justify-center">
-                <p className={`${eyebrowCls} mb-0`}>
-                  Booking
-                </p>
-              </div>
 
-              <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-[-0.015em] text-forest sm:text-[2.5rem] lg:text-[3.1rem]">
-                <span className="block">
-                  Bring Sonya to
-                </span>
-                <span className="block">Your Organization</span>
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed tracking-wide text-muted lg:text-base">
-                Book a keynote, workshop, retreat, or corporate wellness experience.
-              </p>
-            </div>
-          </FadeIn>
-          <FadeIn direction="up" delay={100}>
-            <div className="relative mx-auto max-w-[820px]">
-              <div aria-hidden="true" className="pointer-events-none absolute -inset-10 rounded-[3rem] bg-[radial-gradient(ellipse_at_center,rgba(197,159,85,0.10),transparent_70%)] blur-[120px]" />
-              <BookingForm />
-            </div>
-          </FadeIn>
-        </div>
-      </section>
 
       {/* ── FAQ ── */}
       <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">

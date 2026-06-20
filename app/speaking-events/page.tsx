@@ -125,7 +125,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:items-start">
             <FadeIn direction="up">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                 Signature Topics
               </p>
               <h2 className="font-serif text-4xl font-bold leading-tight text-forest lg:text-5xl">
@@ -173,7 +173,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Formats</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">Formats</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
                 Three ways to bring Sonya to your audience.
               </h2>
@@ -212,7 +212,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-12 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Audiences</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">Audiences</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
                 Where Sonya speaks
               </h2>
@@ -245,9 +245,10 @@ export default async function SpeakingEventsPage() {
       {featuredEvent && (
         <section className="relative overflow-hidden bg-ambient-warm pb-8 pt-16 lg:pt-20">
           <div className="mx-auto max-w-[1200px] px-4">
+
             <FadeIn direction="up">
               <div className="mb-10">
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                   {new Date(featuredEvent.date) >= now ? "Next Up" : "Featured Event"}
                 </p>
                 <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
@@ -359,7 +360,7 @@ export default async function SpeakingEventsPage() {
           <div className="mx-auto max-w-[1200px] px-4">
             <FadeIn direction="up">
               <div className="mb-10">
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                   Events
                 </p>
                 <h2 className="font-serif text-2xl font-bold tracking-tight text-forest lg:text-3xl">
@@ -378,32 +379,6 @@ export default async function SpeakingEventsPage() {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="grain-overlay relative overflow-hidden bg-forest py-24">
-        {/* Glass orb */}
-        <div aria-hidden="true" className="pointer-events-none absolute -right-6 top-8 h-16 w-16 rounded-full bg-white/[0.06] backdrop-blur-sm lg:h-24 lg:w-24" />
-        <div className="mx-auto max-w-[1200px] px-4">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-            <FadeIn direction="up">
-              <h2 className="font-serif text-3xl font-bold text-white lg:text-4xl">
-                Ready to book a speaking date?
-              </h2>
-              <p className="mt-3 max-w-xl text-base text-white/55">
-                Share the event details, format preference, and audience size. Sonya will
-                confirm availability and next steps within 2 business days.
-              </p>
-            </FadeIn>
-            <FadeIn direction="up" delay={100}>
-              <Link
-                href="/book-sonya"
-                className="inline-flex w-fit shrink-0 items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#1e3d38] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                Book Sonya &rarr;
-              </Link>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

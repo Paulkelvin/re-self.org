@@ -198,7 +198,7 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 border-t border-[#1e3d38]/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
+              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                 Values
               </p>
               <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-[#1e3d38] md:text-5xl lg:pb-0">

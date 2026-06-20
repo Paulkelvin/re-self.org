@@ -307,7 +307,7 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                 Ideal For
               </p>
               <h2 className="font-serif text-4xl font-bold text-[#1e3d38] lg:text-5xl">
@@ -321,102 +321,21 @@ export default async function ServicesPage() {
             </div>
           </FadeIn>
 
-          {/* Row 1 — image (wide) | plain (narrow) */}
-          <FadeIn direction="up">
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
-              {/* Image card */}
-              <div className="group relative min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]">
-                <Image
-                  src={audiences[0].image!}
-                  alt={audiences[0].title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                  <h3 className="font-serif text-xl font-bold text-white">{audiences[0].title}</h3>
-                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">{audiences[0].body}</p>
-                </div>
-              </div>
-              {/* Plain card */}
-              <div
-                className="group flex min-h-[260px] flex-col justify-end rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px] lg:p-8"
-                style={{ backgroundColor: audiences[1].bg }}
-              >
-                <h3 className="font-serif text-xl font-bold text-forest">{audiences[1].title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest/70">{audiences[1].body}</p>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Row 2 — plain (narrow) | image (wide) */}
-          <FadeIn direction="up" delay={100}>
-            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1fr_1.4fr]">
-              {/* Plain card */}
-              <div
-                className="group flex min-h-[260px] flex-col justify-end rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px] lg:p-8"
-                style={{ backgroundColor: audiences[2].bg }}
-              >
-                <h3 className="font-serif text-xl font-bold text-forest">{audiences[2].title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-forest/70">{audiences[2].body}</p>
-              </div>
-              {/* Image card */}
-              <div className="group relative min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]">
-                <Image
-                  src={audiences[3].image!}
-                  alt={audiences[3].title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                  <h3 className="font-serif text-xl font-bold text-white">{audiences[3].title}</h3>
-                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">{audiences[3].body}</p>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Row 3 — image (wide) | person cutout (narrow) */}
-          <FadeIn direction="up" delay={200}>
-            <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
-              {/* Image card */}
-              <div className="group relative min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]">
-                <Image
-                  src={audiences[4].image!}
-                  alt={audiences[4].title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                  <h3 className="font-serif text-xl font-bold text-white">{audiences[4].title}</h3>
-                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">{audiences[4].body}</p>
-                </div>
-              </div>
-              {/* Person cutout card */}
-              <div
-                className="group relative flex min-h-[260px] overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg lg:min-h-[320px]"
-                style={{ backgroundColor: audiences[5].bg }}
-              >
-                <div className="relative z-10 flex flex-col justify-end p-6 pr-[45%] lg:max-w-[55%] lg:p-8 lg:pr-8">
-                  <h3 className="font-serif text-xl font-bold text-white">{audiences[5].title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/80">{audiences[5].body}</p>
-                </div>
-                <div className="absolute -bottom-[25%] right-[-5%] h-[160%] w-[55%] lg:-bottom-[15%] lg:right-0 lg:h-[140%] lg:w-[60%]">
-                  <Image
-                    src={audiences[5].image!}
-                    alt={audiences[5].title}
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                    className="object-contain object-right-bottom"
-                  />
-                </div>
-              </div>
-            </div>
+          <FadeIn direction="up" delay={120}>
+            <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
+              {audiences.map((item) => (
+                <li
+                  key={item.title}
+                  className="flex items-start gap-3 border-b border-[#1e3d38]/10 pb-4 text-sm font-medium text-[#1e3d38]"
+                >
+                  <span className="mt-2 h-px w-3.5 shrink-0 bg-[#1e3d38]/40" aria-hidden="true" />
+                  <div>
+                    <span className="font-semibold leading-relaxed">{item.title}</span>
+                    <p className="mt-1 text-xs font-normal text-[#1e3d38]/60">{item.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </FadeIn>
         </div>
       </section>
@@ -427,7 +346,7 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-forest/60">Process</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">Process</p>
               <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
               <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
             </div>
