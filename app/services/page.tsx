@@ -62,21 +62,37 @@ const audiences: {
   },
 ];
 
-const process = [
+const processSteps = [
   {
     step: "01",
     title: "Discovery Call",
     body: "We start with a focused conversation to understand your team, goals, culture, and the specific challenges you want to address.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    ),
   },
   {
     step: "02",
     title: "Custom Design",
     body: "Content is designed specifically for your audience — not adapted from a template. Sonya builds each engagement from the ground up.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+      </svg>
+    ),
   },
   {
     step: "03",
     title: "Delivery & Impact",
     body: "Premium delivery with full presence. Every session includes clear takeaways, practical tools, and follow-up resources.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    ),
   },
 ];
 
@@ -410,13 +426,22 @@ export default async function ServicesPage() {
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-3">
-            {process.map(({ step, title, body }, i) => (
+          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
+            {processSteps.map(({ step, title, body, icon }, i) => (
               <FadeIn key={step} direction="up" delay={i * 100}>
-                <div className="border-t border-[#1e3d38]/15 pt-6">
-                  <span className="mb-3 block font-mono text-xs tracking-widest text-[#1e3d38]/50">{step}</span>
-                  <h3 className="mb-2 text-lg font-medium text-[#1e3d38]">{title}</h3>
-                  <p className="text-sm leading-relaxed text-neutral-600">{body}</p>
+                <div className="group relative h-full overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md p-8 shadow-[0_4px_20px_rgba(47,79,79,0.05)] ring-1 ring-forest/[0.04] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_30px_rgba(47,79,79,0.08)]">
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-2 -top-3 select-none font-serif text-[5rem] font-bold leading-none text-forest/[0.04]"
+                  >
+                    {step}
+                  </span>
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest transition-colors duration-300 group-hover:bg-forest/15">
+                    {icon}
+                  </div>
+                  <span className="mb-3 block font-mono text-[10px] tracking-widest text-forest/40">Step {step}</span>
+                  <h3 className="mb-3 text-lg font-semibold text-forest">{title}</h3>
+                  <p className="text-sm leading-relaxed text-muted">{body}</p>
                 </div>
               </FadeIn>
             ))}
