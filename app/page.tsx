@@ -671,7 +671,7 @@ export default async function HomePage() {
           alt=""
           width={400}
           height={400}
-          className="pointer-events-none absolute -left-12 top-28 z-0 w-[55%] max-w-[280px] object-contain opacity-50 lg:hidden"
+          className="pointer-events-none absolute -left-28 top-28 z-0 w-[55%] max-w-[280px] object-contain opacity-50 lg:hidden"
         />
         <div className="relative z-10 mx-auto max-w-[860px] px-4">
           <FadeIn direction="up">
