@@ -677,7 +677,7 @@ export default async function HomePage() {
 
 
       {/* ── FAQ ── */}
-      <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-beige pb-0 pt-24 lg:py-32">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-12 h-[350px] w-[350px] rounded-full bg-sage/[0.07] blur-3xl" />
         <div className="relative mx-auto max-w-[860px] px-4">
           <FadeIn direction="up">
@@ -704,6 +704,16 @@ export default async function HomePage() {
               />
             </div>
           </FadeIn>
+        </div>
+        {/* Mobile FAQ illustration — flush with section bottom */}
+        <div className="mt-12 flex justify-center lg:hidden">
+          <Image
+            src="/images/faq-illustration.png"
+            alt=""
+            width={400}
+            height={400}
+            className="block w-[57%] max-w-[260px] object-contain"
+          />
         </div>
       </section>
     </>
