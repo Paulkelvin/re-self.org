@@ -88,10 +88,10 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-16 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
                 Programs
               </p>
-              <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
+              <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-5xl">
                 Find the right fit for your organization.
               </h2>
               <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
@@ -158,7 +158,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80">
                 Why Choose Re-Self
               </p>
               <h2 className="font-serif text-3xl font-bold text-[#134545] lg:text-4xl">
@@ -211,7 +211,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
                 FAQ
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">

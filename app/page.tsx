@@ -22,6 +22,12 @@ export const revalidate = 60;
 const eyebrowCls =
   "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90";
 
+const eyebrowGold =
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]";
+
+const eyebrowCharcoal =
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80";
+
 const statIcons = [
   <svg key="cal" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>,
   <svg key="users" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
@@ -165,10 +171,10 @@ export default async function HomePage() {
         <div aria-hidden="true" className="pointer-events-none absolute bottom-20 left-[5%] h-12 w-12 rounded-full bg-forest/10 backdrop-blur-sm lg:h-16 lg:w-16" />
         <div className="relative mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
-            <p className={eyebrowCls}>
+            <p className={eyebrowGold}>
               About Sonya
             </p>
-            <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-forest sm:text-[2.4rem] lg:text-[2.6rem]">
+            <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-charcoal sm:text-[2.4rem] lg:text-[2.6rem]">
               Leadership Meets Wellness
             </h2>
             <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
@@ -199,7 +205,7 @@ export default async function HomePage() {
 
             <Link
               href="/about"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#a07d3a] transition-all hover:gap-3 hover:text-[#8a6a2e]"
             >
               Read full story &rarr;
             </Link>
@@ -312,10 +318,10 @@ export default async function HomePage() {
         <div className="relative mx-auto w-full max-w-[1200px]">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className={eyebrowCls}>
+              <p className={eyebrowCharcoal}>
                 Speaking
               </p>
-              <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-forest lg:text-[2.9rem]">
+              <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-charcoal lg:text-[2.9rem]">
                 Popular Speaking Topics
               </h2>
               <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
@@ -324,7 +330,7 @@ export default async function HomePage() {
               </p>
               <Link
                 href="/speaking-events#signature-topics"
-                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-forest/30 px-6 py-3 text-sm font-semibold text-forest transition-all duration-200 hover:border-forest hover:bg-forest hover:text-white"
+                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-[#a07d3a]/40 px-6 py-3 text-sm font-semibold text-[#a07d3a] transition-all duration-200 hover:border-[#a07d3a] hover:bg-[#a07d3a] hover:text-white"
               >
                 View All Speaking Topics
                 <svg
@@ -457,10 +463,10 @@ export default async function HomePage() {
             <div className="relative mx-auto max-w-[1200px] px-4">
               <FadeIn direction="up">
                 <div className="mb-10">
-                  <p className={eyebrowCls}>
+                  <p className={eyebrowGold}>
                     {isUpcoming ? "Upcoming Events" : "Recent Events"}
                   </p>
-                  <h2 className="font-serif text-3xl font-bold tracking-tight text-forest lg:text-4xl">
+                  <h2 className="font-serif text-3xl font-bold tracking-tight text-charcoal lg:text-4xl">
                     {isUpcoming ? "Catch Sonya live." : "Where Sonya has been."}
                   </h2>
                   <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
@@ -558,7 +564,7 @@ export default async function HomePage() {
                 <div className="mt-8 text-center">
                   <Link
                     href="/speaking-events"
-                    className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                    className="group inline-flex items-center gap-2 text-sm font-semibold text-[#a07d3a] transition-all hover:gap-3 hover:text-[#8a6a2e]"
                   >
                     View all events &rarr;
                   </Link>
@@ -579,7 +585,7 @@ export default async function HomePage() {
                 <p className={`${eyebrowCls} justify-center`}>
                   Programs
                 </p>
-                <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
+                <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-5xl">
                   Invest in your team&apos;s wellbeing.
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted">
@@ -601,7 +607,7 @@ export default async function HomePage() {
               <div className="mx-auto mt-10 max-w-2xl text-center">
                 <Link
                   href="/packages"
-                  className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold text-[#a07d3a] transition-all hover:gap-3 hover:text-[#8a6a2e]"
                 >
                   View all programs &amp; details &rarr;
                 </Link>
@@ -628,12 +634,12 @@ export default async function HomePage() {
           <FadeIn direction="up">
             <div className="mb-12 text-center lg:mb-16">
               <div className="mb-6 flex items-center justify-center">
-                <p className={`${eyebrowCls} mb-0`}>
+                <p className={`${eyebrowCharcoal} mb-0`}>
                   FAQ
                 </p>
               </div>
 
-              <h2 className="font-serif text-[2rem] font-bold leading-[1.05] tracking-[-0.015em] text-forest sm:text-4xl lg:text-[2.9rem]">
+              <h2 className="font-serif text-[2rem] font-bold leading-[1.05] tracking-[-0.015em] text-charcoal sm:text-4xl lg:text-[2.9rem]">
                 Frequently Asked Questions
               </h2>
             </div>

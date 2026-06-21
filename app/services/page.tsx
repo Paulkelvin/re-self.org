@@ -250,10 +250,10 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
                 Ideal For
               </p>
-              <h2 className="font-serif text-4xl font-bold text-[#134545] lg:text-5xl">
+              <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                 Who Sonya serves best
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[#134545]/70">
@@ -301,8 +301,8 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">Process</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80">Process</p>
+              <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">What to expect</h2>
               <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
             </div>
           </FadeIn>

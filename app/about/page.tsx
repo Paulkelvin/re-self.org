@@ -166,10 +166,10 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 border-t border-[#134545]/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
                 Values
               </p>
-              <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-[#134545] md:text-5xl lg:pb-0">
+              <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-charcoal md:text-5xl lg:pb-0">
                 What drives every engagement
               </h2>
             </FadeIn>
@@ -206,14 +206,44 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {/* About Re-Self */}
+      <section className="relative overflow-hidden bg-ambient-warm py-20 lg:py-28">
+        <div className="pointer-events-none absolute -right-32 top-10 h-[400px] w-[400px] rounded-full bg-gold/[0.06] blur-3xl" aria-hidden="true" />
+        <div className="mx-auto max-w-[860px] px-6">
+          <FadeIn direction="up">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
+              About Re-Self
+            </p>
+            <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
+              The Re-Self Mission
+            </h2>
+            <div aria-hidden="true" className="mt-5 h-[3px] w-12 rounded-full bg-gold" />
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+              Founded by Sonya Harris, M.Ed., a retired USAF veteran, HR professional, and
+              self-care advocate, Re-Self is a thoughtfully developed wellness curriculum that
+              helps individuals and organizations rediscover their inner strength. With workshops
+              delivered across the U.S. and internationally, Re-Self provides practical, lasting
+              tools for balance, resilience, and well-being.
+            </p>
+            <Link
+              href="/book-sonya"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#a07d3a] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8a6a2e] hover:shadow-lg"
+            >
+              Start a Conversation
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Affirmations & Words of Encouragement */}
       <section className="bg-ambient-warm py-20 lg:py-28">
         <div className="mx-auto max-w-[860px] px-6">
           <FadeIn direction="up">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80">
               Words of Encouragement
             </p>
-            <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
+            <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
               Re-Self Affirmations
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
