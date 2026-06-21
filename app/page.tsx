@@ -663,9 +663,17 @@ export default async function HomePage() {
 
 
       {/* ── FAQ ── */}
-      <section className="relative overflow-hidden bg-ambient-beige pb-0 pt-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-12 h-[350px] w-[350px] rounded-full bg-sage/[0.07] blur-3xl" />
-        <div className="relative mx-auto max-w-[860px] px-4">
+        {/* Mobile FAQ illustration — absolute, top-left with spacing */}
+        <Image
+          src="/images/faq-illustration.png"
+          alt=""
+          width={400}
+          height={400}
+          className="pointer-events-none absolute left-2 top-28 z-0 w-[38%] max-w-[180px] object-contain opacity-60 lg:hidden"
+        />
+        <div className="relative z-10 mx-auto max-w-[860px] px-4">
           <FadeIn direction="up">
             <div className="mb-12 text-center lg:mb-16">
               <div className="mb-6 flex items-center justify-center">
@@ -690,16 +698,6 @@ export default async function HomePage() {
               />
             </div>
           </FadeIn>
-        </div>
-        {/* Mobile FAQ illustration — flush with section bottom */}
-        <div className="mt-12 flex justify-center lg:hidden">
-          <Image
-            src="/images/faq-illustration.png"
-            alt=""
-            width={400}
-            height={400}
-            className="block w-[57%] max-w-[260px] object-contain"
-          />
         </div>
       </section>
     </>
