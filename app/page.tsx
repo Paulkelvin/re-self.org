@@ -103,19 +103,19 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover object-[center_20%]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/15" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
 
         <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
             <FadeIn direction="up">
-              <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+              <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
                 Corporate Wellness &middot; Keynote Speaker
               </p>
             </FadeIn>
 
             <FadeIn direction="up" delay={80}>
-              <h1 className="max-w-3xl font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-3xl font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl">
                 Stronger leaders.
                 <br />
                 <span className="text-white">Healthier organizations.</span>
@@ -123,7 +123,7 @@ export default async function HomePage() {
             </FadeIn>
 
             <FadeIn direction="up" delay={160}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)] sm:text-lg">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] sm:text-lg">
                 Re-Self provides practical, lasting tools for balance, resilience, and
                 well-being — with workshops delivered across the U.S. and internationally.
               </p>

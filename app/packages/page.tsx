@@ -200,14 +200,6 @@ export default async function PackagesPage() {
             </div>
           </FadeIn>
 
-          <FadeIn direction="up" delay={400}>
-            <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-forest/10 bg-forest/[0.03] p-8 lg:p-10">
-              <h3 className="font-serif text-lg font-semibold text-[#134545]">About Re-Self</h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#134545]/70">
-                Founded by Sonya Harris, M.Ed., a retired USAF veteran, HR professional, and self-care advocate, Re-Self is a thoughtfully developed wellness curriculum that helps individuals and organizations rediscover their inner strength. With workshops delivered across the U.S. and internationally, Re-Self provides practical, lasting tools for balance, resilience, and well-being.
-              </p>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
