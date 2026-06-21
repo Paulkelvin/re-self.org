@@ -5,9 +5,6 @@ import { useCallback, useEffect, useState } from "react";
 import { FadeIn } from "@/components/FadeIn";
 import { type GalleryImage } from "@/lib/gallery";
 
-// The page only ever renders these 5 tiles, in this deliberate bento layout.
-// Everything beyond the 5th lives in the lightbox, so the section's height
-// never grows as the image list does.
 const PREVIEW_COUNT = 5;
 const PREVIEW_SPANS = [
   "col-span-2 aspect-[16/11] lg:col-span-2 lg:row-span-2 lg:aspect-auto lg:h-full",
@@ -27,24 +24,35 @@ function ArrowIcon({ dir }: { dir: "left" | "right" }) {
 
 export function Gallery({ images }: { images: GalleryImage[] }) {
   const total = images.length;
-  const preview = images.slice(0, PREVIEW_COUNT);
+  const preview = images.slice(0, Math.min(PREVIEW_COUNT, total));
   const extra = Math.max(0, total - PREVIEW_COUNT);
 
-  // null = closed; otherwise the active image index.
   const [index, setIndex] = useState<number | null>(null);
+  const [transitioning, setTransitioning] = useState(false);
   const open = index !== null;
 
   const close = useCallback(() => setIndex(null), []);
-  const next = useCallback(
-    () => setIndex((i) => (i === null ? i : (i + 1) % total)),
-    [total],
-  );
-  const prev = useCallback(
-    () => setIndex((i) => (i === null ? i : (i - 1 + total) % total)),
-    [total],
+
+  const goTo = useCallback(
+    (next: number) => {
+      setTransitioning(true);
+      setTimeout(() => {
+        setIndex(next);
+        setTransitioning(false);
+      }, 200);
+    },
+    [],
   );
 
-  // Keyboard navigation + background scroll lock while the lightbox is open.
+  const next = useCallback(
+    () => { if (index !== null) goTo((index + 1) % total); },
+    [index, total, goTo],
+  );
+  const prev = useCallback(
+    () => { if (index !== null) goTo((index - 1 + total) % total); },
+    [index, total, goTo],
+  );
+
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
@@ -93,13 +101,13 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
         {/* Fixed 5-tile bento preview */}
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6 lg:auto-rows-[15rem] xl:auto-rows-[17rem]">
           {preview.map(({ src, label }, i) => {
-            const isLast = i === PREVIEW_COUNT - 1;
+            const isLast = i === PREVIEW_COUNT - 1 && extra > 0;
             return (
               <FadeIn key={src} direction="up" delay={i * 80} className={PREVIEW_SPANS[i]}>
                 <button
                   type="button"
                   onClick={() => setIndex(i)}
-                  aria-label={`Open ${label} in gallery`}
+                  aria-label={`Open photo ${i + 1} in gallery`}
                   className="group relative h-full w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5"
                 >
                   <Image
@@ -111,25 +119,14 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                   />
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-forest-dark/10 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-95"
+                    className="absolute inset-0 bg-gradient-to-t from-forest-dark/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   />
 
-                  {/* "+N more" affordance on the final preview tile */}
-                  {isLast && extra > 0 && (
+                  {isLast && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-forest-dark/55 text-white backdrop-blur-[2px] transition-colors duration-300 group-hover:bg-forest-dark/65">
                       <span className="font-serif text-3xl font-semibold leading-none">+{extra}</span>
                       <span className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/85">
                         View gallery
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Caption — always on mobile, reveals on hover at lg */}
-                  {!(isLast && extra > 0) && (
-                    <div className="absolute inset-x-0 bottom-0 flex items-center gap-2.5 p-4 lg:p-5">
-                      <span aria-hidden="true" className="h-px w-5 shrink-0 bg-sage transition-all duration-300 group-hover:w-8" />
-                      <span className="text-sm font-semibold text-white transition-all duration-300 lg:translate-y-1 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
-                        {label}
                       </span>
                     </div>
                   )}
@@ -177,8 +174,8 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
               <ArrowIcon dir="left" />
             </button>
 
-            <figure key={index} className="animate-pop-in flex h-full max-h-[72vh] w-full max-w-[1100px] flex-col items-center justify-center">
-              <div className="relative h-full w-full">
+            <figure className="flex h-full max-h-[72vh] w-full max-w-[1100px] flex-col items-center justify-center">
+              <div className={`relative h-full w-full transition-opacity duration-200 ease-in-out ${transitioning ? "opacity-0" : "opacity-100"}`}>
                 <Image
                   src={images[index].src}
                   alt={images[index].label}
@@ -188,10 +185,6 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                   priority
                 />
               </div>
-              <figcaption className="mt-4 flex items-center gap-2.5 text-white/85">
-                <span aria-hidden="true" className="h-px w-6 bg-sage" />
-                <span className="text-sm font-semibold tracking-wide">{images[index].label}</span>
-              </figcaption>
             </figure>
 
             <button
@@ -211,10 +204,10 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                 <button
                   type="button"
                   key={img.src}
-                  onClick={() => setIndex(i)}
-                  aria-label={`View ${img.label}`}
+                  onClick={() => goTo(i)}
+                  aria-label={`View photo ${i + 1}`}
                   aria-current={i === index}
-                  className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-lg ring-2 transition-all ${
+                  className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-lg ring-2 transition-all duration-200 ${
                     i === index ? "ring-sage opacity-100" : "ring-transparent opacity-50 hover:opacity-90"
                   }`}
                 >

@@ -99,7 +99,7 @@ export function Footer() {
             alt="Re-Self — reimagine self care"
             width={223}
             height={200}
-            className="h-20 w-auto"
+            className="logo-harmonize h-20 w-auto brightness-125"
           />
         </div>
 

@@ -266,18 +266,30 @@ export default async function ServicesPage() {
 
           <FadeIn direction="up" delay={120}>
             <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
-              {audiences.map((item) => (
-                <li
-                  key={item.title}
-                  className="flex items-start gap-3 border-b border-[#134545]/10 pb-4 text-sm font-medium text-[#134545]"
-                >
-                  <span className="mt-2 h-px w-3.5 shrink-0 bg-[#134545]/40" aria-hidden="true" />
-                  <div>
-                    <span className="font-semibold leading-relaxed">{item.title}</span>
-                    <p className="mt-1 text-xs font-normal text-[#134545]/60">{item.body}</p>
-                  </div>
-                </li>
-              ))}
+              {audiences.map((item, i) => {
+                const audienceIcons = [
+                  <svg key="users" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
+                  <svg key="zap" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>,
+                  <svg key="building" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2" /><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M8 10h.01M16 10h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01" /></svg>,
+                  <svg key="book" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></svg>,
+                  <svg key="heart" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>,
+                  <svg key="target" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>,
+                ];
+                return (
+                  <li
+                    key={item.title}
+                    className="flex items-start gap-3 border-b border-[#134545]/10 pb-4 text-sm font-medium text-[#134545]"
+                  >
+                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-forest/[0.08] text-forest">
+                      {audienceIcons[i % audienceIcons.length]}
+                    </div>
+                    <div>
+                      <span className="font-semibold leading-relaxed">{item.title}</span>
+                      <p className="mt-1 text-xs font-normal text-[#134545]/60">{item.body}</p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </FadeIn>
         </div>

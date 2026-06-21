@@ -125,26 +125,35 @@ export default async function AboutPage() {
           </FadeIn>
 
           <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
-            {timeline.map(({ period, title, description }, i) => (
-              <FadeIn key={title} direction="up" delay={i * 120}>
-                <div className="relative overflow-hidden pt-20">
-                  {/* Massive structural watermark */}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -left-4 -top-16 select-none font-sans text-[12rem] font-black leading-none text-white/[0.03]"
-                  >
-                    0{i + 1}
-                  </span>
-                  <div className="relative">
-                    <span className="mb-6 inline-block rounded-full bg-[#e4ecec] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-[#134545]">
-                      {period}
+            {timeline.map(({ period, title, description }, i) => {
+              const icons = [
+                <svg key="shield" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></svg>,
+                <svg key="briefcase" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" /><path d="M12 12v.01" /></svg>,
+                <svg key="leaf" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75" /></svg>,
+              ];
+              return (
+                <FadeIn key={title} direction="up" delay={i * 120}>
+                  <div className="relative overflow-hidden pt-20">
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -left-4 -top-16 select-none font-sans text-[12rem] font-black leading-none text-white/[0.03]"
+                    >
+                      0{i + 1}
                     </span>
-                    <h3 className="font-serif mb-3 text-2xl font-medium text-white">{title}</h3>
-                    <p className="text-sm leading-relaxed text-neutral-300/90">{description}</p>
+                    <div className="relative">
+                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.08] text-sage">
+                        {icons[i % icons.length]}
+                      </div>
+                      <span className="mb-6 inline-block rounded-full bg-[#e4ecec] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-[#134545]">
+                        {period}
+                      </span>
+                      <h3 className="font-serif mb-3 text-2xl font-medium text-white">{title}</h3>
+                      <p className="text-sm leading-relaxed text-neutral-300/90">{description}</p>
+                    </div>
                   </div>
-                </div>
-              </FadeIn>
-            ))}
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -167,19 +176,31 @@ export default async function AboutPage() {
 
             {/* Interlocking value panels */}
             <div className="lg:col-span-8">
-              {values.map(({ title, body }, i) => (
-                <FadeIn key={title} direction="up" delay={i * 80}>
-                  <div className="group border-b border-[#134545]/10 bg-white/50 p-10 shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-forest/[0.08]">
-                    <span className="mb-3 block font-mono text-xs text-neutral-400 transition-colors group-hover:text-[#134545]">
-                      0{i + 1}
-                    </span>
-                    <h3 className="font-serif mb-2 text-xl font-medium text-[#134545] md:text-2xl">
-                      {title}
-                    </h3>
-                    <p className="max-w-2xl text-sm leading-relaxed text-neutral-600">{body}</p>
-                  </div>
-                </FadeIn>
-              ))}
+              {values.map(({ title, body }, i) => {
+                const valueIcons = [
+                  <svg key="heart" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>,
+                  <svg key="compass" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" /></svg>,
+                  <svg key="tool" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" /></svg>,
+                ];
+                return (
+                  <FadeIn key={title} direction="up" delay={i * 80}>
+                    <div className="group border-b border-[#134545]/10 bg-white/50 p-10 shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-forest/[0.08]">
+                      <div className="mb-3 flex items-center gap-3">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-forest/[0.08] text-forest transition-colors group-hover:bg-forest/[0.14]">
+                          {valueIcons[i % valueIcons.length]}
+                        </div>
+                        <span className="font-mono text-xs text-neutral-400 transition-colors group-hover:text-[#134545]">
+                          0{i + 1}
+                        </span>
+                      </div>
+                      <h3 className="font-serif mb-2 text-xl font-medium text-[#134545] md:text-2xl">
+                        {title}
+                      </h3>
+                      <p className="max-w-2xl text-sm leading-relaxed text-neutral-600">{body}</p>
+                    </div>
+                  </FadeIn>
+                );
+              })}
             </div>
           </div>
         </div>

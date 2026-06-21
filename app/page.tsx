@@ -13,7 +13,6 @@ import {
   getAchievements,
   getPackages,
   getEvents,
-  getPhilosophy,
 } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
@@ -76,7 +75,7 @@ function LeafIcon() {
 
 
 export default async function HomePage() {
-  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events, philosophy] =
+  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events] =
     await Promise.all([
       getServices(),
       getTopics(),
@@ -86,7 +85,6 @@ export default async function HomePage() {
       getGalleryImages(),
       getPackages(),
       getEvents(),
-      getPhilosophy(),
     ]);
 
   const flagship =
@@ -206,53 +204,6 @@ export default async function HomePage() {
               Read full story &rarr;
             </Link>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* ── CORE PHILOSOPHY ── */}
-      <section className="grain-overlay relative flex items-center overflow-hidden bg-[#134545] px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-sage/[0.08] blur-3xl" />
-        <div className="relative mx-auto w-full max-w-[1320px]">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
-            <FadeIn direction="up">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
-                Philosophy
-              </p>
-              <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-white xl:text-[2.6rem]">
-                The Principles Behind Every Transformation
-              </h2>
-              <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
-              <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
-                Three commitments that shape every keynote, workshop, and program Sonya delivers.
-              </p>
-            </FadeIn>
-
-            {philosophy.map(({ num, title, body }, i) => (
-              <FadeIn
-                key={title}
-                direction="up"
-                delay={(i + 1) * 100}
-                className="group relative transition-all duration-500 rounded-r-xl lg:border-l lg:border-white/10 lg:pl-8 lg:hover:border-sage/30 lg:hover:bg-white/[0.04] xl:pl-12"
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -top-4 right-2 select-none font-serif text-[8rem] font-bold leading-none text-white/[0.03] lg:text-[10rem]"
-                >
-                  {num}
-                </span>
-                <h3 className="font-serif relative mt-2 text-2xl font-bold tracking-tight text-white">
-                  <span className="relative inline-block">
-                    {title}
-                    <span
-                      aria-hidden="true"
-                      className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-sage transition-transform duration-300 ease-out group-hover:scale-x-100"
-                    />
-                  </span>
-                </h3>
-                <p className="relative mt-3 text-sm leading-relaxed text-white/55">{body}</p>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 
