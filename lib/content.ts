@@ -78,7 +78,7 @@ export async function getAchievements(): Promise<Achievement[]> {
 
 export async function getFaq(): Promise<Faq[]> {
   return client.fetch<Faq[]>(
-    groq`*[_type == "faq"] | order(order asc){ question, answer }`,
+    groq`*[_type == "faq" && (category == "general" || !defined(category))] | order(order asc){ question, answer }`,
   );
 }
 
@@ -176,4 +176,126 @@ export async function getEvents(): Promise<SiteEvent[]> {
       image: s.image ? urlForImage(s.image).width(200).height(200).url() : "",
     })),
   }));
+}
+
+// ── New content types ──────────────────────────────────────────
+
+export interface Philosophy {
+  num: string;
+  title: string;
+  body: string;
+}
+export async function getPhilosophy(): Promise<Philosophy[]> {
+  return client.fetch<Philosophy[]>(
+    groq`*[_type == "philosophy"] | order(order asc){ num, title, body }`,
+  );
+}
+
+export interface Timeline {
+  period: string;
+  title: string;
+  description: string;
+}
+export async function getTimeline(): Promise<Timeline[]> {
+  return client.fetch<Timeline[]>(
+    groq`*[_type == "timeline"] | order(order asc){ period, title, description }`,
+  );
+}
+
+export interface Affirmation {
+  title: string;
+  affirmations: string[];
+}
+export async function getAffirmations(): Promise<Affirmation[]> {
+  return client.fetch<Affirmation[]>(
+    groq`*[_type == "affirmation"] | order(order asc){ title, affirmations }`,
+  );
+}
+
+export interface Value {
+  title: string;
+  body: string;
+}
+export async function getValues(): Promise<Value[]> {
+  return client.fetch<Value[]>(
+    groq`*[_type == "value"] | order(order asc){ title, body }`,
+  );
+}
+
+export interface ServiceAudience {
+  title: string;
+  body: string;
+}
+export async function getServiceAudiences(): Promise<ServiceAudience[]> {
+  return client.fetch<ServiceAudience[]>(
+    groq`*[_type == "serviceAudience"] | order(order asc){ title, body }`,
+  );
+}
+
+export interface ProcessStep {
+  step: string;
+  title: string;
+  body: string;
+}
+export async function getProcessSteps(context: "services" | "booking"): Promise<ProcessStep[]> {
+  return client.fetch<ProcessStep[]>(
+    groq`*[_type == "processStep" && context == $context] | order(order asc){ step, title, body }`,
+    { context },
+  );
+}
+
+export interface SpeakingFormat {
+  name: string;
+  duration: string;
+  description: string;
+}
+export async function getSpeakingFormats(): Promise<SpeakingFormat[]> {
+  return client.fetch<SpeakingFormat[]>(
+    groq`*[_type == "speakingFormat"] | order(order asc){ name, duration, description }`,
+  );
+}
+
+export interface SpeakingAudience {
+  label: string;
+}
+export async function getSpeakingAudiences(): Promise<SpeakingAudience[]> {
+  return client.fetch<SpeakingAudience[]>(
+    groq`*[_type == "speakingAudience"] | order(order asc){ label }`,
+  );
+}
+
+export interface Guarantee {
+  title: string;
+  body: string;
+}
+export async function getGuarantees(): Promise<Guarantee[]> {
+  return client.fetch<Guarantee[]>(
+    groq`*[_type == "guarantee"] | order(order asc){ title, body }`,
+  );
+}
+
+export interface Stat {
+  value: string;
+  label: string;
+}
+export async function getStats(): Promise<Stat[]> {
+  return client.fetch<Stat[]>(
+    groq`*[_type == "stat"] | order(order asc){ value, label }`,
+  );
+}
+
+export interface BookingReason {
+  label: string;
+}
+export async function getBookingReasons(): Promise<BookingReason[]> {
+  return client.fetch<BookingReason[]>(
+    groq`*[_type == "bookingReason"] | order(order asc){ label }`,
+  );
+}
+
+export async function getFaqByCategory(category: string): Promise<Faq[]> {
+  return client.fetch<Faq[]>(
+    groq`*[_type == "faq" && category == $category] | order(order asc){ question, answer }`,
+    { category },
+  );
 }

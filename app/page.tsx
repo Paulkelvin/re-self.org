@@ -13,6 +13,7 @@ import {
   getAchievements,
   getPackages,
   getEvents,
+  getPhilosophy,
 } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
@@ -75,7 +76,7 @@ function LeafIcon() {
 
 
 export default async function HomePage() {
-  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events] =
+  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events, philosophy] =
     await Promise.all([
       getServices(),
       getTopics(),
@@ -85,6 +86,7 @@ export default async function HomePage() {
       getGalleryImages(),
       getPackages(),
       getEvents(),
+      getPhilosophy(),
     ]);
 
   const flagship =
@@ -225,23 +227,7 @@ export default async function HomePage() {
               </p>
             </FadeIn>
 
-            {[
-              {
-                num: "01",
-                title: "Discipline",
-                body: "Consistent habits from military precision — building personal and professional practices that hold under pressure.",
-              },
-              {
-                num: "02",
-                title: "Resilience",
-                body: "The mental and emotional strength to thrive through challenges, transitions, and high-stakes demands.",
-              },
-              {
-                num: "03",
-                title: "Renewal",
-                body: "Sustainable wellness rhythms that support lasting success without sacrificing health or humanity.",
-              },
-            ].map(({ num, title, body }, i) => (
+            {philosophy.map(({ num, title, body }, i) => (
               <FadeIn
                 key={title}
                 direction="up"

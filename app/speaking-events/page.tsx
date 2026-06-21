@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { EventList } from "@/components/EventList";
-import { getTopics, getEvents } from "@/lib/content";
+import { getTopics, getEvents, getSpeakingFormats, getSpeakingAudiences } from "@/lib/content";
 
 export const revalidate = 60;
 
@@ -13,57 +13,10 @@ export const metadata: Metadata = {
     "Book Sonya Harris for wellness keynotes, leadership panels, executive sessions, and corporate events. Tailored for organizations, government agencies, and conferences.",
 };
 
-const formats = [
-  {
-    name: "Keynotes",
-    duration: "45 – 90 min",
-    description:
-      "Stage presentations designed to shift mindset and deliver practical, memorable takeaways. Ideal for company-wide events, conferences, and wellbeing weeks.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-      </svg>
-    ),
-  },
-  {
-    name: "Panels",
-    duration: "60 – 90 min",
-    description:
-      "Facilitated conversations where Sonya brings a grounded wellness perspective to multi-speaker discussions on leadership, culture, and organizational performance.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 00-3-3.87" />
-        <path d="M16 3.13a4 4 0 010 7.75" />
-      </svg>
-    ),
-  },
-  {
-    name: "Leadership Sessions",
-    duration: "Half-day or Full-day",
-    description:
-      "Intimate, high-impact sessions for executive and senior teams focused on sustainable performance, stress management, and leading through change.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
-        <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
-      </svg>
-    ),
-  },
-];
-
-const audiences = [
-  "Corporate all-hands and company-wide events",
-  "Government agency training days",
-  "HR and People team conferences",
-  "Leadership summits and executive offsites",
-  "Employee Resource Group events",
-  "Educational institution faculty days",
-  "Wellbeing weeks and wellness campaigns",
-  "Industry conferences and panels",
+const formatIcons = [
+  <svg key="layers" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>,
+  <svg key="people" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" /></svg>,
+  <svg key="book" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></svg>,
 ];
 
 function formatFeaturedDate(dateStr: string) {
@@ -76,7 +29,12 @@ function formatFeaturedDate(dateStr: string) {
 }
 
 export default async function SpeakingEventsPage() {
-  const [topics, events] = await Promise.all([getTopics(), getEvents()]);
+  const [topics, events, formats, speakingAudiences] = await Promise.all([
+    getTopics(),
+    getEvents(),
+    getSpeakingFormats(),
+    getSpeakingAudiences(),
+  ]);
 
   const now = new Date();
   const featuredEvent =
@@ -201,12 +159,12 @@ export default async function SpeakingEventsPage() {
           </FadeIn>
 
           <div className="grid gap-6 sm:grid-cols-3">
-            {formats.map(({ name, duration, description, icon }, i) => (
+            {formats.map(({ name, duration, description }, i) => (
               <FadeIn key={name} direction="up" delay={i * 100}>
                 <div className="group relative h-full overflow-hidden rounded-xl border border-neutral-200/50 bg-white pb-8 pt-0 shadow-md shadow-forest/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-forest/30 hover:shadow-xl hover:shadow-forest/[0.10]">
                   <div className="relative flex h-28 items-center justify-center bg-gradient-to-b from-sage/20 to-sage/5">
                     <span className="text-forest/60 transition-colors duration-300 group-hover:text-forest">
-                      {icon}
+                      {formatIcons[i % formatIcons.length]}
                     </span>
                     <span
                       aria-hidden="true"
@@ -245,16 +203,16 @@ export default async function SpeakingEventsPage() {
           <FadeIn direction="up" delay={100}>
             <div className="mx-auto max-w-4xl">
               <div className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
-                {audiences.map((item, i) => (
+                {speakingAudiences.map((item, i) => (
                   <div
-                    key={item}
+                    key={item.label}
                     className="group flex items-start gap-3 py-2"
                   >
                     <span className="mt-0.5 font-mono text-xs tracking-widest text-sage">
-                      0{i + 1}
+                      {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="text-sm leading-snug text-charcoal transition-colors duration-300 group-hover:text-forest">
-                      {item}
+                      {item.label}
                     </span>
                   </div>
                 ))}

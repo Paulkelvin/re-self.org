@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BookingForm } from "@/components/BookingForm";
 import { FadeIn } from "@/components/FadeIn";
+import { getProcessSteps, getBookingReasons } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Book Sonya",
@@ -8,34 +9,13 @@ export const metadata: Metadata = {
     "Submit a booking request for Sonya Harris — keynote speaking, workshops, corporate wellness programs, and retreat facilitation.",
 };
 
-const steps = [
-  {
-    step: "01",
-    title: "Submit your request",
-    body: "Fill in the form with your event details, audience, goals, and budget range. The more detail, the better.",
-  },
-  {
-    step: "02",
-    title: "Review & fit check",
-    body: "Sonya reviews the request for fit, format, timing, and scope — typically within 2 business days.",
-  },
-  {
-    step: "03",
-    title: "Follow-up & discovery",
-    body: "Sonya follows up with availability and next steps. A short discovery call may be scheduled.",
-  },
-];
+export const revalidate = 60;
 
-const reasons = [
-  "21+ years of U.S. Air Force service",
-  "Master of Education",
-  "Certified Leadership Development Specialist",
-  "Federal government leadership experience",
-  "100+ workshops and programs delivered",
-  "Engagements tailored — not templated",
-];
-
-export default function BookSonyaPage() {
+export default async function BookSonyaPage() {
+  const [steps, reasons] = await Promise.all([
+    getProcessSteps("booking"),
+    getBookingReasons(),
+  ]);
   return (
     <>
       {/* Hero */}
@@ -92,9 +72,9 @@ export default function BookSonyaPage() {
                 </p>
                 <ul className="space-y-3">
                   {reasons.map((r) => (
-                    <li key={r} className="flex items-start gap-2.5 text-xs text-neutral-600">
+                    <li key={r.label} className="flex items-start gap-2.5 text-xs text-neutral-600">
                       <span className="mt-1.5 h-px w-3 shrink-0 bg-sage" aria-hidden="true" />
-                      {r}
+                      {r.label}
                     </li>
                   ))}
                 </ul>
