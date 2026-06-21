@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
+import { AffirmationsAccordion } from "@/components/AffirmationsAccordion";
 import { getAchievements } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 
@@ -31,6 +32,119 @@ const timeline = [
     title: "Re-Self Wellness",
     description:
       "Founded Re-Self, a thoughtfully developed wellness curriculum helping individuals and organizations rediscover their inner strength. Trusted by organizations like the University of California and Phenomenal Women Empowerment Organization, with workshops delivered across the U.S. and internationally.",
+  },
+];
+
+const principles = [
+  {
+    title: "Seeking Support: The Strength in Asking for Help",
+    affirmations: [
+      "Asking for help is a sign of wisdom, not weakness.",
+      "I deserve support on my journey to healing and growth.",
+      "Seeking guidance honors my commitment to becoming my best self.",
+      "I release the belief that I must carry every burden alone.",
+      "My healing matters, and I am worthy of receiving help when I need it.",
+    ],
+  },
+  {
+    title: "The Healing Power of Forgiveness",
+    affirmations: [
+      "I forgive myself for what I did not know then.",
+      "I choose peace over resentment and freedom over bitterness.",
+      "My past does not define my future.",
+      "Forgiveness is a gift I give myself.",
+      "I release what no longer serves my healing.",
+    ],
+  },
+  {
+    title: "Rest Without Guilt",
+    affirmations: [
+      "Rest is productive because it restores my mind, body, and spirit.",
+      "I give myself permission to pause and recharge.",
+      "My worth is not measured by my productivity.",
+      "Taking care of myself allows me to better serve others.",
+      "I honor my need for rest without apology.",
+    ],
+  },
+  {
+    title: "Kindness as a Self-Care Practice",
+    affirmations: [
+      "Every act of kindness creates positive energy within and around me.",
+      "I choose compassion in my thoughts, words, and actions.",
+      "Kindness begins with how I treat myself.",
+      "The love I share returns to me in meaningful ways.",
+      "Today I will be a source of light for myself and others.",
+    ],
+  },
+  {
+    title: "Quiet the Mind, Quiet the Noise",
+    affirmations: [
+      "Peace lives within me, even when life feels chaotic.",
+      "I release what I cannot control and embrace the present moment.",
+      "My mind deserves moments of stillness and calm.",
+      "I create space for clarity through silence and reflection.",
+      "Each breath brings me back to center.",
+    ],
+  },
+  {
+    title: "Mindful Consumption",
+    affirmations: [
+      "I choose what nourishes my mind, body, and spirit.",
+      "I protect my energy by being intentional about what I consume.",
+      "I deserve environments that support my growth.",
+      "I welcome information, relationships, and experiences that align with my well-being.",
+      "I am mindful of what I allow into my life.",
+    ],
+  },
+  {
+    title: "Personal Responsibility and Self-Empowerment",
+    affirmations: [
+      "I cannot control everything, but I can control how I respond.",
+      "My choices have the power to transform my life.",
+      "I take ownership of my actions with grace and courage.",
+      "Every day I have the opportunity to choose differently.",
+      "I am empowered by focusing on what is within my control.",
+    ],
+  },
+  {
+    title: "Speaking Life: The Power of Positive Language",
+    affirmations: [
+      "My words have power, and I choose them wisely.",
+      "I speak to myself with kindness and compassion.",
+      "I replace criticism with encouragement.",
+      "My voice can inspire healing, hope, and possibility.",
+      "What I speak today shapes my tomorrow.",
+    ],
+  },
+  {
+    title: "The Power of Choice",
+    affirmations: [
+      "I choose thoughts, habits, and actions that support my highest good.",
+      "Every choice I make is an opportunity for growth.",
+      "I am creating the life I desire one decision at a time.",
+      "What I invest in today will shape my future.",
+      "I choose purpose over fear and intention over reaction.",
+    ],
+  },
+  {
+    title: "Balancing Feminine and Masculine Energy",
+    affirmations: [
+      "I honor both my intuition and my ability to take action.",
+      "I embrace balance, harmony, and wholeness within myself.",
+      "I am strong enough to lead and wise enough to listen.",
+      "I trust both my inner knowing and my outer capabilities.",
+      "I welcome the balance of being and doing.",
+    ],
+  },
+  {
+    title: "Living with Gratitude",
+    affirmations: [
+      "Gratitude transforms what I have into enough.",
+      "I find blessings in both the ordinary and extraordinary moments of life.",
+      "Each day offers something worth appreciating.",
+      "The more grateful I become, the more abundance I notice.",
+      "I choose gratitude as a way of life.",
+    ],
   },
 ];
 
@@ -226,6 +340,30 @@ export default async function AboutPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Affirmations & Words of Encouragement */}
+      <section className="bg-ambient-warm py-20 lg:py-28">
+        <div className="mx-auto max-w-[860px] px-6">
+          <FadeIn direction="up">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              Words of Encouragement
+            </p>
+            <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
+              Re-Self Affirmations
+            </h2>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
+              Eleven guiding principles from the Re-Self curriculum. Expand each one to read its affirmations.
+            </p>
+            <div aria-hidden="true" className="mt-5 h-[3px] w-12 rounded-full bg-gold" />
+          </FadeIn>
+
+          <FadeIn direction="up" delay={80}>
+            <div className="mt-12">
+              <AffirmationsAccordion items={principles} />
+            </div>
+          </FadeIn>
         </div>
       </section>
 
