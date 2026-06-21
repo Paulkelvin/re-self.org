@@ -94,7 +94,7 @@ export default async function SpeakingEventsPage() {
       </section>
 
       {/* Signature Topics */}
-      <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
+      <section id="signature-topics" className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
         <div className="pointer-events-none absolute -right-40 -top-20 h-[500px] w-[500px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
         {/* Cross markers */}
         <span aria-hidden="true" className="pointer-events-none absolute left-[6%] top-20 select-none text-xl text-forest/[0.07]">+</span>

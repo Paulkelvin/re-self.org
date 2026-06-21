@@ -115,7 +115,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
                     alt={label}
                     fill
                     sizes={i === 0 ? "(max-width: 1024px) 100vw, 440px" : "(max-width: 1024px) 50vw, 440px"}
-                    className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                    className={`object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105 ${i === 0 ? "object-top" : ""}`}
                   />
                   <div
                     aria-hidden="true"

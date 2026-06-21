@@ -323,7 +323,7 @@ export default async function HomePage() {
                 high-pressure teams.
               </p>
               <Link
-                href="/speaking-events"
+                href="/speaking-events#signature-topics"
                 className="group mt-8 inline-flex items-center gap-2 rounded-full border border-forest/30 px-6 py-3 text-sm font-semibold text-forest transition-all duration-200 hover:border-forest hover:bg-forest hover:text-white"
               >
                 View All Speaking Topics
@@ -342,7 +342,7 @@ export default async function HomePage() {
                 {topics.map((topic, i) => (
                   <Link
                     key={topic.title}
-                    href="/speaking-events"
+                    href="/speaking-events#signature-topics"
                     className="group/row divider-gradient flex items-baseline gap-5 py-5 transition-opacity duration-300 lg:gap-7 lg:py-[1.2rem] lg:group-hover/list:opacity-40 lg:hover:!opacity-100"
                   >
                     <span className="font-serif text-base font-semibold text-sage tabular-nums lg:text-lg">

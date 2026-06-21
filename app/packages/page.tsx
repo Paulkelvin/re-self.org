@@ -184,6 +184,30 @@ export default async function PackagesPage() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn direction="up" delay={300}>
+            <div className="mx-auto mt-14 max-w-3xl rounded-2xl border border-forest/10 bg-white/60 p-8 text-center shadow-sm lg:p-10">
+              <p className="text-sm leading-relaxed text-[#134545]/80">
+                Organizations like the University of California and Phenomenal Women Empowerment
+                Organization have trusted Re-Self to empower their teams. Clients consistently invite Sonya back for her authenticity, impact, and lasting results.
+              </p>
+              <p className="mt-4 text-sm text-[#134545]/70">
+                For more information or to book a free discovery call{" "}
+                <a href="tel:+12409887490" className="font-semibold text-forest hover:underline">240-988-7490</a>
+                {" "}or{" "}
+                <Link href="/" className="font-semibold text-forest hover:underline">www.re-self.org</Link>
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn direction="up" delay={400}>
+            <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-forest/10 bg-forest/[0.03] p-8 lg:p-10">
+              <h3 className="font-serif text-lg font-semibold text-[#134545]">About Re-Self</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#134545]/70">
+                Founded by Sonya Harris, M.Ed., a retired USAF veteran, HR professional, and self-care advocate, Re-Self is a thoughtfully developed wellness curriculum that helps individuals and organizations rediscover their inner strength. With workshops delivered across the U.S. and internationally, Re-Self provides practical, lasting tools for balance, resilience, and well-being.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
