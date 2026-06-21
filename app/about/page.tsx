@@ -174,20 +174,7 @@ export default async function AboutPage() {
     <>
       {/* Cinematic background hero */}
       <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#0f3535] text-white lg:min-h-[76vh]">
-        {/* Full-bleed background image + contrast overlays */}
-        <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <Image
-            src={heroImage || "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=80"}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e1e]/95 via-[#0a1e1e]/78 to-[#0f3535]/35" />
-          <div className="absolute inset-0 bg-[#0a1e1e]/25" />
-        </div>
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0a1e1e] via-[#0f3535] to-[#134545]" />
 
         {/* Brand watermark + ambient orbit */}
         <span
@@ -225,7 +212,7 @@ export default async function AboutPage() {
             <FadeIn direction="left" className="lg:col-span-6">
               <div className="relative h-[360px] w-full overflow-hidden rounded-xl shadow-2xl shadow-forest/20 lg:h-[520px]">
                 <Image
-                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=85"
+                  src={heroImage || "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=85"}
                   alt="Sonya Harris"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
