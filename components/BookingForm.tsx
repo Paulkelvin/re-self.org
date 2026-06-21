@@ -104,7 +104,7 @@ export function BookingForm() {
     }
 
     setStatus("error");
-    setMessage(result.error ?? "Something went wrong. Please email bookings@re-self.org.");
+    setMessage(result.error ?? "Something went wrong. Please email sdharrisla@gmail.com.");
   }
 
   return (

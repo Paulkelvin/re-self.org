@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#FAF9F6] px-6 pb-20 pt-32">
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#f7fafa] px-6 pb-20 pt-32">
       {/* Ambient brand graphics */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -left-40 -top-32 h-[520px] w-[520px] rounded-full bg-sage/[0.12] blur-3xl" />

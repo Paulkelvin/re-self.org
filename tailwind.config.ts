@@ -14,12 +14,12 @@ const config: Config = {
         line: "#dfe8e2",
         paper: "#fbfaf5",
         mist: "#eef5ef",
-        sage: "#668c75",
+        sage: "#7fb5a8",
         pine: {
-          DEFAULT: "#25463d",
-          dark: "#0f1a17",
+          DEFAULT: "#184c4c",
+          dark: "#0d3030",
         },
-        coral: "#bd6a55",
+        coral: "#c45a4a",
         gold: "#c59f55",
       },
       fontFamily: {

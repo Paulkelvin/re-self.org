@@ -39,7 +39,7 @@ export default function BookSonyaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="grain-overlay relative overflow-hidden bg-[#23423c] px-6 py-16 text-white md:py-24 lg:px-16">
+      <section className="grain-overlay relative overflow-hidden bg-[#184c4c] px-6 py-16 text-white md:py-24 lg:px-16">
         {/* Botanical leaf */}
         <svg aria-hidden="true" className="pointer-events-none absolute -right-4 -top-2 h-24 w-24 rotate-[60deg] text-white/[0.04] lg:right-16 lg:top-8 lg:h-32 lg:w-32" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
         <div className="mx-auto max-w-7xl">
@@ -101,10 +101,10 @@ export default function BookSonyaPage() {
                 <p className="mt-4 block text-xs font-light text-neutral-400">
                   Prefer direct email? Contact us at{" "}
                   <a
-                    href="mailto:bookings@re-self.org"
+                    href="mailto:sdharrisla@gmail.com"
                     className="underline-offset-2 transition-colors hover:text-forest hover:underline"
                   >
-                    bookings@re-self.org
+                    sdharrisla@gmail.com
                   </a>
                   .
                 </p>

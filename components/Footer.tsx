@@ -17,7 +17,7 @@ const information = [
   { label: "Terms of Service", href: "/terms" },
 ];
 
-const EMAIL = "hello@re-self.org";
+const EMAIL = "sdharrisla@gmail.com";
 
 const labelCls =
   "mb-4 flex items-center gap-2 font-serif text-base font-semibold tracking-tight text-white";
@@ -90,40 +90,8 @@ export function Footer() {
 
   return (
     <footer>
-      {/* 1 — Floating overlap CTA banner */}
-      <div className="relative z-20 -mb-24 px-6 pt-20 lg:px-16 lg:pt-28">
-        <div className="relative mx-auto grid min-h-[260px] max-w-6xl grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#2a4d46] to-[#152b27] p-8 shadow-2xl md:grid-cols-12 md:p-12">
-          {/* Right abstract graphic */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-12 top-1/2 hidden h-[360px] w-[360px] -translate-y-1/2 text-sage/20 md:block"
-          >
-            <span className="absolute inset-8 rounded-full border border-sage/10 animate-spin-slow" />
-            <SphereGraphic />
-          </div>
-
-          {/* Left content */}
-          <div className="relative z-10 md:col-span-7">
-            <h2 className="font-serif mb-2 text-2xl font-medium leading-tight tracking-tight text-white md:text-4xl">
-              Ready to work with Sonya?
-            </h2>
-            <p className="max-w-md text-sm font-light leading-relaxed text-neutral-300">
-              Bring her expertise in military resilience, federal leadership, and wellness
-              facilitation to your organization.
-            </p>
-            <Link
-              href="/book-sonya"
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#1e3d38] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#eae6df] active:scale-[0.98]"
-            >
-              Book Sonya
-              <ArrowIcon />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* 2 — Lower footer container */}
-      <div className="relative z-10 overflow-hidden bg-[#122421] px-6 pb-12 pt-40 text-white lg:px-16">
+      {/* Lower footer container */}
+      <div className="relative z-10 overflow-hidden bg-[#0a2828] px-6 pb-12 pt-16 text-white lg:px-16">
         {/* Brand mark */}
         <div className="mx-auto mb-12 max-w-6xl">
           <Image
@@ -179,15 +147,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Luxury signature watermark */}
-        <div
-          aria-hidden="true"
-          className="my-4 select-none text-center font-serif text-[14vw] font-bold uppercase leading-none tracking-tighter text-white/[0.02] pointer-events-none"
-        >
-          Re-Self
-        </div>
-
-        {/* 4 — Ultra-minimal copyright basebar */}
+        {/* Ultra-minimal copyright basebar */}
         <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-6 border-t border-white/5 pt-8 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row">
           <p>&copy; {year} RE-SELF. ALL RIGHTS RESERVED.</p>
           <div className="flex items-center gap-x-6 text-white/50">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandOrbit } from "@/components/BrandOrbit";
 import { getAchievements } from "@/lib/content";
+import { getGalleryImages } from "@/lib/gallery";
 
 export const revalidate = 60;
 
@@ -50,16 +51,20 @@ const values = [
 ];
 
 export default async function AboutPage() {
-  const achievements = await getAchievements();
+  const [achievements, galleryImages] = await Promise.all([
+    getAchievements(),
+    getGalleryImages(),
+  ]);
+  const heroImage = galleryImages[0]?.src;
 
   return (
     <>
       {/* Cinematic background hero */}
-      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#16322c] text-white lg:min-h-[76vh]">
+      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#0f3535] text-white lg:min-h-[76vh]">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
-            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=80"
+            src={heroImage || "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=80"}
             alt=""
             fill
             priority
@@ -67,8 +72,8 @@ export default async function AboutPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
-          <div className="absolute inset-0 bg-[#0c1c18]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e1e]/95 via-[#0a1e1e]/78 to-[#0f3535]/35" />
+          <div className="absolute inset-0 bg-[#0a1e1e]/25" />
         </div>
 
         {/* Brand watermark + ambient orbit */}
@@ -119,7 +124,7 @@ export default async function AboutPage() {
 
             {/* Floating narrative panel — overlaps the portrait on desktop */}
             <FadeIn direction="up" delay={120} className="lg:col-span-6">
-              <div className="relative z-10 rounded-xl border border-white/10 bg-[#23423c] p-7 text-white shadow-xl shadow-forest/25 md:p-9 lg:-ml-24">
+              <div className="relative z-10 rounded-xl border border-white/10 bg-[#184c4c] p-7 text-white shadow-xl shadow-forest/25 md:p-9 lg:-ml-24">
                 <h2 className="font-serif text-2xl font-medium leading-tight text-white lg:text-3xl">
                   Where Military Precision Meets Human Wellness
                 </h2>
@@ -140,7 +145,7 @@ export default async function AboutPage() {
                 <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-white/20 pt-6">
                   {achievements.map(({ value, label }) => (
                     <div key={label}>
-                      <p className="font-mono text-3xl font-light leading-none text-[#eae6df]">{value}</p>
+                      <p className="font-mono text-3xl font-light leading-none text-[#e4ecec]">{value}</p>
                       <p className="mt-1.5 text-[10px] font-medium uppercase tracking-widest text-white/50">
                         {label}
                       </p>
@@ -154,7 +159,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Brutalist time track */}
-      <section className="grain-overlay bg-[#1e3d38] px-6 py-24 text-white lg:px-16 lg:py-28">
+      <section className="grain-overlay bg-[#134545] px-6 py-24 text-white lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[1200px]">
           <FadeIn direction="up">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
@@ -177,7 +182,7 @@ export default async function AboutPage() {
                     0{i + 1}
                   </span>
                   <div className="relative">
-                    <span className="mb-6 inline-block rounded-full bg-[#eae6df] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-[#1e3d38]">
+                    <span className="mb-6 inline-block rounded-full bg-[#e4ecec] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-[#134545]">
                       {period}
                     </span>
                     <h3 className="font-serif mb-3 text-2xl font-medium text-white">{title}</h3>
@@ -195,13 +200,13 @@ export default async function AboutPage() {
         {/* Botanical leaf */}
         <svg aria-hidden="true" className="pointer-events-none absolute -bottom-4 -right-4 h-28 w-28 rotate-[140deg] text-sage/[0.10] lg:bottom-8 lg:right-8 lg:h-36 lg:w-36" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 border-t border-[#1e3d38]/20 lg:grid-cols-12">
+          <div className="grid grid-cols-1 border-t border-[#134545]/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
               <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                 Values
               </p>
-              <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-[#1e3d38] md:text-5xl lg:pb-0">
+              <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-[#134545] md:text-5xl lg:pb-0">
                 What drives every engagement
               </h2>
             </FadeIn>
@@ -210,11 +215,11 @@ export default async function AboutPage() {
             <div className="lg:col-span-8">
               {values.map(({ title, body }, i) => (
                 <FadeIn key={title} direction="up" delay={i * 80}>
-                  <div className="group border-b border-[#1e3d38]/10 bg-white/50 p-10 shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-forest/[0.08]">
-                    <span className="mb-3 block font-mono text-xs text-neutral-400 transition-colors group-hover:text-[#1e3d38]">
+                  <div className="group border-b border-[#134545]/10 bg-white/50 p-10 shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-forest/[0.08]">
+                    <span className="mb-3 block font-mono text-xs text-neutral-400 transition-colors group-hover:text-[#134545]">
                       0{i + 1}
                     </span>
-                    <h3 className="font-serif mb-2 text-xl font-medium text-[#1e3d38] md:text-2xl">
+                    <h3 className="font-serif mb-2 text-xl font-medium text-[#134545] md:text-2xl">
                       {title}
                     </h3>
                     <p className="max-w-2xl text-sm leading-relaxed text-neutral-600">{body}</p>

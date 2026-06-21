@@ -49,8 +49,11 @@ function buildCalendarUrl(event: SiteEvent) {
 
 type FilterTab = "All" | "Upcoming" | "Past" | string;
 
+const EVENTS_PER_PAGE = 5;
+
 export function EventList({ events }: { events: SiteEvent[] }) {
   const [activeFilter, setActiveFilter] = useState<FilterTab>("All");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const now = new Date();
   const eventTypes = Array.from(new Set(events.map((e) => e.eventType)));
@@ -63,6 +66,10 @@ export function EventList({ events }: { events: SiteEvent[] }) {
     return event.eventType === activeFilter;
   });
 
+  const totalPages = Math.max(1, Math.ceil(filtered.length / EVENTS_PER_PAGE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paged = filtered.slice((safePage - 1) * EVENTS_PER_PAGE, safePage * EVENTS_PER_PAGE);
+
   const tabs: FilterTab[] = ["All", "Upcoming", "Past", ...eventTypes];
 
   return (
@@ -72,7 +79,7 @@ export function EventList({ events }: { events: SiteEvent[] }) {
         {tabs.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveFilter(tab)}
+            onClick={() => { setActiveFilter(tab); setCurrentPage(1); }}
             className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
               activeFilter === tab
                 ? "bg-forest text-white shadow-sm"
@@ -91,7 +98,7 @@ export function EventList({ events }: { events: SiteEvent[] }) {
         </div>
       ) : (
         <div className="divide-y divide-line">
-          {filtered.map((event) => {
+          {paged.map((event) => {
             const isPast = new Date(event.date) < now;
             const calUrl = buildCalendarUrl(event);
             const href = !isPast ? (event.registrationUrl || calUrl) : undefined;
@@ -215,6 +222,39 @@ export function EventList({ events }: { events: SiteEvent[] }) {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="mt-8 flex items-center justify-center gap-2">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={safePage <= 1}
+            className="rounded-full border border-forest/20 px-4 py-2 text-xs font-semibold text-forest transition-colors hover:bg-forest/[0.06] disabled:opacity-30 disabled:hover:bg-transparent"
+          >
+            Previous
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              className={`h-9 w-9 rounded-full text-xs font-semibold transition-colors ${
+                page === safePage
+                  ? "bg-forest text-white shadow-sm"
+                  : "text-forest/70 hover:bg-forest/[0.08]"
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={safePage >= totalPages}
+            className="rounded-full border border-forest/20 px-4 py-2 text-xs font-semibold text-forest transition-colors hover:bg-forest/[0.06] disabled:opacity-30 disabled:hover:bg-transparent"
+          >
+            Next
+          </button>
         </div>
       )}
     </div>

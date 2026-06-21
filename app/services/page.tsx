@@ -155,7 +155,7 @@ export default async function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-[#16322c] px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
+      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-[#0f3535] px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -167,8 +167,8 @@ export default async function ServicesPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
-          <div className="absolute inset-0 bg-[#0c1c18]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e1e]/95 via-[#0a1e1e]/78 to-[#0f3535]/35" />
+          <div className="absolute inset-0 bg-[#0a1e1e]/25" />
         </div>
 
         <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/15" />
@@ -285,7 +285,7 @@ export default async function ServicesPage() {
                     <div className="relative mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                       <Link
                         href="/book-sonya"
-                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-[#1e3d38] px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-[#152b27]"
+                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-[#134545] px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-[#0d3030]"
                       >
                         Inquire
                         <svg
@@ -328,10 +328,10 @@ export default async function ServicesPage() {
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
                 Ideal For
               </p>
-              <h2 className="font-serif text-4xl font-bold text-[#1e3d38] lg:text-5xl">
+              <h2 className="font-serif text-4xl font-bold text-[#134545] lg:text-5xl">
                 Who Sonya serves best
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#1e3d38]/70">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#134545]/70">
                 Sonya&apos;s engagements are most impactful for organizations where
                 leadership drives culture — and where investment in people is treated as
                 a strategic priority, not a perk.
@@ -344,12 +344,12 @@ export default async function ServicesPage() {
               {audiences.map((item) => (
                 <li
                   key={item.title}
-                  className="flex items-start gap-3 border-b border-[#1e3d38]/10 pb-4 text-sm font-medium text-[#1e3d38]"
+                  className="flex items-start gap-3 border-b border-[#134545]/10 pb-4 text-sm font-medium text-[#134545]"
                 >
-                  <span className="mt-2 h-px w-3.5 shrink-0 bg-[#1e3d38]/40" aria-hidden="true" />
+                  <span className="mt-2 h-px w-3.5 shrink-0 bg-[#134545]/40" aria-hidden="true" />
                   <div>
                     <span className="font-semibold leading-relaxed">{item.title}</span>
-                    <p className="mt-1 text-xs font-normal text-[#1e3d38]/60">{item.body}</p>
+                    <p className="mt-1 text-xs font-normal text-[#134545]/60">{item.body}</p>
                   </div>
                 </li>
               ))}
@@ -370,21 +370,40 @@ export default async function ServicesPage() {
             </div>
           </FadeIn>
 
-          <div className="relative mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
-            {/* Dashed timeline connector */}
-            <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 hidden h-full -translate-x-1/2 border-l-2 border-dashed border-forest/[0.08] md:block" />
-            {processSteps.map(({ step, title, body, icon }, i) => (
-              <FadeIn key={step} direction="up" delay={i * 100}>
-                <div className="group relative h-full overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md p-8 shadow-[0_4px_20px_rgba(47,79,79,0.05)] ring-1 ring-forest/[0.04] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_30px_rgba(47,79,79,0.08)]">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest transition-colors duration-300 group-hover:bg-forest/15">
-                    {icon}
+          <div className="relative mx-auto mt-16 max-w-6xl">
+            {/* Connected horizontal line behind cards (desktop only) */}
+            <div aria-hidden="true" className="pointer-events-none absolute left-[16.67%] right-[16.67%] top-[60px] hidden h-[2px] bg-gradient-to-r from-forest/5 via-forest/15 to-forest/5 md:block" />
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-0">
+              {processSteps.map(({ step, title, body, icon }, i) => (
+                <FadeIn key={step} direction="up" delay={i * 100}>
+                  <div className="relative flex flex-col items-center text-center">
+                    {/* Step circle on the connector line */}
+                    <div className="relative z-10 mb-6 flex h-[72px] w-[72px] items-center justify-center rounded-full border-2 border-forest/20 bg-white shadow-md shadow-forest/10 transition-all duration-300 hover:border-forest/40 hover:shadow-lg">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest/10 text-forest">
+                        {icon}
+                      </div>
+                    </div>
+
+                    {/* Arrow connector between cards (desktop only) */}
+                    {i < processSteps.length - 1 && (
+                      <div aria-hidden="true" className="pointer-events-none absolute right-0 top-[34px] z-20 hidden -translate-y-1/2 translate-x-1/2 md:block">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-forest/30">
+                          <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                    )}
+
+                    {/* Card content */}
+                    <div className="group rounded-2xl bg-white/70 p-6 shadow-sm ring-1 ring-forest/[0.06] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:ring-forest/[0.12] md:mx-4">
+                      <span className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-forest text-xs font-bold text-white">{step}</span>
+                      <h3 className="mb-2 text-lg font-semibold text-forest">{title}</h3>
+                      <p className="text-sm leading-relaxed text-muted">{body}</p>
+                    </div>
                   </div>
-                  <span className="mb-3 block font-mono text-[10px] tracking-widest text-forest/40">Step {step}</span>
-                  <h3 className="mb-3 text-lg font-semibold text-forest">{title}</h3>
-                  <p className="text-sm leading-relaxed text-muted">{body}</p>
-                </div>
-              </FadeIn>
-            ))}
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -20,18 +20,21 @@ const formats = [
     duration: "45 – 90 min",
     description:
       "Stage presentations designed to shift mindset and deliver practical, memorable takeaways. Ideal for company-wide events, conferences, and wellbeing weeks.",
+    image: "/images/formats/keynote.png",
   },
   {
     name: "Panels",
     duration: "60 – 90 min",
     description:
       "Facilitated conversations where Sonya brings a grounded wellness perspective to multi-speaker discussions on leadership, culture, and organizational performance.",
+    image: "/images/formats/panel.png",
   },
   {
     name: "Leadership Sessions",
     duration: "Half-day or Full-day",
     description:
       "Intimate, high-impact sessions for executive and senior teams focused on sustainable performance, stress management, and leading through change.",
+    image: "/images/formats/leadership.png",
   },
 ];
 
@@ -70,7 +73,7 @@ export default async function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#16322c] px-6 py-24 text-white lg:px-16">
+      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#0f3535] px-6 py-24 text-white lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -82,8 +85,8 @@ export default async function SpeakingEventsPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1c18]/95 via-[#0c1c18]/78 to-[#16322c]/35" />
-          <div className="absolute inset-0 bg-[#0c1c18]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e1e]/95 via-[#0a1e1e]/78 to-[#0f3535]/35" />
+          <div className="absolute inset-0 bg-[#0a1e1e]/25" />
         </div>
 
         <BrandOrbit className="pointer-events-none absolute -right-28 -top-24 h-[34rem] w-[34rem] text-sage/15" />
@@ -108,7 +111,7 @@ export default async function SpeakingEventsPage() {
           <div className="mt-10">
             <Link
               href="/book-sonya"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#1e3d38] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#134545] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               Book a Speaking Date
             </Link>
@@ -137,7 +140,7 @@ export default async function SpeakingEventsPage() {
               </p>
               <Link
                 href="/book-sonya"
-                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#1e3d38] px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#134545] px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Sonya
               </Link>
@@ -182,21 +185,34 @@ export default async function SpeakingEventsPage() {
           </FadeIn>
 
           <div className="grid gap-6 sm:grid-cols-3">
-            {formats.map(({ name, duration, description }, i) => (
+            {formats.map(({ name, duration, description, image }, i) => (
               <FadeIn key={name} direction="up" delay={i * 100}>
-                <div className="group relative h-full overflow-hidden rounded-xl border border-neutral-200/50 bg-white p-8 shadow-md shadow-forest/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-forest/30 hover:shadow-xl hover:shadow-forest/[0.10] md:p-10">
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-1 top-4 font-serif text-7xl font-bold leading-none text-sage/15 transition-colors duration-300 group-hover:text-sage/25"
-                  >
-                    0{i + 1}
-                  </span>
-                  <span className="relative mb-5 inline-block rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
-                    {duration}
-                  </span>
-                  <h3 className="font-serif relative mb-4 text-xl font-bold text-forest">{name}</h3>
-                  <p className="relative text-sm leading-relaxed text-muted">{description}</p>
-                  <span className="relative mt-6 block h-px w-10 bg-forest/30 transition-all duration-300 group-hover:w-20" />
+                <div className="group relative h-full overflow-hidden rounded-xl border border-neutral-200/50 bg-white pb-8 pt-0 shadow-md shadow-forest/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-forest/30 hover:shadow-xl hover:shadow-forest/[0.10]">
+                  {/* Image area with gradient background */}
+                  <div className="relative flex h-48 items-end justify-center overflow-hidden bg-gradient-to-b from-sage/20 to-sage/5">
+                    <Image
+                      src={image}
+                      alt={name}
+                      width={280}
+                      height={200}
+                      className="h-44 w-auto object-contain drop-shadow-lg transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute right-3 top-3 font-serif text-6xl font-bold leading-none text-forest/[0.06]"
+                    >
+                      0{i + 1}
+                    </span>
+                  </div>
+
+                  {/* Card content */}
+                  <div className="px-8 pt-6 md:px-10">
+                    <span className="mb-4 inline-block rounded-full border border-forest/15 bg-forest/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-forest/60">
+                      {duration}
+                    </span>
+                    <h3 className="font-serif mb-3 text-xl font-bold text-forest">{name}</h3>
+                    <p className="text-sm leading-relaxed text-muted">{description}</p>
+                  </div>
                 </div>
               </FadeIn>
             ))}

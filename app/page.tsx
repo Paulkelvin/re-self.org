@@ -210,7 +210,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── CORE PHILOSOPHY ── */}
-      <section className="grain-overlay relative flex items-center overflow-hidden bg-[#1e3d38] px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
+      <section className="grain-overlay relative flex items-center overflow-hidden bg-[#134545] px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-sage/[0.08] blur-3xl" />
         <div className="relative mx-auto w-full max-w-[1320px]">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
