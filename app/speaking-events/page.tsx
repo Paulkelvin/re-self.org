@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
-import { BrandOrbit } from "@/components/BrandOrbit";
 import { EventList } from "@/components/EventList";
 import { getTopics, getEvents } from "@/lib/content";
 
@@ -20,21 +19,39 @@ const formats = [
     duration: "45 – 90 min",
     description:
       "Stage presentations designed to shift mindset and deliver practical, memorable takeaways. Ideal for company-wide events, conferences, and wellbeing weeks.",
-    image: "/images/formats/keynote.png",
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5" />
+        <path d="M2 12l10 5 10-5" />
+      </svg>
+    ),
   },
   {
     name: "Panels",
     duration: "60 – 90 min",
     description:
       "Facilitated conversations where Sonya brings a grounded wellness perspective to multi-speaker discussions on leadership, culture, and organizational performance.",
-    image: "/images/formats/panel.png",
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87" />
+        <path d="M16 3.13a4 4 0 010 7.75" />
+      </svg>
+    ),
   },
   {
     name: "Leadership Sessions",
     duration: "Half-day or Full-day",
     description:
       "Intimate, high-impact sessions for executive and senior teams focused on sustainable performance, stress management, and leading through change.",
-    image: "/images/formats/leadership.png",
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
+        <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
+      </svg>
+    ),
   },
 ];
 
@@ -89,7 +106,6 @@ export default async function SpeakingEventsPage() {
           <div className="absolute inset-0 bg-[#0a1e1e]/25" />
         </div>
 
-        <BrandOrbit className="pointer-events-none absolute -right-28 -top-24 h-[34rem] w-[34rem] text-sage/15" />
         <span
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.06] lg:text-[14rem]"
@@ -185,18 +201,13 @@ export default async function SpeakingEventsPage() {
           </FadeIn>
 
           <div className="grid gap-6 sm:grid-cols-3">
-            {formats.map(({ name, duration, description, image }, i) => (
+            {formats.map(({ name, duration, description, icon }, i) => (
               <FadeIn key={name} direction="up" delay={i * 100}>
                 <div className="group relative h-full overflow-hidden rounded-xl border border-neutral-200/50 bg-white pb-8 pt-0 shadow-md shadow-forest/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-forest/30 hover:shadow-xl hover:shadow-forest/[0.10]">
-                  {/* Image area with gradient background */}
-                  <div className="relative flex h-48 items-end justify-center overflow-hidden bg-gradient-to-b from-sage/20 to-sage/5">
-                    <Image
-                      src={image}
-                      alt={name}
-                      width={280}
-                      height={200}
-                      className="h-44 w-auto object-contain drop-shadow-lg transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <div className="relative flex h-28 items-center justify-center bg-gradient-to-b from-sage/20 to-sage/5">
+                    <span className="text-forest/60 transition-colors duration-300 group-hover:text-forest">
+                      {icon}
+                    </span>
                     <span
                       aria-hidden="true"
                       className="pointer-events-none absolute right-3 top-3 font-serif text-6xl font-bold leading-none text-forest/[0.06]"
@@ -205,7 +216,6 @@ export default async function SpeakingEventsPage() {
                     </span>
                   </div>
 
-                  {/* Card content */}
                   <div className="px-8 pt-6 md:px-10">
                     <span className="mb-4 inline-block rounded-full border border-forest/15 bg-forest/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-forest/60">
                       {duration}
@@ -221,32 +231,29 @@ export default async function SpeakingEventsPage() {
       </section>
 
       {/* Audiences */}
-      <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
-        <div className="pointer-events-none absolute -right-32 top-10 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
-        {/* Ring outline */}
-        <div aria-hidden="true" className="pointer-events-none absolute -left-12 -top-12 h-28 w-28 rounded-full border border-forest/[0.08] lg:h-40 lg:w-40" />
+      <section className="relative overflow-hidden bg-ambient-warm py-14 lg:py-20">
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
-            <div className="mb-12 text-center">
+            <div className="mb-8 text-center">
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">Audiences</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
+              <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
                 Where Sonya speaks
               </h2>
             </div>
           </FadeIn>
 
           <FadeIn direction="up" delay={100}>
-            <div className="mx-auto mt-12 max-w-6xl border-l border-t border-line">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto max-w-4xl">
+              <div className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
                 {audiences.map((item, i) => (
                   <div
                     key={item}
-                    className="group relative flex min-h-[148px] flex-col justify-between border-b border-r border-line p-6 transition-colors duration-300 hover:bg-forest/[0.04]"
+                    className="group flex items-start gap-3 py-2"
                   >
-                    <span className="font-mono text-xs tracking-widest text-sage transition-colors duration-300 group-hover:text-forest">
+                    <span className="mt-0.5 font-mono text-xs tracking-widest text-sage">
                       0{i + 1}
                     </span>
-                    <span className="mt-6 text-sm leading-relaxed text-charcoal transition-colors duration-300 group-hover:text-forest">
+                    <span className="text-sm leading-snug text-charcoal transition-colors duration-300 group-hover:text-forest">
                       {item}
                     </span>
                   </div>
@@ -276,7 +283,7 @@ export default async function SpeakingEventsPage() {
 
             <FadeIn direction="up" delay={80}>
               <div className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2">
-                <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[400px]">
+                <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[320px]">
                   <Image
                     src={featuredEvent.coverImage}
                     alt={featuredEvent.title}

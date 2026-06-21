@@ -3,7 +3,6 @@ import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PackageCard } from "@/components/PackageCard";
-import { BrandOrbit } from "@/components/BrandOrbit";
 import { getPackages } from "@/lib/content";
 
 export const revalidate = 60;
@@ -94,7 +93,6 @@ export default async function PackagesPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(168,181,162,0.15),transparent_70%)]" />
         </div>
 
-        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/10" />
 
         <span
           aria-hidden="true"

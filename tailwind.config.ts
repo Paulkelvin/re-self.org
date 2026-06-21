@@ -14,7 +14,7 @@ const config: Config = {
         line: "#dfe8e2",
         paper: "#fbfaf5",
         mist: "#eef5ef",
-        sage: "#7fb5a8",
+        sage: "#c9b8a0",
         pine: {
           DEFAULT: "#184c4c",
           dark: "#0d3030",

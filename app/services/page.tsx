@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
-import { BrandOrbit } from "@/components/BrandOrbit";
 import { getServices } from "@/lib/content";
 
 export const revalidate = 60;
@@ -171,7 +170,6 @@ export default async function ServicesPage() {
           <div className="absolute inset-0 bg-[#0a1e1e]/25" />
         </div>
 
-        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/15" />
         <span
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.06] lg:text-[14rem]"

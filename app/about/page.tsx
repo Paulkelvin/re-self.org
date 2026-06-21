@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
-import { BrandOrbit } from "@/components/BrandOrbit";
 import { getAchievements } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 
@@ -83,7 +82,6 @@ export default async function AboutPage() {
         >
           About
         </span>
-        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/15" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 py-24 lg:px-16 lg:py-32">
           <FadeIn direction="up" className="max-w-2xl">

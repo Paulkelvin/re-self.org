@@ -81,7 +81,7 @@ function InstagramIcon() {
 
 const social = [
   { href: "https://www.facebook.com/profile.php?id=61574713893151", Icon: FacebookIcon, label: "Facebook" },
-  { href: "https://www.instagram.com/__reself__/", Icon: InstagramIcon, label: "Instagram" },
+  { href: "https://www.instagram.com/__reself__?igsh=MThqZ2tya3dvNTRsbg==", Icon: InstagramIcon, label: "Instagram" },
   { href: "#", Icon: LinkedInIcon, label: "LinkedIn" },
 ];
 
@@ -104,7 +104,7 @@ export function Footer() {
         </div>
 
         {/* 3 — Asymmetrical directory grid */}
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 border-b border-white/5 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Direct Line */}
           <div className="lg:col-span-4">
             <span className={labelCls}><HeadingTick />Direct Line</span>
@@ -148,7 +148,7 @@ export function Footer() {
         </div>
 
         {/* Ultra-minimal copyright basebar */}
-        <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-6 border-t border-white/5 pt-8 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row">
+        <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-6 pt-8 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row">
           <p>&copy; {year} RE-SELF. ALL RIGHTS RESERVED.</p>
           <div className="flex items-center gap-x-6 text-white/50">
             {social.map(({ href, Icon, label }) => {

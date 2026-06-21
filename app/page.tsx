@@ -4,7 +4,6 @@ import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { ShimmerCTA } from "@/components/ShimmerCTA";
 import { DecorImage } from "@/components/DecorImage";
-import { BrandOrbit } from "@/components/BrandOrbit";
 import { Gallery } from "@/components/Gallery";
 import {
   getFaq,
@@ -160,7 +159,6 @@ export default async function HomePage() {
 
       {/* ── ABOUT ── */}
       <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
-        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 text-forest/[0.10] lg:h-[26rem] lg:w-[26rem]" />
         <div aria-hidden="true" className="pointer-events-none absolute -left-32 bottom-0 h-[400px] w-[400px] rounded-full bg-sage/[0.08] blur-3xl" />
         {/* Glass orbs */}
         <div aria-hidden="true" className="pointer-events-none absolute right-[8%] top-16 h-16 w-16 rounded-full bg-sage/20 backdrop-blur-sm lg:h-20 lg:w-20" />
