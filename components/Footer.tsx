@@ -12,7 +12,7 @@ const quickLinks = [
 ];
 
 
-const EMAIL = "sdharrisla@gmail.com";
+const EMAIL = "info@re-self.org";
 
 const labelCls =
   "mb-4 flex items-center gap-2 font-serif text-base font-semibold tracking-tight text-white";

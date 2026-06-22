@@ -81,10 +81,10 @@ export default async function BookSonyaPage() {
                 <p className="mt-4 block text-xs font-light text-neutral-400">
                   Prefer direct email? Contact us at{" "}
                   <a
-                    href="mailto:sdharrisla@gmail.com"
+                    href="mailto:sharris@re-self.org"
                     className="underline-offset-2 transition-colors hover:text-forest hover:underline"
                   >
-                    sdharrisla@gmail.com
+                    sharris@re-self.org
                   </a>
                   .
                 </p>

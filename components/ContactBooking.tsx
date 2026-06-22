@@ -112,7 +112,7 @@ export function ContactBooking() {
       setInquiry(inquiryInit);
     } else {
       setStatus("error");
-      setFeedback(error ?? "Something went wrong. Please email sdharrisla@gmail.com.");
+      setFeedback(error ?? "Something went wrong. Please email info@re-self.org.");
     }
   }
 
@@ -150,7 +150,7 @@ export function ContactBooking() {
       setStep(1);
     } else {
       setStatus("error");
-      setFeedback(error ?? "Something went wrong. Please email sdharrisla@gmail.com.");
+      setFeedback(error ?? "Something went wrong. Please email info@re-self.org.");
     }
   }
 

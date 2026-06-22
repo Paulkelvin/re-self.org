@@ -54,7 +54,7 @@ export function ContactForm() {
     }
 
     setStatus("error");
-    setMessage(result.error ?? "Something went wrong. Please email sdharrisla@gmail.com.");
+    setMessage(result.error ?? "Something went wrong. Please email info@re-self.org.");
   }
 
   return (
