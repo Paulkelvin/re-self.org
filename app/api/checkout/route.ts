@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const { packageTitle, priceAmount, squareItemId } = parsed.data;
+  const { packageTitle, priceAmount } = parsed.data;
   const accessToken = cleanEnv(process.env.SQUARE_ACCESS_TOKEN);
   const locationId = cleanEnv(process.env.SQUARE_LOCATION_ID);
   const squareEnvironment = cleanEnv(process.env.SQUARE_ENVIRONMENT).toLowerCase();
@@ -52,24 +52,17 @@ export async function POST(req: Request) {
 
   const checkoutBody = {
     idempotency_key: crypto.randomUUID(),
-    order: {
-      order: {
-        location_id: locationId,
-        line_items: [
-          {
-            name: packageTitle,
-            quantity: "1",
-            base_price_money: {
-              amount: priceAmount,
-              currency: "USD",
-            },
-            ...(squareItemId ? { catalog_object_id: squareItemId } : {}),
-          },
-        ],
+    quick_pay: {
+      name: packageTitle,
+      price_money: {
+        amount: priceAmount,
+        currency: "USD",
       },
+      location_id: locationId,
     },
-    redirect_url: `${baseUrl.replace(/\/$/, "")}/packages/success`,
-    pre_populate_buyer_email: "",
+    checkout_options: {
+      redirect_url: `${baseUrl.replace(/\/$/, "")}/packages/success`,
+    },
   };
 
   const squareHost = squareEnvironment === "production" ? "connect.squareup.com" : "connect.squareupsandbox.com";
