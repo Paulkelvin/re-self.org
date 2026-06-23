@@ -272,7 +272,7 @@ export function ContactBooking() {
                     className={inputCls} placeholder="(555) 000-0000" />
                 </div>
                 <div>
-                  <label htmlFor="cb-organization" className={labelCls}>Organization Name</label>
+                  <label htmlFor="cb-organization" className={labelCls}>Organization Name <span className="font-normal normal-case tracking-normal text-neutral-400">(optional)</span></label>
                   <input id="cb-organization" value={booking.organization}
                     onChange={(e) => setBooking((c) => ({ ...c, organization: e.target.value }))}
                     className={inputCls} placeholder="Company name" />

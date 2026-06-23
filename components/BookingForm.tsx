@@ -43,7 +43,7 @@ function formatUSPhone(raw: string): string {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
 
-const step1Fields = ["fullName", "email", "phone", "organization"] as const;
+const step1Fields = ["fullName", "email", "phone"] as const;
 
 export function BookingForm() {
   const [form, setForm] = useState(initial);
@@ -183,7 +183,7 @@ export function BookingForm() {
               </div>
 
               <div className="grid gap-1.5">
-                <label htmlFor="bf-organization" className={labelCls}>Organization</label>
+                <label htmlFor="bf-organization" className={labelCls}>Organization <span className="font-normal normal-case tracking-normal text-neutral-400">(optional)</span></label>
                 <input
                   id="bf-organization"
                   name="organization"
