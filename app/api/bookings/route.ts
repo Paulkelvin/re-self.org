@@ -97,17 +97,6 @@ async function sendEmails(booking: Booking) {
     .map((email) => email.trim())
     .filter(Boolean);
 
-  if (!host || !user || !pass) {
-    return;
-  }
-
-  const transporter = nodemailer.createTransport({
-    host,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: process.env.SMTP_SECURE === "true",
-    auth: { user, pass }
-  });
-
   const from = process.env.SMTP_FROM || `Re-Self Bookings <${user}>`;
   const summary = [
     `Full Name: ${booking.fullName}`,
@@ -122,6 +111,18 @@ async function sendEmails(booking: Booking) {
     "",
     booking.details
   ].join("\n");
+
+  if (!host || !user || !pass) {
+    console.warn("No SMTP email provider configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS.");
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    host,
+    port: Number(process.env.SMTP_PORT || 587),
+    secure: process.env.SMTP_SECURE === "true",
+    auth: { user, pass }
+  });
 
   await Promise.all([
     transporter.sendMail({
