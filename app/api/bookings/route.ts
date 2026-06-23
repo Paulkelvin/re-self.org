@@ -92,6 +92,10 @@ async function sendEmails(booking: Booking) {
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
   const to = process.env.BOOKING_TO_EMAIL || "sharris@re-self.org";
+  const bcc = process.env.BOOKING_BCC_EMAILS
+    ?.split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
 
   if (!host || !user || !pass) {
     return;
@@ -123,6 +127,7 @@ async function sendEmails(booking: Booking) {
     transporter.sendMail({
       from,
       to,
+      bcc,
       replyTo: booking.email,
       subject: `New booking request from ${booking.fullName}`,
       text: summary
