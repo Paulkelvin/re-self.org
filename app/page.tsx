@@ -21,13 +21,13 @@ import { PackageCard } from "@/components/PackageCard";
 export const revalidate = 60;
 
 const eyebrowCls =
-  "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90";
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-forest";
 
 const eyebrowGold =
-  "mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]";
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]";
 
 const eyebrowCharcoal =
-  "mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80";
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-charcoal";
 
 const statIcons = [
   <svg key="cal" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>,
@@ -392,7 +392,7 @@ export default async function HomePage() {
         <svg aria-hidden="true" className="pointer-events-none absolute left-6 top-10 h-24 w-24 -rotate-12 text-sage/[0.12] lg:left-12 lg:top-14 lg:h-32 lg:w-32" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
         <FadeIn direction="up">
           <div className="mb-16 text-center">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#dfba86]/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[#dfba86] justify-center">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#dfba86]/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.22em] text-[#c59a5a] justify-center">
               Testimonials
             </p>
             <h2 className="font-serif text-4xl font-bold tracking-tight text-charcoal lg:text-5xl">
@@ -582,7 +582,7 @@ export default async function HomePage() {
               </div>
             </FadeIn>
 
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 pt-2 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 pt-2 sm:grid-cols-2">
               {packages.map((pkg, i) => (
                 <FadeIn key={pkg.title} direction="up" delay={i * 100}>
                   <PackageCard pkg={pkg} index={i} compact />

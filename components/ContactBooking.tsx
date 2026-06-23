@@ -118,7 +118,7 @@ export function ContactBooking() {
 
   // ── Booking flow ──
   function bookingNext() {
-    const missing = (["fullName", "email", "phone", "organization"] as const).find(
+    const missing = (["fullName", "email", "phone"] as const).find(
       (f) => !booking[f].trim(),
     );
     if (missing) {

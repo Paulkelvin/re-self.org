@@ -112,7 +112,7 @@ export default async function SpeakingEventsPage() {
 
             <FadeIn direction="up">
               <div className="mb-10">
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-forest">
                   {new Date(featuredEvent.date) >= now ? "Next Up" : "Featured Event"}
                 </p>
                 <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
@@ -224,7 +224,7 @@ export default async function SpeakingEventsPage() {
           <div className="mx-auto max-w-[1200px] px-4">
             <FadeIn direction="up">
               <div className="mb-10">
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
                   Events
                 </p>
                 <h2 className="font-serif text-2xl font-bold tracking-tight text-charcoal lg:text-3xl">
@@ -252,7 +252,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:items-start">
             <FadeIn direction="up">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-forest">
                 Signature Topics
               </p>
               <h2 className="font-serif text-4xl font-bold leading-tight text-forest lg:text-5xl">
@@ -300,7 +300,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">Formats</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">Formats</p>
               <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                 Three ways to bring Sonya to your audience.
               </h2>
@@ -343,7 +343,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-8 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80">Audiences</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-charcoal">Audiences</p>
               <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
                 Where Sonya speaks
               </h2>

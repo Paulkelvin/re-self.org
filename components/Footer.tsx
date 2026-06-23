@@ -109,6 +109,13 @@ export function Footer() {
             >
               {EMAIL}
             </a>
+            <br />
+            <a
+              href="tel:+12409887490"
+              className="mt-2 inline-block border-b border-white/20 pb-1 font-serif text-lg text-white/90 transition-all hover:border-white hover:text-white"
+            >
+              (240) 988-7490
+            </a>
           </div>
 
           {/* Explore */}

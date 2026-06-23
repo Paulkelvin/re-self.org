@@ -166,7 +166,7 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 border-t border-[#134545]/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
+              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
                 Values
               </p>
               <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-charcoal md:text-5xl lg:pb-0">
@@ -211,7 +211,7 @@ export default async function AboutPage() {
         <div className="pointer-events-none absolute -right-32 top-10 h-[400px] w-[400px] rounded-full bg-gold/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[860px] px-6">
           <FadeIn direction="up">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
               About Re-Self
             </p>
             <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
@@ -240,7 +240,7 @@ export default async function AboutPage() {
       <section className="bg-ambient-warm py-20 lg:py-28">
         <div className="mx-auto max-w-[860px] px-6">
           <FadeIn direction="up">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-charcoal">
               Words of Encouragement
             </p>
             <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
