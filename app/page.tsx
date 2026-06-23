@@ -404,15 +404,8 @@ export default async function HomePage() {
             {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <article
                 key={i}
-                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-white/60 backdrop-blur-md px-6 pb-6 pt-12 text-center shadow-[0_8px_32px_rgba(47,79,79,0.08)] ring-1 ring-white/70"
+                className="relative w-[350px] flex-shrink-0 rounded-2xl bg-white/60 backdrop-blur-md px-6 pb-6 pt-8 text-center shadow-[0_8px_32px_rgba(47,79,79,0.08)] ring-1 ring-white/70"
               >
-                <Image
-                  src={t.image}
-                  alt={t.name}
-                  width={160}
-                  height={160}
-                  className="absolute -top-10 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white object-cover shadow-lg shadow-forest/[0.08]"
-                />
                 <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#dfba86]/25 shadow-sm shadow-[#dfba86]/15 text-sm text-[#dfba86]">
                   &ldquo;
                 </span>
@@ -442,20 +435,6 @@ export default async function HomePage() {
         const isUpcoming = upcoming.length > 0;
         if (display.length === 0) return null;
 
-        function buildCalendarUrl(event: typeof display[0]) {
-          const start = new Date(event.date);
-          const end = new Date(start.getTime() + 2 * 60 * 60 * 1000);
-          const fmt = (d: Date) =>
-            d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-          const params = new URLSearchParams({
-            action: "TEMPLATE",
-            text: event.title,
-            dates: `${fmt(start)}/${fmt(end)}`,
-            location: event.location || "",
-            details: event.description || `${event.eventType} — ${event.title}`,
-          });
-          return `https://calendar.google.com/calendar/render?${params.toString()}`;
-        }
 
         return (
           <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
@@ -476,10 +455,7 @@ export default async function HomePage() {
               <FadeIn direction="up" delay={80}>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {display.map((event) => {
-                    const isPast = new Date(event.date) < now;
                     const d = new Date(event.date);
-                    const calUrl = buildCalendarUrl(event);
-                    const href = !isPast ? (event.registrationUrl || calUrl) : undefined;
                     return (
                       <div
                         key={event.slug}
@@ -540,19 +516,6 @@ export default async function HomePage() {
                             </div>
                           )}
 
-                          <div className="mt-auto flex items-center gap-3 pt-4">
-                            {!isPast && href && (
-                              <a
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 rounded-full bg-forest px-4 py-2 text-[11px] font-semibold text-white transition-colors hover:bg-forest-light"
-                              >
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /><path d="M12 14v4M10 16h4" /></svg>
-                                Save to Calendar
-                              </a>
-                            )}
-                          </div>
                         </div>
                       </div>
                     );
