@@ -1,6 +1,24 @@
 import type { Metadata } from "next";
+import { IBM_Plex_Mono, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  variable: "--font-plex-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://re-self.org"),
@@ -79,7 +97,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       </head>
-      <body className="font-sans bg-warm-white text-charcoal antialiased">
+      <body
+        className={`${jakarta.variable} ${playfair.variable} ${plexMono.variable} font-sans bg-warm-white text-charcoal antialiased`}
+      >
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
