@@ -6,6 +6,16 @@ import { urlForImage } from "@/sanity/lib/image";
 // Source of truth is Sanity. Each getter returns the same shape the
 // components already expect (image fields resolved to URL strings).
 
+export async function getHeroImage(): Promise<string> {
+  const data = await client.fetch<{ heroImage: Image | null } | null>(
+    groq`*[_type == "siteSettings"][0]{ heroImage }`,
+  );
+  if (data?.heroImage) {
+    return urlForImage(data.heroImage).width(2400).quality(85).url();
+  }
+  return "/sonya-harris.jpg";
+}
+
 export interface Service {
   title: string;
   image: string;
@@ -30,8 +40,6 @@ export interface Faq {
   question: string;
   answer: string;
 }
-/** [value, label] — matches the existing homepage destructuring. */
-export type Credential = [string, string];
 
 export async function getServices(): Promise<Service[]> {
   const data = await client.fetch<{ title: string; image: Image; body: string }[]>(
@@ -61,13 +69,6 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     org: t.org,
     image: t.image ? urlForImage(t.image).width(224).height(224).url() : "",
   }));
-}
-
-export async function getCredentials(): Promise<Credential[]> {
-  const data = await client.fetch<{ value: string; label: string }[]>(
-    groq`*[_type == "credential"] | order(order asc){ value, label }`,
-  );
-  return data.map((c) => [c.value, c.label] as Credential);
 }
 
 export async function getAchievements(): Promise<Achievement[]> {

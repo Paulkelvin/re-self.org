@@ -13,6 +13,7 @@ import {
   getAchievements,
   getPackages,
   getEvents,
+  getHeroImage,
 } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
@@ -81,7 +82,7 @@ function LeafIcon() {
 
 
 export default async function HomePage() {
-  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events] =
+  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events, heroImage] =
     await Promise.all([
       getServices(),
       getTopics(),
@@ -91,6 +92,7 @@ export default async function HomePage() {
       getGalleryImages(),
       getPackages(),
       getEvents(),
+      getHeroImage(),
     ]);
 
   const flagship =
@@ -102,12 +104,12 @@ export default async function HomePage() {
       {/* ── HERO ── */}
       <section className="relative isolate min-h-[calc(100svh_-_80px)] overflow-hidden">
         <Image
-          src="/sonya-harris.jpg"
-          alt="Sonya Harris — Corporate Wellness Consultant and Keynote Speaker"
+          src={heroImage}
+          alt="Conference keynote stage — Re-Self Wellness"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_20%]"
+          className="object-cover object-center"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/15" />
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
