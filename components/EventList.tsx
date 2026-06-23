@@ -13,6 +13,8 @@ const typeColors: Record<string, string> = {
   Conference: "bg-[#d5e0e8] text-[#2a4a5a]",
 };
 
+const EVENT_TZ = "America/Chicago";
+
 function formatEventDate(dateStr: string) {
   const d = new Date(dateStr);
   return d.toLocaleDateString("en-US", {
@@ -20,6 +22,7 @@ function formatEventDate(dateStr: string) {
     month: "short",
     day: "numeric",
     year: "numeric",
+    timeZone: EVENT_TZ,
   });
 }
 
@@ -29,6 +32,7 @@ function formatEventTime(dateStr: string) {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
+    timeZone: EVENT_TZ,
   });
 }
 
