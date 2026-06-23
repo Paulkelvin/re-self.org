@@ -118,10 +118,17 @@ export async function POST(request: NextRequest) {
 
   try {
     await logBooking(parsed.data);
-    await sendEmails(parsed.data);
-    return NextResponse.json({ ok: true });
-  } catch (error) {
-    console.error("Booking submission failed", error);
-    return NextResponse.json({ error: "We could not submit the request. Please email sharris@re-self.org." }, { status: 500 });
+  } catch (logErr) {
+    console.error("logBooking failed (non-fatal):", logErr);
   }
+
+  let emailError: string | null = null;
+  try {
+    await sendEmails(parsed.data);
+  } catch (err) {
+    emailError = err instanceof Error ? err.message : String(err);
+    console.error("sendEmails failed (non-fatal):", err);
+  }
+
+  return NextResponse.json({ ok: true, emailError });
 }
