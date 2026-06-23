@@ -85,7 +85,7 @@ export default async function AboutPage() {
                 <div className="mt-4 space-y-3 text-sm leading-snug text-white/70">
                   <p>
                     Sonya Harris entered the United States Air Force with a commitment to
-                    service that shaped everything she does. Over 21 years she rose through
+                    service that shaped everything she does. Over 23 years she rose through
                     the ranks, leading teams through rapid change and high-stress deployments.
                   </p>
                   <p>

@@ -64,10 +64,10 @@ const philosophies = [
 // ---------------------------------------------------------------------------
 const timelineEntries = [
   {
-    period: "2001 – 2022",
+    period: "1987 – 2010",
     title: "U.S. Air Force Service",
     description:
-      "21 years of distinguished service across domestic and international assignments, leading teams through high-pressure environments, complex organizational change, and mission-critical demands.",
+      "Distinguished service across domestic and international assignments, leading teams through high-pressure environments, complex organizational change, and mission-critical demands.",
     order: 1,
   },
   {
@@ -78,7 +78,7 @@ const timelineEntries = [
     order: 2,
   },
   {
-    period: "2020 – Present",
+    period: "2022 – Present",
     title: "Re-Self Wellness",
     description:
       "Founded Re-Self, a thoughtfully developed wellness curriculum helping individuals and organizations rediscover their inner strength. Trusted by organizations like the University of California and Phenomenal Women Empowerment Organization, with workshops delivered across the U.S. and internationally.",
@@ -267,6 +267,11 @@ const serviceAudiences = [
     title: "Executive Teams",
     body: "Emotional and strategic support to lead well through change, transition, and high-stakes demands.",
     order: 6,
+  },
+  {
+    title: "Individuals & Groups",
+    body: "Individuals seeking self-care tools to incorporate into their lives, women's groups, church groups, and community organizations.",
+    order: 7,
   },
 ];
 
