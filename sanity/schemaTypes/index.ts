@@ -4,7 +4,6 @@ import { service } from "./service";
 import { topic } from "./topic";
 import { testimonial } from "./testimonial";
 import { faq } from "./faq";
-import { credential } from "./credential";
 import { achievement } from "./achievement";
 import { galleryImage } from "./galleryImage";
 import { author } from "./author";
@@ -22,14 +21,15 @@ import { speakingAudience } from "./speakingAudience";
 import { guarantee } from "./guarantee";
 import { stat } from "./stat";
 import { bookingReason } from "./bookingReason";
+import { siteSettings } from "./siteSettings";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Site content
+  siteSettings,
   service,
   topic,
   testimonial,
   faq,
-  credential,
   achievement,
   galleryImage,
   pkg,

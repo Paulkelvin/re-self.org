@@ -19,12 +19,15 @@ const formatIcons = [
   <svg key="book" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></svg>,
 ];
 
+const EVENT_TZ = "America/Chicago";
+
 function formatFeaturedDate(dateStr: string) {
   const d = new Date(dateStr);
   return d.toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
+    timeZone: EVENT_TZ,
   });
 }
 
@@ -33,6 +36,7 @@ function formatFeaturedTime(dateStr: string) {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
+    timeZone: EVENT_TZ,
   });
 }
 
