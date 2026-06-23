@@ -4,7 +4,7 @@ import { z } from "zod";
 const schema = z.object({
   packageTitle: z.string().min(1),
   priceAmount: z.number().int().positive(),
-  squareItemId: z.string().min(1),
+  squareItemId: z.string().optional().default(""),
 });
 
 export async function POST(req: Request) {
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
               amount: priceAmount,
               currency: "USD",
             },
-            catalog_object_id: squareItemId || undefined,
+            ...(squareItemId ? { catalog_object_id: squareItemId } : {}),
           },
         ],
       },

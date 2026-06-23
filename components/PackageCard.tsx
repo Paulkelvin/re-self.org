@@ -46,6 +46,10 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
     : (pkg.features ?? []);
 
   async function handleCheckout() {
+    if (!pkg.price || pkg.price <= 0) {
+      window.location.href = "/book-sonya";
+      return;
+    }
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {
@@ -54,7 +58,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
         body: JSON.stringify({
           packageTitle: pkg.title,
           priceAmount: pkg.price,
-          squareItemId: pkg.squareItemId,
+          squareItemId: pkg.squareItemId || "",
         }),
       });
       const data = await res.json();
