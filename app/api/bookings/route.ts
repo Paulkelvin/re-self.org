@@ -87,35 +87,104 @@ async function storeBooking(booking: Booking) {
   await fs.appendFile(backupPath, `${JSON.stringify({ ...booking, createdAt: new Date().toISOString() })}\n`);
 }
 
-async function sendEmails(booking: Booking) {
-  const host = process.env.SMTP_HOST;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const to = process.env.BOOKING_TO_EMAIL || "sharris@re-self.org";
-  const bcc = process.env.BOOKING_BCC_EMAILS
-    ?.split(",")
-    .map((email) => email.trim())
-    .filter(Boolean);
-
-  const from = process.env.SMTP_FROM || `Re-Self Bookings <${user}>`;
-  const summary = [
+function buildSummary(booking: Booking): string {
+  return [
     `Full Name: ${booking.fullName}`,
     `Email: ${booking.email}`,
     `Phone: ${booking.phone}`,
-    `Organization: ${booking.organization}`,
-    `Event Type: ${booking.eventType}`,
-    `Event Date: ${booking.eventDate}`,
-    `Event Location: ${booking.eventLocation}`,
-    `Estimated Audience Size: ${booking.audienceSize}`,
-    `Budget Range: ${booking.budgetRange}`,
+    `Organization: ${booking.organization || "—"}`,
+    `Event Type: ${booking.eventType || "—"}`,
+    `Event Date: ${booking.eventDate || "—"}`,
+    `Event Location: ${booking.eventLocation || "—"}`,
+    `Estimated Audience Size: ${booking.audienceSize || "—"}`,
+    `Budget Range: ${booking.budgetRange || "—"}`,
     "",
-    booking.details
+    booking.details || "(no additional details)",
   ].join("\n");
+}
+
+async function sendViaBrevo(booking: Booking) {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) return false;
+
+  const to = process.env.BOOKING_TO_EMAIL || "sharris@re-self.org";
+  const bcc = (process.env.BOOKING_BCC_EMAILS ?? "")
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean)
+    .map((email) => ({ email }));
+
+  const senderName = process.env.BREVO_SENDER_NAME || "Re-Self";
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || "no-reply@re-self.org";
+  const summary = buildSummary(booking);
+
+  const notificationPayload = {
+    sender: { name: senderName, email: senderEmail },
+    to: [{ email: to }],
+    ...(bcc.length > 0 ? { bcc } : {}),
+    replyTo: { email: booking.email, name: booking.fullName },
+    subject: `New booking request from ${booking.fullName}`,
+    textContent: summary,
+    htmlContent: `<pre style="font-family:sans-serif;font-size:14px;line-height:1.6">${summary.replace(/</g, "&lt;")}</pre>`,
+  };
+
+  const confirmationPayload = {
+    sender: { name: senderName, email: senderEmail },
+    to: [{ email: booking.email, name: booking.fullName }],
+    subject: "Your Re-Self booking request was received",
+    textContent: `Hi ${booking.fullName},\n\nThank you for contacting Re-Self. Your booking request has been received and Sonya will follow up with next steps.\n\n${summary}`,
+    htmlContent: `<div style="font-family:sans-serif;font-size:14px;line-height:1.6"><p>Hi ${booking.fullName},</p><p>Thank you for contacting Re-Self. Your booking request has been received and Sonya will follow up with next steps.</p><hr style="border:none;border-top:1px solid #ddd;margin:16px 0"><pre style="font-family:sans-serif;font-size:13px;color:#555">${summary.replace(/</g, "&lt;")}</pre></div>`,
+  };
+
+  const headers = {
+    "api-key": apiKey,
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+
+  const [notifRes, confirmRes] = await Promise.all([
+    fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(notificationPayload),
+    }),
+    fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(confirmationPayload),
+    }),
+  ]);
+
+  if (!notifRes.ok) {
+    const err = await notifRes.text();
+    console.error("Brevo notification email failed:", notifRes.status, err);
+    throw new Error(`Brevo notification email failed: ${notifRes.status}`);
+  }
+  if (!confirmRes.ok) {
+    const err = await confirmRes.text();
+    console.error("Brevo confirmation email failed:", confirmRes.status, err);
+  }
+
+  return true;
+}
+
+async function sendViaSmtp(booking: Booking) {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
 
   if (!host || !user || !pass) {
-    console.warn("No SMTP email provider configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS.");
+    console.warn("No email provider configured. Set BREVO_API_KEY or SMTP_HOST/SMTP_USER/SMTP_PASS.");
     return;
   }
+
+  const to = process.env.BOOKING_TO_EMAIL || "sharris@re-self.org";
+  const bcc = (process.env.BOOKING_BCC_EMAILS ?? "")
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean);
+  const from = process.env.SMTP_FROM || `Re-Self Bookings <${user}>`;
+  const summary = buildSummary(booking);
 
   const transporter = nodemailer.createTransport({
     host,
@@ -140,6 +209,13 @@ async function sendEmails(booking: Booking) {
       text: `Hi ${booking.fullName},\n\nThank you for contacting Re-Self. Your booking request has been received and Sonya will follow up with next steps.\n\n${summary}`
     })
   ]);
+}
+
+async function sendEmails(booking: Booking) {
+  const sentViaBrevo = await sendViaBrevo(booking);
+  if (!sentViaBrevo) {
+    await sendViaSmtp(booking);
+  }
 }
 
 export async function POST(request: NextRequest) {
