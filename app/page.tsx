@@ -122,9 +122,9 @@ export default async function HomePage() {
 
             <FadeIn direction="up" delay={80}>
               <h1 className="max-w-3xl font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl">
-                Stronger leaders.
+                Stronger Leaders.
                 <br />
-                <span className="text-white">Healthier organizations.</span>
+                <span className="text-white">Healthier Organizations.</span>
               </h1>
             </FadeIn>
 

@@ -71,13 +71,9 @@ export async function getCredentials(): Promise<Credential[]> {
 }
 
 export async function getAchievements(): Promise<Achievement[]> {
-  const data = await client.fetch<Achievement[]>(
+  return client.fetch<Achievement[]>(
     groq`*[_type == "achievement"] | order(order asc){ value, label }`,
   );
-  return data.map((a) => ({
-    ...a,
-    label: a.label === "Military Service" ? "US Air Force" : a.label,
-  }));
 }
 
 export async function getFaq(): Promise<Faq[]> {
@@ -204,15 +200,10 @@ export interface Timeline {
   title: string;
   description: string;
 }
-const timelineFixes: Record<string, string> = {
-  "2001 – 2022": "1987 – 2010",
-  "2020 – Present": "2022 – Present",
-};
 export async function getTimeline(): Promise<Timeline[]> {
-  const data = await client.fetch<Timeline[]>(
+  return client.fetch<Timeline[]>(
     groq`*[_type == "timeline"] | order(order asc){ period, title, description }`,
   );
-  return data.map((t) => ({ ...t, period: timelineFixes[t.period] ?? t.period }));
 }
 
 export interface Affirmation {
@@ -240,17 +231,9 @@ export interface ServiceAudience {
   body: string;
 }
 export async function getServiceAudiences(): Promise<ServiceAudience[]> {
-  const data = await client.fetch<ServiceAudience[]>(
+  return client.fetch<ServiceAudience[]>(
     groq`*[_type == "serviceAudience"] | order(order asc){ title, body }`,
   );
-  const hasIndividuals = data.some((a) => a.title.toLowerCase().includes("individuals"));
-  if (!hasIndividuals) {
-    data.push({
-      title: "Individuals & Groups",
-      body: "Individuals seeking self-care tools to incorporate into their lives, women’s groups, church groups, and community organizations.",
-    });
-  }
-  return data;
 }
 
 export interface ProcessStep {
