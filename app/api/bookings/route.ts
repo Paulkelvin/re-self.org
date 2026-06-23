@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -57,38 +57,36 @@ function buildSummary(booking: Booking): string {
 }
 
 async function sendEmails(booking: Booking) {
-  const apiKey = process.env.RESEND_API_KEY;
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
 
-  if (!apiKey) {
-    console.warn("RESEND_API_KEY not set. Skipping email delivery.");
+  if (!user || !pass) {
+    console.warn("Gmail not configured. Set GMAIL_USER and GMAIL_APP_PASSWORD.");
     return;
   }
 
-  const resend = new Resend(apiKey);
-  const to = process.env.BOOKING_TO_EMAIL || "info@re-self.org";
+  const notifyTo = process.env.BOOKING_TO_EMAIL || user;
   const bcc = (process.env.BOOKING_BCC_EMAILS ?? "")
     .split(",")
     .map((e) => e.trim())
     .filter(Boolean);
   const summary = buildSummary(booking);
 
-  await Promise.all([
-    resend.emails.send({
-      from: "Re-Self <onboarding@resend.dev>",
-      to: [to],
-      bcc,
-      replyTo: booking.email,
-      subject: `New booking request from ${booking.fullName}`,
-      text: summary,
-    }),
-    resend.emails.send({
-      from: "Re-Self <onboarding@resend.dev>",
-      to: [booking.email],
-      replyTo: to,
-      subject: "Your Re-Self booking request was received",
-      text: `Hi ${booking.fullName},\n\nThank you for contacting Re-Self. Your booking request has been received and Sonya will follow up with next steps.\n\n${summary}`,
-    }),
-  ]);
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: { user, pass },
+  });
+
+  await transporter.sendMail({
+    from: `Re-Self <${user}>`,
+    to: notifyTo,
+    bcc,
+    replyTo: booking.email,
+    subject: `New booking request from ${booking.fullName}`,
+    text: summary,
+  });
 }
 
 export async function POST(request: NextRequest) {
