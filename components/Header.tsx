@@ -54,7 +54,7 @@ export function Header() {
             width={223}
             height={200}
             priority
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-11" : "h-14"}`}
+            className={`logo-harmonize w-auto transition-all duration-300 ${scrolled ? "h-11" : "h-14"}`}
           />
         </Link>
 
@@ -146,7 +146,7 @@ export function Header() {
                   alt="Re-Self — reimagine self care"
                   width={223}
                   height={200}
-                  className="h-14 w-auto"
+                  className="logo-harmonize h-14 w-auto"
                 />
               </Link>
               <button

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
-import { getServices } from "@/lib/content";
+import { getServices, getServiceAudiences, getProcessSteps } from "@/lib/content";
 
 export const revalidate = 60;
 
@@ -12,87 +12,10 @@ export const metadata: Metadata = {
     "Workshops, retreats, custom programs, virtual self-care sessions, and journals — Re-Self provides practical, lasting tools for balance, resilience, and well-being.",
 };
 
-const audiences: {
-  title: string;
-  body: string;
-  variant: "image" | "plain" | "person";
-  image?: string;
-  bg?: string;
-}[] = [
-  {
-    title: "HR & People Teams",
-    body: "Wellbeing weeks, culture initiatives, and employee wellness campaigns that go beyond box-checking.",
-    variant: "image",
-    image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "High-Performance Leaders",
-    body: "Managing burnout on ambitious teams where pressure never lets up and resilience isn't optional.",
-    variant: "plain",
-    bg: "#c9b89a",
-  },
-  {
-    title: "Federal Agencies",
-    body: "Evidence-based programs built for the scale and rigor government workforce wellness demands.",
-    variant: "plain",
-    bg: "#c5cec0",
-  },
-  {
-    title: "Educational Institutions",
-    body: "Sustainable wellness practices for faculty and staff that prevent attrition and restore purpose.",
-    variant: "image",
-    image:
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "Wellness-First Organizations",
-    body: "Long-term cultures of care where wellbeing is woven into leadership, operations, and daily rhythms.",
-    variant: "image",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "Executive Teams",
-    body: "Emotional and strategic support to lead well through change, transition, and high-stakes demands.",
-    variant: "person",
-    image: "/executive-cutout.png",
-    bg: "#5a7a6d",
-  },
-];
-
-const processSteps = [
-  {
-    step: "01",
-    title: "Discovery Call",
-    body: "We start with a focused conversation to understand your team, goals, culture, and the specific challenges you want to address.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-      </svg>
-    ),
-  },
-  {
-    step: "02",
-    title: "Custom Design",
-    body: "Content is designed specifically for your audience — not adapted from a template. Sonya builds each engagement from the ground up.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 20h9" />
-        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-      </svg>
-    ),
-  },
-  {
-    step: "03",
-    title: "Delivery & Impact",
-    body: "Premium delivery with full presence. Every session includes clear takeaways, practical tools, and follow-up resources.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-  },
+const stepIcons = [
+  <svg key="phone" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>,
+  <svg key="pen" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>,
+  <svg key="pulse" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>,
 ];
 
 // Local editorial enrichment for each service (keyed by title) — adds
@@ -149,7 +72,11 @@ const serviceMeta: Record<
 };
 
 export default async function ServicesPage() {
-  const services = await getServices();
+  const [services, audiences, processSteps] = await Promise.all([
+    getServices(),
+    getServiceAudiences(),
+    getProcessSteps("services"),
+  ]);
 
   return (
     <>
@@ -323,10 +250,10 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
                 Ideal For
               </p>
-              <h2 className="font-serif text-4xl font-bold text-[#134545] lg:text-5xl">
+              <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                 Who Sonya serves best
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[#134545]/70">
@@ -339,18 +266,30 @@ export default async function ServicesPage() {
 
           <FadeIn direction="up" delay={120}>
             <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
-              {audiences.map((item) => (
-                <li
-                  key={item.title}
-                  className="flex items-start gap-3 border-b border-[#134545]/10 pb-4 text-sm font-medium text-[#134545]"
-                >
-                  <span className="mt-2 h-px w-3.5 shrink-0 bg-[#134545]/40" aria-hidden="true" />
-                  <div>
-                    <span className="font-semibold leading-relaxed">{item.title}</span>
-                    <p className="mt-1 text-xs font-normal text-[#134545]/60">{item.body}</p>
-                  </div>
-                </li>
-              ))}
+              {audiences.map((item, i) => {
+                const audienceIcons = [
+                  <svg key="users" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
+                  <svg key="zap" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>,
+                  <svg key="building" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2" /><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M8 10h.01M16 10h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01" /></svg>,
+                  <svg key="book" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></svg>,
+                  <svg key="heart" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>,
+                  <svg key="target" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>,
+                ];
+                return (
+                  <li
+                    key={item.title}
+                    className="flex items-start gap-3 border-b border-[#134545]/10 pb-4 text-sm font-medium text-[#134545]"
+                  >
+                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-forest/[0.08] text-forest">
+                      {audienceIcons[i % audienceIcons.length]}
+                    </div>
+                    <div>
+                      <span className="font-semibold leading-relaxed">{item.title}</span>
+                      <p className="mt-1 text-xs font-normal text-[#134545]/60">{item.body}</p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </FadeIn>
         </div>
@@ -362,8 +301,8 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">Process</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80">Process</p>
+              <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">What to expect</h2>
               <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
             </div>
           </FadeIn>
@@ -373,7 +312,9 @@ export default async function ServicesPage() {
             <div aria-hidden="true" className="pointer-events-none absolute left-[16.67%] right-[16.67%] top-[60px] hidden h-[2px] bg-gradient-to-r from-forest/5 via-forest/15 to-forest/5 md:block" />
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-0">
-              {processSteps.map(({ step, title, body, icon }, i) => (
+              {processSteps.map(({ step, title, body }, i) => {
+                const icon = stepIcons[i % stepIcons.length];
+                return (
                 <FadeIn key={step} direction="up" delay={i * 100}>
                   <div className="relative flex flex-col items-center text-center">
                     {/* Step circle on the connector line */}
@@ -400,7 +341,8 @@ export default async function ServicesPage() {
                     </div>
                   </div>
                 </FadeIn>
-              ))}
+              );
+              })}
             </div>
           </div>
         </div>

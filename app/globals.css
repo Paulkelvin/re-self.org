@@ -239,6 +239,11 @@
   border-radius: inherit;
 }
 
+/* Harmonize the orange/yellow logo with the site's teal-sand palette */
+.logo-harmonize {
+  filter: sepia(0.25) saturate(0.8) hue-rotate(-15deg) brightness(0.92);
+}
+
 /* Honor reduced-motion preferences across the whole site */
 @media (prefers-reduced-motion: reduce) {
   *,

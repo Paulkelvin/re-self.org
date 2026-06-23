@@ -1,14 +1,18 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
-/**
- * Wraps page content in a gentle enter transition that re-runs on every
- * route change (keyed by pathname), giving smooth cross-page motion.
- */
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (!pathname.includes("#")) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [pathname]);
+
   return (
     <motion.main
       key={pathname}

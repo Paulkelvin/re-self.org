@@ -22,6 +22,12 @@ export const revalidate = 60;
 const eyebrowCls =
   "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90";
 
+const eyebrowGold =
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]";
+
+const eyebrowCharcoal =
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80";
+
 const statIcons = [
   <svg key="cal" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>,
   <svg key="users" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
@@ -103,19 +109,19 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover object-[center_20%]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/15" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
 
         <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
             <FadeIn direction="up">
-              <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+              <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
                 Corporate Wellness &middot; Keynote Speaker
               </p>
             </FadeIn>
 
             <FadeIn direction="up" delay={80}>
-              <h1 className="max-w-3xl font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-3xl font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl">
                 Stronger leaders.
                 <br />
                 <span className="text-white">Healthier organizations.</span>
@@ -123,7 +129,7 @@ export default async function HomePage() {
             </FadeIn>
 
             <FadeIn direction="up" delay={160}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)] sm:text-lg">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] sm:text-lg">
                 Re-Self provides practical, lasting tools for balance, resilience, and
                 well-being — with workshops delivered across the U.S. and internationally.
               </p>
@@ -165,10 +171,10 @@ export default async function HomePage() {
         <div aria-hidden="true" className="pointer-events-none absolute bottom-20 left-[5%] h-12 w-12 rounded-full bg-forest/10 backdrop-blur-sm lg:h-16 lg:w-16" />
         <div className="relative mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
-            <p className={eyebrowCls}>
+            <p className={eyebrowGold}>
               About Sonya
             </p>
-            <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-forest sm:text-[2.4rem] lg:text-[2.6rem]">
+            <h2 className="font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-charcoal sm:text-[2.4rem] lg:text-[2.6rem]">
               Leadership Meets Wellness
             </h2>
             <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
@@ -199,74 +205,11 @@ export default async function HomePage() {
 
             <Link
               href="/about"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#a07d3a] transition-all hover:gap-3 hover:text-[#8a6a2e]"
             >
               Read full story &rarr;
             </Link>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* ── CORE PHILOSOPHY ── */}
-      <section className="grain-overlay relative flex items-center overflow-hidden bg-[#134545] px-8 py-20 lg:h-screen lg:max-h-[850px] lg:px-16 lg:py-0">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-1/2 h-[350px] w-[350px] -translate-y-1/2 rounded-full bg-sage/[0.08] blur-3xl" />
-        <div className="relative mx-auto w-full max-w-[1320px]">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 lg:gap-8 xl:gap-12">
-            <FadeIn direction="up">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
-                Philosophy
-              </p>
-              <h2 className="font-serif text-3xl font-bold leading-[1.12] tracking-tight text-white xl:text-[2.6rem]">
-                The Principles Behind Every Transformation
-              </h2>
-              <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
-              <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
-                Three commitments that shape every keynote, workshop, and program Sonya delivers.
-              </p>
-            </FadeIn>
-
-            {[
-              {
-                num: "01",
-                title: "Discipline",
-                body: "Consistent habits from military precision — building personal and professional practices that hold under pressure.",
-              },
-              {
-                num: "02",
-                title: "Resilience",
-                body: "The mental and emotional strength to thrive through challenges, transitions, and high-stakes demands.",
-              },
-              {
-                num: "03",
-                title: "Renewal",
-                body: "Sustainable wellness rhythms that support lasting success without sacrificing health or humanity.",
-              },
-            ].map(({ num, title, body }, i) => (
-              <FadeIn
-                key={title}
-                direction="up"
-                delay={(i + 1) * 100}
-                className="group relative transition-all duration-500 rounded-r-xl lg:border-l lg:border-white/10 lg:pl-8 lg:hover:border-sage/30 lg:hover:bg-white/[0.04] xl:pl-12"
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -top-4 right-2 select-none font-serif text-[8rem] font-bold leading-none text-white/[0.03] lg:text-[10rem]"
-                >
-                  {num}
-                </span>
-                <h3 className="font-serif relative mt-2 text-2xl font-bold tracking-tight text-white">
-                  <span className="relative inline-block">
-                    {title}
-                    <span
-                      aria-hidden="true"
-                      className="absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 rounded-full bg-sage transition-transform duration-300 ease-out group-hover:scale-x-100"
-                    />
-                  </span>
-                </h3>
-                <p className="relative mt-3 text-sm leading-relaxed text-white/55">{body}</p>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -375,10 +318,10 @@ export default async function HomePage() {
         <div className="relative mx-auto w-full max-w-[1200px]">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className={eyebrowCls}>
+              <p className={eyebrowCharcoal}>
                 Speaking
               </p>
-              <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-forest lg:text-[2.9rem]">
+              <h2 className="font-serif text-4xl font-bold leading-[1.1] tracking-tight text-charcoal lg:text-[2.9rem]">
                 Popular Speaking Topics
               </h2>
               <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
@@ -386,8 +329,8 @@ export default async function HomePage() {
                 high-pressure teams.
               </p>
               <Link
-                href="/speaking-events"
-                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-forest/30 px-6 py-3 text-sm font-semibold text-forest transition-all duration-200 hover:border-forest hover:bg-forest hover:text-white"
+                href="/speaking-events#signature-topics"
+                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-[#a07d3a]/40 px-6 py-3 text-sm font-semibold text-[#a07d3a] transition-all duration-200 hover:border-[#a07d3a] hover:bg-[#a07d3a] hover:text-white"
               >
                 View All Speaking Topics
                 <svg
@@ -405,7 +348,7 @@ export default async function HomePage() {
                 {topics.map((topic, i) => (
                   <Link
                     key={topic.title}
-                    href="/speaking-events"
+                    href="/speaking-events#signature-topics"
                     className="group/row divider-gradient flex items-baseline gap-5 py-5 transition-opacity duration-300 lg:gap-7 lg:py-[1.2rem] lg:group-hover/list:opacity-40 lg:hover:!opacity-100"
                   >
                     <span className="font-serif text-base font-semibold text-sage tabular-nums lg:text-lg">
@@ -461,15 +404,8 @@ export default async function HomePage() {
             {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, i) => (
               <article
                 key={i}
-                className="relative mt-10 w-[350px] flex-shrink-0 rounded-2xl bg-white/60 backdrop-blur-md px-6 pb-6 pt-12 text-center shadow-[0_8px_32px_rgba(47,79,79,0.08)] ring-1 ring-white/70"
+                className="relative w-[350px] flex-shrink-0 rounded-2xl bg-white/60 backdrop-blur-md px-6 pb-6 pt-8 text-center shadow-[0_8px_32px_rgba(47,79,79,0.08)] ring-1 ring-white/70"
               >
-                <Image
-                  src={t.image}
-                  alt={t.name}
-                  width={160}
-                  height={160}
-                  className="absolute -top-10 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-4 border-white object-cover shadow-lg shadow-forest/[0.08]"
-                />
                 <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#dfba86]/25 shadow-sm shadow-[#dfba86]/15 text-sm text-[#dfba86]">
                   &ldquo;
                 </span>
@@ -495,133 +431,195 @@ export default async function HomePage() {
       {(() => {
         const now = new Date();
         const upcoming = events.filter((e) => new Date(e.date) >= now);
-        const display = upcoming.length > 0 ? upcoming.slice(0, 3) : events.slice(0, 3);
-        const isUpcoming = upcoming.length > 0;
-        if (display.length === 0) return null;
+        const past = events.filter((e) => new Date(e.date) < now);
+        if (events.length === 0) return null;
 
-        function buildCalendarUrl(event: typeof display[0]) {
-          const start = new Date(event.date);
-          const end = new Date(start.getTime() + 2 * 60 * 60 * 1000);
-          const fmt = (d: Date) =>
-            d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-          const params = new URLSearchParams({
-            action: "TEMPLATE",
-            text: event.title,
-            dates: `${fmt(start)}/${fmt(end)}`,
-            location: event.location || "",
-            details: event.description || `${event.eventType} — ${event.title}`,
-          });
-          return `https://calendar.google.com/calendar/render?${params.toString()}`;
-        }
+        const fmtDate = (s: string) =>
+          new Date(s).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        const fmtTime = (s: string) =>
+          new Date(s).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
 
         return (
           <section className="relative overflow-hidden bg-ambient-beige py-20 lg:py-28">
             <div aria-hidden="true" className="pointer-events-none absolute -left-32 top-0 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" />
             <div className="relative mx-auto max-w-[1200px] px-4">
-              <FadeIn direction="up">
-                <div className="mb-10">
-                  <p className={eyebrowCls}>
-                    {isUpcoming ? "Upcoming Events" : "Recent Events"}
-                  </p>
-                  <h2 className="font-serif text-3xl font-bold tracking-tight text-forest lg:text-4xl">
-                    {isUpcoming ? "Catch Sonya live." : "Where Sonya has been."}
-                  </h2>
-                  <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
-                </div>
-              </FadeIn>
 
-              <FadeIn direction="up" delay={80}>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {display.map((event) => {
-                    const isPast = new Date(event.date) < now;
-                    const d = new Date(event.date);
-                    const calUrl = buildCalendarUrl(event);
-                    const href = !isPast ? (event.registrationUrl || calUrl) : undefined;
-                    return (
-                      <div
-                        key={event.slug}
-                        className="group flex flex-col overflow-hidden rounded-2xl border border-line/60 bg-white shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-forest/[0.10]"
-                      >
-                        <div className="relative aspect-[16/10] w-full overflow-hidden">
-                          <Image
-                            src={event.coverImage}
-                            alt={event.title}
-                            fill
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <span className="absolute left-3 top-3 rounded-full bg-forest px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white">
-                            {event.eventType}
-                          </span>
-                        </div>
+              {/* ── Upcoming events — featured card layout ── */}
+              {upcoming.length > 0 && (
+                <>
+                  <FadeIn direction="up">
+                    <div className="mb-10">
+                      <p className={eyebrowGold}>Upcoming Events</p>
+                      <h2 className="font-serif text-3xl font-bold tracking-tight text-charcoal lg:text-4xl">
+                        Catch Sonya live.
+                      </h2>
+                      <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
+                    </div>
+                  </FadeIn>
 
-                        <div className="flex flex-1 flex-col p-5">
-                          <h3 className="font-serif text-lg font-semibold leading-snug text-charcoal transition-colors duration-200 group-hover:text-forest">
-                            {event.title}
-                          </h3>
-                          <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted/80">
-                            <span className="inline-flex items-center gap-1">
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
-                              {d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                  <div className="space-y-8">
+                    {upcoming.slice(0, 3).map((event, i) => (
+                      <FadeIn key={event.slug} direction="up" delay={i * 80}>
+                        <div className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2">
+                          <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[320px]">
+                            <Image
+                              src={event.coverImage}
+                              alt={event.title}
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 50vw"
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <span className="absolute left-5 top-5 rounded-full bg-forest px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+                              {event.eventType}
                             </span>
-                            {event.location && (
-                              <>
-                                <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
-                                <span className="inline-flex items-center gap-1">
-                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                                  {event.location}
-                                </span>
-                              </>
-                            )}
                           </div>
 
-                          {event.speakers.length > 0 && (
-                            <div className="mt-4 flex flex-wrap gap-3">
-                              {event.speakers.slice(0, 3).map((s) => (
-                                <div key={s.name} className="flex items-center gap-2">
-                                  <div className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-white shadow-sm">
-                                    {s.image ? (
-                                      <Image src={s.image} alt={s.name} fill sizes="32px" className="object-cover" />
-                                    ) : (
-                                      <div className="flex h-full w-full items-center justify-center bg-sage/30 text-[10px] font-bold text-forest">
-                                        {s.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
-                                      </div>
-                                    )}
-                                  </div>
-                                  <span className="text-xs font-medium text-charcoal">{s.name}</span>
-                                </div>
-                              ))}
-                              {event.speakers.length > 3 && (
-                                <span className="self-center text-xs text-muted">+{event.speakers.length - 3} more</span>
+                          <div className="flex flex-col justify-center p-8 lg:p-12">
+                            <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted/70">
+                              <time dateTime={event.date}>
+                                {fmtDate(event.date)} at {fmtTime(event.date)}
+                              </time>
+                              {event.location && (
+                                <>
+                                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
+                                  <span>{event.location}</span>
+                                </>
+                              )}
+                              {event.isVirtual && (
+                                <>
+                                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
+                                  <span>Virtual</span>
+                                </>
                               )}
                             </div>
-                          )}
 
-                          <div className="mt-auto flex items-center gap-3 pt-4">
-                            {!isPast && href && (
-                              <a
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 rounded-full bg-forest px-4 py-2 text-[11px] font-semibold text-white transition-colors hover:bg-forest-light"
-                              >
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /><path d="M12 14v4M10 16h4" /></svg>
-                                Save to Calendar
-                              </a>
+                            <h3 className="font-serif text-2xl font-bold leading-tight tracking-tight text-charcoal lg:text-[2rem]">
+                              {event.title}
+                            </h3>
+                            <p className="mt-4 max-w-prose text-sm leading-relaxed text-muted">
+                              {event.description}
+                            </p>
+
+                            {event.speakers.length > 0 && (
+                              <div className="mt-6">
+                                <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-muted/50">
+                                  Speakers
+                                </p>
+                                <div className="flex flex-wrap gap-3">
+                                  {event.speakers.map((speaker) => (
+                                    <div key={speaker.name} className="flex items-center gap-2">
+                                      <div className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-white shadow-sm">
+                                        {speaker.image ? (
+                                          <Image src={speaker.image} alt={speaker.name} fill sizes="36px" className="object-cover" />
+                                        ) : (
+                                          <div className="flex h-full w-full items-center justify-center bg-sage/30 text-[10px] font-bold text-forest">
+                                            {speaker.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                                          </div>
+                                        )}
+                                      </div>
+                                      <div>
+                                        <p className="text-xs font-semibold text-charcoal">{speaker.name}</p>
+                                        {speaker.role && (
+                                          <p className="text-[10px] text-muted/60">{speaker.role}</p>
+                                        )}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {event.registrationUrl && (
+                              <div className="mt-7">
+                                <a
+                                  href={event.registrationUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
+                                >
+                                  Register Now
+                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
+                                </a>
+                              </div>
                             )}
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      </FadeIn>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* ── Past events — compact row layout ── */}
+              {past.length > 0 && (
+                <div className={upcoming.length > 0 ? "mt-16" : ""}>
+                  <FadeIn direction="up">
+                    <div className="mb-8">
+                      {upcoming.length === 0 && (
+                        <>
+                          <p className={eyebrowGold}>Recent Events</p>
+                          <h2 className="font-serif text-3xl font-bold tracking-tight text-charcoal lg:text-4xl">
+                            Where Sonya has been.
+                          </h2>
+                          <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
+                        </>
+                      )}
+                      {upcoming.length > 0 && (
+                        <h3 className="font-serif text-xl font-semibold text-charcoal/80">Past Events</h3>
+                      )}
+                    </div>
+                  </FadeIn>
+
+                  <FadeIn direction="up" delay={80}>
+                    <div className="divide-y divide-line/60">
+                      {past.slice(0, 4).map((event) => (
+                        <div
+                          key={event.slug}
+                          className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:gap-6"
+                        >
+                          <div className="relative h-20 w-full shrink-0 overflow-hidden rounded-xl sm:h-16 sm:w-24">
+                            <Image
+                              src={event.coverImage}
+                              alt={event.title}
+                              fill
+                              sizes="(max-width: 640px) 100vw, 96px"
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="mb-1 flex flex-wrap items-center gap-2">
+                              <span className="inline-flex rounded-full bg-neutral-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-neutral-600">
+                                {event.eventType}
+                              </span>
+                            </div>
+                            <h4 className="font-serif text-base font-semibold text-charcoal">
+                              {event.title}
+                            </h4>
+                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted/70">
+                              <span>{fmtDate(event.date)} at {fmtTime(event.date)}</span>
+                              {event.location && (
+                                <>
+                                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-line" />
+                                  <span>{event.location}</span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <span className="inline-flex shrink-0 items-center rounded-full border border-line px-3 py-1.5 text-[11px] font-medium text-muted/50">
+                            Past
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </FadeIn>
                 </div>
-              </FadeIn>
+              )}
 
               <FadeIn direction="up" delay={160}>
                 <div className="mt-8 text-center">
                   <Link
                     href="/speaking-events"
-                    className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                    className="group inline-flex items-center gap-2 text-sm font-semibold text-[#a07d3a] transition-all hover:gap-3 hover:text-[#8a6a2e]"
                   >
                     View all events &rarr;
                   </Link>
@@ -642,7 +640,7 @@ export default async function HomePage() {
                 <p className={`${eyebrowCls} justify-center`}>
                   Programs
                 </p>
-                <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
+                <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-5xl">
                   Invest in your team&apos;s wellbeing.
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted">
@@ -664,7 +662,7 @@ export default async function HomePage() {
               <div className="mx-auto mt-10 max-w-2xl text-center">
                 <Link
                   href="/packages"
-                  className="group inline-flex items-center gap-2 text-sm font-semibold text-forest transition-all hover:gap-3"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold text-[#a07d3a] transition-all hover:gap-3 hover:text-[#8a6a2e]"
                 >
                   View all programs &amp; details &rarr;
                 </Link>
@@ -679,16 +677,24 @@ export default async function HomePage() {
       {/* ── FAQ ── */}
       <section className="relative overflow-hidden bg-ambient-beige pb-0 pt-24 lg:py-32">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-12 h-[350px] w-[350px] rounded-full bg-sage/[0.07] blur-3xl" />
-        <div className="relative mx-auto max-w-[860px] px-4">
+        {/* Mobile FAQ illustration — absolute, top-left with spacing */}
+        <Image
+          src="/images/faq-illustration.png"
+          alt=""
+          width={400}
+          height={400}
+          className="pointer-events-none absolute -left-28 top-28 z-0 w-[55%] max-w-[280px] object-contain opacity-50 lg:hidden"
+        />
+        <div className="relative z-10 mx-auto max-w-[860px] px-4">
           <FadeIn direction="up">
             <div className="mb-12 text-center lg:mb-16">
               <div className="mb-6 flex items-center justify-center">
-                <p className={`${eyebrowCls} mb-0`}>
+                <p className={`${eyebrowCharcoal} mb-0`}>
                   FAQ
                 </p>
               </div>
 
-              <h2 className="font-serif text-[2rem] font-bold leading-[1.05] tracking-[-0.015em] text-forest sm:text-4xl lg:text-[2.9rem]">
+              <h2 className="font-serif text-[2rem] font-bold leading-[1.05] tracking-[-0.015em] text-charcoal sm:text-4xl lg:text-[2.9rem]">
                 Frequently Asked Questions
               </h2>
             </div>

@@ -91,7 +91,7 @@ async function sendEmails(booking: Booking) {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-  const to = process.env.BOOKING_TO_EMAIL || "sdharrisla@gmail.com";
+  const to = process.env.BOOKING_TO_EMAIL || "sharris@re-self.org";
 
   if (!host || !user || !pass) {
     return;
@@ -155,6 +155,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Booking submission failed", error);
-    return NextResponse.json({ error: "We could not submit the request. Please email sdharrisla@gmail.com." }, { status: 500 });
+    return NextResponse.json({ error: "We could not submit the request. Please email sharris@re-self.org." }, { status: 500 });
   }
 }

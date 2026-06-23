@@ -11,13 +11,8 @@ const quickLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-const information = [
-  { label: "Book Sonya", href: "/book-sonya" },
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
-];
 
-const EMAIL = "sdharrisla@gmail.com";
+const EMAIL = "info@re-self.org";
 
 const labelCls =
   "mb-4 flex items-center gap-2 font-serif text-base font-semibold tracking-tight text-white";
@@ -99,14 +94,14 @@ export function Footer() {
             alt="Re-Self — reimagine self care"
             width={223}
             height={200}
-            className="h-20 w-auto"
+            className="logo-harmonize h-20 w-auto brightness-125"
           />
         </div>
 
         {/* 3 — Asymmetrical directory grid */}
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Direct Line */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-5">
             <span className={labelCls}><HeadingTick />Direct Line</span>
             <a
               href={`mailto:${EMAIL}`}
@@ -117,7 +112,7 @@ export function Footer() {
           </div>
 
           {/* Explore */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <span className={labelCls}><HeadingTick />Explore</span>
             <nav className="space-y-3">
               {quickLinks.map(({ label, href }) => (
@@ -126,24 +121,6 @@ export function Footer() {
                 </Link>
               ))}
             </nav>
-          </div>
-
-          {/* Legal & Utility */}
-          <div className="lg:col-span-3">
-            <span className={labelCls}><HeadingTick />Legal &amp; Utility</span>
-            <nav className="space-y-3">
-              {information.map(({ label, href }) => (
-                <Link key={href} href={href} className="block w-fit text-sm text-white/65 transition-all duration-300 hover:translate-x-1 hover:text-white">
-                  {label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Current Time */}
-          <div className="lg:col-span-2">
-            <span className={labelCls}><HeadingTick />Current Time</span>
-            <p className="font-mono text-xs text-white/60">EST / WASHINGTON, DC</p>
           </div>
         </div>
 

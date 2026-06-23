@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PackageCard } from "@/components/PackageCard";
-import { getPackages } from "@/lib/content";
+import { getPackages, getStats, getGuarantees, getFaqByCategory } from "@/lib/content";
 
 export const revalidate = 60;
 
@@ -13,76 +13,19 @@ export const metadata: Metadata = {
     "Choose the right wellness program for your organization. Transparent pricing, premium delivery, and measurable impact.",
 };
 
-const stats = [
-  { value: "200+", label: "Sessions Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "50+", label: "Organizations Served" },
-  { value: "21+", label: "Years of Experience" },
-];
-
-const guarantees = [
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
-    title: "Satisfaction Guaranteed",
-    body: "If the session doesn't meet your expectations, we'll work with you to make it right — no questions asked.",
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0110 0v4" />
-      </svg>
-    ),
-    title: "Secure Payment",
-    body: "All transactions are processed securely through Square — your payment details are never stored on our servers.",
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-    title: "Flexible Scheduling",
-    body: "Book at a time that works for your team. Sonya accommodates different time zones and organizational calendars.",
-  },
-];
-
-const faqItems = [
-  {
-    question: "What happens after I purchase a package?",
-    answer:
-      "You'll receive a confirmation email within minutes. Sonya or her team will reach out within 24 hours to schedule your discovery call and begin designing your custom engagement.",
-  },
-  {
-    question: "Can I upgrade my package later?",
-    answer:
-      "Absolutely. If you start with a foundational package and decide you need more depth, the difference can be applied toward an upgrade at any time.",
-  },
-  {
-    question: "Are packages refundable?",
-    answer:
-      "We offer a full refund if you cancel at least 14 days before your scheduled session. Within 14 days, we'll reschedule at no extra cost. After delivery, our satisfaction guarantee applies.",
-  },
-  {
-    question: "Do you offer custom or enterprise pricing?",
-    answer:
-      "Yes. For organizations with unique needs, multi-session engagements, or large teams, reach out directly and Sonya will design a custom proposal.",
-  },
-  {
-    question: "What payment methods are accepted?",
-    answer:
-      "We accept all major credit and debit cards, Apple Pay, Google Pay, and Cash App Pay through our secure Square checkout.",
-  },
+const guaranteeIcons = [
+  <svg key="shield" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></svg>,
+  <svg key="lock" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" /></svg>,
+  <svg key="clock" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>,
 ];
 
 export default async function PackagesPage() {
-  const packages = await getPackages();
+  const [packages, stats, guarantees, faqItems] = await Promise.all([
+    getPackages(),
+    getStats(),
+    getGuarantees(),
+    getFaqByCategory("packages"),
+  ]);
 
   return (
     <>
@@ -145,10 +88,10 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-16 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
                 Programs
               </p>
-              <h2 className="font-serif text-3xl font-bold text-forest lg:text-5xl">
+              <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-5xl">
                 Find the right fit for your organization.
               </h2>
               <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
@@ -215,7 +158,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.06] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-charcoal/80">
                 Why Choose Re-Self
               </p>
               <h2 className="font-serif text-3xl font-bold text-[#134545] lg:text-4xl">
@@ -229,7 +172,7 @@ export default async function PackagesPage() {
               <FadeIn key={g.title} direction="up" delay={i * 100}>
                 <div className="rounded-2xl border border-[#134545]/10 bg-white p-8 shadow-md shadow-forest/[0.06] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-forest/[0.10]">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest">
-                    {g.icon}
+                    {guaranteeIcons[i % guaranteeIcons.length]}
                   </div>
                   <h3 className="text-lg font-semibold text-[#134545]">
                     {g.title}
@@ -241,6 +184,22 @@ export default async function PackagesPage() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn direction="up" delay={300}>
+            <div className="mx-auto mt-14 max-w-3xl rounded-2xl border border-forest/10 bg-white/60 p-8 text-center shadow-sm lg:p-10">
+              <p className="text-sm leading-relaxed text-[#134545]/80">
+                Organizations like the University of California and Phenomenal Women Empowerment
+                Organization have trusted Re-Self to empower their teams. Clients consistently invite Sonya back for her authenticity, impact, and lasting results.
+              </p>
+              <p className="mt-4 text-sm text-[#134545]/70">
+                For more information or to book a free discovery call{" "}
+                <a href="tel:+12409887490" className="font-semibold text-forest hover:underline">240-988-7490</a>
+                {" "}or{" "}
+                <Link href="/" className="font-semibold text-forest hover:underline">www.re-self.org</Link>
+              </p>
+            </div>
+          </FadeIn>
+
         </div>
       </section>
 
@@ -252,7 +211,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.04] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-forest/90">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.12] px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-[#a07d3a]">
                 FAQ
               </p>
               <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
