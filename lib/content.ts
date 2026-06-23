@@ -71,9 +71,13 @@ export async function getCredentials(): Promise<Credential[]> {
 }
 
 export async function getAchievements(): Promise<Achievement[]> {
-  return client.fetch<Achievement[]>(
+  const data = await client.fetch<Achievement[]>(
     groq`*[_type == "achievement"] | order(order asc){ value, label }`,
   );
+  return data.map((a) => ({
+    ...a,
+    label: a.label === "Military Service" ? "US Air Force" : a.label,
+  }));
 }
 
 export async function getFaq(): Promise<Faq[]> {
