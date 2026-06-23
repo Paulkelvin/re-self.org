@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -40,10 +40,6 @@ function isRateLimited(ip: string) {
   return existing.count > 5;
 }
 
-async function logBooking(booking: Booking) {
-  console.log("Booking received:", JSON.stringify({ ...booking, createdAt: new Date().toISOString() }));
-}
-
 function buildSummary(booking: Booking): string {
   return [
     `Full Name: ${booking.fullName}`,
@@ -61,42 +57,34 @@ function buildSummary(booking: Booking): string {
 }
 
 async function sendEmails(booking: Booking) {
-  const host = process.env.SMTP_HOST;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const apiKey = process.env.RESEND_API_KEY;
 
-  if (!host || !user || !pass) {
-    console.warn("SMTP not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS.");
+  if (!apiKey) {
+    console.warn("RESEND_API_KEY not set. Skipping email delivery.");
     return;
   }
 
+  const resend = new Resend(apiKey);
   const to = process.env.BOOKING_TO_EMAIL || "info@re-self.org";
   const bcc = (process.env.BOOKING_BCC_EMAILS ?? "")
     .split(",")
     .map((e) => e.trim())
     .filter(Boolean);
-  const from = process.env.SMTP_FROM || `Re-Self <${user}>`;
   const summary = buildSummary(booking);
 
-  const transporter = nodemailer.createTransport({
-    host,
-    port: Number(process.env.SMTP_PORT || 587),
-    secure: false,
-    auth: { user, pass },
-  });
-
   await Promise.all([
-    transporter.sendMail({
-      from,
-      to,
+    resend.emails.send({
+      from: "Re-Self <onboarding@resend.dev>",
+      to: [to],
       bcc,
       replyTo: booking.email,
       subject: `New booking request from ${booking.fullName}`,
       text: summary,
     }),
-    transporter.sendMail({
-      from,
-      to: booking.email,
+    resend.emails.send({
+      from: "Re-Self <onboarding@resend.dev>",
+      to: [booking.email],
+      replyTo: to,
       subject: "Your Re-Self booking request was received",
       text: `Hi ${booking.fullName},\n\nThank you for contacting Re-Self. Your booking request has been received and Sonya will follow up with next steps.\n\n${summary}`,
     }),
@@ -116,11 +104,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Please review the form and try again." }, { status: 400 });
   }
 
-  try {
-    await logBooking(parsed.data);
-  } catch (logErr) {
-    console.error("logBooking failed (non-fatal):", logErr);
-  }
+  console.log("Booking received:", JSON.stringify({ ...parsed.data, createdAt: new Date().toISOString() }));
 
   let emailError: string | null = null;
   try {
