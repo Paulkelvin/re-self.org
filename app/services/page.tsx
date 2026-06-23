@@ -2,42 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
-import { BrandOrbit } from "@/components/BrandOrbit";
-import { getServices } from "@/lib/content";
+import { getServices, getServiceAudiences, getProcessSteps } from "@/lib/content";
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Corporate wellness workshops, programs, retreat facilitation, and keynote speaking tailored for organizations, government agencies, and educational institutions.",
+    "Workshops, retreats, custom programs, virtual self-care sessions, and journals — Re-Self provides practical, lasting tools for balance, resilience, and well-being.",
 };
 
-const process = [
-  {
-    step: "01",
-    title: "Discovery Call",
-    body: "We start with a focused conversation to understand your team, goals, culture, and the specific challenges you want to address.",
-  },
-  {
-    step: "02",
-    title: "Custom Design",
-    body: "Content is designed specifically for your audience — not adapted from a template. Sonya builds each engagement from the ground up.",
-  },
-  {
-    step: "03",
-    title: "Delivery & Impact",
-    body: "Premium delivery with full presence. Every session includes clear takeaways, practical tools, and follow-up resources.",
-  },
-];
-
-const audiences = [
-  "HR and People teams planning wellbeing weeks",
-  "Leaders managing burnout on high-performing teams",
-  "Federal agencies investing in workforce wellness",
-  "Educational institutions supporting faculty and staff",
-  "Organizations building a long-term wellness culture",
-  "Executive teams navigating change and high pressure",
+const stepIcons = [
+  <svg key="phone" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>,
+  <svg key="pen" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>,
+  <svg key="pulse" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>,
 ];
 
 // Local editorial enrichment for each service (keyed by title) — adds
@@ -73,15 +51,37 @@ const serviceMeta: Record<
     ],
     bestFor: ["Executive teams", "Leadership offsites", "High-performing groups"],
   },
+  "Virtual Self-Care Sessions": {
+    format: "60 – 90 min online sessions",
+    deliverables: [
+      "Live virtual facilitation",
+      "Guided self-care practices",
+      "Private one-on-one options",
+    ],
+    bestFor: ["Remote teams", "Busy organizations", "Individual professionals"],
+  },
+  "Journals & Tools": {
+    format: "Self-paced resources",
+    deliverables: [
+      "Re-Self workbook",
+      "Guided journals",
+      "Practical wellness materials",
+    ],
+    bestFor: ["Individuals", "Teams", "Workshop participants"],
+  },
 };
 
 export default async function ServicesPage() {
-  const services = await getServices();
+  const [services, audiences, processSteps] = await Promise.all([
+    getServices(),
+    getServiceAudiences(),
+    getProcessSteps("services"),
+  ]);
 
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-pine-700 px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
+      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-[#0f3535] px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -93,11 +93,10 @@ export default async function ServicesPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-pine-950/95 via-pine-950/78 to-pine-700/35" />
-          <div className="absolute inset-0 bg-pine-950/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e1e]/95 via-[#0a1e1e]/78 to-[#0f3535]/35" />
+          <div className="absolute inset-0 bg-[#0a1e1e]/25" />
         </div>
 
-        <BrandOrbit className="pointer-events-none absolute -right-28 -top-28 h-[32rem] w-[32rem] text-sage/15" />
         <span
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.06] lg:text-[14rem]"
@@ -106,8 +105,7 @@ export default async function ServicesPage() {
         </span>
 
         <div className="relative z-10 mx-auto w-full max-w-[1200px]">
-          <p className="mb-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-sage">
-            <span className="h-px w-8 bg-sage/60" />
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
             Services
           </p>
           <h1 className="font-serif max-w-4xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
@@ -121,7 +119,12 @@ export default async function ServicesPage() {
       </section>
 
       {/* Service showcase — editorial, alternating */}
-      <section className="bg-warm-white py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-ambient-warm py-16 lg:py-24">
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
+        {/* Cross markers */}
+        <span aria-hidden="true" className="pointer-events-none absolute right-[12%] top-24 select-none text-xl text-forest/[0.08]">+</span>
+        <span aria-hidden="true" className="pointer-events-none absolute left-[8%] top-[45%] select-none text-lg text-sage/[0.12]">+</span>
+        <span aria-hidden="true" className="pointer-events-none absolute right-[20%] bottom-32 select-none text-xl text-forest/[0.06]">+</span>
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           {/* Section intro */}
           <FadeIn direction="up">
@@ -195,8 +198,8 @@ export default async function ServicesPage() {
                     {meta && (
                       <ul className="relative mt-7 grid gap-y-3 sm:grid-cols-2">
                         {meta.deliverables.map((d) => (
-                          <li key={d} className="flex items-start gap-3 text-sm text-charcoal">
-                            <span className="mt-2 h-px w-3.5 shrink-0 bg-forest/40" aria-hidden="true" />
+                          <li key={d} className="flex items-start gap-2.5 text-sm text-charcoal">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="mt-1 shrink-0 text-forest/60"><polyline points="20 6 9 17 4 12" /></svg>
                             <span className="leading-snug">{d}</span>
                           </li>
                         ))}
@@ -207,7 +210,7 @@ export default async function ServicesPage() {
                     <div className="relative mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                       <Link
                         href="/book-sonya"
-                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-pine-600 px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-pine-800"
+                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-[#134545] px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-[#0d3030]"
                       >
                         Inquire
                         <svg
@@ -223,7 +226,7 @@ export default async function ServicesPage() {
                           {meta.bestFor.map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-forest/15 bg-forest/[0.04] px-3 py-1 text-[11px] font-medium text-forest"
+                              className="rounded-full bg-forest/[0.05] px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.15em] text-forest/70"
                             >
                               {tag}
                             </span>
@@ -240,87 +243,107 @@ export default async function ServicesPage() {
       </section>
 
       {/* Ideal For */}
-      <section className="bg-sand py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
+        <div className="pointer-events-none absolute -left-32 top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.07] blur-3xl" aria-hidden="true" />
+        {/* Ring outline */}
+        <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -right-16 h-32 w-32 rounded-full border border-sage/15 lg:h-48 lg:w-48" />
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            {/* Title column */}
-            <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-pine-600/60">
+          <FadeIn direction="up">
+            <div className="mb-14">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
                 Ideal For
               </p>
-              <h2 className="font-serif text-4xl font-bold text-pine-600 lg:text-5xl">
+              <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                 Who Sonya serves best
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-pine-600/70">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#134545]/70">
                 Sonya&apos;s engagements are most impactful for organizations where
                 leadership drives culture — and where investment in people is treated as
                 a strategic priority, not a perk.
               </p>
-            </FadeIn>
+            </div>
+          </FadeIn>
 
-            {/* List column */}
-            <FadeIn direction="up" delay={120} className="lg:col-span-8">
-              <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
-                {audiences.map((item) => (
+          <FadeIn direction="up" delay={120}>
+            <ul className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
+              {audiences.map((item, i) => {
+                const audienceIcons = [
+                  <svg key="users" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
+                  <svg key="zap" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>,
+                  <svg key="building" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2" /><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M8 10h.01M16 10h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01" /></svg>,
+                  <svg key="book" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></svg>,
+                  <svg key="heart" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>,
+                  <svg key="target" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>,
+                ];
+                return (
                   <li
-                    key={item}
-                    className="flex items-start gap-3 border-b border-pine-600/10 pb-4 text-sm font-medium text-pine-600"
+                    key={item.title}
+                    className="flex items-start gap-3 border-b border-[#134545]/10 pb-4 text-sm font-medium text-[#134545]"
                   >
-                    <span className="mt-2 h-px w-3.5 shrink-0 bg-pine-600/40" aria-hidden="true" />
-                    <span className="leading-relaxed">{item}</span>
+                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-forest/[0.08] text-forest">
+                      {audienceIcons[i % audienceIcons.length]}
+                    </div>
+                    <div>
+                      <span className="font-semibold leading-relaxed">{item.title}</span>
+                      <p className="mt-1 text-xs font-normal text-[#134545]/60">{item.body}</p>
+                    </div>
                   </li>
-                ))}
-              </ul>
-            </FadeIn>
-          </div>
+                );
+              })}
+            </ul>
+          </FadeIn>
         </div>
       </section>
 
       {/* Process */}
-      <section className="bg-warm-white py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-warm py-24 lg:py-32">
+        <div className="pointer-events-none absolute -right-32 -top-20 h-[400px] w-[400px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14 text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sage">Process</p>
-              <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">What to expect</h2>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-charcoal">Process</p>
+              <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">What to expect</h2>
+              <div aria-hidden="true" className="mx-auto mt-4 h-[3px] w-12 rounded-full bg-gold" />
             </div>
           </FadeIn>
 
-          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-3">
-            {process.map(({ step, title, body }, i) => (
-              <FadeIn key={step} direction="up" delay={i * 100}>
-                <div className="border-t border-pine-600/15 pt-6">
-                  <span className="mb-3 block font-mono text-xs tracking-widest text-pine-600/50">{step}</span>
-                  <h3 className="mb-2 text-lg font-medium text-pine-600">{title}</h3>
-                  <p className="text-sm leading-relaxed text-neutral-600">{body}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="relative mx-auto mt-16 max-w-6xl">
+            {/* Connected horizontal line behind cards (desktop only) */}
+            <div aria-hidden="true" className="pointer-events-none absolute left-[16.67%] right-[16.67%] top-[60px] hidden h-[2px] bg-gradient-to-r from-forest/5 via-forest/15 to-forest/5 md:block" />
 
-      {/* CTA */}
-      <section className="bg-forest py-24">
-        <div className="mx-auto max-w-[1200px] px-4">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-            <FadeIn direction="up">
-              <h2 className="font-serif text-3xl font-bold text-white lg:text-4xl">
-                Need a custom corporate wellness program?
-              </h2>
-              <p className="mt-3 max-w-xl text-base text-white/55">
-                Share your goals, team size, timeline, and budget. Sonya will recommend
-                the right format and scope.
-              </p>
-            </FadeIn>
-            <FadeIn direction="up" delay={100}>
-              <Link
-                href="/book-sonya"
-                className="inline-flex shrink-0 min-h-[52px] items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-forest shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:scale-[0.98]"
-              >
-                Start Inquiry &rarr;
-              </Link>
-            </FadeIn>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-0">
+              {processSteps.map(({ step, title, body }, i) => {
+                const icon = stepIcons[i % stepIcons.length];
+                return (
+                <FadeIn key={step} direction="up" delay={i * 100}>
+                  <div className="relative flex flex-col items-center text-center">
+                    {/* Step circle on the connector line */}
+                    <div className="relative z-10 mb-6 flex h-[72px] w-[72px] items-center justify-center rounded-full border-2 border-forest/20 bg-white shadow-md shadow-forest/10 transition-all duration-300 hover:border-forest/40 hover:shadow-lg">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-forest/10 text-forest">
+                        {icon}
+                      </div>
+                    </div>
+
+                    {/* Arrow connector between cards (desktop only) */}
+                    {i < processSteps.length - 1 && (
+                      <div aria-hidden="true" className="pointer-events-none absolute right-0 top-[34px] z-20 hidden -translate-y-1/2 translate-x-1/2 md:block">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-forest/30">
+                          <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                    )}
+
+                    {/* Card content */}
+                    <div className="group rounded-2xl bg-white/70 p-6 shadow-sm ring-1 ring-forest/[0.06] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:ring-forest/[0.12] md:mx-4">
+                      <span className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-forest text-xs font-bold text-white">{step}</span>
+                      <h3 className="mb-2 text-lg font-semibold text-forest">{title}</h3>
+                      <p className="text-sm leading-relaxed text-muted">{body}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+              })}
+            </div>
           </div>
         </div>
       </section>

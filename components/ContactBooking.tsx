@@ -30,6 +30,13 @@ const bookingInit = {
   website: "",
 };
 
+function formatUSPhone(raw: string): string {
+  const digits = raw.replace(/\D/g, "").slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 function SelectChevron() {
   return (
     <svg
@@ -105,13 +112,13 @@ export function ContactBooking() {
       setInquiry(inquiryInit);
     } else {
       setStatus("error");
-      setFeedback(error ?? "Something went wrong. Please email hello@re-self.org.");
+      setFeedback(error ?? "Something went wrong. Please email info@re-self.org.");
     }
   }
 
   // ── Booking flow ──
   function bookingNext() {
-    const missing = (["fullName", "email", "phone", "organization"] as const).find(
+    const missing = (["fullName", "email", "phone"] as const).find(
       (f) => !booking[f].trim(),
     );
     if (missing) {
@@ -143,7 +150,7 @@ export function ContactBooking() {
       setStep(1);
     } else {
       setStatus("error");
-      setFeedback(error ?? "Something went wrong. Please email bookings@re-self.org.");
+      setFeedback(error ?? "Something went wrong. Please email info@re-self.org.");
     }
   }
 
@@ -260,12 +267,12 @@ export function ContactBooking() {
                 </div>
                 <div>
                   <label htmlFor="cb-phone" className={labelCls}>Phone Number</label>
-                  <input id="cb-phone" value={booking.phone}
-                    onChange={(e) => setBooking((c) => ({ ...c, phone: e.target.value }))}
-                    className={inputCls} placeholder="+1 555 000 0000" />
+                  <input id="cb-phone" inputMode="tel" value={booking.phone}
+                    onChange={(e) => setBooking((c) => ({ ...c, phone: formatUSPhone(e.target.value) }))}
+                    className={inputCls} placeholder="(555) 000-0000" />
                 </div>
                 <div>
-                  <label htmlFor="cb-organization" className={labelCls}>Organization Name</label>
+                  <label htmlFor="cb-organization" className={labelCls}>Organization Name <span className="font-normal normal-case tracking-normal text-neutral-400">(optional)</span></label>
                   <input id="cb-organization" value={booking.organization}
                     onChange={(e) => setBooking((c) => ({ ...c, organization: e.target.value }))}
                     className={inputCls} placeholder="Company name" />
@@ -280,11 +287,22 @@ export function ContactBooking() {
                       onChange={(e) => setBooking((c) => ({ ...c, eventType: e.target.value }))}
                       required className={selectCls}>
                       <option value="">Select one</option>
-                      <option>Keynote</option>
-                      <option>Workshop or Seminar</option>
-                      <option>Corporate Wellness Program</option>
-                      <option>Retreat Facilitation</option>
-                      <option>Panel or Podcast</option>
+                      <optgroup label="Speaking &amp; Events">
+                        <option>Keynote</option>
+                        <option>Workshop or Seminar</option>
+                        <option>Retreat Facilitation</option>
+                        <option>Panel or Podcast</option>
+                      </optgroup>
+                      <optgroup label="Programs">
+                        <option>Introductory Self-Care Workshop</option>
+                        <option>Four-Week Self-Care Cohort</option>
+                        <option>Individual Self-Care Coaching</option>
+                        <option>Corporate Panel Discussion</option>
+                      </optgroup>
+                      <optgroup label="Other">
+                        <option>Corporate Wellness Program</option>
+                        <option>Custom Engagement</option>
+                      </optgroup>
                     </select>
                     <SelectChevron />
                   </div>

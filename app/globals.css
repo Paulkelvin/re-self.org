@@ -1,64 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  --color-warm-white: #faf9f7;
-  --color-forest: #2f4f4f;
-  --color-forest-dark: #1e3333;
-  --color-forest-light: #3d6666;
-  --color-sage: #a8b5a2;
-  --color-sage-light: #c4d0be;
-  --color-beige: #e8e0d5;
-  --color-beige-dark: #d4c9bb;
-  /* Neutrals carry a faint forest tint instead of pure grey, so body copy and
-     headings feel warm and human against the cream palette rather than digital. */
-  --color-charcoal: #2b302d;
-  --color-muted: #646a65;
-  --color-line: #d4ccbf;
+  --color-warm-white: #f7fafa;
+  --color-forest: #1b5e5e;
+  --color-forest-dark: #0f3d3d;
+  --color-forest-light: #2a7a7a;
+  --color-sage: #c9b8a0;
+  --color-sage-light: #e0d6c8;
+  --color-beige: #e4ecec;
+  --color-beige-dark: #c8d8d8;
+  --color-charcoal: #2a3535;
+  --color-muted: #5a6b6b;
+  --color-line: #c4d4d0;
 
-  /* Single accent-gold family — unifies the two near-duplicate golds that were
-     scattered across the homepage into one cohesive, premium accent.
-     `light` reads on dark imagery, `dark` gives contrast on pale backgrounds. */
-  --color-gold: #c5a880;
-  --color-gold-light: #dcc7a0;
-  --color-gold-dark: #b9985f;
-
-  /* Deep-green "pine" scale — names the dark-green palette the interior page
-     heroes, panels, and footers already use, so those gradients stay cohesive
-     and editable from one place (distinct from the tealer `forest` family). */
-  --color-pine-400: #2a4d46;
-  --color-pine-500: #23423c;
-  --color-pine-600: #1e3d38;
-  --color-pine-700: #16322c;
-  --color-pine-800: #152b27;
-  --color-pine-900: #122421;
-  --color-pine-950: #0c1c18;
-  --color-sand: #eae6df;
-
-  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-jakarta), Inter, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
-
-  /* Soft, forest-tinted elevation — replaces Tailwind's default black-based
-     shadows so every shadow-sm/md/lg/xl across the site reads calm and premium
-     (a low-opacity ambient + key pair) rather than hard and grey. */
-  --shadow-sm: 0 1px 2px rgba(33, 51, 47, 0.04), 0 2px 6px -1px rgba(33, 51, 47, 0.05);
-  --shadow-md: 0 2px 4px rgba(33, 51, 47, 0.04), 0 8px 18px -4px rgba(33, 51, 47, 0.08);
-  --shadow-lg: 0 4px 10px -2px rgba(33, 51, 47, 0.05), 0 18px 36px -10px rgba(33, 51, 47, 0.11);
-  --shadow-xl: 0 8px 18px -4px rgba(33, 51, 47, 0.06), 0 30px 60px -14px rgba(33, 51, 47, 0.15);
-  --shadow-2xl: 0 16px 32px -8px rgba(33, 51, 47, 0.08), 0 44px 84px -18px rgba(33, 51, 47, 0.20);
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
-/* Branded text selection — a soft sage wash instead of the default harsh blue. */
-::selection {
-  background-color: rgba(168, 181, 162, 0.4);
-  color: #1e3333;
+/* ── Ambient section backgrounds ─────────────────────────────── */
+.bg-ambient-beige {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(201,184,160,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 85% 100%, rgba(197,159,85,0.06) 0%, transparent 70%),
+    #e4ecec;
 }
-
-/* One consistent, on-brand keyboard focus ring everywhere — trust + a11y. */
-:focus-visible {
-  outline: 2px solid var(--color-sage);
-  outline-offset: 3px;
-  border-radius: 3px;
+.bg-ambient-warm {
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 10%, rgba(201,184,160,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(228,236,236,0.5) 0%, transparent 70%),
+    #f7fafa;
+}
+.bg-ambient-booking {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,184,160,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 100%, rgba(228,236,236,0.35) 0%, transparent 70%),
+    #f7fafa;
 }
 
 @keyframes marquee {
@@ -100,7 +77,7 @@
   background: linear-gradient(
     100deg,
     transparent 0%,
-    rgba(47, 79, 79, 0.18) 50%,
+    rgba(27, 94, 94, 0.18) 50%,
     transparent 100%
   );
 }
@@ -140,6 +117,24 @@
   50%      { transform: translateY(-7px); }
 }
 
+/* Periodic shimmer that sweeps end-to-end across the highlighted pricing card */
+@keyframes card-shimmer {
+  0%, 85%  { transform: translateX(-100%); opacity: 0; }
+  90%      { opacity: 1; }
+  100%     { transform: translateX(100%); opacity: 0; }
+}
+.animate-card-shimmer {
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(197, 168, 128, 0.12) 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(197, 168, 128, 0.12) 60%,
+    transparent 100%
+  );
+  animation: card-shimmer 6s ease-in-out infinite;
+}
+
 .animate-float      { animation: floaty 6s ease-in-out infinite; }
 .animate-float-slow { animation: floaty-slow 9s ease-in-out infinite; }
 .animate-spin-slow  { animation: spin-slow 32s linear infinite; }
@@ -147,6 +142,21 @@
 .animate-drift      { animation: drift 11s ease-in-out infinite; }
 .animate-float-card      { animation: float-card 5.5s ease-in-out infinite; }
 .animate-float-card-slow { animation: float-card 7s ease-in-out infinite 0.6s; }
+/* Gradient-fade divider — melts into the background on both ends */
+.divider-gradient { position: relative; }
+.divider-gradient::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(27,94,94,0.06), transparent);
+}
+.divider-gradient-light::after {
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+}
+
 .animate-fade-in { animation: fade-in 0.25s ease-out both; }
 .animate-pop-in  { animation: pop-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
@@ -175,15 +185,6 @@
     scroll-behavior: smooth;
   }
 
-  /* Quiet typographic refinement applied everywhere: headings break with no
-     stranded last word, body paragraphs avoid ragged orphans. */
-  h1, h2, h3, h4 {
-    text-wrap: balance;
-  }
-  p {
-    text-wrap: pretty;
-  }
-
   img {
     display: block;
     max-width: 100%;
@@ -194,6 +195,13 @@
   select,
   textarea {
     font: inherit;
+  }
+
+  /* Prevent iOS Safari from zooming on focus — inputs must be >= 16px */
+  @media screen and (max-width: 767px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
   }
 
   /* Fill-in smooth transitions for any interactive element that
@@ -207,6 +215,34 @@
       transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
       opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
+}
+
+/* ── Dot grid background pattern ──────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(27,94,94,0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ── Grain texture overlay ───────────────────────────────────── */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* Harmonize the orange/yellow logo with the site's teal-sand palette */
+.logo-harmonize {
+  filter: sepia(0.25) saturate(0.8) hue-rotate(-15deg) brightness(0.92);
 }
 
 /* Honor reduced-motion preferences across the whole site */

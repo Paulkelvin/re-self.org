@@ -25,8 +25,10 @@ export function FadeIn({ children, className = "", delay = 0, direction = "up" }
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setReduced(true);
-      setVisible(true);
+      requestAnimationFrame(() => {
+        setReduced(true);
+        setVisible(true);
+      });
       return;
     }
 

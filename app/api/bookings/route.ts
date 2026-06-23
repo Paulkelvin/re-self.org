@@ -10,14 +10,14 @@ export const runtime = "nodejs";
 const bookingSchema = z.object({
   fullName: z.string().min(2).max(120),
   email: z.string().email().max(180),
-  phone: z.string().min(5).max(60),
-  organization: z.string().min(2).max(160),
-  eventType: z.string().min(2).max(80),
-  eventDate: z.string().min(4).max(40),
-  eventLocation: z.string().min(2).max(180),
-  audienceSize: z.string().min(1).max(80),
-  budgetRange: z.string().min(2).max(80),
-  details: z.string().min(10).max(3000),
+  phone: z.string().min(1).max(60),
+  organization: z.string().max(160).optional().default(""),
+  eventType: z.string().max(80).optional().default(""),
+  eventDate: z.string().max(40).optional().default(""),
+  eventLocation: z.string().max(180).optional().default(""),
+  audienceSize: z.string().max(80).optional().default(""),
+  budgetRange: z.string().max(80).optional().default(""),
+  details: z.string().max(3000).optional().default(""),
   website: z.string().max(0).optional().or(z.literal(""))
 });
 
@@ -91,7 +91,7 @@ async function sendEmails(booking: Booking) {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-  const to = process.env.BOOKING_TO_EMAIL || "bookings@re-self.org";
+  const to = process.env.BOOKING_TO_EMAIL || "sharris@re-self.org";
 
   if (!host || !user || !pass) {
     return;
@@ -155,6 +155,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Booking submission failed", error);
-    return NextResponse.json({ error: "We could not submit the request. Please email bookings@re-self.org." }, { status: 500 });
+    return NextResponse.json({ error: "We could not submit the request. Please email sharris@re-self.org." }, { status: 500 });
   }
 }

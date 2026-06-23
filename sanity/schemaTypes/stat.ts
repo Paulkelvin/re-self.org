@@ -1,18 +1,11 @@
 import { defineField, defineType } from "sanity";
 
-// The dark "credibility bar" stats on the homepage (e.g. "21+" / "Years…").
-export const credential = defineType({
-  name: "credential",
-  title: "Credential Stat",
+export const stat = defineType({
+  name: "stat",
+  title: "Stat",
   type: "document",
   fields: [
-    defineField({
-      name: "value",
-      title: "Value",
-      type: "string",
-      description: 'Big figure, e.g. "21+" or "Thousands"',
-      validation: (r) => r.required(),
-    }),
+    defineField({ name: "value", type: "string", validation: (r) => r.required() }),
     defineField({ name: "label", type: "string", validation: (r) => r.required() }),
     defineField({ name: "order", title: "Display order", type: "number", initialValue: 0 }),
   ],

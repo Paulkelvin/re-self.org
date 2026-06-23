@@ -28,7 +28,7 @@ export function CountUp({ value, className = "", duration = 1500 }: Props) {
     if (!el) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setDisplay(target.toLocaleString() + suffix);
+      requestAnimationFrame(() => setDisplay(target.toLocaleString() + suffix));
       return;
     }
 
