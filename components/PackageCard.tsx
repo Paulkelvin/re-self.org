@@ -37,6 +37,11 @@ interface Props {
   compact?: boolean;
 }
 
+const paidCheckoutPackages = new Set([
+  "Individual Self-Care Coaching",
+  "Four-Week Self-Care Cohort",
+]);
+
 export function PackageCard({ pkg, index, compact = false }: Props) {
   const [loading, setLoading] = useState(false);
   const isHighlighted = pkg.highlighted;
@@ -46,8 +51,15 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
     : (pkg.features ?? []);
 
   async function handleCheckout() {
-    if (!pkg.price || pkg.price <= 0) {
-      window.location.href = "/book-sonya";
+    const params = new URLSearchParams({
+      package: pkg.title,
+    });
+
+    if (!paidCheckoutPackages.has(pkg.title) || !pkg.price || pkg.price <= 0) {
+      if (!pkg.price || pkg.price <= 0) {
+        params.set("allowFree", "1");
+      }
+      window.location.href = `/book-sonya?${params.toString()}`;
       return;
     }
     setLoading(true);

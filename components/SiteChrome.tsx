@@ -16,6 +16,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
+      <div className="h-20" aria-hidden="true" />
       <PageTransition>{children}</PageTransition>
       <Footer />
     </>

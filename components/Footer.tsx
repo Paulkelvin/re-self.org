@@ -12,7 +12,7 @@ const quickLinks = [
 ];
 
 
-const EMAIL = "info@re-self.org";
+const EMAIL = "sharris@re-self.org";
 
 const labelCls =
   "mb-4 flex items-center gap-2 font-serif text-base font-semibold tracking-tight text-white";
@@ -86,9 +86,9 @@ export function Footer() {
   return (
     <footer>
       {/* Lower footer container */}
-      <div className="relative z-10 overflow-hidden bg-[#0a2828] px-6 pb-12 pt-16 text-white lg:px-16">
+      <div className="relative z-10 overflow-hidden bg-[#0a2828] px-6 pb-8 pt-12 text-white md:pb-12 md:pt-16 lg:px-16">
         {/* Brand mark */}
-        <div className="mx-auto mb-12 max-w-6xl">
+        <div className="mx-auto mb-8 max-w-6xl md:mb-12">
           <Image
             src="/reself-logo.png"
             alt="Re-Self — reimagine self care"
@@ -99,7 +99,7 @@ export function Footer() {
         </div>
 
         {/* 3 — Asymmetrical directory grid */}
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 pb-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-9 pb-8 md:grid-cols-2 md:gap-12 md:pb-16 lg:grid-cols-12 lg:gap-8">
           {/* Direct Line */}
           <div className="lg:col-span-5">
             <span className={labelCls}><HeadingTick />Direct Line</span>
@@ -132,7 +132,7 @@ export function Footer() {
         </div>
 
         {/* Ultra-minimal copyright basebar */}
-        <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-6 pt-8 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row">
+        <div className="mx-auto mt-4 flex max-w-6xl flex-col items-center justify-between gap-5 border-t border-white/10 pt-6 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row md:mt-12 md:pt-8">
           <p>&copy; {year} RE-SELF. ALL RIGHTS RESERVED.</p>
           <div className="flex items-center gap-x-6 text-white/50">
             {social.map(({ href, Icon, label }) => {

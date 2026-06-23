@@ -37,7 +37,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b border-line/50 bg-warm-white/95 backdrop-blur-lg transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b border-line/50 bg-warm-white/95 backdrop-blur-lg transition-all duration-300 ${
         scrolled ? "shadow-sm" : ""
       }`}
     >

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Spinner } from "@/components/Spinner";
 
 const initial = {
@@ -46,7 +47,41 @@ function formatUSPhone(raw: string): string {
 const step1Fields = ["fullName", "email", "phone"] as const;
 
 export function BookingForm() {
-  const [form, setForm] = useState(initial);
+  return (
+    <Suspense fallback={<BookingFormShell />}>
+      <BookingFormInner />
+    </Suspense>
+  );
+}
+
+function BookingFormShell() {
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-line bg-white p-7 shadow-[0_12px_40px_rgba(0,0,0,0.06)] lg:p-9">
+      <div className="h-5 w-36 rounded-full bg-neutral-100" />
+      <div className="mt-5 h-[2px] w-full bg-neutral-100" />
+      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="h-12 rounded-lg bg-neutral-100" />
+        <div className="h-12 rounded-lg bg-neutral-100" />
+        <div className="h-12 rounded-lg bg-neutral-100" />
+        <div className="h-12 rounded-lg bg-neutral-100" />
+      </div>
+    </div>
+  );
+}
+
+function BookingFormInner() {
+  const searchParams = useSearchParams();
+  const selectedPackage = searchParams.get("package") ?? "";
+  const allowFreeBudget =
+    searchParams.get("allowFree") === "1" ||
+    selectedPackage === "Introductory Self-Care Workshop";
+
+  const [form, setForm] = useState({
+    ...initial,
+    eventType: selectedPackage,
+    budgetRange: allowFreeBudget ? "$0 - Introductory session" : "",
+    details: selectedPackage ? `I am interested in ${selectedPackage}.` : "",
+  });
   const [step, setStep] = useState<1 | 2>(1);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -98,7 +133,12 @@ export function BookingForm() {
       setMessage(
         "Thank you. Your booking request has been received, and a confirmation email is on its way.",
       );
-      setForm(initial);
+      setForm({
+        ...initial,
+        eventType: selectedPackage,
+        budgetRange: allowFreeBudget ? "$0 - Introductory session" : "",
+        details: selectedPackage ? `I am interested in ${selectedPackage}.` : "",
+      });
       setStep(1);
       return;
     }
@@ -304,6 +344,7 @@ export function BookingForm() {
                     className={selectCls}
                   >
                     <option value="">Select one</option>
+                    {allowFreeBudget && <option>$0 - Introductory session</option>}
                     <option>Under $500</option>
                     <option>$500 – $1,000</option>
                     <option>$1,000 – $5,000</option>
