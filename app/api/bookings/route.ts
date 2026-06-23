@@ -1,8 +1,5 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { Pool } from "pg";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -24,7 +21,6 @@ const bookingSchema = z.object({
 type Booking = z.infer<typeof bookingSchema>;
 
 const requests = new Map<string, { count: number; resetAt: number }>();
-let pool: Pool | undefined;
 
 function getClientIp(request: NextRequest) {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -44,47 +40,8 @@ function isRateLimited(ip: string) {
   return existing.count > 5;
 }
 
-async function storeBooking(booking: Booking) {
-  if (process.env.DATABASE_URL) {
-    pool ??= new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_SSL === "false" ? false : { rejectUnauthorized: false } });
-    await pool.query(`
-      create table if not exists booking_requests (
-        id bigserial primary key,
-        full_name text not null,
-        email text not null,
-        phone text not null,
-        organization text not null,
-        event_type text not null,
-        event_date text not null,
-        event_location text not null,
-        audience_size text not null,
-        budget_range text not null,
-        details text not null,
-        created_at timestamptz not null default now()
-      )
-    `);
-    await pool.query(
-      `insert into booking_requests
-        (full_name, email, phone, organization, event_type, event_date, event_location, audience_size, budget_range, details)
-       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
-      [
-        booking.fullName,
-        booking.email,
-        booking.phone,
-        booking.organization,
-        booking.eventType,
-        booking.eventDate,
-        booking.eventLocation,
-        booking.audienceSize,
-        booking.budgetRange,
-        booking.details
-      ]
-    );
-    return;
-  }
-
-  const backupPath = path.join(process.cwd(), "bookings.jsonl");
-  await fs.appendFile(backupPath, `${JSON.stringify({ ...booking, createdAt: new Date().toISOString() })}\n`);
+async function logBooking(booking: Booking) {
+  console.log("Booking received:", JSON.stringify({ ...booking, createdAt: new Date().toISOString() }));
 }
 
 function buildSummary(booking: Booking): string {
@@ -160,7 +117,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await storeBooking(parsed.data);
+    await logBooking(parsed.data);
     await sendEmails(parsed.data);
     return NextResponse.json({ ok: true });
   } catch (error) {
