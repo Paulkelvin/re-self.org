@@ -99,6 +99,13 @@ export const event = defineType({
       ],
     }),
     defineField({
+      name: "showSaveToCalendar",
+      title: "Show Save to Calendar",
+      type: "boolean",
+      description: "Show a Save to Calendar button on this event's card.",
+      initialValue: false,
+    }),
+    defineField({
       name: "featured",
       type: "boolean",
       description: "Pin this event as the featured hero event.",

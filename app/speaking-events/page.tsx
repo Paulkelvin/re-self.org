@@ -28,6 +28,14 @@ function formatFeaturedDate(dateStr: string) {
   });
 }
 
+function formatFeaturedTime(dateStr: string) {
+  return new Date(dateStr).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
 export default async function SpeakingEventsPage() {
   const [topics, events, formats, speakingAudiences] = await Promise.all([
     getTopics(),
@@ -128,7 +136,7 @@ export default async function SpeakingEventsPage() {
                 <div className="flex flex-col justify-center p-8 lg:p-12">
                   <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted/70">
                     <time dateTime={featuredEvent.date}>
-                      {formatFeaturedDate(featuredEvent.date)}
+                      {formatFeaturedDate(featuredEvent.date)} at {formatFeaturedTime(featuredEvent.date)}
                     </time>
                     {featuredEvent.location && (
                       <>
