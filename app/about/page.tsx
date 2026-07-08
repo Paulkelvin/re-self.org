@@ -28,8 +28,8 @@ export default async function AboutPage() {
   return (
     <>
       {/* Cinematic background hero */}
-      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#7B876D] text-white lg:min-h-[76vh]">
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-br from-[#7B876D] via-[#7B876D] to-[#7B876D]" />
+      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-forest-deep text-white lg:min-h-[76vh]">
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-forest-deep" />
 
         {/* Brand watermark + ambient orbit */}
         <span
@@ -78,7 +78,7 @@ export default async function AboutPage() {
 
             {/* Floating narrative panel — overlaps the portrait on desktop */}
             <FadeIn direction="up" delay={120} className="lg:col-span-6">
-              <div className="relative z-10 rounded-xl border border-white/10 bg-[#7b876d] p-7 text-white shadow-xl shadow-forest/25 md:p-9 lg:-ml-24">
+              <div className="relative z-10 rounded-xl border border-white/10 bg-forest-deep p-7 text-white shadow-xl shadow-forest-deep/25 md:p-9 lg:-ml-24">
                 <h2 className="font-serif text-2xl font-medium leading-tight text-white lg:text-3xl">
                   Where Military Precision Meets Human Wellness
                 </h2>
@@ -113,7 +113,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Brutalist time track */}
-      <section className="grain-overlay bg-[#7b876d] px-6 py-24 text-white lg:px-16 lg:py-28">
+      <section className="grain-overlay bg-forest-deep px-6 py-24 text-white lg:px-16 lg:py-28">
         <div className="mx-auto max-w-[1200px]">
           <FadeIn direction="up">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
@@ -144,7 +144,7 @@ export default async function AboutPage() {
                       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.08] text-sage">
                         {icons[i % icons.length]}
                       </div>
-                      <span className="mb-6 inline-block rounded-full bg-[#e4ecec] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-[#5e6d52]">
+                      <span className="mb-6 inline-block rounded-full bg-[#e4ecec] px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-forest">
                         {period}
                       </span>
                       <h3 className="font-serif mb-3 text-2xl font-medium text-white">{title}</h3>
@@ -163,10 +163,10 @@ export default async function AboutPage() {
         {/* Botanical leaf */}
         <svg aria-hidden="true" className="pointer-events-none absolute -bottom-4 -right-4 h-28 w-28 rotate-[140deg] text-sage/[0.10] lg:bottom-8 lg:right-8 lg:h-36 lg:w-36" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 border-t border-[#7b876d]/20 lg:grid-cols-12">
+          <div className="grid grid-cols-1 border-t border-forest-light/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
+              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber">
                 Values
               </p>
               <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-charcoal md:text-5xl lg:pb-0">
@@ -184,16 +184,16 @@ export default async function AboutPage() {
                 ];
                 return (
                   <FadeIn key={title} direction="up" delay={i * 80}>
-                    <div className="group border-b border-[#7b876d]/10 bg-white/50 p-10 shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-forest/[0.08]">
+                    <div className="group border-b border-forest-light/10 bg-white/50 p-10 shadow-sm shadow-forest/[0.04] transition-all duration-300 hover:bg-white hover:shadow-md hover:shadow-forest/[0.08]">
                       <div className="mb-3 flex items-center gap-3">
                         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-forest/[0.08] text-forest transition-colors group-hover:bg-forest/[0.14]">
                           {valueIcons[i % valueIcons.length]}
                         </div>
-                        <span className="font-mono text-xs text-neutral-400 transition-colors group-hover:text-[#5e6d52]">
+                        <span className="font-mono text-xs text-neutral-400 transition-colors group-hover:text-forest">
                           0{i + 1}
                         </span>
                       </div>
-                      <h3 className="font-serif mb-2 text-xl font-medium text-[#5e6d52] md:text-2xl">
+                      <h3 className="font-serif mb-2 text-xl font-medium text-forest md:text-2xl">
                         {title}
                       </h3>
                       <p className="max-w-2xl text-sm leading-relaxed text-neutral-600">{body}</p>
@@ -211,7 +211,7 @@ export default async function AboutPage() {
         <div className="pointer-events-none absolute -right-32 top-10 h-[400px] w-[400px] rounded-full bg-gold/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[860px] px-6">
           <FadeIn direction="up">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber">
               About Re-Self
             </p>
             <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
@@ -227,7 +227,7 @@ export default async function AboutPage() {
             </p>
             <Link
               href="/book-sonya"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#A06830] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#7A5020] hover:shadow-lg"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber hover:shadow-lg"
             >
               Start a Conversation
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>

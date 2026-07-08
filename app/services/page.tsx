@@ -81,7 +81,7 @@ export default async function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-[#7B876D] px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
+      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-forest-deep px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -93,8 +93,8 @@ export default async function ServicesPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#7B876D]/95 via-[#7B876D]/78 to-[#7B876D]/35" />
-          <div className="absolute inset-0 bg-[#7B876D]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/95 via-forest-deep/78 to-forest-deep/35" />
+          <div className="absolute inset-0 bg-forest-deep/25" />
         </div>
 
         <span
@@ -210,7 +210,7 @@ export default async function ServicesPage() {
                     <div className="relative mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                       <Link
                         href="/book-sonya"
-                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-[#7b876d] px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-[#5e6d52]"
+                        className="group/btn inline-flex w-fit items-center gap-2 rounded-full bg-forest px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-forest-deep"
                       >
                         Inquire
                         <svg
@@ -250,13 +250,13 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber">
                 Ideal For
               </p>
               <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                 Who Sonya serves best
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-[#5e6d52]/70">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-forest/70">
                 Sonya&apos;s engagements are most impactful for organizations where
                 leadership drives culture — and where investment in people is treated as
                 a strategic priority, not a perk.
@@ -278,14 +278,14 @@ export default async function ServicesPage() {
                 return (
                   <li
                     key={item.title}
-                    className="flex items-start gap-3 border-b border-[#7b876d]/10 pb-4 text-sm font-medium text-[#5e6d52]"
+                    className="flex items-start gap-3 border-b border-forest-light/10 pb-4 text-sm font-medium text-forest"
                   >
                     <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-forest/[0.08] text-forest">
                       {audienceIcons[i % audienceIcons.length]}
                     </div>
                     <div>
                       <span className="font-semibold leading-relaxed">{item.title}</span>
-                      <p className="mt-1 text-xs font-normal text-[#5e6d52]/60">{item.body}</p>
+                      <p className="mt-1 text-xs font-normal text-forest/60">{item.body}</p>
                     </div>
                   </li>
                 );

@@ -24,7 +24,7 @@ const eyebrowCls =
   "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-forest";
 
 const eyebrowGold =
-  "mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]";
+  "mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber";
 
 const eyebrowCharcoal =
   "mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-charcoal";
@@ -206,7 +206,7 @@ export default async function HomePage() {
 
             <Link
               href="/about"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#7A5020] transition-all hover:gap-3 hover:text-[#5E3D15]"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-amber transition-all hover:gap-3 hover:text-amber-deep"
             >
               Read full story &rarr;
             </Link>
@@ -330,7 +330,7 @@ export default async function HomePage() {
               </p>
               <Link
                 href="/speaking-events#signature-topics"
-                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-[#7A5020]/40 px-6 py-3 text-sm font-semibold text-[#7A5020] transition-all duration-200 hover:border-[#7A5020] hover:bg-[#7A5020] hover:text-white"
+                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-amber/40 px-6 py-3 text-sm font-semibold text-amber transition-all duration-200 hover:border-amber hover:bg-amber hover:text-white"
               >
                 View All Speaking Topics
                 <svg
@@ -384,13 +384,13 @@ export default async function HomePage() {
 
       {/* ── TESTIMONIALS ── */}
       <section className="relative flex flex-col justify-center overflow-hidden bg-ambient-warm py-16 lg:h-screen lg:max-h-[750px]">
-        <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-0 h-[350px] w-[350px] rounded-full bg-[#C89050]/[0.06] blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-0 h-[350px] w-[350px] rounded-full bg-gold/[0.06] blur-3xl" />
         <div aria-hidden="true" className="pointer-events-none absolute -right-20 bottom-0 h-[300px] w-[300px] rounded-full bg-sage/[0.06] blur-3xl" />
         {/* Botanical leaf */}
         <svg aria-hidden="true" className="pointer-events-none absolute left-6 top-10 h-24 w-24 -rotate-12 text-sage/[0.12] lg:left-12 lg:top-14 lg:h-32 lg:w-32" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1"><path d="M50 95 C50 95 20 70 15 40 C10 10 45 5 50 5 C55 5 90 10 85 40 C80 70 50 95 50 95Z" /><path d="M50 95 C50 95 50 5 50 5" /><path d="M50 30 C50 30 35 25 25 35" /><path d="M50 50 C50 50 65 42 75 48" /><path d="M50 70 C50 70 35 62 28 68" /></svg>
         <FadeIn direction="up">
           <div className="mb-16 text-center">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#C89050]/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.22em] text-[#7A5020] justify-center">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.22em] text-amber justify-center">
               Testimonials
             </p>
             <h2 className="font-serif text-4xl font-bold tracking-tight text-charcoal lg:text-5xl">
@@ -406,7 +406,7 @@ export default async function HomePage() {
                 key={i}
                 className="relative w-[350px] flex-shrink-0 rounded-2xl bg-white/60 backdrop-blur-md px-6 pb-6 pt-8 text-center shadow-[0_8px_32px_rgba(47,79,79,0.08)] ring-1 ring-white/70"
               >
-                <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#C89050]/25 shadow-sm shadow-[#C89050]/15 text-sm text-[#C89050]">
+                <span className="font-serif absolute left-6 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-amber-light/25 shadow-sm text-sm text-amber-light">
                   &ldquo;
                 </span>
                 <h3 className="text-lg font-semibold text-neutral-800">{t.name}</h3>
@@ -414,7 +414,7 @@ export default async function HomePage() {
                   {t.role}
                 </p>
                 <p className="mt-4 line-clamp-3 px-2 text-sm text-neutral-600">{t.quote}</p>
-                <div className="mt-4 flex justify-center gap-1 text-[#C89050]">
+                <div className="mt-4 flex justify-center gap-1 text-amber-light">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <svg key={s} width="15" height="15" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
                       <path d="M7 1l1.545 4.755H14l-4.045 2.94 1.545 4.755L7 10.51l-4.5 2.94 1.545-4.755L0 5.755h5.455z" />
@@ -549,7 +549,7 @@ export default async function HomePage() {
                 <div className="mt-8 text-center">
                   <Link
                     href="/speaking-events"
-                    className="group inline-flex items-center gap-2 text-sm font-semibold text-[#7A5020] transition-all hover:gap-3 hover:text-[#5E3D15]"
+                    className="group inline-flex items-center gap-2 text-sm font-semibold text-amber transition-all hover:gap-3 hover:text-amber-deep"
                   >
                     View all events &rarr;
                   </Link>
@@ -592,7 +592,7 @@ export default async function HomePage() {
               <div className="mx-auto mt-10 max-w-2xl text-center">
                 <Link
                   href="/packages"
-                  className="group inline-flex items-center gap-2 text-sm font-semibold text-[#7A5020] transition-all hover:gap-3 hover:text-[#5E3D15]"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold text-amber transition-all hover:gap-3 hover:text-amber-deep"
                 >
                   View all programs &amp; details &rarr;
                 </Link>

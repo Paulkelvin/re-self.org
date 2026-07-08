@@ -30,9 +30,9 @@ export default async function PackagesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-[#7B876D] px-6 py-24 text-white lg:px-16 lg:py-32">
+      <section className="relative isolate overflow-hidden bg-forest-deep px-6 py-24 text-white lg:px-16 lg:py-32">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#7B876D] via-[#7B876D] to-[#7B876D]" />
+          <div className="absolute inset-0 bg-forest-deep" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(168,181,162,0.15),transparent_70%)]" />
         </div>
 
@@ -88,7 +88,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-16 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber">
                 Programs
               </p>
               <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-5xl">
@@ -161,7 +161,7 @@ export default async function PackagesPage() {
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-charcoal/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-charcoal">
                 Why Choose Re-Self
               </p>
-              <h2 className="font-serif text-3xl font-bold text-[#5e6d52] lg:text-4xl">
+              <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
                 Your investment is protected.
               </h2>
             </div>
@@ -170,14 +170,14 @@ export default async function PackagesPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {guarantees.map((g, i) => (
               <FadeIn key={g.title} direction="up" delay={i * 100}>
-                <div className="rounded-2xl border border-[#7b876d]/10 bg-white p-8 shadow-md shadow-forest/[0.06] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-forest/[0.10]">
+                <div className="rounded-2xl border border-forest-light/10 bg-white p-8 shadow-md shadow-forest/[0.06] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-forest/[0.10]">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest">
                     {guaranteeIcons[i % guaranteeIcons.length]}
                   </div>
-                  <h3 className="text-lg font-semibold text-[#5e6d52]">
+                  <h3 className="text-lg font-semibold text-forest">
                     {g.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#5e6d52]/70">
+                  <p className="mt-2 text-sm leading-relaxed text-forest/70">
                     {g.body}
                   </p>
                 </div>
@@ -187,11 +187,11 @@ export default async function PackagesPage() {
 
           <FadeIn direction="up" delay={300}>
             <div className="mx-auto mt-14 max-w-3xl rounded-2xl border border-forest/10 bg-white/60 p-8 text-center shadow-sm lg:p-10">
-              <p className="text-sm leading-relaxed text-[#5e6d52]/80">
+              <p className="text-sm leading-relaxed text-forest/80">
                 Organizations like the University of California and Phenomenal Women Empowerment
                 Organization have trusted Re-Self to empower their teams. Clients consistently invite Sonya back for her authenticity, impact, and lasting results.
               </p>
-              <p className="mt-4 text-sm text-[#5e6d52]/70">
+              <p className="mt-4 text-sm text-forest/70">
                 For more information or to book a free discovery call{" "}
                 <a href="tel:+12409887490" className="font-semibold text-forest hover:underline">240-988-7490</a>
                 {" "}or{" "}
@@ -211,7 +211,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber">
                 FAQ
               </p>
               <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">

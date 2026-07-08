@@ -60,7 +60,7 @@ export default async function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#7B876D] px-6 py-24 text-white lg:px-16">
+      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-forest-deep px-6 py-24 text-white lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -72,8 +72,8 @@ export default async function SpeakingEventsPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#7B876D]/95 via-[#7B876D]/78 to-[#7B876D]/35" />
-          <div className="absolute inset-0 bg-[#7B876D]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/95 via-forest-deep/78 to-forest-deep/35" />
+          <div className="absolute inset-0 bg-forest-deep/25" />
         </div>
 
         <span
@@ -97,7 +97,7 @@ export default async function SpeakingEventsPage() {
           <div className="mt-10">
             <Link
               href="/book-sonya"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#5e6d52] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-forest shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               Book a Speaking Date
             </Link>
@@ -224,7 +224,7 @@ export default async function SpeakingEventsPage() {
           <div className="mx-auto max-w-[1200px] px-4">
             <FadeIn direction="up">
               <div className="mb-10">
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber">
                   Events
                 </p>
                 <h2 className="font-serif text-2xl font-bold tracking-tight text-charcoal lg:text-3xl">
@@ -264,7 +264,7 @@ export default async function SpeakingEventsPage() {
               </p>
               <Link
                 href="/book-sonya"
-                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#7b876d] px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-forest px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:bg-forest-deep hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Sonya
               </Link>
@@ -300,7 +300,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">Formats</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-amber">Formats</p>
               <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                 Three ways to bring Sonya to your audience.
               </h2>
