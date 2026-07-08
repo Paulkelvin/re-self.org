@@ -119,7 +119,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
         </h3>
         <p
           className={`mt-1 text-sm ${
-            isHighlighted ? "text-white/65" : "text-muted"
+            isHighlighted ? "text-white/85" : "text-muted"
           }`}
         >
           {pkg.subtitle}
@@ -136,7 +136,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
           {pkg.priceSuffix && (
             <span
               className={`text-sm ${
-                isHighlighted ? "text-white/50" : "text-muted"
+                isHighlighted ? "text-white/70" : "text-muted"
               }`}
             >
               {pkg.priceSuffix}
