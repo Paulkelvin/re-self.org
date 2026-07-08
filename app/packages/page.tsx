@@ -88,7 +88,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <FadeIn direction="up">
             <div className="mb-16 text-center">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
                 Programs
               </p>
               <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-5xl">
@@ -211,7 +211,7 @@ export default async function PackagesPage() {
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             <FadeIn direction="up" className="lg:col-span-4">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
                 FAQ
               </p>
               <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">

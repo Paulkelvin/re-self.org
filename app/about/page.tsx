@@ -166,7 +166,7 @@ export default async function AboutPage() {
           <div className="grid grid-cols-1 border-t border-[#7b876d]/20 lg:grid-cols-12">
             {/* Anchor header */}
             <FadeIn direction="up" className="self-start lg:sticky lg:top-12 lg:col-span-4">
-              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
+              <p className="pt-16 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
                 Values
               </p>
               <h2 className="font-serif pb-16 pt-4 text-3xl font-medium tracking-tight text-charcoal md:text-5xl lg:pb-0">
@@ -211,7 +211,7 @@ export default async function AboutPage() {
         <div className="pointer-events-none absolute -right-32 top-10 h-[400px] w-[400px] rounded-full bg-gold/[0.06] blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-[860px] px-6">
           <FadeIn direction="up">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
+            <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
               About Re-Self
             </p>
             <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
@@ -227,7 +227,7 @@ export default async function AboutPage() {
             </p>
             <Link
               href="/book-sonya"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#a07d3a] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8a6a2e] hover:shadow-lg"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#A06830] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#7A5020] hover:shadow-lg"
             >
               Start a Conversation
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>

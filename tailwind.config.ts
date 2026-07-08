@@ -16,11 +16,11 @@ const config: Config = {
         mist: "#eef5ef",
         sage: "#c9b8a0",
         pine: {
-          DEFAULT: "#7b876d",
-          dark: "#5e6d52",
+          DEFAULT: "#5e6d52",
+          dark: "#4a5840",
         },
         coral: "#c45a4a",
-        gold: "#c59f55",
+        gold: "#A06830",
       },
       fontFamily: {
         sans: ["var(--font-jakarta)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],

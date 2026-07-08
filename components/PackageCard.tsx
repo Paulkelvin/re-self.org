@@ -90,7 +90,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
     <div
       className={`group relative flex flex-col rounded-2xl border transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
         isHighlighted
-          ? "mt-6 border-[#c5a880]/40 bg-gradient-to-b from-[#243720] via-[#3a5032] to-[#243720] text-white shadow-2xl shadow-forest/30 scale-[1.02] z-10 ring-1 ring-[#c5a880]/20"
+          ? "mt-6 border-[#C08848]/40 bg-gradient-to-b from-[#243720] via-[#3a5032] to-[#243720] text-white shadow-2xl shadow-forest/30 scale-[1.02] z-10 ring-1 ring-[#C08848]/20"
           : "border-line bg-white text-charcoal shadow-lg shadow-black/[0.04] hover:border-forest/30"
       }`}
       style={{ animationDelay: `${index * 100}ms` }}
@@ -109,10 +109,10 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
         <>
           <div
             aria-hidden="true"
-            className="absolute left-0 right-0 top-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent via-[#c5a880] to-transparent"
+            className="absolute left-0 right-0 top-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent via-[#C08848] to-transparent"
           />
           <div className="absolute -top-4 left-1/2 z-30 -translate-x-1/2">
-            <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[#c5a880]/30 bg-gradient-to-r from-[#c5a880] to-[#b8935a] px-5 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#c5a880]/25">
+            <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[#C08848]/30 bg-gradient-to-r from-[#C08848] to-[#A06830] px-5 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#C08848]/25">
               <span
                 aria-hidden="true"
                 className="h-1.5 w-1.5 rounded-full bg-white animate-pulse"
@@ -142,7 +142,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
         <div className="mt-6 flex items-baseline gap-1">
           <span
             className={`font-serif text-4xl font-bold tracking-tight ${
-              isHighlighted ? "text-[#c5a880]" : "text-forest"
+              isHighlighted ? "text-[#C08848]" : "text-forest"
             }`}
           >
             {pkg.priceLabel}
@@ -162,7 +162,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
       <div
         className={`mx-8 my-6 h-px ${
           isHighlighted
-            ? "bg-gradient-to-r from-transparent via-[#c5a880]/30 to-transparent"
+            ? "bg-gradient-to-r from-transparent via-[#C08848]/30 to-transparent"
             : "bg-line"
         }`}
       />
@@ -192,7 +192,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
           disabled={loading}
           className={`relative flex w-full min-h-[48px] items-center justify-center rounded-full text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait ${
             isHighlighted
-              ? "bg-gradient-to-r from-[#c5a880] to-[#b8935a] text-white shadow-lg shadow-[#c5a880]/25 hover:shadow-xl hover:shadow-[#c5a880]/30"
+              ? "bg-gradient-to-r from-[#C08848] to-[#A06830] text-white shadow-lg shadow-[#C08848]/25 hover:shadow-xl hover:shadow-[#C08848]/30"
               : "bg-forest text-white shadow-md shadow-forest/20 hover:bg-forest-light hover:shadow-lg"
           }`}
         >

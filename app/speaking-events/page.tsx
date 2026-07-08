@@ -224,7 +224,7 @@ export default async function SpeakingEventsPage() {
           <div className="mx-auto max-w-[1200px] px-4">
             <FadeIn direction="up">
               <div className="mb-10">
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">
                   Events
                 </p>
                 <h2 className="font-serif text-2xl font-bold tracking-tight text-charcoal lg:text-3xl">
@@ -300,7 +300,7 @@ export default async function SpeakingEventsPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-14">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">Formats</p>
+              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#7A5020]">Formats</p>
               <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                 Three ways to bring Sonya to your audience.
               </h2>
