@@ -19,7 +19,7 @@ const labelCls =
 
 /* Sage tick that precedes each column heading — small brand accent. */
 function HeadingTick() {
-  return <span aria-hidden="true" className="h-3 w-px bg-sage" />;
+  return <span aria-hidden="true" className="h-3 w-px bg-white/40" />;
 }
 
 /* Low-opacity "organizational sphere" graphic for the CTA banner. */
@@ -94,7 +94,7 @@ export function Footer() {
             alt="Re-Self — reimagine self care"
             width={223}
             height={200}
-            className="logo-harmonize h-20 w-auto brightness-125"
+            className="h-20 w-auto brightness-110"
           />
         </div>
 
@@ -123,7 +123,7 @@ export function Footer() {
             <span className={labelCls}><HeadingTick />Explore</span>
             <nav className="space-y-3">
               {quickLinks.map(({ label, href }) => (
-                <Link key={href} href={href} className="block w-fit text-sm text-white/65 transition-all duration-300 hover:translate-x-1 hover:text-white">
+                <Link key={href} href={href} className="block w-fit text-sm text-white/80 transition-all duration-300 hover:translate-x-1 hover:text-white">
                   {label}
                 </Link>
               ))}

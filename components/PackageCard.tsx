@@ -95,16 +95,6 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
       }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      {/* Periodic shimmer — highlighted card only */}
-      {isHighlighted && (
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 overflow-hidden rounded-2xl"
-        >
-          <span className="absolute inset-0 animate-card-shimmer" />
-        </span>
-      )}
-
       {isHighlighted && (
         <>
           <div
@@ -112,11 +102,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
             className="absolute left-0 right-0 top-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent via-amber-light to-transparent"
           />
           <div className="absolute -top-4 left-1/2 z-30 -translate-x-1/2">
-            <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-amber-light/30 bg-gradient-to-r from-amber-light to-gold px-5 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-amber-light/25">
-              <span
-                aria-hidden="true"
-                className="h-1.5 w-1.5 rounded-full bg-white animate-pulse"
-              />
+            <span className="inline-flex items-center whitespace-nowrap rounded-full bg-amber px-5 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white">
               Most Popular
             </span>
           </div>
@@ -192,8 +178,8 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
           disabled={loading}
           className={`relative flex w-full min-h-[48px] items-center justify-center rounded-full text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait ${
             isHighlighted
-              ? "bg-gradient-to-r from-amber-light to-gold text-white shadow-lg shadow-amber-light/25 hover:shadow-xl hover:shadow-amber-light/30"
-              : "bg-forest text-white shadow-md shadow-forest/20 hover:bg-forest-light hover:shadow-lg"
+              ? "bg-amber text-white hover:bg-amber-deep"
+              : "bg-forest text-white shadow-md shadow-forest/20 hover:bg-forest-deep hover:shadow-lg"
           }`}
         >
           {loading ? (
