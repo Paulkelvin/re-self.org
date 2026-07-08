@@ -285,7 +285,7 @@ function BookingFormInner() {
 
           {/* ── Slide 2: Event Details ── */}
           <div className="w-1/2 pl-1" aria-hidden={step !== 2}>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="grid gap-1.5">
                 <label htmlFor="bf-eventType" className={labelCls}>Engagement Type</label>
                 <div className="relative">
@@ -362,7 +362,7 @@ function BookingFormInner() {
                 />
               </div>
 
-              <div className="grid gap-1.5 col-span-2">
+              <div className="grid gap-1.5 sm:col-span-2">
                 <label htmlFor="bf-budgetRange" className={labelCls}>Budget Range</label>
                 {getFixedBudget(form.eventType) !== null ? (
                   <div className={`${inputCls} flex items-center justify-between bg-forest/5 text-forest font-medium cursor-default`}>
@@ -392,7 +392,7 @@ function BookingFormInner() {
                 )}
               </div>
 
-              <div className="grid gap-1.5 col-span-2">
+              <div className="grid gap-1.5 sm:col-span-2">
                 <label htmlFor="bf-details" className={labelCls}>Additional Details</label>
                 <textarea
                   id="bf-details"
