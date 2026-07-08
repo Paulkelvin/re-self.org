@@ -48,8 +48,8 @@ const step1Fields = ["fullName", "email", "phone"] as const;
 
 // Programs with a fixed price — budget is locked when one of these is selected
 const FIXED_PRICE_PROGRAMS: Record<string, string> = {
-  "Individual Self-Care Coaching": "$100 (fixed price)",
-  "Four-Week Self-Care Cohort": "$500 (fixed price)",
+  "Individual Self-Care Coaching": "$100",
+  "Four-Week Self-Care Cohort": "$500",
   "Introductory Self-Care Workshop": "$0 — Introductory session (free)",
 };
 
@@ -298,17 +298,17 @@ function BookingFormInner() {
                     className={selectCls}
                   >
                     <option value="">Select one</option>
-                    <optgroup label="Speaking &amp; Events">
-                      <option>Keynote</option>
-                      <option>Workshop or Seminar</option>
-                      <option>Retreat Facilitation</option>
-                      <option>Panel or Podcast</option>
-                    </optgroup>
                     <optgroup label="Programs">
                       <option>Introductory Self-Care Workshop</option>
                       <option>Four-Week Self-Care Cohort</option>
                       <option>Individual Self-Care Coaching</option>
                       <option>Corporate Panel Discussion</option>
+                    </optgroup>
+                    <optgroup label="Speaking &amp; Events">
+                      <option>Keynote</option>
+                      <option>Workshop or Seminar</option>
+                      <option>Retreat Facilitation</option>
+                      <option>Panel or Podcast</option>
                     </optgroup>
                     <optgroup label="Other">
                       <option>Corporate Wellness Program</option>
