@@ -60,7 +60,7 @@ export default async function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#0f3535] px-6 py-24 text-white lg:px-16">
+      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#243720] px-6 py-24 text-white lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -72,8 +72,8 @@ export default async function SpeakingEventsPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e1e]/95 via-[#0a1e1e]/78 to-[#0f3535]/35" />
-          <div className="absolute inset-0 bg-[#0a1e1e]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a2618]/95 via-[#1a2618]/78 to-[#243720]/35" />
+          <div className="absolute inset-0 bg-[#1a2618]/25" />
         </div>
 
         <span
@@ -97,7 +97,7 @@ export default async function SpeakingEventsPage() {
           <div className="mt-10">
             <Link
               href="/book-sonya"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#134545] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#5e6d52] shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               Book a Speaking Date
             </Link>
@@ -264,7 +264,7 @@ export default async function SpeakingEventsPage() {
               </p>
               <Link
                 href="/book-sonya"
-                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#134545] px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-[#7b876d] px-8 py-3.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Sonya
               </Link>

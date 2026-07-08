@@ -16,8 +16,8 @@ const config: Config = {
         mist: "#eef5ef",
         sage: "#c9b8a0",
         pine: {
-          DEFAULT: "#184c4c",
-          dark: "#0d3030",
+          DEFAULT: "#7b876d",
+          dark: "#5e6d52",
         },
         coral: "#c45a4a",
         gold: "#c59f55",

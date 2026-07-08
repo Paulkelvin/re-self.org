@@ -111,8 +111,8 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/15" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/28 to-black/5" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/18" />
 
         <div className="relative z-10 flex min-h-[calc(100svh_-_80px)] items-center">
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
@@ -607,7 +607,7 @@ export default async function HomePage() {
 
 
       {/* ── FAQ ── */}
-      <section className="relative overflow-hidden bg-ambient-beige py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-ambient-beige pb-0 pt-24 lg:py-32">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-12 h-[350px] w-[350px] rounded-full bg-sage/[0.07] blur-3xl" />
         {/* Mobile FAQ illustration — absolute, top-left with spacing */}
         <Image
@@ -642,6 +642,16 @@ export default async function HomePage() {
               />
             </div>
           </FadeIn>
+        </div>
+        {/* Mobile FAQ illustration — flush with section bottom */}
+        <div className="mt-12 flex justify-center lg:hidden">
+          <Image
+            src="/images/faq-illustration.png"
+            alt=""
+            width={400}
+            height={400}
+            className="block w-[57%] max-w-[260px] object-contain"
+          />
         </div>
       </section>
     </>
