@@ -117,7 +117,7 @@ export default async function ArticlePage({ params }: PageProps) {
       {/* Related */}
       <section className="border-t border-line/70 bg-warm-white py-16 lg:py-20">
         <div className="mx-auto max-w-[1000px] px-4">
-          <h2 className="font-serif mb-8 text-2xl font-bold tracking-tight text-forest">
+          <h2 className="font-serif mb-8 text-2xl font-bold tracking-tight text-charcoal">
             Keep reading
           </h2>
           <div className="grid gap-8 sm:grid-cols-2">
@@ -168,7 +168,7 @@ const bodyComponents: PortableTextComponents = {
       <p className="mb-6 text-[1.075rem] leading-[1.85] text-charcoal/85">{children}</p>
     ),
     h2: ({ children }) => (
-      <h2 className="font-serif mt-12 mb-4 text-2xl font-bold tracking-tight text-forest">
+      <h2 className="font-serif mt-12 mb-4 text-2xl font-bold tracking-tight text-charcoal">
         {children}
       </h2>
     ),

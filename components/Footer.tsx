@@ -86,7 +86,7 @@ export function Footer() {
   return (
     <footer>
       {/* Lower footer container */}
-      <div className="relative z-10 overflow-hidden bg-[#0a2828] px-6 pb-8 pt-12 text-white md:pb-12 md:pt-16 lg:px-16">
+      <div className="relative z-10 overflow-hidden bg-[#1a2618] px-6 pb-8 pt-12 text-white md:pb-12 md:pt-16 lg:px-16">
         {/* Brand mark */}
         <div className="mx-auto mb-8 max-w-6xl md:mb-12">
           <Image

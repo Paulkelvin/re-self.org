@@ -129,7 +129,7 @@ export default async function ServicesPage() {
           {/* Section intro */}
           <FadeIn direction="up">
             <div className="mb-4 flex flex-col gap-4 border-b border-neutral-200/70 pb-10 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="font-serif max-w-md text-3xl font-bold text-forest lg:text-4xl">
+              <h2 className="font-serif max-w-md text-3xl font-bold text-charcoal lg:text-4xl">
                 Three ways to work together.
               </h2>
               <p className="max-w-sm text-sm leading-relaxed text-muted">
@@ -187,7 +187,7 @@ export default async function ServicesPage() {
                       {meta?.format ?? `Service 0${i + 1}`}
                     </span>
 
-                    <h3 className="font-serif relative text-3xl font-bold text-forest lg:text-4xl">
+                    <h3 className="font-serif relative text-3xl font-bold text-charcoal lg:text-4xl">
                       {service.title}
                     </h3>
                     <p className="relative mt-4 max-w-xl text-base leading-relaxed text-muted">
@@ -336,7 +336,7 @@ export default async function ServicesPage() {
                     {/* Card content */}
                     <div className="group rounded-2xl bg-white/70 p-6 shadow-sm ring-1 ring-forest/[0.06] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:ring-forest/[0.12] md:mx-4">
                       <span className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-forest text-xs font-bold text-white">{step}</span>
-                      <h3 className="mb-2 text-lg font-semibold text-forest">{title}</h3>
+                      <h3 className="mb-2 text-lg font-semibold text-charcoal">{title}</h3>
                       <p className="text-sm leading-relaxed text-muted">{body}</p>
                     </div>
                   </div>

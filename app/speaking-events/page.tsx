@@ -115,7 +115,7 @@ export default async function SpeakingEventsPage() {
                 <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-forest">
                   {new Date(featuredEvent.date) >= now ? "Next Up" : "Featured Event"}
                 </p>
-                <h2 className="font-serif text-4xl font-bold text-forest lg:text-5xl">
+                <h2 className="font-serif text-4xl font-bold text-charcoal lg:text-5xl">
                   {new Date(featuredEvent.date) >= now ? "Don't miss this." : "Recent highlight."}
                 </h2>
                 <div aria-hidden="true" className="mt-4 h-[3px] w-12 rounded-full bg-gold" />
@@ -255,7 +255,7 @@ export default async function SpeakingEventsPage() {
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-forest">
                 Signature Topics
               </p>
-              <h2 className="font-serif text-4xl font-bold leading-tight text-forest lg:text-5xl">
+              <h2 className="font-serif text-4xl font-bold leading-tight text-charcoal lg:text-5xl">
                 Talks that land in the room.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-muted">
@@ -328,7 +328,7 @@ export default async function SpeakingEventsPage() {
                     <span className="mb-4 inline-block rounded-full border border-forest/15 bg-forest/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-forest/60">
                       {duration}
                     </span>
-                    <h3 className="font-serif mb-3 text-xl font-bold text-forest">{name}</h3>
+                    <h3 className="font-serif mb-3 text-xl font-bold text-charcoal">{name}</h3>
                     <p className="text-sm leading-relaxed text-muted">{description}</p>
                   </div>
                 </div>

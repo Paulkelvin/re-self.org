@@ -69,7 +69,7 @@ export default async function PackagesPage() {
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <p className="font-serif text-3xl font-bold text-forest lg:text-4xl">
+                  <p className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
                     {stat.value}
                   </p>
                   <p className="mt-1 text-xs font-medium uppercase tracking-widest text-muted">
@@ -214,7 +214,7 @@ export default async function PackagesPage() {
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold/[0.18] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-[#8a6a2e]">
                 FAQ
               </p>
-              <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
+              <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
                 Common questions
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted">

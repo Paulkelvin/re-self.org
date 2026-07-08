@@ -224,7 +224,7 @@ export default async function HomePage() {
               <p className={`${eyebrowCls} justify-center`}>
                 Services
               </p>
-              <h2 className="font-serif text-3xl font-bold text-forest lg:text-4xl">How We Serve</h2>
+              <h2 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">How We Serve</h2>
               <p className="mx-auto mt-3 max-w-xl text-sm text-muted lg:text-base">
                 Workshops, retreats, virtual self-care sessions, and practical tools — perfect
                 for community groups, family trips, women ministries, youth groups, and more.
@@ -245,8 +245,7 @@ export default async function HomePage() {
                   sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-forest/45 bg-blend-overlay transition-colors group-hover:bg-forest/55" />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-forest-dark/15 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                 <div className="absolute bottom-7 left-7 right-7 z-10">
                   <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-sage-light">
                     Flagship Program
@@ -288,7 +287,7 @@ export default async function HomePage() {
                       />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="font-serif text-base font-semibold leading-snug text-forest">
+                      <h3 className="font-serif text-base font-semibold leading-snug text-charcoal">
                         {service.title}
                       </h3>
                       <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted lg:text-sm">

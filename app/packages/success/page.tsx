@@ -29,7 +29,7 @@ export default function SuccessPage() {
             </svg>
           </div>
 
-          <h1 className="font-serif text-3xl font-bold text-forest lg:text-4xl">
+          <h1 className="font-serif text-3xl font-bold text-charcoal lg:text-4xl">
             Payment confirmed!
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">

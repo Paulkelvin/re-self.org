@@ -119,7 +119,7 @@ export default async function NewsletterPage() {
         <div className="mx-auto max-w-[1200px] px-4">
           <FadeIn direction="up">
             <div className="mb-10">
-              <h2 className="font-serif text-2xl font-bold tracking-tight text-forest lg:text-3xl">
+              <h2 className="font-serif text-2xl font-bold tracking-tight text-charcoal lg:text-3xl">
                 All Articles
               </h2>
               <p className="mt-2 text-sm text-muted">

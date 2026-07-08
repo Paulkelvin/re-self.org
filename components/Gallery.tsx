@@ -77,7 +77,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage">
                 Gallery
               </p>
-              <h2 className="font-serif text-3xl font-bold tracking-tight text-forest sm:text-4xl lg:text-[2.8rem]">
+              <h2 className="font-serif text-3xl font-bold tracking-tight text-charcoal sm:text-4xl lg:text-[2.8rem]">
                 Moments in the Room
               </h2>
             </div>
