@@ -90,7 +90,7 @@ export function PackageCard({ pkg, index, compact = false }: Props) {
     <div
       className={`group relative flex flex-col rounded-2xl border transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
         isHighlighted
-          ? "mt-6 border-[#C08848]/40 bg-gradient-to-b from-[#243720] via-[#3a5032] to-[#243720] text-white shadow-2xl shadow-forest/30 scale-[1.02] z-10 ring-1 ring-[#C08848]/20"
+          ? "mt-6 border-[#C08848]/40 bg-gradient-to-b from-[#7B876D] via-[#7B876D] to-[#7B876D] text-white shadow-2xl shadow-forest/30 scale-[1.02] z-10 ring-1 ring-[#C08848]/20"
           : "border-line bg-white text-charcoal shadow-lg shadow-black/[0.04] hover:border-forest/30"
       }`}
       style={{ animationDelay: `${index * 100}ms` }}

@@ -28,8 +28,8 @@ export default async function AboutPage() {
   return (
     <>
       {/* Cinematic background hero */}
-      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#243720] text-white lg:min-h-[76vh]">
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-br from-[#1a2618] via-[#243720] to-[#3a5032]" />
+      <section className="relative isolate flex min-h-[66vh] items-center overflow-hidden bg-[#7B876D] text-white lg:min-h-[76vh]">
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-br from-[#7B876D] via-[#7B876D] to-[#7B876D]" />
 
         {/* Brand watermark + ambient orbit */}
         <span

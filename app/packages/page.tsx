@@ -30,9 +30,9 @@ export default async function PackagesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-[#243720] px-6 py-24 text-white lg:px-16 lg:py-32">
+      <section className="relative isolate overflow-hidden bg-[#7B876D] px-6 py-24 text-white lg:px-16 lg:py-32">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1a2618] via-[#243720] to-[#3a5032]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#7B876D] via-[#7B876D] to-[#7B876D]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(168,181,162,0.15),transparent_70%)]" />
         </div>
 

@@ -60,7 +60,7 @@ export default async function SpeakingEventsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#243720] px-6 py-24 text-white lg:px-16">
+      <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#7B876D] px-6 py-24 text-white lg:px-16">
         {/* Full-bleed background image + contrast overlays */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <Image
@@ -72,8 +72,8 @@ export default async function SpeakingEventsPage() {
             className="object-cover object-center"
           />
           {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a2618]/95 via-[#1a2618]/78 to-[#243720]/35" />
-          <div className="absolute inset-0 bg-[#1a2618]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#7B876D]/95 via-[#7B876D]/78 to-[#7B876D]/35" />
+          <div className="absolute inset-0 bg-[#7B876D]/25" />
         </div>
 
         <span
