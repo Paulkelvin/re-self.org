@@ -46,6 +46,17 @@ function formatUSPhone(raw: string): string {
 
 const step1Fields = ["fullName", "email", "phone"] as const;
 
+// Programs with a fixed price — budget is locked when one of these is selected
+const FIXED_PRICE_PROGRAMS: Record<string, string> = {
+  "Individual Self-Care Coaching": "$100 (fixed price)",
+  "Four-Week Self-Care Cohort": "$500 (fixed price)",
+  "Introductory Self-Care Workshop": "$0 — Introductory session (free)",
+};
+
+function getFixedBudget(eventType: string): string | null {
+  return FIXED_PRICE_PROGRAMS[eventType] ?? null;
+}
+
 export function BookingForm() {
   return (
     <Suspense fallback={<BookingFormShell />}>
@@ -76,10 +87,12 @@ function BookingFormInner() {
     searchParams.get("allowFree") === "1" ||
     selectedPackage === "Introductory Self-Care Workshop";
 
+  const initialBudget = getFixedBudget(selectedPackage) ?? (allowFreeBudget ? "$0 — Introductory session (free)" : "");
+
   const [form, setForm] = useState({
     ...initial,
     eventType: selectedPackage,
-    budgetRange: allowFreeBudget ? "$0 - Introductory session" : "",
+    budgetRange: initialBudget,
     details: selectedPackage ? `I am interested in ${selectedPackage}.` : "",
   });
   const [step, setStep] = useState<1 | 2>(1);
@@ -87,6 +100,23 @@ function BookingFormInner() {
   const [message, setMessage] = useState("");
 
   function update(name: string, value: string) {
+    if (name === "eventType") {
+      const fixedBudget = getFixedBudget(value);
+      const fixedValues = new Set(Object.values(FIXED_PRICE_PROGRAMS));
+      setForm((c) => ({
+        ...c,
+        eventType: value,
+        // If new type has a fixed price → lock it.
+        // If switching away from a fixed-price type → clear so user picks fresh.
+        // Otherwise keep whatever they already selected.
+        budgetRange: fixedBudget !== null
+          ? fixedBudget
+          : fixedValues.has(c.budgetRange)
+            ? ""
+            : c.budgetRange,
+      }));
+      return;
+    }
     setForm((c) => ({ ...c, [name]: value }));
   }
 
@@ -136,7 +166,7 @@ function BookingFormInner() {
       setForm({
         ...initial,
         eventType: selectedPackage,
-        budgetRange: allowFreeBudget ? "$0 - Introductory session" : "",
+        budgetRange: initialBudget,
         details: selectedPackage ? `I am interested in ${selectedPackage}.` : "",
       });
       setStep(1);
@@ -334,26 +364,32 @@ function BookingFormInner() {
 
               <div className="grid gap-1.5 col-span-2">
                 <label htmlFor="bf-budgetRange" className={labelCls}>Budget Range</label>
-                <div className="relative">
-                  <select
-                    id="bf-budgetRange"
-                    name="budgetRange"
-                    value={form.budgetRange}
-                    onChange={(e) => update(e.target.name, e.target.value)}
-                    required
-                    className={selectCls}
-                  >
-                    <option value="">Select one</option>
-                    {allowFreeBudget && <option>$0 - Introductory session</option>}
-                    <option>Under $500</option>
-                    <option>$500 – $1,000</option>
-                    <option>$1,000 – $5,000</option>
-                    <option>$5,000 – $10,000</option>
-                    <option>$10,000+</option>
-                    <option>Not sure yet</option>
-                  </select>
-                  <SelectChevron />
-                </div>
+                {getFixedBudget(form.eventType) !== null ? (
+                  <div className={`${inputCls} flex items-center justify-between bg-forest/5 text-forest font-medium cursor-default`}>
+                    <span>{form.budgetRange}</span>
+                    <span className="text-[0.6rem] font-semibold uppercase tracking-widest text-forest/50">Fixed</span>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <select
+                      id="bf-budgetRange"
+                      name="budgetRange"
+                      value={form.budgetRange}
+                      onChange={(e) => update(e.target.name, e.target.value)}
+                      required
+                      className={selectCls}
+                    >
+                      <option value="">Select one</option>
+                      <option>Under $500</option>
+                      <option>$500 – $1,000</option>
+                      <option>$1,000 – $5,000</option>
+                      <option>$5,000 – $10,000</option>
+                      <option>$10,000+</option>
+                      <option>Not sure yet</option>
+                    </select>
+                    <SelectChevron />
+                  </div>
+                )}
               </div>
 
               <div className="grid gap-1.5 col-span-2">
