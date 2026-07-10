@@ -27,6 +27,7 @@ export interface FieldDef {
   refType?: string;
   autoFrom?: string;
   description?: string;
+  initialValue?: unknown;
 }
 
 export interface SectionDef {
@@ -39,7 +40,7 @@ export interface SectionDef {
   publicPath?: string;
 }
 
-const ORDER: FieldDef = { name: "order", label: "Order", type: "number", description: "Lower numbers appear first." };
+const ORDER: FieldDef = { name: "order", label: "Order", type: "number", description: "Lower numbers appear first.", initialValue: 0 };
 
 export const schemas: Record<string, SectionDef> = {
   siteSettings: {
@@ -200,8 +201,8 @@ export const schemas: Record<string, SectionDef> = {
       { name: "priceLabel", label: "Price Label", type: "string", required: true, placeholder: "e.g. $299", description: "Shown to visitors, e.g. '$299'." },
       { name: "priceSuffix", label: "Price Suffix", type: "string", placeholder: "e.g. /session" },
       { name: "features", label: "Features", type: "array-strings", required: true },
-      { name: "highlighted", label: "Most Popular?", type: "boolean" },
-      { name: "ctaLabel", label: "Button Label", type: "string", placeholder: "Get Started" },
+      { name: "highlighted", label: "Most Popular?", type: "boolean", initialValue: false },
+      { name: "ctaLabel", label: "Button Label", type: "string", placeholder: "Get Started", initialValue: "Get Started" },
       { name: "squareItemId", label: "Square Item ID", type: "string", description: "From your Square dashboard → Items." },
       ORDER,
     ],
@@ -228,7 +229,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "date", label: "Start Date", type: "datetime", required: true },
       { name: "endDate", label: "End Date (optional)", type: "datetime" },
       { name: "location", label: "Location", type: "string" },
-      { name: "isVirtual", label: "Virtual Event?", type: "boolean" },
+      { name: "isVirtual", label: "Virtual Event?", type: "boolean", initialValue: false },
       { name: "description", label: "Description", type: "text", required: true, rows: 4 },
       { name: "coverImage", label: "Cover Image", type: "image", required: true },
       { name: "registrationUrl", label: "Registration URL", type: "url" },
@@ -244,8 +245,8 @@ export const schemas: Record<string, SectionDef> = {
           { name: "image", label: "Photo", type: "image" },
         ],
       },
-      { name: "featured", label: "Featured?", type: "boolean" },
-      { name: "showSaveToCalendar", label: "Show Save to Calendar?", type: "boolean" },
+      { name: "featured", label: "Featured?", type: "boolean", initialValue: false },
+      { name: "showSaveToCalendar", label: "Show Save to Calendar?", type: "boolean", initialValue: false },
       ORDER,
     ],
   },
@@ -302,7 +303,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "publishedAt", label: "Published Date", type: "date", required: true },
       { name: "readingTime", label: "Reading Time (minutes)", type: "number", required: true, description: "Estimated minutes to read." },
       { name: "author", label: "Author", type: "reference", refType: "author", required: true },
-      { name: "featured", label: "Featured?", type: "boolean" },
+      { name: "featured", label: "Featured?", type: "boolean", initialValue: false },
       { name: "body", label: "Body", type: "portable-text", required: true },
     ],
   },

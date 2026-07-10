@@ -51,7 +51,18 @@ export function ContentForm({
 }: Props) {
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
-  const [form, setForm] = useState<Record<string, unknown>>(initialData ?? {});
+  const [form, setForm] = useState<Record<string, unknown>>(() => {
+    if (isNew) {
+      const defaults: Record<string, unknown> = {};
+      for (const field of sectionDef.fields) {
+        if (field.initialValue !== undefined) {
+          defaults[field.name] = field.initialValue;
+        }
+      }
+      return { ...defaults, ...(initialData ?? {}) };
+    }
+    return initialData ?? {};
+  });
   const [saving, setSaving] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   // Baseline tracks what was last saved — isDirty = form !== baseline
