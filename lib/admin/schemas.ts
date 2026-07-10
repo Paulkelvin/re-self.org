@@ -25,6 +25,7 @@ export interface FieldDef {
   objectFields?: FieldDef[];
   refType?: string;
   autoFrom?: string;
+  description?: string;
 }
 
 export interface SectionDef {
@@ -34,7 +35,10 @@ export interface SectionDef {
   fields: FieldDef[];
   singleton?: boolean;
   canCreate?: boolean;
+  publicPath?: string;
 }
+
+const ORDER: FieldDef = { name: "order", label: "Order", type: "number", description: "Lower numbers appear first." };
 
 export const schemas: Record<string, SectionDef> = {
   siteSettings: {
@@ -52,7 +56,7 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "value", label: "Value", type: "string", required: true, placeholder: "e.g. 500+" },
       { name: "label", label: "Label", type: "string", required: true, placeholder: "e.g. Lives touched" },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   testimonial: {
@@ -65,7 +69,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "role", label: "Role", type: "string" },
       { name: "org", label: "Organization", type: "string" },
       { name: "image", label: "Photo", type: "image" },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   affirmation: {
@@ -75,7 +79,7 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "title", label: "Section Title", type: "string", required: true },
       { name: "affirmations", label: "Affirmations", type: "array-strings", required: true },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   timeline: {
@@ -86,7 +90,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "period", label: "Period", type: "string", required: true },
       { name: "title", label: "Title", type: "string", required: true },
       { name: "description", label: "Description", type: "text", required: true, rows: 4 },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   achievement: {
@@ -96,7 +100,7 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "value", label: "Value", type: "string", required: true, placeholder: "e.g. M.Ed." },
       { name: "label", label: "Label", type: "string", required: true, placeholder: "e.g. Master of Education" },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   value: {
@@ -106,7 +110,7 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "title", label: "Title", type: "string", required: true },
       { name: "body", label: "Body", type: "text", required: true, rows: 4 },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   philosophy: {
@@ -117,7 +121,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "num", label: "Number", type: "string", required: true, placeholder: "e.g. 01" },
       { name: "title", label: "Title", type: "string", required: true },
       { name: "body", label: "Body", type: "text", required: true, rows: 4 },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   galleryImage: {
@@ -127,7 +131,7 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "image", label: "Image", type: "image", required: true },
       { name: "label", label: "Caption", type: "string", required: true },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   service: {
@@ -138,7 +142,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "title", label: "Title", type: "string", required: true },
       { name: "body", label: "Description", type: "text", required: true, rows: 3 },
       { name: "image", label: "Image", type: "image", required: true },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   serviceAudience: {
@@ -148,7 +152,7 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "title", label: "Title", type: "string", required: true },
       { name: "body", label: "Description", type: "text", required: true, rows: 4 },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   processStep: {
@@ -160,7 +164,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "title", label: "Title", type: "string", required: true },
       { name: "body", label: "Description", type: "text", required: true, rows: 4 },
       { name: "context", label: "Context", type: "select", required: true, options: ["services", "booking"] },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   guarantee: {
@@ -170,7 +174,7 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "title", label: "Title", type: "string", required: true },
       { name: "body", label: "Description", type: "text", required: true, rows: 4 },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   faq: {
@@ -181,7 +185,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "question", label: "Question", type: "string", required: true },
       { name: "answer", label: "Answer", type: "text", required: true, rows: 4 },
       { name: "category", label: "Category", type: "select", options: ["general", "packages"] },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   package: {
@@ -192,13 +196,13 @@ export const schemas: Record<string, SectionDef> = {
       { name: "title", label: "Title", type: "string", required: true },
       { name: "subtitle", label: "Tagline", type: "string", required: true },
       { name: "price", label: "Price (in cents)", type: "number", required: true },
-      { name: "priceLabel", label: "Price Label", type: "string", required: true, placeholder: "e.g. $299" },
+      { name: "priceLabel", label: "Price Label", type: "string", required: true, placeholder: "e.g. $299", description: "Shown to visitors, e.g. '$299'." },
       { name: "priceSuffix", label: "Price Suffix", type: "string", placeholder: "e.g. /session" },
       { name: "features", label: "Features", type: "array-strings", required: true },
       { name: "highlighted", label: "Most Popular?", type: "boolean" },
       { name: "ctaLabel", label: "Button Label", type: "string", placeholder: "Get Started" },
-      { name: "squareItemId", label: "Square Item ID", type: "string" },
-      { name: "order", label: "Order", type: "number" },
+      { name: "squareItemId", label: "Square Item ID", type: "string", description: "From your Square dashboard → Items." },
+      ORDER,
     ],
   },
   topic: {
@@ -208,16 +212,17 @@ export const schemas: Record<string, SectionDef> = {
     fields: [
       { name: "title", label: "Title", type: "string", required: true },
       { name: "description", label: "Description", type: "text", required: true, rows: 3 },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   event: {
     label: "Events",
     type: "event",
     titleField: "title",
+    publicPath: "/speaking-events",
     fields: [
       { name: "title", label: "Title", type: "string", required: true },
-      { name: "slug", label: "Slug", type: "slug", required: true, autoFrom: "title" },
+      { name: "slug", label: "Slug", type: "slug", required: true, autoFrom: "title", description: "Used in the public URL. Auto-fill from title, then adjust if needed." },
       { name: "eventType", label: "Event Type", type: "select", required: true, options: ["Keynote", "Panel", "Workshop", "Retreat", "Podcast", "Conference"] },
       { name: "date", label: "Start Date", type: "datetime", required: true },
       { name: "endDate", label: "End Date (optional)", type: "datetime" },
@@ -239,7 +244,7 @@ export const schemas: Record<string, SectionDef> = {
       },
       { name: "featured", label: "Featured?", type: "boolean" },
       { name: "showSaveToCalendar", label: "Show Save to Calendar?", type: "boolean" },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   speakingFormat: {
@@ -250,7 +255,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "name", label: "Format Name", type: "string", required: true },
       { name: "duration", label: "Duration", type: "string", required: true, placeholder: "e.g. 60–90 min" },
       { name: "description", label: "Description", type: "text", required: true, rows: 4 },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   speakingAudience: {
@@ -259,7 +264,7 @@ export const schemas: Record<string, SectionDef> = {
     titleField: "label",
     fields: [
       { name: "label", label: "Audience Label", type: "string", required: true },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   bookingReason: {
@@ -268,7 +273,7 @@ export const schemas: Record<string, SectionDef> = {
     titleField: "label",
     fields: [
       { name: "label", label: "Reason", type: "string", required: true },
-      { name: "order", label: "Order", type: "number" },
+      ORDER,
     ],
   },
   author: {
@@ -285,14 +290,15 @@ export const schemas: Record<string, SectionDef> = {
     label: "Articles",
     type: "article",
     titleField: "title",
+    publicPath: "/newsletter",
     fields: [
       { name: "title", label: "Title", type: "string", required: true },
-      { name: "slug", label: "Slug", type: "slug", required: true, autoFrom: "title" },
+      { name: "slug", label: "Slug", type: "slug", required: true, autoFrom: "title", description: "Used in the public URL. Auto-fill from title, then adjust if needed." },
       { name: "excerpt", label: "Excerpt", type: "text", required: true, rows: 3 },
       { name: "category", label: "Category", type: "string", required: true },
       { name: "coverImage", label: "Cover Image", type: "image", required: true },
       { name: "publishedAt", label: "Published Date", type: "date", required: true },
-      { name: "readingTime", label: "Reading Time (minutes)", type: "number", required: true },
+      { name: "readingTime", label: "Reading Time (minutes)", type: "number", required: true, description: "Estimated minutes to read." },
       { name: "author", label: "Author", type: "reference", refType: "author", required: true },
       { name: "featured", label: "Featured?", type: "boolean" },
       { name: "body", label: "Body", type: "portable-text", required: true },

@@ -17,6 +17,8 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
     router.push("/admin/login");
   }
 
+  const dashActive = pathname === "/admin/dashboard";
+
   return (
     <div className="flex h-full flex-col">
       {/* Brand */}
@@ -39,8 +41,9 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         <Link
           href="/admin/dashboard"
           onClick={onNavigate}
+          aria-current={dashActive ? "page" : undefined}
           className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-all ${
-            pathname === "/admin/dashboard"
+            dashActive
               ? "bg-white/15 text-white"
               : "text-white/65 hover:bg-white/10 hover:text-white"
           }`}
@@ -68,6 +71,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
                     key={key}
                     href={href}
                     onClick={onNavigate}
+                    aria-current={active ? "page" : undefined}
                     className={`flex items-center rounded-lg px-3 py-2 text-sm transition-all ${
                       active
                         ? "bg-[#5e6d52] font-medium text-white"
@@ -115,6 +119,7 @@ export function AdminSidebar() {
         <button
           onClick={() => setOpen(true)}
           aria-label="Open menu"
+          aria-expanded={open}
           className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#c4d4d0] text-[#4a5840] transition hover:bg-[#f4f7f4]"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
@@ -125,34 +130,36 @@ export function AdminSidebar() {
         <span className="text-xs font-semibold text-[#4a5840]">Admin</span>
       </header>
 
-      {/* ── Mobile slide-in sidebar ── */}
-      {open && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 z-50 bg-black/40 lg:hidden"
+      {/* ── Mobile slide-in sidebar (always in DOM, animated) ── */}
+      {/* Backdrop */}
+      <div
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+        className={`fixed inset-0 z-50 bg-black/40 lg:hidden transition-opacity duration-200 ${
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      />
+      {/* Drawer */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#2e3a2a] lg:hidden transition-transform duration-200 ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex h-14 items-center justify-end px-4 border-b border-white/10">
+          <button
             onClick={() => setOpen(false)}
-            aria-hidden="true"
-          />
-          {/* Drawer */}
-          <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-[#2e3a2a] lg:hidden">
-            <div className="flex h-14 items-center justify-end px-4 border-b border-white/10">
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="text-white/60 hover:text-white transition"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                  <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
-            <div className="h-[calc(100%-56px)]">
-              <SidebarContent onNavigate={() => setOpen(false)} />
-            </div>
-          </aside>
-        </>
-      )}
+            aria-label="Close menu"
+            className="text-white/60 hover:text-white transition"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div className="h-[calc(100%-56px)]">
+          <SidebarContent onNavigate={() => setOpen(false)} />
+        </div>
+      </aside>
     </>
   );
 }

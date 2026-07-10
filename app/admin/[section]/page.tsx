@@ -3,7 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { schemas } from "@/lib/admin/schemas";
 import { listDocuments, getImageUrl } from "@/lib/admin/sanityWrite";
-import { DeleteButtonClient } from "@/components/admin/DeleteButton";
+import { SectionList } from "@/components/admin/SectionList";
 
 export const revalidate = 0;
 
@@ -67,6 +67,15 @@ export default async function SectionListPage({ params }: Props) {
   const docs = await listDocuments(def.type);
   const imageField = def.fields.find((f) => f.type === "image")?.name;
 
+  // Pre-compute thumb URLs server-side so the client component stays a pure list
+  const thumbUrls: Record<string, string | null> = {};
+  if (imageField) {
+    for (const doc of docs as Record<string, unknown>[]) {
+      const imgVal = doc[imageField] as Parameters<typeof getImageUrl>[0];
+      thumbUrls[doc._id as string] = imgVal ? getImageUrl(imgVal) : null;
+    }
+  }
+
   return (
     <div className="pb-10">
       {/* Page header */}
@@ -95,81 +104,12 @@ export default async function SectionListPage({ params }: Props) {
 
       {/* List */}
       <div className="px-6 pt-5 lg:px-8">
-        {docs.length === 0 ? (
-          <div className="rounded-2xl border-2 border-dashed border-[#c4d4d0] py-20 text-center">
-            <svg className="mx-auto mb-3 h-8 w-8 text-[#b0c4c0]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2z" />
-            </svg>
-            <p className="font-medium text-[#5a6b6b]">No {def.label.toLowerCase()} yet</p>
-            {def.canCreate !== false && (
-              <Link
-                href={`/admin/${section}/new`}
-                className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-[#4a5840] px-4 py-2 text-sm font-semibold text-white"
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
-                  <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-                Create first
-              </Link>
-            )}
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {(docs as Record<string, unknown>[]).map((doc) => {
-              const id = doc._id as string;
-              const title = (doc[def.titleField] as string) ?? id;
-              const imgVal = imageField
-                ? (doc[imageField] as Parameters<typeof getImageUrl>[0])
-                : null;
-              const thumbUrl = imgVal ? getImageUrl(imgVal) : null;
-
-              return (
-                <div
-                  key={id}
-                  className="flex items-center gap-4 rounded-xl border border-[#dde8dd] bg-white px-4 py-3.5 shadow-sm transition hover:border-[#b0c4b0] hover:shadow-md"
-                >
-                  {thumbUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={`${thumbUrl}?w=80&h=80&fit=crop&auto=format`}
-                      alt=""
-                      className="h-11 w-11 flex-shrink-0 rounded-lg object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-[#f0f4f0] text-[#a0b8b0]">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                    </div>
-                  )}
-
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-[#2a3535]">{title}</p>
-                    {typeof doc.subtitle === "string" && (
-                      <p className="truncate text-xs text-[#5a6b6b]">{doc.subtitle}</p>
-                    )}
-                  </div>
-
-                  {doc.order !== undefined && (
-                    <span className="flex-shrink-0 rounded-md bg-[#f0f4f0] px-2 py-0.5 text-[10px] font-bold tabular-nums text-[#8fa89f]">
-                      #{doc.order as number}
-                    </span>
-                  )}
-
-                  <div className="flex flex-shrink-0 items-center gap-2">
-                    <Link
-                      href={`/admin/${section}/${id}`}
-                      className="rounded-lg border border-[#c4d4d0] px-3 py-1.5 text-xs font-semibold text-[#4a5840] transition hover:border-[#4a5840] hover:bg-[#4a5840] hover:text-white"
-                    >
-                      Edit
-                    </Link>
-                    <DeleteButtonClient id={id} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
+        <SectionList
+          docs={docs as Record<string, unknown>[]}
+          def={def}
+          section={section}
+          thumbUrls={thumbUrls}
+        />
       </div>
     </div>
   );

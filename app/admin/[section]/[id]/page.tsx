@@ -54,6 +54,11 @@ export default async function EditDocumentPage({ params }: Props) {
     ? def.label.replace(/s$/, "")
     : (initialData[def.titleField] as string) ?? "Untitled";
 
+  const publicUrl =
+    def.publicPath && initialData.slug
+      ? `${def.publicPath}/${initialData.slug as string}`
+      : null;
+
   return (
     <div className="pb-28">
       {/* Page header */}
@@ -67,9 +72,25 @@ export default async function EditDocumentPage({ params }: Props) {
           </svg>
           {def.label}
         </Link>
-        <h1 className="mt-3 font-serif text-2xl font-semibold text-[#2e3a2a]">
-          Edit {docTitle}
-        </h1>
+        <div className="mt-3 flex items-center gap-3">
+          <h1 className="font-serif text-2xl font-semibold text-[#2e3a2a]">
+            Edit {docTitle}
+          </h1>
+          {publicUrl && (
+            <a
+              href={publicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View on site"
+              className="flex items-center gap-1 rounded-lg border border-[#c4d4d0] px-2.5 py-1.5 text-xs font-medium text-[#4a5840] transition hover:border-[#4a5840] hover:bg-[#4a5840] hover:text-white"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+              </svg>
+              View on site
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Form */}
