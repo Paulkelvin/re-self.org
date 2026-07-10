@@ -34,7 +34,14 @@ export async function createDocument(type: string, data: Record<string, unknown>
 }
 
 export async function updateDocument(id: string, data: Record<string, unknown>) {
-  return writeClient.patch(id).set(data).commit();
+  const entries = Object.entries(data);
+  const unsetKeys = entries.filter(([, v]) => v === null).map(([k]) => k);
+  const setData = Object.fromEntries(entries.filter(([, v]) => v !== null));
+
+  let patch = writeClient.patch(id);
+  if (Object.keys(setData).length > 0) patch = patch.set(setData);
+  if (unsetKeys.length > 0) patch = patch.unset(unsetKeys);
+  return patch.commit();
 }
 
 export async function deleteDocument(id: string) {

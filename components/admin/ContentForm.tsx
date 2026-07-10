@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { type SectionDef, type FieldDef } from "@/lib/admin/schemas";
 import { ImageField } from "./ImageField";
@@ -124,18 +124,7 @@ export function ContentForm({ sectionDef, section, initialData, docId, isNew, au
           field={field}
           value={form[field.name]}
           error={errors[field.name]}
-          onChange={(val) => {
-            set(field.name, val);
-            // Auto-fill slug from title
-            if (field.autoFrom === "title" || (field.type === "slug" && !form[field.name])) {
-              // handled per field
-            }
-          }}
-          onAutoSlug={(val) => {
-            const titleVal = form[field.autoFrom ?? "title"] as string | undefined;
-            if (!titleVal) return val;
-            return val;
-          }}
+          onChange={(val) => set(field.name, val)}
           allValues={form}
           setAll={set}
           authorOptions={authorOptions}
@@ -171,7 +160,6 @@ interface FieldProps {
   value: unknown;
   error?: string;
   onChange: (val: unknown) => void;
-  onAutoSlug: (val: unknown) => unknown;
   allValues: Record<string, unknown>;
   setAll: (field: string, val: unknown) => void;
   authorOptions?: { _id: string; name: string }[];
@@ -421,14 +409,7 @@ function FieldRenderer({ field, value, error, onChange, allValues, setAll, autho
       <input
         type="text"
         value={(value as string) ?? ""}
-        onChange={(e) => {
-          onChange(e.target.value);
-          // Auto-populate slug when typing in title field
-          const slugField = Object.values({ name }).find(() =>
-            allValues.__autoSlugFrom === name
-          );
-          void slugField;
-        }}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className={inputCls(!!error)}
       />

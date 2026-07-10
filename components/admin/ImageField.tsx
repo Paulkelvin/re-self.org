@@ -64,16 +64,16 @@ export function ImageField({ label, value, onChange, required }: Props) {
         className="relative cursor-pointer rounded-xl border-2 border-dashed border-[#c4d4d0] bg-[#f9fbf9] transition hover:border-[#5e6d52] hover:bg-[#f4f7f4] min-h-[140px] flex items-center justify-center overflow-hidden"
       >
         {currentUrl ? (
-          <div className="relative w-full">
+          <div className="group/img relative w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={currentUrl + "?w=600&auto=format"}
               alt="Preview"
-              className="w-full max-h-52 object-cover rounded-xl"
+              className="w-full max-h-52 rounded-xl object-cover"
             />
-            <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/0 transition hover:bg-black/30">
-              <span className="hidden text-sm font-medium text-white hover:block">
-                Replace image
+            <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/0 transition group-hover/img:bg-black/40">
+              <span className="text-sm font-semibold text-white opacity-0 transition group-hover/img:opacity-100">
+                Click to replace
               </span>
             </div>
           </div>
