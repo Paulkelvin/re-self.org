@@ -22,7 +22,7 @@ export function RichTextField({ label, value, onChange, required }: Props) {
     editorProps: {
       attributes: {
         class:
-          "min-h-[220px] px-4 py-3 focus:outline-none prose prose-sm max-w-none text-[#2a3535]",
+          "min-h-[220px] px-4 py-3 focus:outline-none prose prose-sm max-w-none text-[#2a3535] prose-headings:font-serif prose-h2:text-[#2e3a2a] prose-h2:tracking-tight prose-blockquote:border-l-[3px] prose-blockquote:border-[#4a5840]/40 prose-blockquote:text-[#4a5840]/75 prose-blockquote:not-italic",
       },
     },
   });
@@ -41,11 +41,12 @@ export function RichTextField({ label, value, onChange, required }: Props) {
   if (!editor) return null;
 
   const btn = (active: boolean) =>
-    `px-2 py-1 rounded text-sm font-medium transition ${active ? "bg-[#4a5840] text-white" : "text-[#4a5840] hover:bg-[#eef3ee]"}`;
+    `px-2 py-1 rounded-md text-xs font-medium transition ${active ? "bg-[#4a5840] text-white" : "text-[#4a5840] hover:bg-[#eef3ee]"}`;
 
   return (
     <div>
-      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#4a5840]">
+      <label className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.13em] text-[#3d4b35]">
+        <span className="block h-3 w-[2px] flex-shrink-0 rounded-full bg-[#4a5840]/55" aria-hidden="true" />
         {label}{required && <span className="text-red-500 ml-0.5">*</span>}
       </label>
 
@@ -69,11 +70,15 @@ export function RichTextField({ label, value, onChange, required }: Props) {
           &ldquo; Quote
         </button>
         <span className="mx-1 h-4 w-px bg-[#c4d4d0]" aria-hidden="true" />
-        <button type="button" onClick={() => editor.chain().focus().undo().run()} className={btn(false)}>
-          ↺
+        <button type="button" onClick={() => editor.chain().focus().undo().run()} aria-label="Undo" className={btn(false)}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+          </svg>
         </button>
-        <button type="button" onClick={() => editor.chain().focus().redo().run()} className={btn(false)}>
-          ↻
+        <button type="button" onClick={() => editor.chain().focus().redo().run()} aria-label="Redo" className={btn(false)}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M21 10H11a8 8 0 00-8 8v2m18-10l-6 6m6-6l-6-6" />
+          </svg>
         </button>
       </div>
 

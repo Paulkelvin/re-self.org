@@ -27,12 +27,18 @@ function slugify(s: string) {
 
 function inputCls(error = false) {
   return `w-full rounded-lg border ${
-    error ? "border-red-400 bg-red-50/40" : "border-[#c4d4d0] bg-[#f9fbf9]"
+    error ? "border-red-400 bg-red-50/40" : "border-[#c4d4d0] bg-white"
   } px-3 py-2.5 text-sm text-[#2a3535] placeholder-[#9ab0aa] outline-none transition focus:border-[#5e6d52] focus:ring-2 focus:ring-[#5e6d52]/10`;
 }
 
-function labelCls() {
-  return "mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#4a5840]";
+function FieldLabel({ children, required }: { children: React.ReactNode; required?: boolean }) {
+  return (
+    <label className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.13em] text-[#3d4b35]">
+      <span className="block h-3 w-[2px] flex-shrink-0 rounded-full bg-[#4a5840]/55" aria-hidden="true" />
+      {children}
+      {required && <span className="ml-0.5 text-red-500">*</span>}
+    </label>
+  );
 }
 
 export function ContentForm({
@@ -209,7 +215,7 @@ export function ContentForm({
   return (
     <>
       <form ref={formRef} onSubmit={handleSubmit}>
-        <div className="space-y-6">
+        <div className="space-y-7">
           {sectionDef.fields.map((field) => (
             <FieldRenderer
               key={field.name}
@@ -391,10 +397,7 @@ function FieldRenderer({
   if (type === "select") {
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <select
           value={(value as string) ?? ""}
           onChange={(e) => onChange(e.target.value || undefined)}
@@ -416,10 +419,7 @@ function FieldRenderer({
   if (type === "reference" && refType === "author") {
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <select
           value={(value as string) ?? ""}
           onChange={(e) => onChange(e.target.value || undefined)}
@@ -445,10 +445,7 @@ function FieldRenderer({
         : (value as string) ?? "";
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <div className="flex gap-2">
           <input
             type="text"
@@ -478,10 +475,7 @@ function FieldRenderer({
   if (type === "text") {
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <textarea
           value={(value as string) ?? ""}
           onChange={(e) => onChange(e.target.value)}
@@ -498,10 +492,7 @@ function FieldRenderer({
   if (type === "number") {
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <input
           type="number"
           inputMode="numeric"
@@ -521,10 +512,7 @@ function FieldRenderer({
   if (type === "date") {
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <input
           type="date"
           value={(value as string) ?? ""}
@@ -541,10 +529,7 @@ function FieldRenderer({
     const isoToLocal = (iso?: string) => (iso ? iso.slice(0, 16) : "");
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <input
           type="datetime-local"
           value={isoToLocal(value as string)}
@@ -562,10 +547,7 @@ function FieldRenderer({
   if (type === "url") {
     return (
       <div>
-        <label className={labelCls()}>
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <FieldLabel required={required}>{label}</FieldLabel>
         <input
           type="url"
           inputMode="url"
@@ -583,10 +565,7 @@ function FieldRenderer({
   // Default: string
   return (
     <div>
-      <label className={labelCls()}>
-        {label}
-        {required && <span className="ml-0.5 text-red-500">*</span>}
-      </label>
+      <FieldLabel required={required}>{label}</FieldLabel>
       <input
         type="text"
         value={(value as string) ?? ""}
@@ -630,10 +609,7 @@ function ArrayStringsField({
 
   return (
     <div>
-      <label className={labelCls()}>
-        {label}
-        {required && <span className="ml-0.5 text-red-500">*</span>}
-      </label>
+      <FieldLabel required={required}>{label}</FieldLabel>
       <div className="space-y-2">
         {value.map((item, idx) => (
           <div key={idx} className="flex gap-2">
@@ -700,7 +676,7 @@ function ArrayObjectsField({
 
   return (
     <div>
-      <label className={labelCls()}>{label}</label>
+      <FieldLabel>{label}</FieldLabel>
       <div className="space-y-3">
         {value.map((item, idx) => (
           <div
@@ -730,7 +706,7 @@ function ArrayObjectsField({
                     />
                   ) : (
                     <div>
-                      <label className={labelCls()}>{f.label}</label>
+                      <FieldLabel>{f.label}</FieldLabel>
                       <input
                         type="text"
                         value={(item[f.name] as string) ?? ""}

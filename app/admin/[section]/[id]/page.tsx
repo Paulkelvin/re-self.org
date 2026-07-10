@@ -72,9 +72,13 @@ export default async function EditDocumentPage({ params }: Props) {
           </svg>
           {def.label}
         </Link>
-        <div className="mt-3 flex items-center gap-3">
+        <div className="mt-3">
+          <span className="mb-1.5 inline-block rounded-full bg-[#4a5840]/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#4a5840]">
+            {def.label.replace(/s$/, "")}
+          </span>
+          <div className="mt-1 flex items-center gap-3">
           <h1 className="font-serif text-2xl font-semibold text-[#2e3a2a]">
-            Edit {docTitle}
+            {docTitle}
           </h1>
           {publicUrl && (
             <a
@@ -90,21 +94,25 @@ export default async function EditDocumentPage({ params }: Props) {
               View on site
             </a>
           )}
+          </div>
         </div>
       </div>
 
       {/* Form */}
       <div className="px-6 pt-6 lg:px-8">
         <div className="max-w-3xl">
-          <div className="rounded-2xl border border-[#dde8dd] bg-white p-6 shadow-sm lg:p-8">
-            <ContentForm
-              sectionDef={def}
-              section={section}
-              initialData={initialData}
-              docId={id}
-              isNew={false}
-              authorOptions={authorOptions}
-            />
+          <div className="overflow-hidden rounded-2xl border border-[#dde8dd] bg-white shadow-sm">
+            <div className="h-[3px] bg-gradient-to-r from-[#4a5840] to-[#6b8560]" />
+            <div className="p-6 lg:p-8">
+              <ContentForm
+                sectionDef={def}
+                section={section}
+                initialData={initialData}
+                docId={id}
+                isNew={false}
+                authorOptions={authorOptions}
+              />
+            </div>
           </div>
         </div>
       </div>

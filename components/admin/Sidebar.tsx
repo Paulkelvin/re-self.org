@@ -112,8 +112,22 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         ))}
       </nav>
 
-      {/* Logout */}
-      <div className="border-t border-white/10 p-3">
+      {/* Bottom actions */}
+      <div className="border-t border-white/10 p-3 space-y-0.5">
+        <a
+          href="https://re-self.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-white/45 transition hover:bg-white/8 hover:text-white/70"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0">
+            <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+          </svg>
+          View Site
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="ml-auto flex-shrink-0 opacity-50">
+            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
         <button
           onClick={handleLogout}
           disabled={loggingOut}
@@ -153,6 +167,17 @@ export function AdminSidebar() {
         </button>
         <Image src="/reself-logo.png" alt="Re-Self Admin" width={70} height={60} className="h-7 w-auto" />
         <span className="text-xs font-semibold text-[#4a5840]">Content Studio</span>
+        <a
+          href="https://re-self.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View live site"
+          className="ml-auto flex h-9 w-9 items-center justify-center rounded-lg border border-[#c4d4d0] text-[#4a5840] transition hover:bg-[#f4f7f4]"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+          </svg>
+        </a>
       </header>
 
       {/* ── Mobile backdrop ── */}
