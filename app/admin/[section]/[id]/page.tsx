@@ -26,7 +26,6 @@ export default async function EditDocumentPage({ params }: Props) {
   const doc = await getDocument(id);
   if (!doc) return notFound();
 
-  // Load authors for article reference field
   let authorOptions: { _id: string; name: string }[] = [];
   if (def.fields.some((f) => f.type === "reference" && f.refType === "author")) {
     const authors = await listDocuments("author");
@@ -36,49 +35,57 @@ export default async function EditDocumentPage({ params }: Props) {
     }));
   }
 
-  // Normalize the initial data so form fields get the right shape
   const initialData: Record<string, unknown> = {};
   for (const field of def.fields) {
     const raw = (doc as Record<string, unknown>)[field.name];
     if (raw === undefined || raw === null) continue;
 
     if (field.type === "slug") {
-      // Sanity stores slug as { _type: "slug", current: "..." }
       initialData[field.name] = (raw as { current?: string }).current ?? raw;
     } else if (field.type === "reference") {
-      // Sanity stores reference as { _type: "reference", _ref: "..." }
       initialData[field.name] = (raw as { _ref?: string })._ref ?? raw;
     } else {
       initialData[field.name] = raw;
     }
   }
 
+  // Singletons don't have a meaningful title field — use the section label
+  const docTitle = def.singleton
+    ? def.label.replace(/s$/, "")
+    : (initialData[def.titleField] as string) ?? "Untitled";
+
   return (
-    <div className="p-8 max-w-3xl">
-      {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-2 text-sm text-[#5a6b6b]">
-        <Link href={`/admin/${section}`} className="hover:text-[#4a5840] transition">
+    <div className="pb-28">
+      {/* Page header */}
+      <div className="border-b border-[#dde8dd] bg-white px-6 py-5 lg:px-8">
+        <Link
+          href={`/admin/${section}`}
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-[#8fa89f] transition hover:text-[#4a5840]"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
           {def.label}
         </Link>
-        <span aria-hidden="true">/</span>
-        <span className="truncate max-w-xs text-[#2a3535] font-medium">
-          {(initialData[def.titleField] as string) ?? id}
-        </span>
-      </nav>
+        <h1 className="mt-3 font-serif text-2xl font-semibold text-[#2e3a2a]">
+          Edit {docTitle}
+        </h1>
+      </div>
 
-      <h1 className="font-serif text-2xl font-semibold text-[#4a5840] mb-8">
-        Edit {def.label.replace(/s$/, "")}
-      </h1>
-
-      <div className="rounded-2xl border border-[#dde8dd] bg-white p-8 shadow-sm">
-        <ContentForm
-          sectionDef={def}
-          section={section}
-          initialData={initialData}
-          docId={id}
-          isNew={false}
-          authorOptions={authorOptions}
-        />
+      {/* Form */}
+      <div className="px-6 pt-6 lg:px-8">
+        <div className="max-w-3xl">
+          <div className="rounded-2xl border border-[#dde8dd] bg-white p-6 shadow-sm lg:p-8">
+            <ContentForm
+              sectionDef={def}
+              section={section}
+              initialData={initialData}
+              docId={id}
+              isNew={false}
+              authorOptions={authorOptions}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

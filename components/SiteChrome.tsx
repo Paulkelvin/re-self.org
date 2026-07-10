@@ -11,7 +11,7 @@ import { PageTransition } from "@/components/PageTransition";
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (pathname?.startsWith("/studio")) return <>{children}</>;
+  if (pathname?.startsWith("/studio") || pathname?.startsWith("/admin")) return <>{children}</>;
 
   return (
     <>
