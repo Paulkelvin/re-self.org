@@ -23,6 +23,7 @@ export interface FieldDef {
   placeholder?: string;
   rows?: number;
   objectFields?: FieldDef[];
+  objectType?: string; // Sanity _type name for array-objects members
   refType?: string;
   autoFrom?: string;
   description?: string;
@@ -235,6 +236,7 @@ export const schemas: Record<string, SectionDef> = {
         name: "speakers",
         label: "Speakers",
         type: "array-objects",
+        objectType: "speaker",
         objectFields: [
           { name: "name", label: "Name", type: "string", required: true },
           { name: "role", label: "Role", type: "string" },
@@ -295,7 +297,7 @@ export const schemas: Record<string, SectionDef> = {
       { name: "title", label: "Title", type: "string", required: true },
       { name: "slug", label: "Slug", type: "slug", required: true, autoFrom: "title", description: "Used in the public URL. Auto-fill from title, then adjust if needed." },
       { name: "excerpt", label: "Excerpt", type: "text", required: true, rows: 3 },
-      { name: "category", label: "Category", type: "string", required: true },
+      { name: "category", label: "Category", type: "select", required: true, options: ["Leadership", "Wellness", "Mindset", "Resilience", "Personal Growth"] },
       { name: "coverImage", label: "Cover Image", type: "image", required: true },
       { name: "publishedAt", label: "Published Date", type: "date", required: true },
       { name: "readingTime", label: "Reading Time (minutes)", type: "number", required: true, description: "Estimated minutes to read." },

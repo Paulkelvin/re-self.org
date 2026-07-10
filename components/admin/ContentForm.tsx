@@ -316,7 +316,7 @@ function FieldRenderer({
   allValues,
   authorOptions,
 }: FieldProps) {
-  const { label, type, required, options, placeholder, rows, objectFields, refType, description } = field;
+  const { label, type, required, options, placeholder, rows, objectFields, objectType, refType, description } = field;
 
   const helpText = description ? (
     <p className="mt-1 text-xs text-[#8fa89f]">{description}</p>
@@ -364,6 +364,7 @@ function FieldRenderer({
         value={Array.isArray(value) ? (value as Record<string, unknown>[]) : []}
         onChange={onChange}
         objectFields={objectFields}
+        objectType={objectType}
       />
     );
   }
@@ -655,11 +656,13 @@ function ArrayObjectsField({
   value,
   onChange,
   objectFields,
+  objectType,
 }: {
   label: string;
   value: Record<string, unknown>[];
   onChange: (v: unknown) => void;
   objectFields: FieldDef[];
+  objectType?: string;
 }) {
   function update(idx: number, field: string, val: unknown) {
     const next = value.map((item, i) =>
@@ -671,7 +674,9 @@ function ArrayObjectsField({
     onChange(value.filter((_, i) => i !== idx));
   }
   function add() {
-    onChange([...value, { _key: crypto.randomUUID() }]);
+    const base: Record<string, unknown> = { _key: crypto.randomUUID() };
+    if (objectType) base._type = objectType;
+    onChange([...value, base]);
   }
 
   return (

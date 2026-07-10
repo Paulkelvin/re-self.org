@@ -19,7 +19,20 @@ export const article = defineType({
       description: "One- or two-sentence summary used on cards and meta descriptions.",
       validation: (r) => r.required(),
     }),
-    defineField({ name: "category", type: "string", validation: (r) => r.required() }),
+    defineField({
+      name: "category",
+      type: "string",
+      options: {
+        list: [
+          { title: "Leadership", value: "Leadership" },
+          { title: "Wellness", value: "Wellness" },
+          { title: "Mindset", value: "Mindset" },
+          { title: "Resilience", value: "Resilience" },
+          { title: "Personal Growth", value: "Personal Growth" },
+        ],
+      },
+      validation: (r) => r.required(),
+    }),
     defineField({
       name: "coverImage",
       type: "image",
