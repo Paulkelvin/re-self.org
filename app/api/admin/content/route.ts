@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import {
   listDocuments,
   getDocument,
@@ -37,6 +38,7 @@ export async function POST(request: Request) {
 
   try {
     const doc = await createDocument(body.type, body.data);
+    revalidateTag("sanity", { expire: 0 });
     return NextResponse.json(doc);
   } catch (err) {
     console.error("Content POST error:", err);
@@ -52,6 +54,7 @@ export async function PATCH(request: Request) {
 
   try {
     const doc = await updateDocument(body.id, body.data);
+    revalidateTag("sanity", { expire: 0 });
     return NextResponse.json(doc);
   } catch (err) {
     console.error("Content PATCH error:", err);
@@ -69,6 +72,7 @@ export async function DELETE(request: Request) {
 
   try {
     await deleteDocument(id);
+    revalidateTag("sanity", { expire: 0 });
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Content DELETE error:", err);

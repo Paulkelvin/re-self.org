@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import type { Image } from "sanity";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
 export interface GalleryImage {
@@ -12,7 +12,7 @@ export interface GalleryImage {
 // Sourced from Sanity. Add images in the Studio (Gallery Image) — the page
 // renders a fixed preview and the rest appear in the lightbox automatically.
 export async function getGalleryImages(): Promise<GalleryImage[]> {
-  const data = await client.fetch<{ image: Image; label: string }[]>(
+  const data = await sanityFetch<{ image: Image; label: string }[]>(
     groq`*[_type == "galleryImage"] | order(order asc){ image, label }`,
   );
   return data.map((g) => ({

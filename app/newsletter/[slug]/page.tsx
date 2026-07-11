@@ -7,7 +7,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { SubscribeForm } from "@/components/SubscribeForm";
 import { formatArticleDate, getArticle, getArticles } from "@/lib/newsletter";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 interface PageProps {
   params: Promise<{ slug: string }>;

@@ -18,7 +18,7 @@ import {
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const eyebrowCls =
   "mb-3 inline-flex items-center gap-2 rounded-full bg-forest/[0.12] px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.25em] text-forest";

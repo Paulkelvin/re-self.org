@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Essays and field notes from Sonya Harris on wellness, resilient leadership, sustainable performance, and self-care — for the people who carry the weight of high-pressure work.",
 };
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function NewsletterPage() {
   const articles = await getArticles();

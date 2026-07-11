@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { getServices, getServiceAudiences, getProcessSteps } from "@/lib/content";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Services",

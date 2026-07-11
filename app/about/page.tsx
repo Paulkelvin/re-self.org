@@ -6,7 +6,7 @@ import { AffirmationsAccordion } from "@/components/AffirmationsAccordion";
 import { getAchievements, getTimeline, getValues, getAffirmations } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "About Sonya Harris",

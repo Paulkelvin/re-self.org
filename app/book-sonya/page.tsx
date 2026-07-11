@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Submit a booking request for Sonya Harris — keynote speaking, workshops, corporate wellness programs, and retreat facilitation.",
 };
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function BookSonyaPage() {
   const [steps, reasons] = await Promise.all([

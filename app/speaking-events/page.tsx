@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { EventList } from "@/components/EventList";
 import { getTopics, getEvents, getSpeakingFormats, getSpeakingAudiences } from "@/lib/content";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Speaking & Events",

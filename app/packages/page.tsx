@@ -5,7 +5,7 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { PackageCard } from "@/components/PackageCard";
 import { getPackages, getStats, getGuarantees, getFaqByCategory } from "@/lib/content";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Programs",

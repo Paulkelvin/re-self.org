@@ -5,5 +5,11 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // fast, cached reads; fine for published content
+  useCdn: true,
 });
+
+export async function sanityFetch<T>(query: string, params?: Record<string, unknown>): Promise<T> {
+  return client.fetch<T>(query, params ?? {}, {
+    next: { tags: ["sanity"], revalidate: 3600 },
+  });
+}

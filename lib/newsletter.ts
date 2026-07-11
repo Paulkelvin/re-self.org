@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import type { Image, PortableTextBlock } from "sanity";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
 export interface Author {
@@ -72,14 +72,14 @@ function mapArticle(a: RawArticle): Article {
 }
 
 export async function getArticles(): Promise<Article[]> {
-  const data = await client.fetch<RawArticle[]>(
+  const data = await sanityFetch<RawArticle[]>(
     groq`*[_type == "article"] | order(publishedAt desc)${PROJECTION}`,
   );
   return data.map(mapArticle);
 }
 
 export async function getArticle(slug: string): Promise<Article | null> {
-  const a = await client.fetch<RawArticle | null>(
+  const a = await sanityFetch<RawArticle | null>(
     groq`*[_type == "article" && slug.current == $slug][0]${PROJECTION}`,
     { slug },
   );
