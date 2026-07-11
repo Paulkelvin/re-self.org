@@ -133,7 +133,11 @@ export function Footer() {
 
         {/* Ultra-minimal copyright basebar */}
         <div className="mx-auto mt-4 flex max-w-6xl flex-col items-center justify-between gap-5 border-t border-white/10 pt-6 text-[10px] font-mono tracking-widest text-white/40 sm:flex-row md:mt-12 md:pt-8">
-          <p>&copy; {year} RE-SELF. ALL RIGHTS RESERVED.</p>
+          <p className="flex items-center gap-3">
+            <span>&copy; {year} RE-SELF. ALL RIGHTS RESERVED.</span>
+            <span className="hidden sm:inline" aria-hidden="true">&middot;</span>
+            <Link href="/privacy-policy" className="text-white/50 transition-colors hover:text-white">PRIVACY POLICY</Link>
+          </p>
           <div className="flex items-center gap-x-6 text-white/50">
             {social.map(({ href, Icon, label }) => {
               const external = href !== "#";
