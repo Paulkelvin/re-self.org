@@ -32,9 +32,6 @@ export default function PrivacyPolicyPage() {
             <h1 className="text-center font-serif text-4xl font-bold tracking-tight text-charcoal sm:text-5xl lg:text-6xl">
               Privacy Policy
             </h1>
-            <p className="mt-5 text-center text-sm tracking-wide text-muted">
-              Last updated July 11, 2025
-            </p>
             <div className="mx-auto mt-6 h-px w-16 bg-gradient-to-r from-transparent via-forest/30 to-transparent" />
           </FadeIn>
         </div>
