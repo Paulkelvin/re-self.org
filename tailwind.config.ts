@@ -26,7 +26,7 @@ const config: Config = {
         "amber-deep": "#6B3E16",
       },
       fontFamily: {
-        sans: ["var(--font-jakarta)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-manrope)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
   },

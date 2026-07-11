@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { IBM_Plex_Mono, Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
 
-const jakarta = Plus_Jakarta_Sans({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-manrope",
 });
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -98,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body
-        className={`${jakarta.variable} ${playfair.variable} ${plexMono.variable} font-sans bg-warm-white text-charcoal antialiased`}
+        className={`${manrope.variable} ${cormorant.variable} ${plexMono.variable} font-sans bg-warm-white text-charcoal antialiased`}
       >
         <SiteChrome>{children}</SiteChrome>
       </body>
