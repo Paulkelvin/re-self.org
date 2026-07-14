@@ -8,6 +8,7 @@ import { SubscribeForm } from "@/components/SubscribeForm";
 import { formatArticleDate, getArticle, getArticles } from "@/lib/newsletter";
 
 export const revalidate = 3600;
+export const dynamicParams = false;
 
 interface PageProps {
   params: Promise<{ slug: string }>;

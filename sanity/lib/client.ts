@@ -10,6 +10,6 @@ export const client = createClient({
 
 export async function sanityFetch<T>(query: string, params?: Record<string, unknown>): Promise<T> {
   return client.fetch<T>(query, params ?? {}, {
-    next: { tags: ["sanity"], revalidate: 3600 },
+    next: { tags: ["sanity"] },
   });
 }
