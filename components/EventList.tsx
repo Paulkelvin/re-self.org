@@ -172,7 +172,7 @@ export function EventList({ events }: { events: SiteEvent[] }) {
                     alt={event.title}
                     fill
                     sizes="(max-width: 640px) 100vw, 128px"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
 

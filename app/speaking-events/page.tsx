@@ -136,7 +136,7 @@ export default async function SpeakingEventsPage() {
                     alt={featuredEvent.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="absolute left-5 top-5 rounded-full bg-forest px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
                     {featuredEvent.eventType}
