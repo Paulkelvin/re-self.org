@@ -49,7 +49,12 @@ export const schemas: Record<string, SectionDef> = {
     singleton: true,
     canCreate: false,
     titleField: "_type",
-    fields: [{ name: "heroImage", label: "Hero Image", type: "image" }],
+    fields: [
+      { name: "heroImage", label: "Hero Image", type: "image" },
+      { name: "heroEyebrow", label: "Hero Small Label", type: "string", placeholder: "e.g. Corporate Wellness · Keynote Speaker" },
+      { name: "heroHeadline", label: "Hero Headline", type: "text", rows: 2, description: "The big bold headline. Put a line break where you want it to wrap onto a new line." },
+      { name: "heroSubtext", label: "Hero Description", type: "text", rows: 3, description: "The paragraph under the headline." },
+    ],
   },
   stat: {
     label: "Stats",

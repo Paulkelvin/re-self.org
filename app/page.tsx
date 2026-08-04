@@ -14,6 +14,7 @@ import {
   getPackages,
   getEvents,
   getHeroImage,
+  getHeroContent,
 } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
@@ -85,7 +86,7 @@ function LeafIcon() {
 
 
 export default async function HomePage() {
-  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events, heroImage] =
+  const [services, topics, testimonials, achievements, faq, galleryImages, packages, events, heroImage, heroContent] =
     await Promise.all([
       getServices(),
       getTopics(),
@@ -96,6 +97,7 @@ export default async function HomePage() {
       getPackages(),
       getEvents(),
       getHeroImage(),
+      getHeroContent(),
     ]);
 
   const flagship =
@@ -122,22 +124,19 @@ export default async function HomePage() {
           <div className="mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
             <FadeIn direction="up">
               <p className="mb-5 text-xs font-semibold uppercase tracking-widest text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
-                Corporate Wellness &middot; Keynote Speaker
+                {heroContent.eyebrow}
               </p>
             </FadeIn>
 
             <FadeIn direction="up" delay={80}>
-              <h1 className="max-w-3xl font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl">
-                Stronger Leaders.
-                <br />
-                <span className="text-white">Healthier Organizations.</span>
+              <h1 className="max-w-3xl whitespace-pre-line font-serif text-[1.85rem] font-bold leading-[1.1] tracking-tight text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl">
+                {heroContent.headline}
               </h1>
             </FadeIn>
 
             <FadeIn direction="up" delay={160}>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] sm:text-lg">
-                Re-Self provides practical, lasting tools for balance, resilience, and
-                well-being — with workshops delivered across the U.S. and internationally.
+                {heroContent.subtext}
               </p>
             </FadeIn>
 

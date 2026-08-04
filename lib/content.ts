@@ -16,6 +16,34 @@ export async function getHeroImage(): Promise<string> {
   return "/hero-keynote.png";
 }
 
+export interface HeroContent {
+  eyebrow: string;
+  headline: string;
+  subtext: string;
+}
+
+const DEFAULT_HERO_CONTENT: HeroContent = {
+  eyebrow: "Corporate Wellness · Keynote Speaker",
+  headline: "Stronger Leaders.\nHealthier Organizations.",
+  subtext:
+    "Re-Self provides practical, lasting tools for balance, resilience, and well-being — with workshops delivered across the U.S. and internationally.",
+};
+
+export async function getHeroContent(): Promise<HeroContent> {
+  const data = await sanityFetch<{
+    heroEyebrow: string | null;
+    heroHeadline: string | null;
+    heroSubtext: string | null;
+  } | null>(
+    groq`*[_type == "siteSettings"][0]{ heroEyebrow, heroHeadline, heroSubtext }`,
+  );
+  return {
+    eyebrow: data?.heroEyebrow || DEFAULT_HERO_CONTENT.eyebrow,
+    headline: data?.heroHeadline || DEFAULT_HERO_CONTENT.headline,
+    subtext: data?.heroSubtext || DEFAULT_HERO_CONTENT.subtext,
+  };
+}
+
 export interface Service {
   title: string;
   image: string;
