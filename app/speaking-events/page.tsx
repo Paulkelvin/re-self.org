@@ -177,26 +177,24 @@ export default async function SpeakingEventsPage() {
                     return (
                       <div className="mt-6 rounded-xl border border-line bg-[#f7fafa] p-5">
                         <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted/50">Investment</p>
-                        <div className="flex flex-wrap items-end gap-4">
-                          <div>
-                            <span className={`font-serif text-2xl font-bold ${isEarlyBird ? "text-forest" : "text-charcoal"}`}>
-                              {isEarlyBird ? fmtPrice(featuredEvent.earlyBirdPrice) : fmtPrice(featuredEvent.regularPrice)}
-                            </span>
-                            {isEarlyBird && (
-                              <span className="ml-2 text-xs font-semibold text-forest/70">Early Bird</span>
-                            )}
-                          </div>
-                          {isEarlyBird ? (
-                            <p className="text-xs text-muted">
-                              {fmtPrice(featuredEvent.regularPrice)} after {deadlineStr}
-                            </p>
-                          ) : (
-                            <p className="text-xs text-muted">
-                              <span className="line-through">{fmtPrice(featuredEvent.earlyBirdPrice)}</span>
-                              {" "}early bird has ended
-                            </p>
+                        <div className="flex items-baseline gap-2">
+                          <span className={`font-serif text-2xl font-bold ${isEarlyBird ? "text-forest" : "text-charcoal"}`}>
+                            {isEarlyBird ? fmtPrice(featuredEvent.earlyBirdPrice) : fmtPrice(featuredEvent.regularPrice)}
+                          </span>
+                          {isEarlyBird && (
+                            <span className="text-xs font-semibold text-forest/70">Early Bird</span>
                           )}
                         </div>
+                        {isEarlyBird ? (
+                          <p className="mt-1 text-xs text-muted">
+                            {fmtPrice(featuredEvent.regularPrice)} after {deadlineStr}
+                          </p>
+                        ) : (
+                          <p className="mt-1 text-xs text-muted">
+                            <span className="line-through">{fmtPrice(featuredEvent.earlyBirdPrice)}</span>
+                            {" "}early bird has ended
+                          </p>
+                        )}
                       </div>
                     );
                   })()}
