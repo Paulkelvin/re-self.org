@@ -437,7 +437,7 @@ export default async function HomePage() {
         const upcoming = events.filter((e) => new Date(e.date) >= now);
         if (upcoming.length === 0) return null;
 
-        const tz = "America/Chicago";
+        const tz = "America/New_York";
         const fmtDate = (s: string) =>
           new Date(s).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: tz });
         const fmtTime = (s: string) =>
@@ -480,7 +480,7 @@ export default async function HomePage() {
                       <div className="flex flex-col justify-center p-8 lg:p-12">
                         <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-wider text-muted/70">
                           <time dateTime={event.date}>
-                            {fmtDate(event.date)} at {fmtTime(event.date)} CST
+                            {fmtDate(event.date)} at {fmtTime(event.date)} EST
                           </time>
                           {event.location && (
                             <>
