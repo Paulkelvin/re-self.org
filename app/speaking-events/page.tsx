@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { EventList } from "@/components/EventList";
 import { EventCheckoutButton } from "@/components/EventCheckoutButton";
+import { CopyEventLink } from "@/components/CopyEventLink";
 import { getTopics, getEvents, getSpeakingFormats, getSpeakingAudiences } from "@/lib/content";
 
 export const revalidate = 3600;
@@ -124,7 +125,9 @@ export default async function SpeakingEventsPage() {
             </FadeIn>
 
             <FadeIn direction="up" delay={80}>
-              <div className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2">
+              <div
+                id={featuredEvent.slug}
+                className="group grid scroll-mt-28 grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2">
                 <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[320px]">
                   <Image
                     src={featuredEvent.coverImage}
@@ -232,7 +235,7 @@ export default async function SpeakingEventsPage() {
                   )}
 
                   {new Date(featuredEvent.date) >= now && (
-                    <div className="mt-7">
+                    <div className="mt-7 flex flex-wrap items-center gap-3">
                       {featuredEvent.registrationUrl ? (
                         <Link
                           href={featuredEvent.registrationUrl}
@@ -246,6 +249,7 @@ export default async function SpeakingEventsPage() {
                       ) : (
                         <EventCheckoutButton event={featuredEvent} variant="large" />
                       )}
+                      <CopyEventLink slug={featuredEvent.slug} />
                     </div>
                   )}
                 </div>

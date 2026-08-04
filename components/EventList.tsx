@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import type { SiteEvent } from "@/lib/content";
 import { EventCheckoutButton } from "@/components/EventCheckoutButton";
+import { CopyEventLink } from "@/components/CopyEventLink";
 
 const typeColors: Record<string, string> = {
   Keynote: "bg-forest text-white",
@@ -161,7 +162,8 @@ export function EventList({ events }: { events: SiteEvent[] }) {
             return (
               <div
                 key={event.slug}
-                className="group flex flex-col gap-4 py-6 transition-colors duration-200 hover:bg-forest/[0.02] sm:flex-row sm:items-center sm:gap-6"
+                id={event.slug}
+                className="group flex scroll-mt-28 flex-col gap-4 py-6 transition-colors duration-200 hover:bg-forest/[0.02] sm:flex-row sm:items-center sm:gap-6"
               >
                 {/* Thumbnail */}
                 <div className="relative h-28 w-full shrink-0 overflow-hidden rounded-xl sm:h-24 sm:w-32">
@@ -285,6 +287,7 @@ export function EventList({ events }: { events: SiteEvent[] }) {
                       Past
                     </span>
                   )}
+                  <CopyEventLink slug={event.slug} />
                 </div>
               </div>
             );

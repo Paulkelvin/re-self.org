@@ -18,6 +18,7 @@ import {
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
 import { EventCheckoutButton } from "@/components/EventCheckoutButton";
+import { CopyEventLink } from "@/components/CopyEventLink";
 
 export const revalidate = 3600;
 
@@ -458,7 +459,9 @@ export default async function HomePage() {
               <div className="space-y-8">
                 {upcoming.slice(0, 3).map((event, i) => (
                   <FadeIn key={event.slug} direction="up" delay={i * 80}>
-                    <div className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2">
+                    <div
+                      id={event.slug}
+                      className="group grid scroll-mt-28 grid-cols-1 overflow-hidden rounded-3xl border border-line/70 bg-white shadow-lg shadow-forest/[0.06] ring-1 ring-forest/[0.03] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2">
                       <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[320px]">
                         <Image
                           src={event.coverImage}
@@ -559,7 +562,7 @@ export default async function HomePage() {
                           );
                         })()}
 
-                        <div className="mt-7">
+                        <div className="mt-7 flex flex-wrap items-center gap-3">
                           {event.registrationUrl ? (
                             <a
                               href={event.registrationUrl}
@@ -573,6 +576,7 @@ export default async function HomePage() {
                           ) : (
                             <EventCheckoutButton event={event} variant="large" />
                           )}
+                          <CopyEventLink slug={event.slug} path="/" />
                         </div>
                       </div>
                     </div>
