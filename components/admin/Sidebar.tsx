@@ -27,7 +27,7 @@ function NavIcon({ d }: { d?: string }) {
   );
 }
 
-function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarContent({ onNavigate, onOpenSearch }: { onNavigate?: () => void; onOpenSearch?: () => void }) {
   const pathname = usePathname();
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
@@ -55,6 +55,23 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           <p className="text-xs font-bold uppercase tracking-wider text-white">Re-Self</p>
           <p className="text-[10px] tracking-wider text-white/40">Content Studio</p>
         </div>
+      </div>
+
+      {/* Search trigger */}
+      <div className="px-3 pt-4">
+        <button
+          type="button"
+          onClick={() => { onOpenSearch?.(); onNavigate?.(); }}
+          className="flex w-full items-center gap-2.5 rounded-lg border border-white/10 bg-white/[0.05] px-3 py-2 text-sm text-white/50 transition hover:bg-white/10 hover:text-white/80"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0">
+            <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
+          </svg>
+          Search content…
+          <kbd className="ml-auto hidden rounded border border-white/15 bg-white/5 px-1.5 py-0.5 text-[10px] font-semibold text-white/40 sm:block">
+            &#8984;K
+          </kbd>
+        </button>
       </div>
 
       {/* Dashboard link */}
@@ -143,14 +160,14 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-export function AdminSidebar() {
+export function AdminSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       {/* ── Desktop sidebar ── */}
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col bg-[#1e2a1a] lg:flex">
-        <SidebarContent />
+        <SidebarContent onOpenSearch={onOpenSearch} />
       </aside>
 
       {/* ── Mobile top bar ── */}
@@ -165,19 +182,30 @@ export function AdminSidebar() {
             <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-        <Image src="/reself-logo.png" alt="Re-Self Admin" width={70} height={60} className="h-7 w-auto" />
-        <span className="text-xs font-semibold text-[#4a5840]">Content Studio</span>
-        <a
-          href="https://re-self.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View live site"
-          className="ml-auto flex h-9 w-9 items-center justify-center rounded-lg border border-[#c4d4d0] text-[#4a5840] transition hover:bg-[#f4f7f4]"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
-          </svg>
-        </a>
+        <Image src="/reself-logo.png" alt="Re-Self Admin" width={70} height={60} className="h-7 w-auto flex-shrink-0" />
+        <span className="truncate text-xs font-semibold text-[#4a5840]">Content Studio</span>
+        <div className="ml-auto flex items-center gap-2">
+          <button
+            onClick={onOpenSearch}
+            aria-label="Search content"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#c4d4d0] text-[#4a5840] transition hover:bg-[#f4f7f4]"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
+            </svg>
+          </button>
+          <a
+            href="https://re-self.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View live site"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#c4d4d0] text-[#4a5840] transition hover:bg-[#f4f7f4]"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+            </svg>
+          </a>
+        </div>
       </header>
 
       {/* ── Mobile backdrop ── */}
@@ -207,7 +235,7 @@ export function AdminSidebar() {
           </button>
         </div>
         <div className="h-[calc(100%-56px)]">
-          <SidebarContent onNavigate={() => setOpen(false)} />
+          <SidebarContent onNavigate={() => setOpen(false)} onOpenSearch={onOpenSearch} />
         </div>
       </aside>
     </>

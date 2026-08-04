@@ -191,11 +191,11 @@ export default async function DashboardPage() {
       </div>
 
       {/* ── Main body ── */}
-      <div className="p-5 lg:p-8">
-        <div className="grid gap-8 xl:grid-cols-[1fr_288px]">
+      <div className="min-w-0 p-5 lg:p-8">
+        <div className="grid min-w-0 gap-8 xl:grid-cols-[1fr_288px]">
 
           {/* ── Section groups ── */}
-          <div className="space-y-8">
+          <div className="min-w-0 space-y-8">
             {navGroups.map((group) => {
               const cfg = GROUP_CONFIG[group.group] ?? GROUP_CONFIG["Homepage"];
               const groupTotal = group.items.reduce((s, { key }) => s + (counts[key] ?? 0), 0);
@@ -215,7 +215,7 @@ export default async function DashboardPage() {
                   </div>
 
                   {/* Cards */}
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-3">
+                  <div className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-3">
                     {group.items.map(({ key, label }) => {
                       const count = counts[key] ?? 0;
                       return (
@@ -256,7 +256,7 @@ export default async function DashboardPage() {
           </div>
 
           {/* ── Recently Updated panel ── */}
-          <div className="xl:sticky xl:top-6 xl:self-start">
+          <div className="min-w-0 xl:sticky xl:top-6 xl:self-start">
             <div className="overflow-hidden rounded-2xl border border-[#dde8dd] bg-white shadow-sm">
               {/* Panel header */}
               <div className="flex items-center gap-2 border-b border-[#eef2ee] px-5 py-4">
