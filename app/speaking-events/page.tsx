@@ -169,10 +169,22 @@ export default async function SpeakingEventsPage() {
                     {featuredEvent.description}
                   </p>
 
-                  {featuredEvent.earlyBirdPrice && featuredEvent.regularPrice && featuredEvent.earlyBirdDeadline && (() => {
+                  {(featuredEvent.earlyBirdPrice || featuredEvent.regularPrice) && (() => {
+                    const fmtPrice = (c: number) => `$${(c / 100).toFixed(0)}`;
+
+                    if (!featuredEvent.earlyBirdPrice || !featuredEvent.regularPrice || !featuredEvent.earlyBirdDeadline) {
+                      const price = featuredEvent.regularPrice || featuredEvent.earlyBirdPrice;
+                      if (!price) return null;
+                      return (
+                        <div className="mt-6 rounded-xl border border-line bg-[#f7fafa] p-5">
+                          <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted/50">Investment</p>
+                          <span className="font-serif text-2xl font-bold text-charcoal">{fmtPrice(price)}</span>
+                        </div>
+                      );
+                    }
+
                     const deadline = new Date(featuredEvent.earlyBirdDeadline + "T23:59:59");
                     const isEarlyBird = now <= deadline;
-                    const fmtPrice = (c: number) => `$${(c / 100).toFixed(0)}`;
                     const deadlineStr = deadline.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
                     return (
                       <div className="mt-6 rounded-xl border border-line bg-[#f7fafa] p-5">
