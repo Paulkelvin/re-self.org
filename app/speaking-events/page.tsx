@@ -5,6 +5,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { EventList } from "@/components/EventList";
 import { EventCheckoutButton } from "@/components/EventCheckoutButton";
 import { CopyEventLink } from "@/components/CopyEventLink";
+import { ScrollToHash } from "@/components/ScrollToHash";
 import { getTopics, getEvents, getSpeakingFormats, getSpeakingAudiences } from "@/lib/content";
 
 export const revalidate = 3600;
@@ -61,6 +62,7 @@ export default async function SpeakingEventsPage() {
 
   return (
     <>
+      <ScrollToHash />
       {/* Hero */}
       <section className="relative isolate min-h-[72vh] flex flex-col justify-center overflow-hidden bg-forest-deep px-6 py-24 text-white lg:px-16">
         {/* Full-bleed background image + contrast overlays */}

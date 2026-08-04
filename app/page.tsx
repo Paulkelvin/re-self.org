@@ -19,6 +19,7 @@ import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
 import { EventCheckoutButton } from "@/components/EventCheckoutButton";
 import { CopyEventLink } from "@/components/CopyEventLink";
+import { ScrollToHash } from "@/components/ScrollToHash";
 
 export const revalidate = 3600;
 
@@ -103,6 +104,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <ScrollToHash />
       {/* ── HERO ── */}
       <section className="relative isolate min-h-[calc(100svh_-_80px)] overflow-hidden">
         <Image
