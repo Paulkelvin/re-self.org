@@ -23,21 +23,36 @@ export function ImageField({ label, value, onChange, required }: Props) {
 
   const currentUrl = getImageUrl(value);
 
+  const MAX_FILE_SIZE = 4 * 1024 * 1024; // Vercel serverless requests are capped around 4.5MB
+
   async function handleFile(file: File) {
     setError("");
-    setUploading(true);
-    const fd = new FormData();
-    fd.append("file", file);
 
-    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-    const data = await res.json();
-
-    if (res.ok) {
-      onChange(data.assetRef as ImageValue);
-    } else {
-      setError(data.error ?? "Upload failed");
+    if (file.size > MAX_FILE_SIZE) {
+      setError(
+        `That image is ${(file.size / (1024 * 1024)).toFixed(1)}MB — please use one under 4MB (try compressing or resizing it first).`,
+      );
+      return;
     }
-    setUploading(false);
+
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data) {
+        onChange(data.assetRef as ImageValue);
+      } else {
+        setError(data?.error ?? "Upload failed — please try again.");
+      }
+    } catch {
+      setError("Upload failed — check your connection and try again.");
+    } finally {
+      setUploading(false);
+    }
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
