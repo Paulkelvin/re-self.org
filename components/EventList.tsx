@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { SiteEvent } from "@/lib/content";
+import { EventCheckoutButton } from "@/components/EventCheckoutButton";
 
 const typeColors: Record<string, string> = {
   Keynote: "bg-forest text-white",
@@ -157,7 +158,6 @@ export function EventList({ events }: { events: SiteEvent[] }) {
           {paged.map((event) => {
             const isPast = new Date(event.date) < now;
             const calUrl = buildCalendarUrl(event);
-            const href = !isPast ? (event.registrationUrl || calUrl) : undefined;
             return (
               <div
                 key={event.slug}
@@ -255,7 +255,7 @@ export function EventList({ events }: { events: SiteEvent[] }) {
                 <div className="flex shrink-0 flex-wrap items-center gap-2">
                   {!isPast ? (
                     <>
-                      {event.registrationUrl && (
+                      {event.registrationUrl ? (
                         <a
                           href={event.registrationUrl}
                           target="_blank"
@@ -265,6 +265,8 @@ export function EventList({ events }: { events: SiteEvent[] }) {
                           Register
                           <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
                         </a>
+                      ) : (
+                        <EventCheckoutButton event={event} />
                       )}
                       {event.showSaveToCalendar && (
                         <a

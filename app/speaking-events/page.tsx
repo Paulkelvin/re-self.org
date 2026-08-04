@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { EventList } from "@/components/EventList";
+import { EventCheckoutButton } from "@/components/EventCheckoutButton";
 import { getTopics, getEvents, getSpeakingFormats, getSpeakingAudiences } from "@/lib/content";
 
 export const revalidate = 3600;
@@ -230,17 +231,21 @@ export default async function SpeakingEventsPage() {
                     </div>
                   )}
 
-                  {new Date(featuredEvent.date) >= now && featuredEvent.registrationUrl && (
+                  {new Date(featuredEvent.date) >= now && (
                     <div className="mt-7">
-                      <Link
-                        href={featuredEvent.registrationUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
-                      >
-                        Register Now
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
-                      </Link>
+                      {featuredEvent.registrationUrl ? (
+                        <Link
+                          href={featuredEvent.registrationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
+                        >
+                          Register Now
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
+                        </Link>
+                      ) : (
+                        <EventCheckoutButton event={featuredEvent} variant="large" />
+                      )}
                     </div>
                   )}
                 </div>
