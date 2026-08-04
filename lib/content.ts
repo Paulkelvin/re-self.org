@@ -125,6 +125,9 @@ export interface SiteEvent {
   speakers: EventSpeaker[];
   featured: boolean;
   showSaveToCalendar: boolean;
+  earlyBirdPrice: number | null;
+  regularPrice: number | null;
+  earlyBirdDeadline: string | null;
 }
 
 export async function getEvents(): Promise<SiteEvent[]> {
@@ -142,6 +145,9 @@ export async function getEvents(): Promise<SiteEvent[]> {
       registrationUrl: string | null;
       featured: boolean;
       showSaveToCalendar: boolean;
+      earlyBirdPrice: number | null;
+      regularPrice: number | null;
+      earlyBirdDeadline: string | null;
       speakers: { name: string; role: string; organization: string; image: Image | null }[] | null;
     }[]
   >(
@@ -158,6 +164,9 @@ export async function getEvents(): Promise<SiteEvent[]> {
       registrationUrl,
       featured,
       showSaveToCalendar,
+      earlyBirdPrice,
+      regularPrice,
+      earlyBirdDeadline,
       speakers[]{ name, role, organization, image }
     }`,
   );
@@ -174,6 +183,9 @@ export async function getEvents(): Promise<SiteEvent[]> {
     registrationUrl: e.registrationUrl,
     featured: e.featured ?? false,
     showSaveToCalendar: e.showSaveToCalendar ?? false,
+    earlyBirdPrice: e.earlyBirdPrice ?? null,
+    regularPrice: e.regularPrice ?? null,
+    earlyBirdDeadline: e.earlyBirdDeadline ?? null,
     speakers: (e.speakers ?? []).map((s) => ({
       name: s.name,
       role: s.role ?? "",

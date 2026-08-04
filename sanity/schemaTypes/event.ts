@@ -106,6 +106,24 @@ export const event = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "earlyBirdPrice",
+      title: "Early Bird Price (cents)",
+      type: "number",
+      description: "Early bird price in cents (e.g. 15000 = $150). Leave empty if free.",
+    }),
+    defineField({
+      name: "regularPrice",
+      title: "Regular Price (cents)",
+      type: "number",
+      description: "Regular price in cents (e.g. 17500 = $175). Leave empty if free.",
+    }),
+    defineField({
+      name: "earlyBirdDeadline",
+      title: "Early Bird Deadline",
+      type: "date",
+      description: "Last day for early bird pricing. After this date the regular price applies.",
+    }),
+    defineField({
       name: "featured",
       type: "boolean",
       description: "Pin this event as the featured hero event.",

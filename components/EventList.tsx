@@ -13,7 +13,59 @@ const typeColors: Record<string, string> = {
   Conference: "bg-[#d5e0e8] text-[#2a4a5a]",
 };
 
-const EVENT_TZ = "America/Chicago";
+const EVENT_TZ = "America/New_York";
+
+function formatPrice(cents: number) {
+  return `$${(cents / 100).toFixed(0)}`;
+}
+
+function EventPricing({ event }: { event: SiteEvent }) {
+  if (!event.earlyBirdPrice && !event.regularPrice) return null;
+
+  const now = new Date();
+  const deadline = event.earlyBirdDeadline ? new Date(event.earlyBirdDeadline + "T23:59:59") : null;
+  const isEarlyBird = deadline ? now <= deadline : false;
+
+  if (!event.earlyBirdPrice || !event.regularPrice || !deadline) {
+    const price = event.regularPrice || event.earlyBirdPrice;
+    if (!price) return null;
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full bg-amber/10 px-2.5 py-0.5 text-xs font-bold text-amber">
+        {formatPrice(price)}
+      </span>
+    );
+  }
+
+  const deadlineStr = deadline.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    timeZone: EVENT_TZ,
+  });
+
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      {isEarlyBird ? (
+        <>
+          <span className="inline-flex items-center gap-1 rounded-full bg-forest/10 px-2.5 py-0.5 text-xs font-bold text-forest">
+            {formatPrice(event.earlyBirdPrice)} Early Bird
+          </span>
+          <span className="text-[10px] text-muted">
+            {formatPrice(event.regularPrice)} after {deadlineStr}
+          </span>
+        </>
+      ) : (
+        <>
+          <span className="inline-flex items-center gap-1 rounded-full bg-amber/10 px-2.5 py-0.5 text-xs font-bold text-amber">
+            {formatPrice(event.regularPrice)}
+          </span>
+          <span className="text-[10px] text-muted line-through">
+            {formatPrice(event.earlyBirdPrice)}
+          </span>
+        </>
+      )}
+    </span>
+  );
+}
 
 function formatEventDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -157,6 +209,13 @@ export function EventList({ events }: { events: SiteEvent[] }) {
                       </span>
                     )}
                   </div>
+
+                  {/* Pricing */}
+                  {(event.earlyBirdPrice || event.regularPrice) && (
+                    <div className="mt-2">
+                      <EventPricing event={event} />
+                    </div>
+                  )}
 
                   {/* Speaker names */}
                   {event.speakers.length > 0 && (
