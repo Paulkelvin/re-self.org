@@ -17,6 +17,7 @@ import {
 } from "@/lib/content";
 import { getGalleryImages } from "@/lib/gallery";
 import { PackageCard } from "@/components/PackageCard";
+import { EventCheckoutButton } from "@/components/EventCheckoutButton";
 
 export const revalidate = 3600;
 
@@ -526,8 +527,40 @@ export default async function HomePage() {
                           </div>
                         )}
 
-                        {event.registrationUrl && (
-                          <div className="mt-7">
+                        {event.earlyBirdPrice && event.regularPrice && event.earlyBirdDeadline && (() => {
+                          const deadline = new Date(event.earlyBirdDeadline + "T23:59:59");
+                          const isEarlyBird = now <= deadline;
+                          const fmtPrice = (c: number) => `$${(c / 100).toFixed(0)}`;
+                          const deadlineStr = deadline.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+                          return (
+                            <div className="mt-6 rounded-xl border border-line bg-[#f7fafa] p-5">
+                              <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted/50">Investment</p>
+                              <div className="flex flex-wrap items-end gap-4">
+                                <div>
+                                  <span className={`font-serif text-2xl font-bold ${isEarlyBird ? "text-forest" : "text-charcoal"}`}>
+                                    {isEarlyBird ? fmtPrice(event.earlyBirdPrice) : fmtPrice(event.regularPrice)}
+                                  </span>
+                                  {isEarlyBird && (
+                                    <span className="ml-2 text-xs font-semibold text-forest/70">Early Bird</span>
+                                  )}
+                                </div>
+                                {isEarlyBird ? (
+                                  <p className="text-xs text-muted">
+                                    {fmtPrice(event.regularPrice)} after {deadlineStr}
+                                  </p>
+                                ) : (
+                                  <p className="text-xs text-muted">
+                                    <span className="line-through">{fmtPrice(event.earlyBirdPrice)}</span>
+                                    {" "}early bird has ended
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })()}
+
+                        <div className="mt-7">
+                          {event.registrationUrl ? (
                             <a
                               href={event.registrationUrl}
                               target="_blank"
@@ -537,8 +570,10 @@ export default async function HomePage() {
                               Register Now
                               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
                             </a>
-                          </div>
-                        )}
+                          ) : (
+                            <EventCheckoutButton event={event} variant="large" />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </FadeIn>
