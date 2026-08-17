@@ -45,7 +45,7 @@ export default async function AboutPage() {
               About Sonya
             </p>
             <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-7xl">
-              Leadership, Service, and the Science of Wellness.
+              It is Time to Re-imagine Self-Care
             </h1>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
               Over two decades of military precision, federal government leadership, and

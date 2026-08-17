@@ -80,44 +80,6 @@ export default async function ServicesPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative isolate flex min-h-[62vh] flex-col justify-center overflow-hidden bg-forest-deep px-6 py-24 text-white lg:min-h-[68vh] lg:px-16">
-        {/* Full-bleed background image + contrast overlays */}
-        <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <Image
-            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=2000&q=80"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          {/* Left-weighted gradient keeps the headline on a dark field for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/95 via-forest-deep/78 to-forest-deep/35" />
-          <div className="absolute inset-0 bg-forest-deep/25" />
-        </div>
-
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-10 left-2 select-none font-serif text-[9rem] font-bold leading-none text-white/[0.06] lg:text-[14rem]"
-        >
-          Services
-        </span>
-
-        <div className="relative z-10 mx-auto w-full max-w-[1200px]">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-sage/[0.10] border border-white/15 px-4 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sage">
-            Services
-          </p>
-          <h1 className="font-serif max-w-4xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
-            Premium wellness support for healthier workplace performance.
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-            Choose a focused workshop, a broader wellness program, or a facilitated retreat
-            built around your team&apos;s real pressures.
-          </p>
-        </div>
-      </section>
-
       {/* Service showcase — editorial, alternating */}
       <section className="relative overflow-hidden bg-ambient-warm py-16 lg:py-24">
         <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-sage/[0.06] blur-3xl" aria-hidden="true" />
