@@ -50,9 +50,7 @@ export default async function PackagesPage() {
               Investment
             </p>
             <h1 className="font-serif max-w-3xl text-3xl font-normal leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
-              Invest in your team&apos;s
-              <br className="hidden sm:block" />
-              wellbeing and performance.
+              It is time to invest in your self-care
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
               Transparent pricing. Premium delivery. Measurable impact.
