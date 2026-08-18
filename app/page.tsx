@@ -151,13 +151,13 @@ export default async function HomePage() {
             <ShimmerCTA
               href="/book-sonya"
               tone="light"
-              className="inline-flex items-center rounded-full bg-forest px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-deep hover:shadow-xl"
+              className="inline-flex items-center rounded-full border-2 border-amber-deep bg-sage px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-sage-light hover:text-amber-deep hover:shadow-xl"
             >
               Book Sonya
             </ShimmerCTA>
             <Link
               href="/services"
-              className="inline-flex items-center rounded-full border-2 border-forest px-8 py-3 text-xs font-bold uppercase tracking-widest text-forest transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest hover:text-white"
+              className="inline-flex items-center rounded-full border-2 border-amber-deep bg-sage px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-sage-light hover:text-amber-deep"
             >
               Explore Services
             </Link>
