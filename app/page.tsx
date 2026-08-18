@@ -118,7 +118,7 @@ export default async function HomePage() {
               width={360}
               height={360}
               priority
-              className="h-auto w-40 sm:w-48 lg:w-56"
+              className="h-auto w-28 sm:w-48 lg:w-56"
             />
             <p className="font-serif text-2xl text-amber-deep sm:text-3xl">
               Self-care from Within
@@ -141,7 +141,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Workshops/retreats paragraph */}
           <FadeIn direction="up" className="flex items-center justify-center bg-terracotta px-8 py-10 text-center lg:py-12">
-            <p className="max-w-md text-sm leading-relaxed text-white sm:text-base">
+            <p className="max-w-md text-base leading-relaxed text-white sm:text-lg">
               {heroContent.subtext}
             </p>
           </FadeIn>
