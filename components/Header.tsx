@@ -42,22 +42,10 @@ export function Header() {
       }`}
     >
       <nav
-        className={`mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 transition-all duration-300 ${
+        className={`mx-auto flex max-w-[1200px] items-center justify-end gap-4 px-4 transition-all duration-300 ${
           scrolled ? "min-h-[64px]" : "min-h-[80px]"
         }`}
       >
-        {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)} aria-label="Re-Self home">
-          <Image
-            src="/reself-logo.png"
-            alt="Re-Self — reimagine self care"
-            width={223}
-            height={200}
-            priority
-            className={`logo-harmonize w-auto transition-all duration-300 ${scrolled ? "h-11" : "h-14"}`}
-          />
-        </Link>
-
         {/* Desktop nav */}
         <div className="hidden items-center gap-x-10 lg:flex">
           {links.map(({ label, href }) => (

@@ -126,7 +126,7 @@ export default async function HomePage() {
           </FadeIn>
 
           {/* Portrait */}
-          <div className="relative min-h-[320px] lg:aspect-square lg:min-h-0">
+          <div className="relative aspect-[4/5] lg:aspect-square">
             <Image
               src={heroImage}
               alt="Sonya Harris — Re-Self Wellness"
