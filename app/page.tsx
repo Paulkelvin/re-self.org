@@ -108,59 +108,51 @@ export default async function HomePage() {
     <>
       <ScrollToHash />
       {/* ── HERO ── */}
-      <section className="relative isolate overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Logo panel */}
-          <FadeIn direction="up" className="flex flex-col items-center justify-center gap-5 bg-sage-light px-8 py-16 text-center lg:py-24">
+      <section className="relative isolate flex min-h-[calc(100svh_-_80px)] items-center overflow-hidden">
+        <Image
+          src={heroImage}
+          alt="Sonya Harris — Re-Self Wellness"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[80%_15%] sm:object-[75%_20%] lg:object-[78%_25%]"
+        />
+        {/* Light, brand-cream gradient — legibility without the old dark mood */}
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-sage-light/98 via-sage-light/85 to-sage-light/20 lg:from-sage-light/97 lg:via-sage-light/75 lg:to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-sage-light/50 via-transparent to-sage-light/10" />
+
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 py-20 lg:px-12">
+          <FadeIn direction="up" className="max-w-xl">
             <Image
               src="/reself-logo.png"
               alt="Re-Self — reimagine self care"
-              width={360}
-              height={360}
+              width={280}
+              height={251}
               priority
-              className="h-auto w-40 sm:w-48 lg:w-56"
+              className="mb-6 h-16 w-auto sm:h-20"
             />
-            <p className="font-serif text-2xl text-amber-deep sm:text-3xl">
+            <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight text-charcoal sm:text-6xl lg:text-7xl">
               Self-care from Within
-            </p>
-          </FadeIn>
-
-          {/* Portrait */}
-          <div className="relative aspect-[4/5] lg:aspect-square">
-            <Image
-              src={heroImage}
-              alt="Sonya Harris — Re-Self Wellness"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-[85%_20%]"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Workshops/retreats paragraph */}
-          <FadeIn direction="up" className="flex items-center justify-center bg-terracotta px-8 py-10 text-center lg:py-12">
-            <p className="max-w-md text-sm leading-relaxed text-white sm:text-base">
+            </h1>
+            <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/75 sm:text-lg">
               {heroContent.subtext}
             </p>
-          </FadeIn>
 
-          {/* CTAs */}
-          <FadeIn direction="up" delay={80} className="flex flex-wrap items-center justify-center gap-4 bg-sage-light px-8 py-10 lg:py-12">
-            <ShimmerCTA
-              href="/book-sonya"
-              tone="light"
-              className="inline-flex items-center rounded-full bg-forest px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-deep hover:shadow-xl"
-            >
-              Book Sonya
-            </ShimmerCTA>
-            <Link
-              href="/services"
-              className="inline-flex items-center rounded-full border-2 border-forest px-8 py-3 text-xs font-bold uppercase tracking-widest text-forest transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest hover:text-white"
-            >
-              Explore Services
-            </Link>
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <ShimmerCTA
+                href="/book-sonya"
+                tone="light"
+                className="inline-flex items-center rounded-full bg-forest px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest-deep hover:shadow-xl"
+              >
+                Book Sonya
+              </ShimmerCTA>
+              <Link
+                href="/services"
+                className="inline-flex items-center rounded-full border-2 border-forest px-8 py-3 text-xs font-bold uppercase tracking-widest text-forest transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest hover:text-white"
+              >
+                Explore Services
+              </Link>
+            </div>
           </FadeIn>
         </div>
       </section>
