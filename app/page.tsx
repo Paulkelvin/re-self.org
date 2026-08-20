@@ -118,9 +118,9 @@ export default async function HomePage() {
               width={360}
               height={360}
               priority
-              className="h-auto w-28 sm:w-48 lg:w-56"
+              className="h-auto w-48 sm:w-52 lg:w-56"
             />
-            <p className="font-serif text-2xl text-amber-deep sm:text-3xl">
+            <p className="font-serif text-3xl text-amber-deep sm:text-4xl">
               Self-care from Within
             </p>
           </FadeIn>
