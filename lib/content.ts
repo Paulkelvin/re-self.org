@@ -13,7 +13,7 @@ export async function getHeroImage(): Promise<string> {
   if (data?.heroImage) {
     return urlForImage(data.heroImage).width(2400).quality(85).url();
   }
-  return "/sonya-harris.jpg";
+  return "/sonya-harris-portrait.jpg";
 }
 
 export interface HeroContent {

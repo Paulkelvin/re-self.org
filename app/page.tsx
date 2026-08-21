@@ -133,7 +133,7 @@ export default async function HomePage() {
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-[center_18%] lg:object-[85%_20%]"
+              className="object-cover object-[center_18%] lg:object-[60%_15%]"
             />
           </div>
         </div>
