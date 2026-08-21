@@ -109,9 +109,9 @@ export default async function HomePage() {
       <ScrollToHash />
       {/* ── HERO ── */}
       <section className="relative isolate overflow-hidden">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 min-h-[52svh] lg:min-h-0">
           {/* Logo panel */}
-          <FadeIn direction="up" className="flex flex-col items-center justify-center gap-2 bg-sage-light px-2 py-6 text-center sm:gap-5 sm:px-8 sm:py-16 lg:py-24">
+          <FadeIn direction="up" className="flex h-full flex-col items-center justify-center gap-2 bg-sage-light px-2 py-6 text-center sm:gap-5 sm:px-8 sm:py-16 lg:py-24">
             <Image
               src="/reself-logo.png"
               alt="Re-Self — reimagine self care"
@@ -126,28 +126,28 @@ export default async function HomePage() {
           </FadeIn>
 
           {/* Portrait */}
-          <div className="relative aspect-[4/5] lg:aspect-square">
+          <div className="relative h-full lg:aspect-square lg:h-auto">
             <Image
               src={heroImage}
               alt="Sonya Harris — Re-Self Wellness"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-[85%_20%]"
+              className="object-cover object-[center_18%] lg:object-[85%_20%]"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 min-h-[30svh] lg:min-h-0">
           {/* Workshops/retreats paragraph */}
-          <FadeIn direction="up" className="flex items-center justify-center bg-terracotta px-2 py-6 text-center sm:px-8 sm:py-10 lg:py-12">
+          <FadeIn direction="up" className="flex h-full items-center justify-center bg-terracotta px-2 py-6 text-center sm:px-8 sm:py-10 lg:py-12">
             <p className="max-w-md text-[11px] leading-relaxed text-white sm:text-base lg:text-lg">
               {heroContent.subtext}
             </p>
           </FadeIn>
 
           {/* CTAs */}
-          <FadeIn direction="up" delay={80} className="flex flex-col items-center justify-center gap-2 bg-terracotta px-2 py-6 sm:flex-row sm:flex-wrap sm:gap-4 sm:px-8 sm:py-10 lg:py-12">
+          <FadeIn direction="up" delay={80} className="flex h-full flex-col items-center justify-center gap-2 bg-terracotta px-2 py-6 sm:flex-row sm:flex-wrap sm:gap-4 sm:px-8 sm:py-10 lg:py-12">
             <ShimmerCTA
               href="/book-sonya"
               tone="light"
