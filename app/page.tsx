@@ -118,7 +118,7 @@ export default async function HomePage() {
               width={360}
               height={360}
               priority
-              className="h-auto w-24 sm:w-48 lg:w-56"
+              className="h-auto w-24 sm:w-48 lg:w-72"
             />
             <p className="font-serif text-base text-amber-deep sm:text-3xl lg:text-4xl">
               Self-care from Within
