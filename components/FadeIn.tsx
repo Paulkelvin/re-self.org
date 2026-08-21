@@ -44,7 +44,27 @@ export function FadeIn({ children, className = "", delay = 0, direction = "up" }
       { threshold: 0.08, rootMargin: "0px 0px -32px 0px" },
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // iOS Safari settles its dynamic viewport height (URL bar collapsing)
+    // shortly after load, which can leave IntersectionObserver's initial
+    // read stale for content that's already on screen — it then stays
+    // invisible until a scroll/resize nudges a recheck. Recheck directly
+    // against the viewport as a fallback so nothing gets stuck blank.
+    const recheckInView = () => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    };
+    window.addEventListener("resize", recheckInView);
+    const timeoutId = window.setTimeout(recheckInView, 300);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", recheckInView);
+      window.clearTimeout(timeoutId);
+    };
   }, []);
 
   // Hardware-accelerated only: translate3d + opacity, never layout properties.
