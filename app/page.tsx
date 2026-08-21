@@ -109,7 +109,7 @@ export default async function HomePage() {
       <ScrollToHash />
       {/* ── HERO ── */}
       <section className="relative isolate overflow-hidden">
-        <div className="grid grid-cols-2 min-h-[52svh] lg:min-h-0">
+        <div className="grid grid-cols-2 min-h-[42svh] lg:min-h-0">
           {/* Logo panel */}
           <FadeIn direction="up" className="flex h-full flex-col items-center justify-center gap-2 bg-sage-light px-2 py-6 text-center sm:gap-5 sm:px-8 sm:py-16 lg:py-24">
             <Image
@@ -138,10 +138,10 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 min-h-[30svh] lg:min-h-0">
+        <div className="grid grid-cols-2 min-h-[24svh] lg:min-h-0">
           {/* Workshops/retreats paragraph */}
           <FadeIn direction="up" className="flex h-full items-center justify-center bg-terracotta px-2 py-6 text-center sm:px-8 sm:py-10 lg:py-12">
-            <p className="max-w-md text-[11px] leading-relaxed text-white sm:text-base lg:text-lg">
+            <p className="max-w-md text-sm leading-relaxed text-white sm:text-base lg:text-lg">
               {heroContent.subtext}
             </p>
           </FadeIn>
