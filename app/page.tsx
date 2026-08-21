@@ -109,18 +109,18 @@ export default async function HomePage() {
       <ScrollToHash />
       {/* ── HERO ── */}
       <section className="relative isolate overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="grid grid-cols-2">
           {/* Logo panel */}
-          <FadeIn direction="up" className="flex flex-col items-center justify-center gap-5 bg-sage-light px-8 py-16 text-center lg:py-24">
+          <FadeIn direction="up" className="flex flex-col items-center justify-center gap-2 bg-sage-light px-2 py-6 text-center sm:gap-5 sm:px-8 sm:py-16 lg:py-24">
             <Image
               src="/reself-logo.png"
               alt="Re-Self — reimagine self care"
               width={360}
               height={360}
               priority
-              className="h-auto w-48 sm:w-52 lg:w-56"
+              className="h-auto w-16 sm:w-48 lg:w-56"
             />
-            <p className="font-serif text-3xl text-amber-deep sm:text-4xl">
+            <p className="font-serif text-sm text-amber-deep sm:text-3xl lg:text-4xl">
               Self-care from Within
             </p>
           </FadeIn>
@@ -138,26 +138,26 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="grid grid-cols-2">
           {/* Workshops/retreats paragraph */}
-          <FadeIn direction="up" className="flex items-center justify-center bg-terracotta px-8 py-10 text-center lg:py-12">
-            <p className="max-w-md text-base leading-relaxed text-white sm:text-lg">
+          <FadeIn direction="up" className="flex items-center justify-center bg-terracotta px-2 py-6 text-center sm:px-8 sm:py-10 lg:py-12">
+            <p className="max-w-md text-[11px] leading-relaxed text-white sm:text-base lg:text-lg">
               {heroContent.subtext}
             </p>
           </FadeIn>
 
           {/* CTAs */}
-          <FadeIn direction="up" delay={80} className="flex flex-wrap items-center justify-center gap-4 bg-terracotta px-8 py-10 lg:py-12">
+          <FadeIn direction="up" delay={80} className="flex flex-col items-center justify-center gap-2 bg-terracotta px-2 py-6 sm:flex-row sm:flex-wrap sm:gap-4 sm:px-8 sm:py-10 lg:py-12">
             <ShimmerCTA
               href="/book-sonya"
               tone="light"
-              className="inline-flex items-center rounded-full border-2 border-white px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-light hover:shadow-xl"
+              className="inline-flex items-center rounded-full border-2 border-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wide text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-light hover:shadow-xl sm:px-8 sm:py-3.5 sm:text-xs sm:tracking-widest"
             >
               Book Sonya
             </ShimmerCTA>
             <Link
               href="/services"
-              className="inline-flex items-center rounded-full border-2 border-white px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-light"
+              className="inline-flex items-center rounded-full border-2 border-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-light sm:px-8 sm:py-3.5 sm:text-xs sm:tracking-widest"
             >
               Explore Services
             </Link>
