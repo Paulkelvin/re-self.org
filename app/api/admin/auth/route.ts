@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { SignJWT } from "jose";
+import { hashPassword } from "@/lib/adminAuth";
+
+const SESSION_SECONDS = 60 * 60 * 24; // 24h
 
 function secret() {
   const s = process.env.ADMIN_SECRET ?? "re-self-admin-secret-change-me";
@@ -14,10 +17,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid password" }, { status: 401 });
   }
 
-  const token = await new SignJWT({ role: "admin" })
+  // Binding the session to a hash of the current password means changing
+  // ADMIN_PASSWORD immediately invalidates every session signed under the
+  // old one, instead of leaving already-logged-in sessions valid for the
+  // rest of their (previously 7-day) lifetime.
+  const pwHash = await hashPassword(process.env.ADMIN_PASSWORD);
+
+  const token = await new SignJWT({ role: "admin", pwHash })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("7d")
+    .setExpirationTime(`${SESSION_SECONDS}s`)
     .sign(secret());
 
   const res = NextResponse.json({ ok: true });
@@ -25,7 +34,7 @@ export async function POST(request: Request) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: SESSION_SECONDS,
     path: "/",
   });
 

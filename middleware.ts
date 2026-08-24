@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
+import { hashPassword } from "@/lib/adminAuth";
 
 function secret() {
   const s = process.env.ADMIN_SECRET ?? "re-self-admin-secret-change-me";
@@ -29,7 +30,11 @@ export async function middleware(request: NextRequest) {
   }
 
   try {
-    await jwtVerify(token, secret());
+    const { payload } = await jwtVerify(token, secret());
+    const currentPwHash = await hashPassword(process.env.ADMIN_PASSWORD ?? "");
+    if (payload.pwHash !== currentPwHash) {
+      throw new Error("Session was issued under a since-changed password");
+    }
     return NextResponse.next();
   } catch {
     if (isAdminApi) {
